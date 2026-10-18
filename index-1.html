@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8C2B3E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="הזמנות רוזי">
+<title>הזמנות רוזי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@700&display=swap">
+<style>
+/* Kitchen order pad: one working column, sticky date + tabs, sticky action bar */
+:root{
+  --bg:#F6F5F3; --paper:#FFFFFF; --ink:#18161A; --mute:#6F6A70; --line:#E3E0E2; --soft:#EFEDEE;
+  --wine:#8C2B3E; --wine-soft:#F5E9EC; --ok:#2E6A4B; --ok-soft:#E5F1EA; --warn:#9A5B12; --warn-soft:#FBF0E1; --bad:#A3271B;
+  --ui:"IBM Plex Sans Hebrew","Arial Hebrew",Arial,sans-serif; --disp:"Frank Ruhl Libre","David",Georgia,serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121113; --paper:#1B1A1D; --ink:#F1EEF0; --mute:#A39DA4; --line:#2E2C30; --soft:#252327;
+  --wine:#E07A90; --wine-soft:#3A2129; --ok:#7CC9A0; --ok-soft:#1D3328; --warn:#E3AE68; --warn-soft:#3A2C18; --bad:#F08A7E; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.45;padding-top:env(safe-area-inset-top,0px)}
+[hidden]{display:none!important}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.splash{display:grid;place-items:center;min-height:80vh;color:var(--mute)}
+
+/* login */
+.auth{min-height:90vh;display:grid;place-items:center}
+.card{width:100%;max-width:380px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px 22px}
+.card h1{font-family:var(--disp);font-size:30px;margin:0}
+.card p.sub{margin:4px 0 20px;color:var(--mute);font-size:13.5px}
+.field{display:grid;gap:5px;margin-bottom:12px}
+.field label{font-size:13px;font-weight:600}
+.field input,.field select{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:inherit}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin:2px 0 8px}
+.link{background:none;border:0;color:var(--wine);font:inherit;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+.center{text-align:center;margin-top:14px;font-size:13.5px;color:var(--mute)}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 6px}
+.brand{font-family:var(--disp);font-size:24px;margin:0}
+.who{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mute)}
+.who b{color:var(--ink);font-weight:600}
+.days{display:flex;gap:6px;overflow-x:auto;padding-block:4px 10px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:6px 10px;min-width:62px;text-align:center;font:inherit;cursor:pointer}
+.day b{display:block;font-size:13px}
+.day span{display:block;font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+.day[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.day[aria-pressed="true"] span{color:inherit;opacity:.75}
+.day:disabled{opacity:.35;cursor:not-allowed}
+.tabs{display:flex;gap:4px;border-top:1px solid var(--line);overflow-x:auto}
+.tab{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:11px 8px;font:inherit;font-weight:600;color:var(--mute);cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--wine)}
+main{padding-block:14px 110px}
+
+.status{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:13.5px}
+.pill{border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill.open{background:var(--ok-soft);color:var(--ok)}
+.pill.late{background:var(--warn-soft);color:var(--warn)}
+.pill.sent{background:var(--wine-soft);color:var(--wine)}
+.pill.none{background:var(--soft);color:var(--mute)}
+.tools{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.search{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:10px 12px;font:inherit}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:9px 12px;font:inherit;font-size:13.5px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+section.cat{margin-bottom:16px}
+.cat h2{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--mute);margin:0 0 6px;display:flex;justify-content:space-between}
+.list{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-top:1px solid var(--line);min-height:54px}
+.row:first-child{border-top:0}
+.row .nm{flex:1;min-width:0}
+.row .nm b{font-weight:600;display:block}
+.row .nm small{color:var(--mute);font-size:12px;font-variant-numeric:tabular-nums}
+.row.on{background:var(--wine-soft)}
+.row.done{background:var(--ok-soft)}
+.row.off{opacity:.5}
+.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+.step button{width:42px;height:42px;border:0;background:none;color:var(--ink);font-size:20px;cursor:pointer}
+.step button:active{background:var(--soft)}
+.step button:disabled{opacity:.3;cursor:not-allowed}
+.step output{width:34px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.check{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ok);font-size:22px;cursor:pointer;flex:0 0 auto}
+.check:disabled{cursor:default}
+.row.done .check{background:var(--ok);border-color:var(--ok);color:var(--paper)}
+.qty{font-weight:700;font-variant-numeric:tabular-nums;min-width:52px;text-align:center}
+.qty small{display:block;font-weight:400;font-size:11px;color:var(--mute)}
+.num{width:58px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:7px 4px;text-align:center;font:inherit;font-weight:600;font-variant-numeric:tabular-nums}
+.sel{border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:7px 6px;font:inherit}
+.label{font-size:12px;color:var(--ok);font-weight:600;font-variant-numeric:tabular-nums}
+.bar{position:fixed;inset:auto 0 0;z-index:6;background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.bar .sum{flex:1;min-width:0;font-size:13.5px}
+.bar .sum b{font-size:17px;font-variant-numeric:tabular-nums}
+.btn{border:0;border-radius:12px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;background:var(--wine);color:#fff}
+.btn.full{width:100%}
+.btn.ghost{background:var(--soft);color:var(--ink)}
+.btn.small{padding:7px 12px;font-size:13px;border-radius:9px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.progress{height:6px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:6px}
+.progress div{height:100%;background:var(--ok);transition:width .3s}
+.empty{text-align:center;color:var(--mute);padding:36px 16px;background:var(--paper);border:1px dashed var(--line);border-radius:12px}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.form{display:grid;grid-template-columns:1fr 1fr 90px auto;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:14px}
+.form input,.form select{min-width:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:10px;font:inherit}
+@media (max-width:560px){.form{grid-template-columns:1fr 1fr}.form .btn{grid-column:1/-1}}
+.note{font-size:12.5px;color:var(--mute);margin:0 0 12px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:10px;font-size:13.5px;z-index:9;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+</head>
+<body>
+<div id="app"><div class="splash">טוען…</div></div>
+<div class="toast" id="toast" role="status"></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, collection, onSnapshot, setDoc, getDoc, updateDoc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyBhNdlFbeHY_zFo18N4WvWSz_2xrWpevu0",
+  authDomain: "rosie-orders-b7ea5.firebaseapp.com",
+  projectId: "rosie-orders-b7ea5",
+  storageBucket: "rosie-orders-b7ea5.firebasestorage.app",
+  messagingSenderId: "486019026542",
+  appId: "1:486019026542:web:838283fe5f2f4a8e19e07f"
+};
+const ADMIN_USERNAME = "gadi";
+
+// רשימת ההכנות ההתחלתית. נטענת פעם אחת למסד הנתונים בכניסה הראשונה של המנהל.
+const DEFAULT_CATALOG = {
+ "p01": {
+  "n": "מיקס פטריות מפורק",
+  "c": "ירקות וחיתוכים",
+  "d": 3,
+  "pos": 0,
+  "active": true
+ },
+ "p02": {
+  "n": "עגבניות שרי חצויות",
+  "c": "ירקות וחיתוכים",
+  "d": 2,
+  "pos": 1,
+  "active": true
+ },
+ "p03": {
+  "n": "טרטר מלפפון",
+  "c": "ירקות וחיתוכים",
+  "d": 3,
+  "pos": 2,
+  "active": true
+ },
+ "p04": {
+  "n": "זרעי עגבנייה",
+  "c": "ירקות וחיתוכים",
+  "d": 3,
+  "pos": 3,
+  "active": true
+ },
+ "p05": {
+  "n": "צ׳ילי טרי פרוס",
+  "c": "ירקות וחיתוכים",
+  "d": 5,
+  "pos": 4,
+  "active": true
+ },
+ "p06": {
+  "n": "פלפל ירוק חריף פרוס",
+  "c": "ירקות וחיתוכים",
+  "d": 5,
+  "pos": 5,
+  "active": true
+ },
+ "p07": {
+  "n": "שושקה פרוסה",
+  "c": "ירקות וחיתוכים",
+  "d": 4,
+  "pos": 6,
+  "active": true
+ },
+ "p08": {
+  "n": "שאלוט פרוס",
+  "c": "ירקות וחיתוכים",
+  "d": 4,
+  "pos": 7,
+  "active": true
+ },
+ "p09": {
+  "n": "תרד",
+  "c": "ירקות וחיתוכים",
+  "d": 4,
+  "pos": 8,
+  "active": true
+ },
+ "p10": {
+  "n": "רוקט",
+  "c": "ירקות וחיתוכים",
+  "d": 4,
+  "pos": 9,
+  "active": true
+ },
+ "p11": {
+  "n": "חסה שטופה וקצוצה",
+  "c": "ירקות וחיתוכים",
+  "d": 2,
+  "pos": 10,
+  "active": true
+ },
+ "p12": {
+  "n": "בייבי זוקיני פרוס",
+  "c": "ירקות וחיתוכים",
+  "d": 2,
+  "pos": 11,
+  "active": true
+ },
+ "p13": {
+  "n": "בצל ירוק קצוץ",
+  "c": "ירקות וחיתוכים",
+  "d": 3,
+  "pos": 12,
+  "active": true
+ },
+ "p14": {
+  "n": "זיתי קלמטה קצוצים",
+  "c": "ירקות וחיתוכים",
+  "d": 14,
+  "pos": 13,
+  "active": true
+ },
+ "p15": {
+  "n": "ברי פרוס",
+  "c": "גבינות",
+  "d": 4,
+  "pos": 14,
+  "active": true
+ },
+ "p16": {
+  "n": "גאודה מגוררת",
+  "c": "גבינות",
+  "d": 10,
+  "pos": 15,
+  "active": true
+ },
+ "p17": {
+  "n": "פרמז׳ן מגורד",
+  "c": "גבינות",
+  "d": 7,
+  "pos": 16,
+  "active": true
+ },
+ "p18": {
+  "n": "פיקורינו מגורד",
+  "c": "גבינות",
+  "d": 7,
+  "pos": 17,
+  "active": true
+ },
+ "p19": {
+  "n": "צ׳דר פרוס",
+  "c": "גבינות",
+  "d": 7,
+  "pos": 18,
+  "active": true
+ },
+ "p20": {
+  "n": "קרם בולגרית",
+  "c": "גבינות",
+  "d": 5,
+  "pos": 19,
+  "active": true
+ },
+ "p21": {
+  "n": "בסיס קציפת פרמז׳ן",
+  "c": "גבינות",
+  "d": 5,
+  "pos": 20,
+  "active": true
+ },
+ "p22": {
+  "n": "איולי זעתר",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 21,
+  "active": true
+ },
+ "p23": {
+  "n": "איולי חרדל",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 22,
+  "active": true
+ },
+ "p24": {
+  "n": "איולי פורצ׳יני",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 23,
+  "active": true
+ },
+ "p25": {
+  "n": "איולי קלאסי",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 24,
+  "active": true
+ },
+ "p26": {
+  "n": "רוטב קיסר",
+  "c": "איולי ורטבים",
+  "d": 7,
+  "pos": 25,
+  "active": true
+ },
+ "p27": {
+  "n": "רוטב עגבניות סאן מרזנו",
+  "c": "איולי ורטבים",
+  "d": 7,
+  "pos": 26,
+  "active": true
+ },
+ "p28": {
+  "n": "רוטב ריגטוני",
+  "c": "איולי ורטבים",
+  "d": 7,
+  "pos": 27,
+  "active": true
+ },
+ "p29": {
+  "n": "עגבניות טריות מרוסקות",
+  "c": "איולי ורטבים",
+  "d": 3,
+  "pos": 28,
+  "active": true
+ },
+ "p30": {
+  "n": "סחוג",
+  "c": "איולי ורטבים",
+  "d": 7,
+  "pos": 29,
+  "active": true
+ },
+ "p31": {
+  "n": "טחינה לבנה מוכנה",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 30,
+  "active": true
+ },
+ "p32": {
+  "n": "פסטו תרד",
+  "c": "איולי ורטבים",
+  "d": 5,
+  "pos": 31,
+  "active": true
+ },
+ "p33": {
+  "n": "פסטו בזיליקום",
+  "c": "איולי ורטבים",
+  "d": 4,
+  "pos": 32,
+  "active": true
+ },
+ "p34": {
+  "n": "טפנד זיתים",
+  "c": "איולי ורטבים",
+  "d": 14,
+  "pos": 33,
+  "active": true
+ },
+ "p35": {
+  "n": "וינגרט שיבקה",
+  "c": "איולי ורטבים",
+  "d": 30,
+  "pos": 34,
+  "active": true
+ },
+ "p36": {
+  "n": "קרם בצל מקורמל",
+  "c": "בישולים",
+  "d": 6,
+  "pos": 35,
+  "active": true
+ },
+ "p37": {
+  "n": "בצל מושחם",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 36,
+  "active": true
+ },
+ "p38": {
+  "n": "קרם תירס",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 37,
+  "active": true
+ },
+ "p39": {
+  "n": "חמאת עגבניות שרי",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 38,
+  "active": true
+ },
+ "p40": {
+  "n": "שרי סוכריות",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 39,
+  "active": true
+ },
+ "p41": {
+  "n": "ריבת עגבניות שרי צלויות",
+  "c": "בישולים",
+  "d": 14,
+  "pos": 40,
+  "active": true
+ },
+ "p42": {
+  "n": "שום קונפי",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 41,
+  "active": true
+ },
+ "p43": {
+  "n": "כרישה בחמאה",
+  "c": "בישולים",
+  "d": 6,
+  "pos": 42,
+  "active": true
+ },
+ "p44": {
+  "n": "אספרגוס חלוט",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 43,
+  "active": true
+ },
+ "p45": {
+  "n": "ארטישוק צלוי",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 44,
+  "active": true
+ },
+ "p46": {
+  "n": "חצילים בתנור",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 45,
+  "active": true
+ },
+ "p47": {
+  "n": "מילוי רביולי",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 46,
+  "active": true
+ },
+ "p48": {
+  "n": "פסטה ריגטוני",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 47,
+  "active": true
+ },
+ "p49": {
+  "n": "ביצים קשות",
+  "c": "בישולים",
+  "d": 7,
+  "pos": 48,
+  "active": true
+ },
+ "p50": {
+  "n": "סלט ביצים",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 49,
+  "active": true
+ },
+ "p51": {
+  "n": "סלט טונה מיונז",
+  "c": "בישולים",
+  "d": 4,
+  "pos": 50,
+  "active": true
+ },
+ "p52": {
+  "n": "תבלין פיצה",
+  "c": "יבשים ושימורים",
+  "d": 90,
+  "pos": 51,
+  "active": true
+ },
+ "p53": {
+  "n": "אבקת זיתי קלמטה",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 52,
+  "active": true
+ },
+ "p54": {
+  "n": "אבקת פטריות",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 53,
+  "active": true
+ },
+ "p55": {
+  "n": "אבקת כרישה ובצלים",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 54,
+  "active": true
+ },
+ "p56": {
+  "n": "שמן זעתר",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 55,
+  "active": true
+ },
+ "p57": {
+  "n": "דבש צ׳ילי",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 56,
+  "active": true
+ },
+ "p58": {
+  "n": "לימון כבוש",
+  "c": "יבשים ושימורים",
+  "d": 90,
+  "pos": 57,
+  "active": true
+ },
+ "p59": {
+  "n": "עגבניות שרי מיובשות",
+  "c": "יבשים ושימורים",
+  "d": 90,
+  "pos": 58,
+  "active": true
+ },
+ "p60": {
+  "n": "אגוזי לוז קלויים",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 59,
+  "active": true
+ },
+ "p61": {
+  "n": "פיסטוקים קלויים",
+  "c": "יבשים ושימורים",
+  "d": 30,
+  "pos": 60,
+  "active": true
+ },
+ "p62": {
+  "n": "צנוברים קלויים",
+  "c": "יבשים ושימורים",
+  "d": 21,
+  "pos": 61,
+  "active": true
+ }
+};
+
+
+const fb = initializeApp(firebaseConfig);
+const auth = getAuth(fb);
+const db = getFirestore(fb);
+
+const DOMAIN = "@rosie.kitchen";
+const CATS = ["ירקות וחיתוכים", "גבינות", "איולי ורטבים", "בישולים", "יבשים ושימורים"];
+const DN = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+const CUTOFF_H = 16;
+const ROLES = { pending: "ממתין לאישור", rosie: "רוזי", prod: "מטבח ייצור", admin: "מנהל", blocked: "חסום" };
+
+const S = {
+  user: null, profile: null, tab: null, day: null, q: "", onlyOrdered: false,
+  catalog: null, order: null, prod: null, staff: [], authMode: "login", authErr: "", busy: false
+};
+let pending = {}, flushTimer = null, writing = false, madeDraft = {};
+let unsub = { profile: null, catalog: null, order: null, prod: null, staff: null };
+
+/* ---------- helpers ---------- */
+const $ = (id) => document.getElementById(id);
+const pad = (n) => (n < 10 ? "0" : "") + n;
+const dkey = (d) => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+const parse = (k) => { const p = k.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const ddmm = (d) => pad(d.getDate()) + "/" + pad(d.getMonth() + 1);
+const hm = (ts) => { const d = new Date(ts); return pad(d.getHours()) + ":" + pad(d.getMinutes()); };
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2000); }
+const role = () => (S.profile && S.profile.role) || "none";
+const can = {
+  order: () => ["rosie", "admin"].includes(role()),
+  produce: () => ["prod", "admin"].includes(role()),
+  admin: () => role() === "admin",
+};
+const myName = () => (S.profile && (S.profile.name || S.profile.username)) || "";
+
+function cutoffFor(k) { const d = addDays(parse(k), -1); d.setHours(CUTOFF_H, 0, 0, 0); return d; }
+function defaultDay() {
+  const now = new Date(); let d = addDays(now, 1);
+  if (now.getHours() >= CUTOFF_H) d = addDays(d, 1);
+  while (d.getDay() === 6) d = addDays(d, 1);
+  return dkey(d);
+}
+function items(includeHidden) {
+  const c = (S.catalog && S.catalog.items) || {};
+  return Object.keys(c).map((k) => Object.assign({ k }, c[k]))
+    .filter((it) => it.n && (includeHidden || it.active !== false))
+    .sort((a, b) => (a.pos ?? 9999) - (b.pos ?? 9999));
+}
+function grouped(list) {
+  const g = {}; list.forEach((it) => (g[it.c] = g[it.c] || []).push(it));
+  const cats = CATS.concat(Object.keys(g).filter((c) => !CATS.includes(c)));
+  return cats.filter((c) => g[c]).map((c) => [c, g[c]]);
+}
+function qtyOf(k) { if (k in pending) return pending[k]; const o = S.order && S.order.items; return (o && o[k]) || 0; }
+
+/* ---------- auth ---------- */
+function cleanUser(u) { return String(u || "").trim().toLowerCase(); }
+function validUser(u) { return /^[a-z0-9._-]{2,30}$/.test(u); }
+function authError(e) {
+  const c = (e && e.code) || "";
+  if (c.includes("invalid-credential") || c.includes("wrong-password") || c.includes("user-not-found")) return "שם משתמש או סיסמה שגויים";
+  if (c.includes("email-already-in-use")) return "שם המשתמש תפוס. בחר שם אחר";
+  if (c.includes("weak-password")) return "הסיסמה צריכה להיות לפחות 6 תווים";
+  if (c.includes("too-many-requests")) return "יותר מדי ניסיונות. נסה שוב בעוד כמה דקות";
+  if (c.includes("network")) return "אין חיבור לאינטרנט";
+  return "משהו השתבש. נסה שוב";
+}
+async function doLogin(e) {
+  e.preventDefault();
+  const u = cleanUser($("u").value), p = $("p").value;
+  if (!validUser(u)) { S.authErr = "שם משתמש באנגלית בלבד: אותיות, ספרות, נקודה או מקף"; return render(); }
+  S.busy = true; S.authErr = ""; render();
+  try { await signInWithEmailAndPassword(auth, u + DOMAIN, p); }
+  catch (err) { S.authErr = authError(err); }
+  S.busy = false; render();
+}
+async function doSignup(e) {
+  e.preventDefault();
+  const name = $("n").value.trim(), u = cleanUser($("u").value), p = $("p").value;
+  if (!name) { S.authErr = "כתוב את השם שלך"; return render(); }
+  if (!validUser(u)) { S.authErr = "שם משתמש באנגלית בלבד: אותיות, ספרות, נקודה או מקף"; return render(); }
+  S.busy = true; S.authErr = ""; render();
+  try {
+    sessionStorageSafe("rosie-signup-name", name);
+    await createUserWithEmailAndPassword(auth, u + DOMAIN, p);
+  } catch (err) { S.authErr = authError(err); }
+  S.busy = false; render();
+}
+function sessionStorageSafe(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+
+async function ensureProfile(user) {
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists()) return;
+  const username = user.email.replace(DOMAIN, "");
+  const isAdmin = username === cleanUser(ADMIN_USERNAME);
+  await setDoc(ref, {
+    username, name: sessionStorageSafe("rosie-signup-name") || username,
+    role: isAdmin ? "admin" : "pending", createdAt: serverTimestamp()
+  });
+}
+
+function stopAll() { Object.keys(unsub).forEach((k) => { if (unsub[k]) { unsub[k](); unsub[k] = null; } }); }
+
+onAuthStateChanged(auth, async (user) => {
+  stopAll(); S.user = user; S.authMode = "login"; S.authErr = ""; S.profile = null; S.catalog = null; S.order = null; S.prod = null; S.staff = [];
+  if (!user) { render(); return; }
+  try { await ensureProfile(user); } catch (e) { S.authErr = "לא ניתן ליצור פרופיל. בדוק את הגדרות Firestore"; }
+  unsub.profile = onSnapshot(doc(db, "users", user.uid), (s) => {
+    const before = role();
+    S.profile = s.exists() ? s.data() : null;
+    if (role() !== before) startData();
+    render();
+  }, () => { S.profile = null; render(); });
+});
+
+function startData() {
+  ["catalog", "order", "prod", "staff"].forEach((k) => { if (unsub[k]) { unsub[k](); unsub[k] = null; } });
+  if (!["rosie", "prod", "admin"].includes(role())) return;
+  if (!S.day) S.day = defaultDay();
+  if (!S.tab) S.tab = can.order() ? "order" : "prod";
+  unsub.catalog = onSnapshot(doc(db, "catalog", "items"), async (s) => {
+    if (!s.exists() && can.admin()) {
+      try { await setDoc(doc(db, "catalog", "items"), { items: DEFAULT_CATALOG }); toast("רשימת ההכנות נטענה"); } catch (e) {}
+      return;
+    }
+    S.catalog = s.exists() ? s.data() : { items: {} }; render();
+  });
+  if (can.admin()) {
+    unsub.staff = onSnapshot(collection(db, "users"), (qs) => {
+      S.staff = qs.docs.map((d) => Object.assign({ uid: d.id }, d.data())); render();
+    });
+  }
+  watchDay();
+}
+function watchDay() {
+  if (unsub.order) unsub.order(); if (unsub.prod) unsub.prod();
+  S.order = null; S.prod = null; pending = {}; madeDraft = {};
+  unsub.order = onSnapshot(doc(db, "orders", S.day), (s) => { S.order = s.exists() ? s.data() : {}; render(); });
+  unsub.prod = onSnapshot(doc(db, "production", S.day), (s) => { S.prod = s.exists() ? s.data() : {}; render(); });
+}
+
+/* ---------- writes ---------- */
+function bump(k, delta) {
+  if (!can.order()) return;
+  pending[k] = Math.max(0, Math.min(99, qtyOf(k) + delta));
+  render(); clearTimeout(flushTimer); flushTimer = setTimeout(flush, 600);
+}
+async function flush() {
+  if (writing) { clearTimeout(flushTimer); flushTimer = setTimeout(flush, 400); return; }
+  const batch = Object.assign({}, pending); if (!Object.keys(batch).length) return;
+  writing = true;
+  const body = { date: S.day, items: batch, updatedAt: Date.now(), updatedBy: myName() };
+  if (S.order && S.order.sentAt) body.changedAfterSend = true;
+  try {
+    await setDoc(doc(db, "orders", S.day), body, { merge: true });
+    Object.keys(batch).forEach((k) => { if (pending[k] === batch[k]) delete pending[k]; });
+  } catch (e) { toast("לא נשמר — בדוק חיבור"); }
+  writing = false; render();
+  if (Object.keys(pending).length) { clearTimeout(flushTimer); flushTimer = setTimeout(flush, 400); }
+}
+async function sendOrder() {
+  clearTimeout(flushTimer); await flush();
+  try {
+    await setDoc(doc(db, "orders", S.day), {
+      date: S.day, sentAt: Date.now(), sentBy: myName(), changedAfterSend: false,
+      late: Date.now() > cutoffFor(S.day).getTime()
+    }, { merge: true });
+    toast("ההזמנה נשלחה למטבח הייצור");
+  } catch (e) { toast("השליחה נכשלה"); }
+}
+function setProd(k, patch) {
+  const body = { date: S.day, updatedAt: Date.now(), items: { [k]: patch } };
+  setDoc(doc(db, "production", S.day), body, { merge: true }).catch(() => toast("לא נשמר"));
+}
+function toggleDone(k) {
+  if (!can.produce()) return;
+  const cur = (S.prod && S.prod.items && S.prod.items[k]) || {};
+  const it = items(true).find((x) => x.k === k);
+  if (cur.done) { setProd(k, { done: false }); return; }
+  const today = dkey(new Date());
+  const made = cur.made != null ? cur.made : qtyOf(k);
+  setProd(k, { done: true, made, prodDate: today, by: myName() });
+  if (it) toast(it.n + " · תוקף עד " + ddmm(addDays(parse(today), it.d - 1)));
+}
+function setMade(k, v) { const n = parseFloat(v); if (isNaN(n) || n < 0) return; setProd(k, { made: n }); }
+
+function catWrite(k, patch) {
+  return setDoc(doc(db, "catalog", "items"), { items: { [k]: patch } }, { merge: true }).catch(() => toast("לא נשמר"));
+}
+function addItem(n, c, d) {
+  const all = items(true); const pos = all.length ? Math.max(...all.map((x) => x.pos ?? 0)) + 1 : 0;
+  catWrite("x" + Date.now().toString(36), { n, c, d, pos, active: true }).then(() => toast("נוסף: " + n));
+}
+function setRole(uid, r) { updateDoc(doc(db, "users", uid), { role: r }).then(() => toast("עודכן")).catch(() => toast("לא נשמר")); }
+
+/* ---------- views ---------- */
+function viewAuth() {
+  const signup = S.authMode === "signup";
+  return `<div class="wrap auth"><form class="card" id="authF" novalidate>
+    <h1>רוזי</h1><p class="sub">הזמנות ממטבח הייצור</p>
+    ${signup ? `<div class="field"><label for="n">שם מלא</label><input id="n" autocomplete="name" required></div>` : ""}
+    <div class="field"><label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="off" spellcheck="false" dir="ltr" placeholder="ariel" required></div>
+    <div class="field"><label for="p">סיסמה</label><input id="p" type="password" autocomplete="${signup ? "new-password" : "current-password"}" dir="ltr" required></div>
+    <div class="err">${esc(S.authErr)}</div>
+    <button class="btn full" type="submit" ${S.busy ? "disabled" : ""}>${signup ? "הרשמה" : "כניסה"}</button>
+    <div class="center">${signup ? "כבר רשום? " : "עובד חדש? "}<button class="link" type="button" id="swap">${signup ? "כניסה" : "הרשמה"}</button></div>
+  </form></div>`;
+}
+function viewWaiting() {
+  const blocked = role() === "blocked";
+  return `<div class="wrap auth"><div class="card">
+    <h1>רוזי</h1><p class="sub">שלום ${esc(myName())}</p>
+    <p>${blocked ? "הגישה שלך הוסרה. פנה למנהל." : "ההרשמה נקלטה. המנהל צריך לאשר אותך ולקבוע לך תפקיד, ואז הדף ייפתח לבד."}</p>
+    <button class="btn ghost full" id="logout">יציאה</button>
+  </div></div>`;
+}
+function statusLine() {
+  const cut = cutoffFor(S.day), left = cut.getTime() - Date.now(), o = S.order || {};
+  let p;
+  if (o.sentAt) p = `<span class="pill sent">נשלחה ${hm(o.sentAt)}${o.sentBy ? " · " + esc(o.sentBy) : ""}${o.changedAfterSend ? " · עודכנה אחרי שליחה" : ""}</span>`;
+  else if (left > 0) { const h = Math.floor(left / 3600000), m = Math.floor((left % 3600000) / 60000); p = `<span class="pill open">פתוחה · נסגרת ${DN[cut.getDay()]} 16:00 · עוד ${h ? h + " ש׳ " : ""}${m} ד׳</span>`; }
+  else p = `<span class="pill late">אחרי 16:00 — לתאם עם מטבח הייצור</span>`;
+  const d = parse(S.day);
+  return `<div class="status"><b>משלוח ${DN[d.getDay()]} ${ddmm(d)}</b>${p}</div>`;
+}
+function viewOrder() {
+  let h = statusLine();
+  h += `<div class="tools"><input class="search" id="q" type="search" placeholder="חיפוש הכנה" value="${esc(S.q)}" aria-label="חיפוש הכנה"><button class="chip" id="only" aria-pressed="${S.onlyOrdered}">רק מה שהוזמן</button></div>`;
+  if (!S.catalog || S.order === null) return h + `<div class="empty"><b>טוען…</b></div>`;
+  const q = S.q.trim(); let any = false;
+  grouped(items()).forEach(([cat, list]) => {
+    const rows = list.filter((it) => (!S.onlyOrdered || qtyOf(it.k)) && (!q || it.n.includes(q)));
+    if (!rows.length) return; any = true;
+    const tot = rows.reduce((a, it) => a + qtyOf(it.k), 0);
+    h += `<section class="cat"><h2><span>${esc(cat)}</span><span>${tot ? tot + " קופסאות" : ""}</span></h2><div class="list">`;
+    rows.forEach((it) => {
+      const v = qtyOf(it.k);
+      h += `<div class="row${v ? " on" : ""}"><div class="nm"><b>${esc(it.n)}</b><small>מחזיק ${it.d} ימים</small></div>
+        <div class="step"><button data-dec="${it.k}" aria-label="פחות ${esc(it.n)}" ${can.order() ? "" : "disabled"}>−</button><output>${v || ""}</output><button data-inc="${it.k}" aria-label="עוד ${esc(it.n)}" ${can.order() ? "" : "disabled"}>+</button></div></div>`;
+    });
+    h += `</div></section>`;
+  });
+  if (!any) h += `<div class="empty"><b>${S.onlyOrdered ? "עוד לא הוזמן כלום ליום הזה" : "לא נמצאה הכנה"}</b>${S.onlyOrdered ? "מוסיפים כמות עם + ליד כל הכנה" : ""}</div>`;
+  return h;
+}
+function viewProd() {
+  let h = statusLine();
+  if (!S.catalog || S.order === null || S.prod === null) return h + `<div class="empty"><b>טוען…</b></div>`;
+  const list = items(true).filter((it) => qtyOf(it.k) > 0);
+  if (!list.length) return h + `<div class="empty"><b>אין הזמנה ליום הזה</b>כשרוזי ימלאו כמויות, הן יופיעו כאן לייצור.</div>`;
+  const P = (S.prod && S.prod.items) || {};
+  const done = list.filter((it) => P[it.k] && P[it.k].done).length;
+  h += `<div class="status" style="display:block"><b>${done} מתוך ${list.length} הכנות מוכנות</b><div class="progress"><div style="width:${Math.round((done / list.length) * 100)}%"></div></div></div>`;
+  const edit = can.produce();
+  grouped(list).forEach(([cat, rows]) => {
+    h += `<section class="cat"><h2><span>${esc(cat)}</span></h2><div class="list">`;
+    rows.forEach((it) => {
+      const p = P[it.k] || {}, v = qtyOf(it.k);
+      const lab = p.done && p.prodDate
+        ? `<span class="label">יוצר ${ddmm(parse(p.prodDate))} · תוקף עד ${ddmm(addDays(parse(p.prodDate), it.d - 1))}${p.by ? " · " + esc(p.by) : ""}</span>`
+        : `<small>מחזיק ${it.d} ימים</small>`;
+      const mv = it.k in madeDraft ? madeDraft[it.k] : (p.made != null ? p.made : "");
+      h += `<div class="row${p.done ? " done" : ""}">
+        <button class="check" data-done="${it.k}" aria-pressed="${!!p.done}" aria-label="סמן ${esc(it.n)} כמוכן" ${edit ? "" : "disabled"}>${p.done ? "✓" : ""}</button>
+        <div class="nm"><b>${esc(it.n)}</b>${lab}</div>
+        <div class="qty">${v}<small>הוזמן</small></div>
+        <input class="num" type="number" inputmode="decimal" min="0" step="0.5" id="m-${it.k}" data-made="${it.k}" value="${esc(mv)}" placeholder="${v}" aria-label="יצא בפועל ${esc(it.n)}" ${edit ? "" : "disabled"}></div>`;
+    });
+    h += `</div></section>`;
+  });
+  return h;
+}
+function viewItems() {
+  let h = `<p class="note">שינוי כאן מופיע מיד אצל כולם. הסתרה מורידה פריט מההזמנה בלי למחוק אותו.</p>`;
+  h += `<form class="form" id="addF"><input id="nN" placeholder="שם ההכנה" required aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${c}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>`;
+  if (!S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
+  grouped(items(true)).forEach(([cat, list]) => {
+    h += `<section class="cat"><h2><span>${esc(cat)}</span><span>${list.length}</span></h2><div class="list">`;
+    list.forEach((it) => {
+      const off = it.active === false;
+      h += `<div class="row${off ? " off" : ""}"><div class="nm"><b>${esc(it.n)}</b><small>ימי תוקף</small></div>
+        <input class="num" type="number" min="1" max="365" id="d-${it.k}" data-days="${it.k}" value="${it.d}" aria-label="ימי תוקף ${esc(it.n)}">
+        <button class="btn ghost small" data-toggle="${it.k}">${off ? "הצג" : "הסתר"}</button></div>`;
+    });
+    h += `</div></section>`;
+  });
+  return h;
+}
+function viewStaff() {
+  let h = `<p class="note">עובד חדש נרשם בעצמו בדף הכניסה, ומופיע כאן כ״ממתין לאישור״. בוחרים לו תפקיד והוא נכנס.</p>`;
+  const order = { pending: 0, rosie: 1, prod: 2, admin: 3, blocked: 4 };
+  const list = S.staff.slice().sort((a, b) => (order[a.role] ?? 9) - (order[b.role] ?? 9));
+  if (!list.length) return h + `<div class="empty"><b>טוען…</b></div>`;
+  h += `<div class="list">`;
+  list.forEach((u) => {
+    const me = S.user && u.uid === S.user.uid;
+    h += `<div class="row${u.role === "pending" ? " on" : ""}"><div class="nm"><b>${esc(u.name || u.username)}</b><small dir="ltr">${esc(u.username)}</small></div>
+      <select class="sel" data-role="${u.uid}" aria-label="תפקיד ${esc(u.name)}" ${me ? "disabled" : ""}>${Object.keys(ROLES).map((r) => `<option value="${r}" ${u.role === r ? "selected" : ""}>${ROLES[r]}</option>`).join("")}</select></div>`;
+  });
+  return h + `</div>`;
+}
+function tabsFor() {
+  const t = [];
+  if (["rosie", "admin", "prod"].includes(role())) t.push(["order", "הזמנה · רוזי"]);
+  t.push(["prod", "ייצור · מטבח"]);
+  if (can.admin()) { t.push(["items", "פריטים"]); t.push(["staff", "צוות"]); }
+  return t;
+}
+function viewApp() {
+  const base = new Date(); let days = "";
+  for (let i = 0; i < 8; i++) {
+    const d = addDays(base, i), k = dkey(d), sat = d.getDay() === 6;
+    days += `<button class="day" data-day="${k}" aria-pressed="${k === S.day}" ${sat ? 'disabled title="שבת — אין משלוח"' : ""}><b>${i === 0 ? "היום" : i === 1 ? "מחר" : DN[d.getDay()]}</b><span>${ddmm(d)}</span></button>`;
+  }
+  const tabs = tabsFor();
+  if (!tabs.some((t) => t[0] === S.tab)) S.tab = tabs[0][0];
+  const showDays = S.tab === "order" || S.tab === "prod";
+  const body = S.tab === "order" ? viewOrder() : S.tab === "prod" ? viewProd() : S.tab === "items" ? viewItems() : viewStaff();
+  let bar = "";
+  if (S.tab === "order" && can.order()) {
+    let n = 0, b = 0; items(true).forEach((it) => { const v = qtyOf(it.k); if (v) { n++; b += v; } });
+    const sent = S.order && S.order.sentAt && !S.order.changedAfterSend && !Object.keys(pending).length;
+    bar = `<div class="bar"><div class="wrap"><div class="sum"><b>${b}</b> קופסאות · ${n} הכנות</div><button class="btn" id="send" ${!n || sent ? "disabled" : ""}>${sent ? "נשלחה ✓" : S.order && S.order.sentAt ? "שלח עדכון" : "שלח הזמנה"}</button></div></div>`;
+  }
+  return `<header><div class="wrap"><div class="top"><h1 class="brand">רוזי</h1>
+      <div class="who"><span><b>${esc(myName())}</b> · ${ROLES[role()] || ""}</span><button class="link" id="logout">יציאה</button></div></div>
+      ${showDays ? `<div class="days" role="group" aria-label="יום משלוח">${days}</div>` : ""}</div>
+    <div class="wrap"><div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${S.tab === k}">${l}</button>`).join("")}</div></div></header>
+    <main class="wrap">${body}</main>${bar}`;
+}
+function render() {
+  const a = document.activeElement, fid = a && a.id; let sel = null;
+  try { sel = a && a.selectionStart; } catch (e) {}
+  let html;
+  if (!S.user) html = viewAuth();
+  else if (!S.profile) html = `<div class="splash">טוען…</div>`;
+  else if (!["rosie", "prod", "admin"].includes(role())) html = viewWaiting();
+  else html = viewApp();
+  // keep typed login fields across re-render
+  const keep = {}; ["n", "u", "p"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
+  $("app").innerHTML = html;
+  Object.keys(keep).forEach((id) => { const el = $(id); if (el) el.value = keep[id]; });
+  if (fid) { const el = $(fid); if (el) { el.focus(); try { if (sel != null) el.setSelectionRange(sel, sel); } catch (e) {} } }
+}
+
+/* ---------- events ---------- */
+const app = $("app");
+app.addEventListener("submit", (e) => {
+  if (e.target.id === "authF") return S.authMode === "signup" ? doSignup(e) : doLogin(e);
+  if (e.target.id === "addF") {
+    e.preventDefault();
+    const n = $("nN").value.trim(), c = $("nC").value, d = parseInt($("nD").value, 10) || 4;
+    if (n) addItem(n, c, d);
+  }
+});
+app.addEventListener("click", (e) => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.id === "swap") { S.authMode = S.authMode === "login" ? "signup" : "login"; S.authErr = ""; render(); }
+  else if (t.id === "logout") { flush(); signOut(auth); }
+  else if (t.dataset.day) { if (t.disabled) return; flush(); S.day = t.dataset.day; watchDay(); render(); }
+  else if (t.dataset.tab) { S.tab = t.dataset.tab; render(); window.scrollTo(0, 0); }
+  else if (t.dataset.inc) bump(t.dataset.inc, 1);
+  else if (t.dataset.dec) bump(t.dataset.dec, -1);
+  else if (t.dataset.done) toggleDone(t.dataset.done);
+  else if (t.dataset.toggle) { const it = items(true).find((x) => x.k === t.dataset.toggle); if (it) catWrite(it.k, { active: it.active === false }); }
+  else if (t.id === "only") { S.onlyOrdered = !S.onlyOrdered; render(); }
+  else if (t.id === "send") sendOrder();
+});
+app.addEventListener("input", (e) => {
+  if (e.target.id === "q") { S.q = e.target.value; render(); }
+  else if (e.target.dataset.made) madeDraft[e.target.dataset.made] = e.target.value;
+});
+app.addEventListener("change", (e) => {
+  const t = e.target;
+  if (t.dataset.made) { setMade(t.dataset.made, t.value); delete madeDraft[t.dataset.made]; }
+  else if (t.dataset.days) { const d = parseInt(t.value, 10); if (d > 0) catWrite(t.dataset.days, { d }); }
+  else if (t.dataset.role) setRole(t.dataset.role, t.value);
+});
+setInterval(() => { const a = document.activeElement; if (S.user && !(a && a.tagName === "INPUT")) render(); }, 60000);
+window.addEventListener("beforeunload", () => { if (Object.keys(pending).length) flush(); });
+render();
+
+</script>
+</body>
+</html>
