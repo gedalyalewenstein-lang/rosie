@@ -66,6 +66,42 @@ for (const d of rejected.docs) {
   await d.ref.set({ notifiedRejected: r.at || Date.now() }, { merge: true });
 }
 
+// 2ג. חוסר צפוי מהייצור → רוזי + מנהלים
+for (const k of [todayKey, tomorrowKey]) {
+  const ref = db.collection("production").doc(k), P = (await ref.get()).data();
+  if (!P || !P.items) continue;
+  const shorts = Object.entries(P.items).filter(([, x]) => x && x.done && x.short > 0);
+  const key = JSON.stringify(shorts.map(([i, x]) => [i, x.short]));
+  if (!shorts.length || P.notifiedShort === key) continue;
+  const cat = (await db.collection("catalog").doc("items").get()).data()?.items || {};
+  await send(["rosie", "admin"], `חוסר צפוי במשלוח ${label(k)}`, shorts.map(([i, x]) => `${(cat[i] && cat[i].n) || i} ${x.short}${x.shortNote ? " (" + x.shortNote + ")" : ""}`).join(", "));
+  await ref.set({ notifiedShort: key }, { merge: true });
+}
+
+// 2ד. הזמנה שממתינה לאישור יותר מ-30 דקות → תזכורת למאשרים, רק בשעות העבודה (06:00–16:00), לכל היותר פעם בשעה
+if (hour >= 6 && hour < 16) {
+  for (const d of pendings.docs) {
+    const o = d.data(); if (d.id < todayKey) continue;
+    const waited = Date.now() - (o.sentAt || Date.now());
+    if (waited < 30 * 60000 || Date.now() - (o.remindedAt || 0) < 60 * 60000) continue;
+    await send(["admin", "prod"], "הזמנה עדיין ממתינה לאישור", `משלוח ${label(d.id)} · ${sum(o.sent)} קופסאות · ממתינה ${Math.round(waited / 60000) >= 120 ? Math.round(waited / 3600000) + " שעות" : Math.round(waited / 60000) + " דקות"}`);
+    await d.ref.set({ remindedAt: Date.now() }, { merge: true });
+  }
+}
+
+// 2ה. 13:00 ביום המשלוח: נשארו הכנות פתוחות → טבחי ייצור + מנהלים
+if (hour >= 13 && hour < 16) {
+  const mref = db.collection("meta").doc("reminders"), mm = (await mref.get()).data() || {};
+  if (mm.prodLast !== todayKey) {
+    const o = (await db.collection("orders").doc(todayKey).get()).data() || {};
+    const P = (await db.collection("production").doc(todayKey).get()).data() || {};
+    const ap = o.approved || {}, its = P.items || {};
+    const open = Object.keys(ap).filter((k) => +ap[k] > 0 && !(its[k] && its[k].done && (its[k].forQty || 0) >= +ap[k]));
+    if (open.length) await send(["prod", "admin"], `נשארו ${open.length} הכנות למשלוח היום`, `צריך לסיים עד 15:30 · ${Object.keys(ap).filter((k) => +ap[k] > 0).length - open.length} כבר מוכנות`);
+    await mref.set({ prodLast: todayKey }, { merge: true });
+  }
+}
+
 // 3. חוסר בקבלת משלוח → מנהלים + מטבח ייצור
 const recv = await db.collection("orders").where("received.at", ">=", Date.now() - 86400000).get();
 for (const d of recv.docs) {
@@ -83,7 +119,7 @@ if (hour >= REMIND && hour < CUTOFF && tomorrow.getUTCDay() !== 6) {
     const t = (await db.collection("orders").doc(tomorrowKey).get()).data() || {};
     await send(["admin", "rosie"], "נשארה שעה לסגירת ההזמנה",
       t.sentAt ? `ההזמנה ל${label(tomorrowKey)} נשלחה ✓ — אפשר לעדכן עד 16:00` : `עוד לא נשלחה הזמנה ל${label(tomorrowKey)}. ההזמנות נסגרות ב-16:00`);
-    await ref.set({ last: todayKey, at: Date.now() });
+    await ref.set({ last: todayKey, at: Date.now() }, { merge: true });
   }
 }
 console.log("done", todayKey, hour);
