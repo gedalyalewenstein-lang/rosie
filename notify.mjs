@@ -57,6 +57,15 @@ for (const d of approved.docs) {
   await d.ref.set({ notifiedApprovedRev: o.approvedRev || 1 }, { merge: true });
 }
 
+// 2ב. הזמנה או בקשת שינוי נדחו → רוזי
+const rejected = await db.collection("orders").where("rejected.at", ">=", Date.now() - 2 * 86400000).get();
+for (const d of rejected.docs) {
+  const o = d.data(), r = o.rejected || {};
+  if ((o.notifiedRejected || 0) >= (r.at || 0)) continue;
+  await send(["rosie"], r.change ? "בקשת השינוי נדחתה" : "ההזמנה נדחתה", `${r.note ? r.note + " · " : ""}משלוח ${label(d.id)}${r.change ? "" : " · אפשר לתקן ולשלוח שוב"}`);
+  await d.ref.set({ notifiedRejected: r.at || Date.now() }, { merge: true });
+}
+
 // 3. חוסר בקבלת משלוח → מנהלים + מטבח ייצור
 const recv = await db.collection("orders").where("received.at", ">=", Date.now() - 86400000).get();
 for (const d of recv.docs) {
