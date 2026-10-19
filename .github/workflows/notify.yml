@@ -1,0 +1,34 @@
+name: התראות רוזי
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: notify
+  cancel-in-progress: false
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install
+        run: npm install firebase-admin@12 --no-save --no-package-lock --no-audit --no-fund --silent
+      - name: Send notifications
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node notify.mjs
+      - name: Keep schedule alive
+        run: |
+          last=$(git log -1 --format=%ct)
+          if [ $(( $(date +%s) - last )) -gt 3456000 ]; then
+            git config user.name "rosie-bot"; git config user.email "bot@users.noreply.github.com"
+            date -u > .keepalive; git add .keepalive; git commit -m "keepalive"; git push
+          fi
