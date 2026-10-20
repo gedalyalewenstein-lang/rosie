@@ -93,7 +93,7 @@ if (hour >= 6 && hour < 16) {
 if (hour >= 13 && hour < 16) {
   const mref = db.collection("meta").doc("reminders"), mm = (await mref.get()).data() || {};
   if (mm.prodLast !== todayKey) {
-    const o = (await db.collection("orders").doc(todayKey).get()).data() || {};
+    const o0 = (await db.collection("orders").doc(todayKey).get()).data() || {}, o = o0.status === "cancelled" ? {} : o0;
     const P = (await db.collection("production").doc(todayKey).get()).data() || {};
     const ap = o.approved || {}, its = P.items || {};
     const open = Object.keys(ap).filter((k) => +ap[k] > 0 && !(its[k] && its[k].done && (its[k].forQty || 0) >= +ap[k]));
