@@ -11,7 +11,7 @@ concurrency:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,6 +24,8 @@ jobs:
       - name: Send notifications
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
         run: node notify.mjs
       - name: Keep schedule alive
         run: |
