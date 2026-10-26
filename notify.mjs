@@ -49,13 +49,13 @@ const strOf = (v, n = 60) => (typeof v === "string" ? v.trim().slice(0, n) : "")
 async function send(roles, title, body) {
   const targets = [];
   users.filter((u) => roles.includes(u.role) || (roles.includes("owner") && u.role === "admin" && u.username === OWNER)).forEach((u) => Object.entries(u.push || {}).forEach(([h, v]) => v && v.t && targets.push({ uid: u.uid, h, t: v.t })));
-  if (!targets.length) { console.log("no devices for", roles, title); return; }
+  if (!targets.length) { console.log("no devices for", roles); return; }
   const res = await fcm.sendEachForMulticast({
     tokens: targets.map((x) => x.t),
     notification: { title, body },
     webpush: { notification: { icon: APP_URL + "icon-192.png", badge: APP_URL + "icon-192.png", dir: "rtl", lang: "he" }, fcmOptions: { link: APP_URL } },
   });
-  console.log(`sent "${title}" → ${res.successCount}/${targets.length}`);
+  console.log(`sent → ${res.successCount}/${targets.length}`);
   await Promise.all(res.responses.map((r, i) => {
     const code = r.error && r.error.code;
     if (code === "messaging/registration-token-not-registered" || code === "messaging/invalid-registration-token" || code === "messaging/invalid-argument") {
@@ -332,7 +332,7 @@ sales = סה״כ מכירות לכל החודש כולל מע״מ. salesNet = ל
         }
         await d.ref.set({ ai: "done", aiAt: Date.now(), days: nd, ym }, { merge: true });
         await send(["owner"], `קובץ טאביט נקרא · ${ym.slice(5)}/${ym.slice(0, 4)}`, [T.sales ? `מכירות ₪${Math.round(T.sales).toLocaleString("he-IL")}` : "", T.covers ? `${T.covers} סועדים` : "", nd ? `${nd} ימים` : ""].filter(Boolean).join(" · ") || "הנתונים עודכנו");
-        console.log("tabit read", d.id, T.sales, nd);
+        console.log("tabit read", d.id, nd);
       } catch (e) { console.log("tabit failed", d.id, e.message); const tries = (u.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true }); }
     }
   }
