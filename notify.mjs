@@ -109,6 +109,13 @@ async function send(roles, title, body) {
   }));
 }
 
+// 0. עובד חדש נרשם למסעדה הזו → התראה למנהלים (וגדי). פעם אחת לכל עובד
+for (const u of users.filter((x) => !(x.notified || {})[SITE] && (SITE === "rosie" ? x.role === "pending" : (x.sites || {})[SITE] === "pending"))) {
+  await send(["admin"], "עובד חדש נרשם", `${u.name || u.username} מחכה לאישור · צוות`);
+  await db.collection("users").doc(u.uid).set({ notified: { [SITE]: true } }, { merge: true });
+  u.notified = Object.assign({}, u.notified, { [SITE]: true });
+}
+
 // 1. הזמנה חדשה / בקשת שינוי → מנהלים + מטבח ייצור
 const pendings = await C("orders").where("status", "==", "pending").get();
 for (const d of pendings.docs) {
