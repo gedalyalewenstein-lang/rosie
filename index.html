@@ -1060,6 +1060,50 @@ body.grpb .glow{display:none}
 .auth.grp h1{font:700 26px/1.2 var(--ui);letter-spacing:-.01em;margin:0 0 6px;text-align:right}
 .auth.grp h1+.sub{margin:0 0 26px;text-align:right;font-size:15px}
 .auth.grp .btn.ghost{height:50px;border-radius:14px}
+/* ---------- נתונים: 4 מספרים, גרף, תשומת לב ---------- */
+.kpi4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:4px 0 12px}
+.kp{background:var(--paper);border-radius:14px;padding:11px 10px 10px;min-width:0}
+.kp small{display:block;color:var(--mute);font-size:12.5px;font-weight:600}
+.kp b{display:block;font:700 24px/1.15 var(--ui);letter-spacing:-.5px;font-variant-numeric:tabular-nums;margin:3px 0 2px;white-space:nowrap}
+.kp span{display:block;color:var(--mute);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kp b.okt{display:block}
+.badt{color:var(--bad)}.warnt{color:var(--warn)}
+.dchart h3{margin:0 0 8px;font-size:15px}
+@media (max-width:360px){.kpi4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* ---------- קבוצה: Claude + כרטיס לכל מסעדה ---------- */
+.carea{margin-bottom:14px}.carea button{padding:8px 4px;font-size:13.5px}
+.brief{padding:14px 16px;margin-bottom:12px}
+.bhd{display:flex;align-items:center;gap:10px;margin-bottom:10px}.bhd b{font-size:16px}.bhd small{margin-inline-start:auto;color:var(--mute);font-size:12.5px}
+.bhd .ib{width:26px;height:26px}
+.b3{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.b3 li{display:flex;gap:10px;align-items:baseline;font-size:15.5px;font-weight:600;line-height:1.35}
+.b3 i{flex:none;width:8px;height:8px;border-radius:50%;transform:translateY(-2px)}
+.b3 .ok i{background:var(--ok)}.b3 .warn i{background:var(--warn)}.b3 .todo i{background:var(--info)}
+.bmore{margin-top:12px;border:0;background:var(--raise);color:var(--ink);border-radius:10px;padding:8px 12px;font:600 14px var(--ui);cursor:pointer}
+.blong{margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-size:14.5px}
+.bwait{margin:0;color:var(--mute);font-size:14.5px}
+.scard{padding:14px 16px 6px;margin-bottom:12px}
+.schd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.schd h3{margin:0;font-size:18px;display:flex;align-items:center;gap:8px}.schd small{color:var(--mute);font-size:12.5px}
+.sdot{width:10px;height:10px;border-radius:50%;background:#F49AB2}.s-jaco .sdot{background:#FF8A3D}
+.sk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;background:var(--raise);border-radius:12px;padding:10px 4px}
+.sk div{text-align:center;min-width:0}.sk b{display:block;font:700 21px/1.1 var(--ui);font-variant-numeric:tabular-nums}.sk span{font-size:11.5px;color:var(--mute)}
+.sm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
+.sm div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
+.sm small{display:block;font-size:11.5px;color:var(--mute)}.sm b{display:block;font:700 17px/1.2 var(--ui);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sm b.good{color:var(--ok)}.sm b.warn{color:var(--warn)}.sm b.bad{color:var(--bad)}.sm em{font-style:normal;font-size:11px;color:var(--mute)}
+.stom{display:flex;align-items:baseline;gap:8px;margin:12px 2px 4px;font-size:14.5px}.stom span{color:var(--mute)}.stom small{color:var(--mute);margin-inline-start:auto}
+.sal{list-style:none;margin:8px 0 6px;padding:0;display:grid;gap:6px}
+.sal li{display:flex;align-items:center;gap:9px;font-size:14.5px}.sal i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--warn)}.sal .bad i{background:var(--bad)}
+.sok{margin:8px 2px 10px;color:var(--ok);font-size:14.5px;font-weight:600}
+.srep{margin:4px -16px 0;width:calc(100% + 32px);border-top:1px solid var(--line)!important;border-radius:0 0 18px 18px}
+/* פריטים: קטגוריות מתקפלות */
+.cath{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 16px;font:800 15.5px var(--ui);cursor:pointer;margin-bottom:8px;text-align:right}
+.cath > span:first-child{display:inline-flex;align-items:center;gap:8px}
+.cath .ct{font-weight:700;font-size:13.5px;color:var(--mute)}.cath .chev{font-style:normal;margin-inline-start:6px}
+.cath[aria-expanded="true"]{margin-bottom:6px}
+.addopen{margin-bottom:14px}
+.guide1{padding:16px;display:grid;gap:4px;margin-bottom:6px}.guide1 b{font-size:16.5px}.guide1 span{color:var(--mute);font-size:14.5px}
 
 </style>
 </head>
@@ -2311,6 +2355,9 @@ const can = {
   admin: () => role() === "admin",
   /* מפתח/בעלים: רק החשבון הראשי. מעל כל המנהלים */
   owner: () => role() === "admin" && !!(S.profile && S.profile.username === cleanUser(ADMIN_USERNAME)),
+  /* בעלים (כמו זכאי): מבט על כל המסעדות */
+  chief: () => !!(S.profile && S.profile.chief === true),
+  group: () => can.owner() || can.chief(),
 };
 const myName = () => (S.profile && (S.profile.name || S.profile.username)) || "";
 const initials = (n) => String(n || "?").trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
@@ -3287,24 +3334,26 @@ function barChart(vals, labels, opts) {
 /* ---------- עלויות: food cost ו-prime cost (מנהל) ---------- */
 const ymOf = (d) => d.getFullYear() + "-" + pad(d.getMonth() + 1);
 const FOODCATS = ["ירקות", "בשר ודגים", "חלבי", "יבש"];
+const SCP = (k, n) => (k !== "rosie" ? `sites/${k}/${n}` : n);
+async function fetchMoney(k) {
+  const now = new Date(), start = dkey(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+  const [qd, qp, qm, qu] = await Promise.all([
+    getDocs(query(collection(db, SCP(k, "days")), where("date", ">=", start))),
+    getDocs(query(collection(db, SCP(k, "photos")), where("day", ">=", start))).catch(() => ({ docs: [] })),
+    getDocs(collection(db, SCP(k, "months"))),
+    getDocs(query(collection(db, SCP(k, "uploads")), where("ym", ">=", start.slice(0, 7)))).catch(() => ({ docs: [] }))
+  ]);
+  const days = {}, rec = [], months = {}, up = {};
+  qu.docs.forEach((d) => { const u = d.data(); if (u.kind === "tabit" && (!up[u.ym] || u.at > up[u.ym].at)) up[u.ym] = Object.assign({ id: d.id }, u); });
+  qd.docs.forEach((d) => (days[d.id] = d.data()));
+  qp.docs.forEach((d) => { const p = d.data(); if (p.kind === "r") rec.push(p); });
+  qm.docs.forEach((d) => (months[d.id] = d.data()));
+  return { days, rec, months, up };
+}
 async function loadMoney() {
   if (!perm("money") || S.moneyBusy) return;
   S.moneyBusy = true;
-  const now = new Date(), start = dkey(new Date(now.getFullYear(), now.getMonth() - 1, 1));
-  try {
-    const [qd, qp, qm, qu] = await Promise.all([
-      getDocs(query(collection(db, CP("days")), where("date", ">=", start))),
-      getDocs(query(collection(db, CP("photos")), where("day", ">=", start))),
-      getDocs(collection(db, CP("months"))),
-      getDocs(query(collection(db, CP("uploads")), where("ym", ">=", start.slice(0, 7)))).catch(() => ({ docs: [] }))
-    ]);
-    const days = {}, rec = [], months = {}, up = {};
-    qu.docs.forEach((d) => { const u = d.data(); if (u.kind === "tabit" && (!up[u.ym] || u.at > up[u.ym].at)) up[u.ym] = Object.assign({ id: d.id }, u); });
-    qd.docs.forEach((d) => (days[d.id] = d.data()));
-    qp.docs.forEach((d) => { const p = d.data(); if (p.kind === "r") rec.push(p); });
-    qm.docs.forEach((d) => (months[d.id] = d.data()));
-    S.money = { days, rec, months, up };
-  } catch (e) { S.money = { days: {}, rec: [], months: {}, up: {} }; }
+  try { S.money = await fetchMoney(S.site); } catch (e) { S.money = { days: {}, rec: [], months: {}, up: {} }; }
   S.moneyBusy = false; renderSoon();
 }
 function loadScript(src) { return new Promise((res, rej) => { const el = document.createElement("script"); el.src = src; el.onload = res; el.onerror = rej; document.head.appendChild(el); }); }
@@ -3384,8 +3433,8 @@ async function uploadTabit(file) {
     unsub.tabit = onSnapshot(doc(db, CP("uploads"), id), (d) => { const u = d.data(); if (!u || !S.money) return; S.money.up[ym] = Object.assign({ id }, u); if (u.ai === "done") { unsub.tabit(); unsub.tabit = null; S.money = null; loadMoney(); toast("קובץ טאביט נקרא ✓"); } renderSoon(); }, () => {});
   } catch (e) { delete S.money.up[ym]; render(); toast(e.message === "big" ? "הקובץ גדול מדי. נסו לייצא כ-Excel" : "לא הצלחתי לקרוא את הקובץ"); }
 }
-function moneyStats(ym) {
-  const M = S.money, now = new Date(), cur = ym === ymOf(now);
+function moneyStats(ym, M = S.money) {
+  const now = new Date(), cur = ym === ymOf(now);
   const [y, m] = ym.split("-").map(Number), dim = new Date(y, m, 0).getDate(), elapsed = cur ? now.getDate() : dim;
   let sales = 0, salesDays = 0; const byCat = {};
   Object.entries(M.days).forEach(([k, D]) => { if (k.startsWith(ym) && +D.salesTotal > 0) { sales += +D.salesTotal; salesDays++; } });
@@ -3435,42 +3484,50 @@ function viewData() {
   let h = `<div class="tools"><div class="seg" role="group" aria-label="תקופה">${[14, 30, 90].map((r) => `<button data-range="${r}" aria-pressed="${S.range === r}">${r} ימים</button>`).join("")}</div></div>`;
   if (!S.data || S.dataBusy) return h + `<div class="empty"><b>טוען נתונים…</b></div>`;
   if (!S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
-  const st = stats(), nd = st.days.length || 1;
-  h += moneyCard() + weekCard();
+  const st = stats(), nd = st.days.length || 1, D = S.data;
+  const dsec = (k, title, meta, body) => `<section class="card dsec"><button class="dsh" data-dsec="${k}" aria-expanded="${!!(S.dsec || {})[k]}"><b>${title}</b><small>${meta}</small><span class="chev">${(S.dsec || {})[k] ? "▴" : "▾"}</span></button>${(S.dsec || {})[k] ? `<div class="dsb">${body()}</div>` : ""}</section>`;
+  if (!st.days.length) return h + `<div class="empty"><b>עוד אין נתונים בתקופה הזו</b></div>` + (perm("money") ? moneyCard() : "");
   const wpct = st.boxes ? Math.round((st.wasteBoxes / st.boxes) * 1000) / 10 : 0;
   const onT = st.onTimeN ? Math.round((st.onTimeOk / st.onTimeN) * 100) : null;
-  const wd = {}; st.waste.forEach((w) => (wd[w.day] = (wd[w.day] || 0) + (+w.qty || 0)));
-  const dk = st.days.map((d) => d.k).sort().slice(-12), wv = dk.map((k) => wd[k] || 0), wmx = Math.max(...wv, 0.5), wavg = wv.reduce((a, b) => a + b, 0) / (wv.length || 1);
-  h += `<section class="hero"><small>פחת</small><div class="hn">${wpct}<em>%</em></div><p>${fmt(st.wasteBoxes)} קופסאות נזרקו מתוך ${st.boxes} שהוזמנו.</p>
-    ${dk.length > 2 ? `<div class="hbars">${wv.map((v, i) => `<i class="${i === wv.length - 1 ? "on" : ""}" style="height:${Math.max(4, Math.round((v / wmx) * 100))}%"></i>`).join("")}<span class="havg" style="bottom:${Math.round((wavg / wmx) * 100)}%"></span></div><div class="hbl"><span>${ddmm(parse(dk[0]))}</span><span>${ddmm(parse(dk[dk.length - 1]))}</span></div>` : ""}</section>`;
-  h += `<div class="tiles"><div class="tile"><small>קופסאות</small><b>${st.boxes}</b><span>${fmt(st.boxes / nd)} ביום משלוח</span></div>
-    <div class="tile"><small>משלוחים תקינים</small><b>${st.received - st.missing}<em>/${st.days.length}</em></b><span>${st.missing ? `${st.missing} עם חוסר` : "בלי חוסרים"}</span></div>
-    ${onT != null ? `<div class="tile"><small>ייצור בזמן</small><b>${onT}<em>%</em></b><span>עד 16:30</span></div><div class="tile"><small>שינויים</small><b>${st.changes}</b><span>${st.late} אחרי 16:00</span></div>` : ""}</div>`;
-  const hot = st.perItem.filter((p) => p.waste > 0 && p.tot > 0).map((p) => Object.assign({ r: p.waste / p.tot }, p)).sort((a, b) => b.waste - a.waste).slice(0, 3);
-  if (hot.length) {
-    const mx = Math.max(...hot.map((p) => p.r), 0.1);
-    h += `<h4 class="gh">איפה הולך כסף לפח</h4><div class="grp">${hot.map((p) => `<div class="srow"><span class="st"><b>${esc(itemBy(p.k).n)}</b><small>${fmt(p.waste)} מתוך ${p.tot} קופסאות</small></span><span class="wbar"><i style="width:${Math.round((p.r / mx) * 100)}%" class="${p.r >= 0.1 ? "hi" : ""}"></i></span><span class="sv ${p.r >= 0.1 ? "warnc" : ""}">${Math.round(p.r * 100)}%</span></div>`).join("")}</div>`;
-  }
-  const dsec = (k, title, meta, body) => `<section class="card dsec"><button class="dsh" data-dsec="${k}" aria-expanded="${!!(S.dsec || {})[k]}"><b>${title}</b><small>${meta}</small><span class="chev">${(S.dsec || {})[k] ? "▴" : "▾"}</span></button>${(S.dsec || {})[k] ? `<div class="dsb">${body()}</div>` : ""}</section>`;
-  if (!st.days.length) h += `<div class="empty"><b>עוד אין נתונים בתקופה הזו</b>אחרי כמה ימי עבודה יופיעו כאן גרפים וממוצעים.</div>`;
-  else h += dsec("charts", "גרפים", "קופסאות לפי יום ולפי יום בשבוע", () => { let h = "";
-    const all = []; for (let d = parse(S.data.from); dkey(d) <= S.data.today; d = addDays(d, 1)) if (!isOff(d)) all.push(dkey(d));
-    const byDay = {}; st.days.forEach((d) => (byDay[d.k] = sum(d.q)));
-    h += `<section class="card pad"><h3>קופסאות לפי יום משלוח</h3>${barChart(all.map((k) => byDay[k] || 0), all.map((k) => ddmm(parse(k))), { title: "קופסאות לפי יום", maxLabels: 8 })}</section>`;
-    const wds = [0, 1, 2, 3, 4, 5, 6].filter((w) => !offDays().includes(w) || st.wdN[w]), wdA = wds.map((w) => (st.wdN[w] ? st.wd[w] / st.wdN[w] : 0));
-    h += `<section class="card pad"><h3>ממוצע קופסאות לפי יום בשבוע</h3>${barChart(wdA, wds.map((w) => DN[w]), { title: "ממוצע לפי יום בשבוע", maxLabels: 7 })}</section>`;
+  /* חוסרים: מהייצור (סומן חסר) + בקבלה מעבר לזה */
+  let shortN = 0; const shortD = new Set(), shortI = {};
+  st.days.forEach(({ k, o }) => { const P = (D.prod || {})[k], sh = shortsOf(P), xm = o.received ? extraMiss(o, P) : {};
+    Object.keys(sh).forEach((i) => { shortN++; shortD.add(k); shortI[i] = (shortI[i] || 0) + 1; });
+    Object.keys(xm).filter((i) => +xm[i] > 0).forEach((i) => { shortN++; shortD.add(k); shortI[i] = (shortI[i] || 0) + 1; }); });
+  const K = [["הזמנות", st.days.length, `${st.changes} שינויים`, ""], ["קופסאות", num(st.boxes), `${fmt(st.boxes / nd)} בהזמנה`, ""], ["חוסרים", shortN, shortN ? `ב-${shortD.size} ימים` : "אין", shortN ? "badt" : "okt"],
+    hasCut() ? ["בזמן", onT == null ? "—" : onT + "%", "עד 16:30", onT == null ? "" : onT >= 90 ? "okt" : onT >= 75 ? "warnt" : "badt"] : ["פחת", wpct + "%", `${fmt(st.wasteBoxes)} קופסאות`, wpct >= 8 ? "warnt" : ""]];
+  h += `<div class="kpi4">${K.map(([l, v, sub, c]) => `<div class="kp"><small>${l}</small><b class="${c}">${v}</b><span>${sub}</span></div>`).join("")}</div>`;
+  const all = []; for (let d = parse(D.from); dkey(d) <= D.today; d = addDays(d, 1)) if (!isOff(d)) all.push(dkey(d));
+  const byDay = {}; st.days.forEach((d) => (byDay[d.k] = sum(d.q)));
+  h += `<section class="card pad dchart"><h3>קופסאות לפי יום</h3>${barChart(all.map((k) => byDay[k] || 0), all.map((k) => ddmm(parse(k))), { title: "קופסאות לפי יום", maxLabels: 6 })}</section>`;
+  /* דורש תשומת לב: רק דברים שצריך לעשות איתם משהו */
+  const att = [];
+  st.perItem.filter((p) => p.waste > 0 && p.tot > 0 && p.waste / p.tot >= 0.1).sort((a, b) => b.waste / b.tot - a.waste / a.tot).slice(0, 3)
+    .forEach((p) => att.push(["warn", `פחת ${Math.round((p.waste / p.tot) * 100)}% · ${esc(itemBy(p.k).n)}`, `${fmt(p.waste)} מתוך ${p.tot} קופסאות · להזמין פחות`]));
+  Object.entries(shortI).sort((a, b) => b[1] - a[1]).slice(0, 3).forEach(([i, c]) => att.push(["bad", `חוסר · ${esc(itemBy(i).n)}`, `${c} פעמים בתקופה`]));
+  if (hasCut() && st.late) att.push(["warn", `${st.late} הזמנות אחרי 16:00`, "לשלוח מוקדם יותר"]);
+  if (hasCut() && onT != null && onT < 90) att.push(["warn", `ייצור בזמן ${onT}%`, "יעד 90% ומעלה"]);
+  h += `<h4 class="gh">דורש תשומת לב</h4>` + (att.length ? `<div class="grp">${att.map(([c, t, sub]) => `<div class="srow ralert"><i class="rdot ${c}"></i><span class="st"><b>${t}</b><small>${sub}</small></span></div>`).join("")}</div>` : `<div class="grp"><div class="srow"><span class="st"><b class="okt">✓ הכול תקין</b></span></div></div>`);
+  if (perm("money")) { if (!S.money) loadMoney(); const x = S.money ? moneyStats(ymOf(new Date())) : null;
+    h += dsec("money", "עלויות", x && x.fc != null ? `Food cost ${fmt(x.fc)}% · יעד 30%` : "החודש", () => moneyCard()); }
+  const wk = weekCard(); if (wk) h += dsec("week", "השבוע שעבר", "מול השבוע שלפניו", () => wk);
+  h += dsec("waste", "פחת", `${wpct}% · ${fmt(st.wasteBoxes)} קופסאות`, () => { let h = "";
+    const wd = {}; st.waste.forEach((w) => (wd[w.day] = (wd[w.day] || 0) + (+w.qty || 0)));
+    h += `<section class="card pad"><h3>פחת לפי יום</h3>${barChart(all.map((k) => wd[k] || 0), all.map((k) => ddmm(parse(k))), { title: "פחת לפי יום", maxLabels: 6 })}</section>`;
+    if (st.waste.length) { h += `<div class="hist">`; st.waste.slice().sort((a, b) => b.at - a.at).slice(0, 15).forEach((w) => {
+      h += `<div class="hrow static"><span class="hd"><b>${esc(w.n || itemBy(w.k).n)}</b><small>${DN[parse(w.day).getDay()]} ${ddmm(parse(w.day))} · ${esc(w.reason)} · ${esc(w.by)}</small></span><span class="hq">${num(w.qty)}<small>קופסאות</small></span>${okKey(w.id) ? `<button class="x" data-delw="${w.id}" aria-label="מחק רישום">✕</button>` : ""}</div>`; }); h += `</div>`; }
     return h; });
-  if (st.perItem.length) h += dsec("items", "לפי הכנה", `${st.perItem.length} הכנות · סה״כ, ממוצע ופחת`, () => { let h = "";
+  h += dsec("wd", "לפי יום בשבוע", "ממוצע קופסאות", () => { const wds = [0, 1, 2, 3, 4, 5, 6].filter((w) => !offDays().includes(w) || st.wdN[w]), wdA = wds.map((w) => (st.wdN[w] ? st.wd[w] / st.wdN[w] : 0));
+    return `<section class="card pad">${barChart(wdA, wds.map((w) => DN[w]), { title: "ממוצע לפי יום בשבוע", maxLabels: 7 })}</section>`; });
+  if (st.perItem.length) h += dsec("items", "לפי הכנה", `${st.perItem.length} הכנות`, () => { let h = "";
     h += `<div class="tbl" role="table">
       <div class="tr th" role="row"><span role="columnheader">הכנה</span><span role="columnheader">סה״כ</span><span role="columnheader">ממוצע</span><span role="columnheader">פחת</span></div>`;
     st.perItem.forEach((p) => {
       const it = itemBy(p.k), wp = p.tot ? Math.round((p.waste / p.tot) * 100) : 0, open = S.openRow === p.k;
       h += `<button class="tr" role="row" data-orow="${p.k}" aria-expanded="${open}"><span role="cell"><b>${esc(it.n)}</b></span><span role="cell">${p.tot}</span><span role="cell">${fmt(p.tot / (p.n || 1))}</span><span role="cell" class="${p.waste ? "badv" : ""}">${p.waste ? p.waste + (p.tot ? ` · ${wp}%` : "") : "—"}</span></button>`;
-      if (open) {
-        h += `<div class="trx">${[0, 1, 2, 3, 4, 5].map((w) => `<span><small>${DS[w]}</small><b>${st.wdN[w] ? fmt(p.wd[w] / st.wdN[w]) : "—"}</b></span>`).join("")}<span class="wide">הוזמן ב-${p.n} ימים · תוקף ${it.d} ימים${p.short ? ` · חסר מהייצור ${p.short}` : ""}${p.missing ? ` · חסר בקבלה ${p.missing}` : ""}</span></div>`;
-      }
+      if (open) h += `<div class="trx">${[0, 1, 2, 3, 4, 5].map((w) => `<span><small>${DS[w]}</small><b>${st.wdN[w] ? fmt(p.wd[w] / st.wdN[w]) : "—"}</b></span>`).join("")}<span class="wide">הוזמן ב-${p.n} ימים · תוקף ${it.d} ימים${p.short ? ` · חסר מהייצור ${p.short}` : ""}${p.missing ? ` · חסר בקבלה ${p.missing}` : ""}</span></div>`;
     });
-    h += `</div>`; return h; });
+    return h + `</div>`; });
   // history
   const hist = Object.keys(S.data.orders).filter((k) => S.data.orders[k].sentAt || sum(S.data.orders[k].items)).sort().reverse();
   h += dsec("hist", "היסטוריית הזמנות", `${hist.length} הזמנות`, () => { let h = `<div class="hist">`;
@@ -3488,11 +3545,6 @@ function viewData() {
   });
   if (hist.length > 10 && !S.histAll) h += `<button class="more" id="histAll">הצג את כל ${hist.length} ההזמנות</button>`;
   h += `</div>`; return h; });
-  if (st.waste.length) h += dsec("waste", "רישומי פחת", `${st.waste.length} רישומים`, () => { let h = `<div class="hist">`;
-    st.waste.slice().sort((a, b) => b.at - a.at).slice(0, 15).forEach((w) => {
-      h += `<div class="hrow static"><span class="hd"><b>${esc(w.n || itemBy(w.k).n)}</b><small>${DN[parse(w.day).getDay()]} ${ddmm(parse(w.day))} · ${esc(w.reason)} · ${esc(w.by)}</small></span><span class="hq">${num(w.qty)}<small>קופסאות</small></span>${okKey(w.id) ? `<button class="x" data-delw="${w.id}" aria-label="מחק רישום">✕</button>` : ""}</div>`;
-    });
-    h += `</div>`; return h; });
   h += dsec("export", "ייצוא", "לצ׳אט ולאקסל", () => `<div class="pad">
     <div class="ebtns"><button class="btn" id="expText">העתק לניתוח בצ׳אט</button><button class="btn ghost" id="expOrders">הזמנות לאקסל (CSV)</button><button class="btn ghost" id="expWaste">פחת לאקסל (CSV)</button></div></div>`);
   return h;
@@ -3658,7 +3710,7 @@ function viewSettings() {
     `<div class="srow">${ICB("#5E5CE6", IC.moon)}<span class="st"><b>מראה</b></span><div class="seg mini" role="group">${[["dark", "כהה"], ["light", "בהיר"], ["auto", "אוטומטי"]].map(([k, l]) => `<button data-theme="${k}" aria-pressed="${th === k}">${l}</button>`).join("")}</div></div>`,
   ], "במכשיר הזה");
   if (mySites().length > 1) h += grp([row({ id: "siteSw", icon: ICB("var(--acc)", IC.users), t: "החלפת מסעדה", v: esc(siteOf(S.site).f), chev: true })]);
-  if (can.owner()) h += grp([row({ id: "ctlBtn", icon: ICB("#1C1C1E;border:1px solid var(--line)", IC.shield), t: "חדר בקרה", s: "רק לך", chev: true })]);
+  if (can.group()) h += grp([row({ id: "ctlBtn", icon: ICB("#1C1C1E;border:1px solid var(--line)", IC.shield), t: can.owner() ? "חדר בקרה" : "חדר שליטה", s: "כל המסעדות", chev: true })]);
   h += grp([
     row({ data: 'data-setp="guide"', icon: ICB("#30D158", IC.help), t: "מדריך קצר", chev: true }),
     row({ data: 'data-setp="about"', icon: ICB("#FF6F91", IC.info), t: "אודות", v: `גרסה ${APP_VER}`, chev: true }),
@@ -3667,19 +3719,20 @@ function viewSettings() {
   return h;
 }
 function viewAbout() {
-  return `<div class="about">${SIGN}<p>הזמנות וייצור למטבח</p></div>` +
-    grp([row({ t: "גרסה", v: `${APP_VER} · אוקטובר 2026` }), row({ t: "המטבח שלך", v: `${siteOf(S.site).f} · מטבח הייצור` }), row({ t: "התפקיד שלך", v: ROLES[role()] || "" })]) +
-    grp([`<div class="srow tall"><span class="st"><b>מה חדש</b><small>מצלמים ו-Claude ממלא, פנקס מתכונים חדש עם צפייה ועריכה, דוחות ושאלות ל-Claude, קובץ טאביט בכרטיס העלויות, וגלילה חלקה יותר.</small></span></div>`,
-      `<div class="srow tall"><span class="st"><b>פרטיות ונתונים</b><small>הנתונים נשמרים בחשבון המאובטח של המטבח, וכל עובד רואה רק מה שרלוונטי לתפקיד שלו.</small></span></div>`]) +
+  return `<div class="about">${SIGN}</div>` +
+    grp([row({ t: "גרסה", v: APP_VER }), row({ t: "מסעדה", v: esc(siteOf(S.site).f) }), row({ t: "תפקיד", v: esc(roleLabel(S.profile, S.site)) })]) +
     `<p class="copyr">© 2026 קבוצת ג'קו סטריט</p>`;
 }
 function viewGuide() {
-  const G = {
-    rosie: [["הזמנה למחר", hasCut() ? "לוחצים + על כל הכנה ושולחים עד 16:00. אפשר לעדכן עד שהמטבח מאשר." : "לוחצים + על כל הכנה ושולחים. אפשר לעדכן עד שהמטבח מאשר."], ["המשלוח הגיע", "בבוקר מאשרים קבלה, או מסמנים מה חסר."], ["הערה להכנה", "לחיצה ארוכה על הכנה."], ["עוד", "⋯ למעלה: פחת, ושאר הכלים שפתוחים לך."]],
-    prod: [["מה להכין", hasCut() ? "הרשימה של היום, עד 16:30." : "הרשימה של היום."], ["בוצע", "✓ על הכנה כשהיא מוכנה. אם חסר, מסמנים כמה יצא."], ["אישור הזמנות", "הזמנה חדשה מופיעה למעלה. מאשרים, מתקנים או דוחים."], ["פחת", "בתחתית הרשימה."]],
-    admin: [["הזמנות וייצור", "רואים ומאשרים הכול."], ["נתונים", "פחת, משלוחים, עלויות והיסטוריה."], ["הכנות וצוות", "הוספה והסתרה של הכנות, ותפקידי עובדים."]],
-  }[role()] || [];
-  return grp(G.map(([t, d], i) => `<div class="srow tall"><span class="gnum">${i + 1}</span><span class="st"><b>${t}</b><small>${d}</small></span></div>`));
+  const r = role(), cut = hasCut();
+  const steps = {
+    rosie: ["לוחצים + על כל הכנה שצריך", cut ? "שולחים הזמנה עד 16:00" : "שולחים הזמנה", "המשלוח הגיע: מאשרים, או מסמנים מה חסר", "זרקתם משהו: ⋯ ← פחת"],
+    prod: ["הזמנה חדשה למעלה: מאשרים", "מכינים לפי הרשימה", "✓ על כל הכנה שמוכנה", "חסר: מסמנים כמה יצא"],
+    admin: ["מאשרים ומתקנים הזמנות", "נתונים: חוסרים, פחת ועלויות", "פריטים: מוסיפים הכנה ומעדכנים תוקף"],
+  }[r] || [];
+  return `<section class="card guide1"><b>המסעדה מזמינה, מטבח ההכנות מכין ומאשר.</b><span>הכול במקום אחד, בזמן אמת.</span></section>` +
+    grp(steps.map((t, i) => `<div class="srow"><span class="gnum">${i + 1}</span><span class="st"><b>${t}</b></span></div>`), "מה עושים") +
+    grp([["פחות פחת", "מזמינים לפי מה שבאמת יוצא"], ["בלי טלפונים", "ההזמנה, האישור והחוסרים כתובים"], ["בלי טעויות", "כל אחד רואה את אותה רשימה"]].map(([t, d]) => `<div class="srow"><span class="st"><b>${t}</b><small>${d}</small></span></div>`), "מה זה חוסך");
 }
 async function changePassword() {
   const sh = S.sheet, o = ($("pwOld") || {}).value || "", n = ($("pwNew") || {}).value || "", n2 = ($("pwNew2") || {}).value || "";
@@ -3967,10 +4020,14 @@ async function runExport() {
 }
 function viewItems() {
   let h = "";
-  h += `<form class="card form" id="addF"><input id="nN" placeholder="שם ההכנה" aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${c}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>`;
+  h += S.addOpen ? `<form class="card form" id="addF"><input id="nN" placeholder="שם ההכנה" aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${c}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>` : `<button class="btn ghost full addopen" id="addOpen">＋ הכנה חדשה</button>`;
   if (!S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
-  grouped(items(true)).forEach(([cat, list]) => {
-    h += `<section class="cat"><h2><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${list.length}</span></h2><div class="list">`;
+  S.icat = S.icat || {};
+  grouped(items(true)).forEach(([cat, list], ci) => {
+    const open = S.icat[cat] ?? ci === 0;
+    h += `<section class="cat"><button class="cath" data-icat="${esc(cat)}" aria-expanded="${open}"><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${list.length} <i class="chev">${open ? "▴" : "▾"}</i></span></button>`;
+    if (!open) { h += `</section>`; return; }
+    h += `<div class="list">`;
     list.forEach((it) => {
       const off = it.active === false;
       const meta = [`תוקף ${it.d} ימים`, feat("itemCard") && kgOf(it.k) ? `${num(kgOf(it.k))} ק״ג` : "", feat("itemCard") && it.ppk ? `₪${num(it.ppk)}/ק״ג` : ""].filter(Boolean).join(" · ");
@@ -4005,7 +4062,7 @@ const REP_K = { daily: ["יומי", "#30D158"], yesterday: ["יומי", "#30D158
 function viewReports(C) {
   const asks = (S.asks || []).slice(0, 3), reqs = (S.repReq || []).filter((r) => r.status === "pending");
   let h = `<form class="ask" id="askF"><input id="askQ" placeholder="שאלו את Claude על הנתונים" autocomplete="off" aria-label="שאלה ל-Claude"><button class="askgo" id="askGo" aria-label="שליחה">${SVG('<path d="M12 19V5M5 12l7-7 7 7"/>')}</button></form>`;
-  if (asks.length) h += `<div class="asks">${asks.map((a) => `<div class="qa"><button class="qx" data-askdel="${esc(a.id)}" aria-label="סגור">×</button><b>${esc(a.q)}</b>${a.status === "done" ? `<p>${esc(a.a || "").replace(/\n/g, "<br>")}</p>` : a.status === "error" ? `<p class="badt">Claude לא הצליח לענות</p>` : `<p class="mute"><span class="spin"></span>Claude חושב…</p>`}</div>`).join("")}</div>`;
+  if (asks.length) h += `<div class="asks">${asks.map((a) => qaHtml(a, "data-askdel")).join("")}</div>`;
   h += grp([row({ id: "repNow", icon: ICB("#D97757", IC.ai), t: "הפק דוח עכשיו", chev: true }), ...reqs.map((r) => `<div class="srow"><span class="ib" style="background:${(REP_K[r.kind] || [, "#8E8E93"])[1]}">${SVG(IC.doc)}</span><span class="st"><b>דוח ${(REP_K[r.kind] || [""])[0]} בהכנה</b><small><span class="spin"></span>Claude כותב</small></span></div>`)]);
   if (!C.reps.length) return h + `<div class="bempty"><b>עוד אין דוחות</b></div>`;
   return h + grp(C.reps.slice(0, 40).map((r) => row({ data: `data-rep="${esc(r.id)}"`, icon: ICB((REP_K[r.kind] || [, "#8E8E93"])[1], IC.doc), t: esc(r.title || "דוח"), s: esc(r.headline || ""), chev: true })), "דוחות");
@@ -4063,7 +4120,9 @@ function evRow(e) {
   return `<div class="srow ev"><span class="av" style="background:${avColor(e.by)}">${esc(String(e.by || "?").trim()[0] || "?")}</span><span class="st"><b><em>${esc(e.by || "")}</em> ${esc(e.text || "")}</b></span><span class="sv tm">${hm(e.at)}</span></div>`;
 }
 function viewControl() {
-  if (!can.owner()) return `<div class="empty"><b>אין גישה</b></div>`;
+  if (!can.group()) return `<div class="empty"><b>אין גישה</b></div>`;
+  if (S.ctl === "report" && S.repObj) return viewReport(S.repObj);
+  if (!can.owner()) return viewGroup();
   if (!S.ctlData) { loadCtl(); return `<div class="empty"><b>טוען…</b></div>`; }
   const C = S.ctlData, today = todayKey(), evToday = C.ev.filter((e) => dkey(new Date(e.at)) === today);
   if (S.ctl === "log") {
@@ -4087,26 +4146,135 @@ function viewControl() {
   if (S.ctl === "reports") return viewReports(C);
   if (S.ctl === "report") return viewReport((C.reps || []).find((x) => x.id === S.rep));
 
-  // סקירה
-  const tom = nextDelivery(), to = C.orders[tom] || {}, P = S.todayProd || {}, T0 = S.today || {};
-  const ap = (T0.approved || {}), need = Object.keys(ap).filter((k) => +ap[k] > 0), doneN = need.filter((k) => { const p = (P.items || {})[k]; return p && p.done; }).length;
-  const st = to.status === "approved" ? ["אושרה", "ok"] : to.status === "pending" ? ["ממתינה", "warn"] : to.sentAt ? ["נשלחה", ""] : ["לא נשלחה", "mute"];
-  const people = new Set(evToday.map((e) => e.by)).size;
-  let h = `<div class="tiles"><div class="tile"><small>הזמנה ל${dayName(tom)}</small><b class="${st[1]}">${st[0]}</b><span>${sum(to.approved || to.sent || to.items || {})} קופסאות</span></div>
-    <div class="tile"><small>ייצור היום</small><b>${need.length ? `${doneN}<em>/${need.length}</em>` : "—"}</b><span>${need.length ? (hasCut() ? "עד 16:30" : "היום") : "אין משלוח היום"}</span></div></div>`;
-  if (S.rulesOld) h += grp([row({ icon: ICB("#FF453A", IC.shield), t: "חוקי האבטחה לא עודכנו", s: "צריך לפרסם את firestore-rules ב-Firebase" })]);
+  // ארבעה אזורים: מבט על · אנשים · האפליקציה · יומן ודוחות
+  const A = S.ctlArea || "group";
+  let h = `<div class="seg wide carea" role="group" aria-label="אזור">${[["group", "מבט על"], ["people", "אנשים"], ["app", "האפליקציה"], ["log", "יומן ודוחות"]].map(([k, l]) => `<button data-carea="${k}" aria-pressed="${A === k}">${l}</button>`).join("")}</div>`;
+  if (S.rulesOld) h += grp([row({ icon: ICB("#FF453A", IC.shield), t: "חוקי האבטחה לא עודכנו", s: "צריך לפרסם את החוקים ב-Firebase" })]);
+  if (A === "group") return h + viewGroup();
+  if (A === "people") {
+    const pend = (S.staff || []).filter((u) => rawRole(u, S.site) === "pending").length;
+    return h + grp([
+      row({ data: 'data-ctl="team"', icon: ICB("#FF9F0A", IC.users), t: `צוות ${SN()}`, v: pend ? `<span class="pill warn">${pend} ממתינים</span>` : `${staffOfSite().length}`, chev: true }),
+      row({ data: 'data-ctl="access"', icon: ICB("#FF8A3D", IC.lock), t: "מי נכנס לאיזו מסעדה", chev: true }),
+      row({ data: 'data-ctl="perm"', icon: ICB("#30D158", IC.lock), t: "מי רואה מה", chev: true }),
+    ]);
+  }
+  if (A === "app") return h + grp([
+      row({ id: "wdBtn", icon: ICB("#5E5CE6", IC.cal), t: "ימי עבודה", v: wdTxt(), chev: true }),
+      row({ data: 'data-ctl="sugg"', icon: ICB("#BF5AF2", IC.spark || IC.ai), t: "Claude מול ההזמנות", s: suggLine(C), chev: true }),
+      row({ icon: ICB("#D97757", IC.ai), t: "Claude", s: aiLine().s, right: `<span class="aist ${aiLine().c}">${aiLine().v}</span>` }),
+      row({ id: "itemsGo", icon: ICB("#64D2FF", IC.list), t: "הכנות", v: `${items(true).length}`, chev: true }),
+      row({ id: "backupBtn", icon: ICB("#8E8E93", IC.doc), t: "גיבוי נתונים", s: "קובץ להורדה", chev: true }),
+    ], SN()) + grp([row({ id: "resetBtn", icon: ICB("#FF453A", IC.reset), t: "איפוס נתונים", danger: true, chev: true })], "", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים.");
   h += grp([
     row({ data: 'data-ctl="log"', icon: ICB("#0A84FF", IC.list), t: "יומן פעולות", v: `${evToday.length} היום`, chev: true }),
     row({ data: 'data-ctl="reports"', icon: ICB("#D97757", IC.ai), t: "Claude ודוחות", s: C.reps[0] ? esc(C.reps[0].headline || C.reps[0].title || "") : "", chev: true }),
-    row({ data: 'data-ctl="sugg"', icon: ICB("#BF5AF2", IC.spark || IC.ai), t: "Claude מול ההזמנות", s: suggLine(C), chev: true }),
-    row({ data: 'data-ctl="perm"', icon: ICB("#30D158", IC.lock), t: "מי רואה מה", chev: true }),
-    row({ data: 'data-ctl="team"', icon: ICB("#FF9F0A", IC.users), t: "צוות ותפקידים", v: `${(S.staff || []).length}`, chev: true }),
-    row({ data: 'data-ctl="access"', icon: ICB("#FF8A3D", IC.lock), t: "מי נכנס לאיזו מסעדה", s: SITES.map((x) => x.n).join(" · "), chev: true }),
-    row({ id: "wdBtn", icon: ICB("#5E5CE6", IC.cal), t: "ימי עבודה", v: wdTxt(), chev: true }),
-    row({ icon: ICB("#D97757", IC.ai), t: "Claude", s: aiLine().s, right: `<span class="aist ${aiLine().c}">${aiLine().v}</span>` }),
-  ]);
-  if (C.ev.length) h += grp(C.ev.slice(0, 4).map(evRow), people ? `אחרון · ${people === 1 ? "אדם אחד פעיל" : `${people} אנשים פעילים`} היום` : "פעולות אחרונות");
-  h += grp([row({ id: "resetBtn", icon: ICB("#FF453A", IC.reset), t: "איפוס נתונים", danger: true, chev: true })], "", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים.");
+  ], SN());
+  if (C.ev.length) h += grp(C.ev.slice(0, 5).map(evRow), "אחרונות");
+  return h;
+}
+/* ---------- קבוצה: מבט על כל המסעדות (גדי ובעלים) ---------- */
+async function loadGroup(force) {
+  if (!can.group() || S.grpBusy) return;
+  if (S.grp && !force && Date.now() - S.grp.at < 90000) return;
+  S.grpBusy = true;
+  const today = todayKey(), from = dkey(addDays(new Date(), -6)), to = dkey(addDays(new Date(), 2)), out = { at: Date.now(), sites: {} };
+  await Promise.all(SITES.map(async (x) => {
+    const k = x.k;
+    try {
+      const [qo, qp, qw, cat, rep, money] = await Promise.all([
+        getDocs(query(collection(db, SCP(k, "orders")), where(documentId(), ">=", from), where(documentId(), "<=", to))),
+        getDocs(query(collection(db, SCP(k, "production")), where(documentId(), ">=", from), where(documentId(), "<=", today))),
+        getDocs(query(collection(db, SCP(k, "waste")), where("day", ">=", from))).catch(() => ({ docs: [] })),
+        getDoc(doc(db, SCP(k, "catalog"), "items")).catch(() => null),
+        getDocs(query(collection(db, SCP(k, "reports")), orderBy("at", "desc"), limit(2))).catch(() => ({ docs: [] })),
+        fetchMoney(k).catch(() => null),
+      ]);
+      out.sites[k] = grpSum(x, qo, qp, qw, cat, rep, money, from, today);
+    } catch (e) { out.sites[k] = { k, n: x.f, err: true }; }
+  }));
+  S.grp = out; S.grpBusy = false; watchGroup(); renderSoon();
+}
+function grpSum(x, qo, qp, qw, cat, rep, money, from, today) {
+  const items = (cat && cat.exists() && cat.data().items) || {}, nm = (i) => (items[i] && items[i].n) || "";
+  const orders = {}, prod = {}, tot = {}, wItem = {};
+  qo.docs.forEach((d) => (orders[d.id] = d.data())); qp.docs.forEach((d) => (prod[d.id] = d.data()));
+  let n = 0, boxes = 0, late = 0, shortN = 0, shortDays = 0, wBoxes = 0;
+  Object.keys(orders).filter((k) => k >= from && k <= today).forEach((k) => {
+    const o = orders[k], q = qtySource(o), b = sum(q); if (!b || o.status === "cancelled") return;
+    n++; boxes += b; if (o.late) late++;
+    Object.keys(q).forEach((i) => (tot[i] = (tot[i] || 0) + (+q[i] || 0)));
+    const xm = o.received ? extraMiss(o, prod[k]) : {}, c = Object.keys(shortsOf(prod[k])).length + Object.keys(xm).filter((i) => +xm[i] > 0).length;
+    if (c) { shortN += c; shortDays++; }
+  });
+  qw.docs.forEach((d) => { const w = d.data(); if (!w || w.day > today) return; wBoxes += +w.qty || 0; if (w.k) wItem[w.k] = (wItem[w.k] || 0) + (+w.qty || 0); });
+  const topW = Object.keys(wItem).filter((i) => tot[i] > 0 && nm(i)).map((i) => ({ n: nm(i), p: Math.round((wItem[i] / tot[i]) * 100) })).filter((r) => r.p >= 10).sort((a, b) => b.p - a.p).slice(0, 3);
+  const tk = x.noCut && new Date().getHours() < 6 ? today : dkey(addDays(new Date(), 1)), t = orders[tk] || {};
+  const tomSt = t.status === "approved" ? "אושרה" : t.status === "pending" ? "ממתינה לאישור" : t.status === "rejected" ? "נדחתה" : t.status === "cancelled" ? "בוטלה" : t.sentAt ? "נשלחה" : "לא נשלחה";
+  const ms = money ? moneyStats(ymOf(new Date()), money) : null;
+  return { k: x.k, n: x.f, noCut: !!x.noCut, orders: n, boxes, late, shortN, shortDays, wBoxes, wPct: boxes ? Math.round((wBoxes / boxes) * 1000) / 10 : 0, topW, tomSt, tomBoxes: sum(qtySource(t)) || sum(t.items || {}),
+    money: ms && (ms.sales || ms.food) ? { sales: ms.sales, food: ms.food, fc: ms.fc, pc: ms.pc } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())) };
+}
+function grpAlerts(s) {
+  const a = [], h = new Date().getHours();
+  if (s.shortN) a.push(["bad", `${s.shortN} חוסרים ב-${s.shortDays} ימים`]);
+  if (!s.noCut && s.late) a.push(["warn", `${s.late} הזמנות אחרי 16:00`]);
+  s.topW.forEach((w) => a.push(["warn", `פחת ${w.p}% · ${w.n}`]));
+  if (s.money && s.money.fc != null && s.money.fc > 30) a.push([s.money.fc > 35 ? "bad" : "warn", `Food cost ${fmt(s.money.fc)}% · יעד 30%`]);
+  if (s.tomSt === "לא נשלחה" && h >= 12) a.push(["warn", "ההזמנה למחר עוד לא נשלחה"]);
+  if (s.tomSt === "ממתינה לאישור" && h >= 14) a.push(["warn", "ההזמנה למחר מחכה לאישור"]);
+  return a;
+}
+const grpPayload = () => Object.values((S.grp || {}).sites || {}).filter((s) => !s.err).map((s) => ({
+  site: s.n, orders7d: s.orders, boxes7d: s.boxes, shortages7d: s.shortN, shortageDays: s.shortDays, lateOrders: s.noCut ? null : s.late,
+  wasteBoxes: s.wBoxes, wastePct: s.wPct, highWaste: s.topW.map((w) => `${w.n} ${w.p}%`), nextOrder: s.tomSt,
+  monthSales: s.money ? Math.round(s.money.sales || 0) : null, monthFood: s.money ? Math.round(s.money.food || 0) : null,
+  foodCostPct: s.money && s.money.fc != null ? Math.round(s.money.fc * 10) / 10 : null, primeCostPct: s.money && s.money.pc != null ? Math.round(s.money.pc * 10) / 10 : null,
+}));
+function watchGroup() {
+  if (unsub.grp || !can.group()) return;
+  unsub.grp = onSnapshot(query(collection(db, "group"), orderBy("at", "desc"), limit(12)), (q) => {
+    const L = q.docs.map((d) => Object.assign({ id: d.id }, d.data())), last = L.find((x) => x.kind === "brief");
+    S.grpBrief = L.find((x) => x.kind === "brief" && x.status === "done") || last || null;
+    S.grpAsks = L.filter((x) => x.kind === "ask");
+    if (!last || (last.status !== "pending" && Date.now() - last.at > 6 * 3600000)) requestBrief();
+    renderSoon();
+  }, () => { S.grpBrief = null; renderSoon(); });
+}
+async function requestBrief() {
+  if (S.briefReq || !S.grp) return; S.briefReq = true;
+  try { await setDoc(doc(db, "group", "b" + Date.now().toString(36)), { kind: "brief", status: "pending", at: Date.now(), by: myName(), data: grpPayload() }); } catch (e) {}
+}
+async function groupAsk() {
+  const i = $("gAskQ"), q = ((i && i.value) || "").trim(); if (!q) { if (i) i.focus(); return; }
+  try { await setDoc(doc(db, "group", "a" + Date.now().toString(36)), { kind: "ask", status: "pending", q: q.slice(0, 500), at: Date.now(), by: myName(), data: grpPayload() }); if (i) i.value = ""; }
+  catch (e) { toast("לא נשלח"); }
+}
+const qaHtml = (a, del) => `<div class="qa"><button class="qx" ${del}="${esc(a.id)}" aria-label="סגור">×</button><b>${esc(a.q)}</b>${a.status === "done" ? `<p>${esc(a.a || "").replace(/\n/g, "<br>")}</p>` : a.status === "error" ? `<p class="badt">Claude לא הצליח לענות</p>` : `<p class="mute"><span class="spin"></span>Claude חושב…</p>`}</div>`;
+function viewGroup() {
+  if (!S.grp) { loadGroup(); return `<div class="empty"><b>טוען…</b></div>`; }
+  const G = S.grp, br = S.grpBrief, open = !!(S.dsec || {}).brief;
+  let h = `<section class="card brief"><div class="bhd">${ICB("#D97757", IC.ai)}<b>Claude</b>${br && br.status === "done" ? `<small>${ddmm(new Date(br.doneAt || br.at))} ${hm(br.doneAt || br.at)}</small>` : ""}</div>`;
+  if (br && br.status === "done" && br.short) {
+    h += `<ul class="b3"><li class="ok"><i></i><span>${esc(br.short.good)}</span></li><li class="warn"><i></i><span>${esc(br.short.watch)}</span></li><li class="todo"><i></i><span>${esc(br.short.todo)}</span></li></ul>`;
+    if (br.long) h += `<button class="bmore" data-dsec="brief" aria-expanded="${open}">${open ? "סגור" : "הסבר מלא"} <span class="chev">${open ? "▴" : "▾"}</span></button>${open ? `<div class="blong report">${mdLite(br.long)}</div>` : ""}`;
+  } else h += `<p class="bwait">${S.settings && S.settings.ai ? `<span class="spin"></span>Claude מסכם את השבוע` : "Claude לא מחובר"}</p>`;
+  h += `</section>`;
+  SITES.forEach((x) => {
+    const s = G.sites[x.k]; if (!s) return;
+    if (s.err) { h += `<section class="card scard"><div class="schd"><h3>${esc(x.f)}</h3></div><p class="sok">לא נטען</p></section>`; return; }
+    const al = grpAlerts(s), M = s.money;
+    h += `<section class="card scard s-${x.k}"><div class="schd"><h3><i class="sdot"></i>${esc(x.f)}</h3><small>7 ימים</small></div>
+      <div class="sk"><div><b>${s.orders}</b><span>הזמנות</span></div><div><b>${num(s.boxes)}</b><span>קופסאות</span></div><div><b class="${s.shortN ? "badt" : ""}">${s.shortN}</b><span>חוסרים</span></div><div>${s.noCut ? `<b class="${s.wPct >= 8 ? "warnt" : ""}">${fmt(s.wPct)}%</b><span>פחת</span>` : `<b class="${s.late ? "warnt" : ""}">${s.late}</b><span>איחורים</span>`}</div></div>
+      ${M ? `<div class="sm"><div><small>מכירות החודש</small><b>${M.sales ? ils(M.sales) : "—"}</b></div><div><small>Food cost</small><b class="${pctCls(M.fc, 30, 35)}">${M.fc == null ? "—" : fmt(M.fc) + "%"}</b><em>יעד 30%</em></div><div><small>Prime cost</small><b class="${pctCls(M.pc, 60, 65)}">${M.pc == null ? "—" : fmt(M.pc) + "%"}</b><em>יעד 60%</em></div></div>` : ""}
+      <div class="stom"><span>הזמנה הבאה</span><b>${esc(s.tomSt)}</b>${s.tomBoxes ? `<small>${num(s.tomBoxes)} קופסאות</small>` : ""}</div>
+      ${al.length ? `<ul class="sal">${al.map(([c, t]) => `<li class="${c}"><i></i>${esc(t)}</li>`).join("")}</ul>` : `<p class="sok">✓ הכול תקין</p>`}
+      ${s.reps[0] ? `<button class="srow srep" data-grep="${esc(x.k)}|${esc(s.reps[0].id)}">${ICB((REP_K[s.reps[0].kind] || [, "#8E8E93"])[1], IC.doc)}<span class="st"><b>${esc(s.reps[0].title || "דוח")}</b><small>${esc(s.reps[0].headline || "")}</small></span><span class="schev">‹</span></button>` : ""}
+    </section>`;
+  });
+  h += `<form class="ask" id="gAskF"><input id="gAskQ" placeholder="שאלה ל-Claude על כל המסעדות" autocomplete="off" aria-label="שאלה ל-Claude"><button class="askgo" id="gAskGo" aria-label="שליחה">${SVG('<path d="M12 19V5M5 12l7-7 7 7"/>')}</button></form>`;
+  const asks = (S.grpAsks || []).slice(0, 3);
+  if (asks.length) h += `<div class="asks">${asks.map((a) => qaHtml(a, "data-gdel")).join("")}</div>`;
   return h;
 }
 /* גישה למסעדות: רק הבעלים קובע מי נכנס לאן, באיזה תפקיד, ומי מנהל ראשי */
@@ -4221,7 +4389,7 @@ function viewSheet() {
   } else if (sh.type === "menu") {
     b = `<div class="me"><div class="avatar lg" aria-hidden="true">${esc(initials(myName()))}</div><div><b>${esc(myName())}</b><small>${roleLabel(S.profile, S.site)}</small></div></div>
       <button class="mitem" id="pushBtn">${I.bell}<span>${S.pushOn ? "התראות פעילות בטלפון הזה ✓" : "הפעלת התראות בטלפון הזה"}</span></button>
-      ${can.owner() ? `<button class="mitem" id="ctlBtn"><span>🛠 חדר בקרה</span></button>` : ""}
+      ${can.group() ? `<button class="mitem" id="ctlBtn"><span>${can.owner() ? "חדר בקרה" : "חדר שליטה"}</span></button>` : ""}
       <button class="mitem" id="themeBtn"><span>${document.documentElement.dataset.theme === "light" ? "☾ מצב לילה" : "☀ מצב יום (למטבח מואר)"}</span></button>
       <button class="mitem" id="logout"><span>יציאה מהחשבון</span></button>
       <div class="sbtns"><button class="btn ghost" id="sClose">סגור</button></div>`;
@@ -4297,7 +4465,7 @@ function viewSheet() {
     const o = (S.data && S.data.orders[sh.day]) || {};
     const L = (o.log || []).slice().sort((a, b) => a.at - b.at);
     let rows = L.map((e) => `<li class="${logCls(e.t)}"><i></i><div><b>${esc(e.by || "")}</b> <small>${DS[new Date(e.at).getDay()]} ${ddmm(new Date(e.at))} · ${hm(e.at)}</small><span>${logText(e)}</span></div></li>`).join("");
-    if (!L.length) rows = [o.sentBy && `<li><i></i><div><b>${esc(o.sentBy)}</b> <small>${hm(o.sentAt)}</small><span>שליחת הזמנה</span></div></li>`, o.approvedBy && `<li class="ok"><i></i><div><b>${esc(o.approvedBy)}</b> <small>${hm(o.approvedAt)}</small><span>אישור</span></div></li>`, o.received && `<li class="ok"><i></i><div><b>${esc(o.received.by)}</b> <small>${hm(o.received.at)}</small><span>אישור קבלה</span></div></li>`].filter(Boolean).join("") + `<li class="muted"><i></i><div><span>יומן מלא נשמר מהעדכון הזה והלאה.</span></div></li>`;
+    if (!L.length) rows = [o.sentBy && `<li><i></i><div><b>${esc(o.sentBy)}</b> <small>${hm(o.sentAt)}</small><span>שליחת הזמנה</span></div></li>`, o.approvedBy && `<li class="ok"><i></i><div><b>${esc(o.approvedBy)}</b> <small>${hm(o.approvedAt)}</small><span>אישור</span></div></li>`, o.received && `<li class="ok"><i></i><div><b>${esc(o.received.by)}</b> <small>${hm(o.received.at)}</small><span>אישור קבלה</span></div></li>`].filter(Boolean).join("") ;
     b = `<h3>יומן שינויים</h3><p class="big">משלוח ${DN[parse(sh.day).getDay()]} ${ddmm(parse(sh.day))}</p><ol class="tl">${rows}</ol>
       <div class="sbtns"><button class="btn ghost" id="sClose">סגור</button></div>`;
   } else if (sh.type === "cancel") {
@@ -4325,7 +4493,7 @@ function tabsFor() {
   const t = [];
   if (can.order()) t.push(["order", "הזמנה"]);
   t.push(["prod", "ייצור"]);
-  if (can.admin()) { t.push(["data", "נתונים"]); t.push(["items", "פריטים"]); t.push(["staff", "צוות"]); }
+  if (can.admin()) { t.push(["data", "נתונים"]); t.push(["items", "פריטים"]); }
   return t;
 }
 const TAB_ICONS = {
@@ -4364,7 +4532,7 @@ function viewApp() {
     days += `<button class="day" data-day="${k}" aria-pressed="${k === S.day}"><b>${i === 0 ? "היום" : i === 1 ? "מחר" : DN[d.getDay()]}</b><span>${ddmm(d)}</span>${dot}</button>`;
   }
   const tabs = tabsFor(); S.allDone = false;
-  if (S.tab === "control" && !can.owner()) S.tab = tabs[0][0];
+  if (S.tab === "control" && !can.group()) S.tab = tabs[0][0];
   if (!["control", "settings", "dishes"].includes(S.tab) && !tabs.some((t) => t[0] === S.tab)) S.tab = tabs[0][0];
   const showDays = S.tab === "order" || S.tab === "prod";
   const body = { order: viewOrder, prod: viewProd, data: viewData, items: viewItems, staff: viewStaff, dishes: viewLab, control: viewControl, settings: viewSettings }[S.tab]();
@@ -4372,14 +4540,14 @@ function viewApp() {
   const dl = `${dayName(S.day)} ${ddmm(parse(S.day))}`;
   const LAB_T = { dishes: "שקילת מנות", book: "מתכונים", photos: "קבלות ותמונות" };
   const CTL_T = { log: "יומן פעולות", perm: "מי רואה מה", team: "צוות ותפקידים", reports: "Claude ודוחות", sugg: "Claude מול ההזמנות", access: "מי נכנס לאיזו מסעדה" };
-  if (S.tab === "control" && S.ctl === "report") { const r = ((S.ctlData || {}).reps || []).find((x) => x.id === S.rep); CTL_T.report = r ? (REP_K[r.kind] ? `דוח ${REP_K[r.kind][0]}` : "דוח") : "דוח"; }
+  if (S.tab === "control" && S.ctl === "report") { const r = S.repObj || ((S.ctlData || {}).reps || []).find((x) => x.id === S.rep); CTL_T.report = r ? (REP_K[r.kind] ? `דוח ${REP_K[r.kind][0]}` : "דוח") : "דוח"; }
   const SET_T = { about: "אודות", guide: "מדריך קצר" };
   const [title, sub] = {
-    order: ["הזמנה", hasCut() ? `למשלוח ${dl} · נסגרת ב-16:00` : `למשלוח ${dl}`], prod: ["ייצור", hasCut() ? `משלוח ${dl} · עד 16:30` : `משלוח ${dl}`], data: ["נתונים", `${S.range} הימים האחרונים`],
+    order: ["הזמנה", ""], prod: ["ייצור", ""], data: ["נתונים", ""],
     items: ["הכנות", `${items(true).length} הכנות`], staff: ["צוות", `${staffOfSite().length} משתמשים`],
-    dishes: S.lab === "book" && S.re ? [S.re.id ? "עריכת מתכון" : "מתכון חדש", ""] : S.lab === "book" && S.rv && S.book && S.book[S.rv] ? [S.book[S.rv].n, [bookCat(S.book[S.rv]), S.book[S.rv].min ? `${S.book[S.rv].min} דק׳ עבודה` : ""].filter(Boolean).join(" · ")] : S.lab === "book" && S.book && Object.keys(S.book).length ? ["מתכונים", `${Object.keys(S.book).length} מתכונים`] : [LAB_T[S.lab] || "כלים", ""], control: [CTL_T[S.ctl] || "חדר בקרה", S.ctl ? "" : "רק לך"], settings: [SET_T[S.set] || "הגדרות", ""],
+    dishes: S.lab === "book" && S.re ? [S.re.id ? "עריכת מתכון" : "מתכון חדש", ""] : S.lab === "book" && S.rv && S.book && S.book[S.rv] ? [S.book[S.rv].n, [bookCat(S.book[S.rv]), S.book[S.rv].min ? `${S.book[S.rv].min} דק׳ עבודה` : ""].filter(Boolean).join(" · ")] : S.lab === "book" && S.book && Object.keys(S.book).length ? ["מתכונים", `${Object.keys(S.book).length} מתכונים`] : [LAB_T[S.lab] || "כלים", ""], control: [CTL_T[S.ctl] || (can.owner() ? "חדר בקרה" : "חדר שליטה"), ""], settings: [SET_T[S.set] || "הגדרות", ""],
   }[S.tab] || [SN(), ""];
-  const back = ["dishes", "settings", "control"].includes(S.tab) ? `<button class="navback" id="navBack">‹ ${S.tab === "control" ? (S.ctl === "report" ? "דוחות" : S.ctl ? "חדר בקרה" : "הגדרות") : S.tab === "settings" && S.set ? "הגדרות" : S.tab === "settings" ? "סגור" : S.tab === "dishes" && S.lab === "book" && S.re ? "ביטול" : S.tab === "dishes" && S.lab === "book" && S.rv ? "מתכונים" : "חזרה"}</button>` : "";
+  const back = ["dishes", "settings", "control"].includes(S.tab) ? `<button class="navback" id="navBack">‹ ${S.tab === "control" ? (S.ctl === "report" && !S.repObj ? "דוחות" : S.ctl ? (can.owner() ? "חדר בקרה" : "חדר שליטה") : "הגדרות") : S.tab === "settings" && S.set ? "הגדרות" : S.tab === "settings" ? "סגור" : S.tab === "dishes" && S.lab === "book" && S.re ? "ביטול" : S.tab === "dishes" && S.lab === "book" && S.rv ? "מתכונים" : "חזרה"}</button>` : "";
   const nav = tabs.length > 1 ? `<nav class="tabbar" role="tablist">${tabs.map(([k, l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${S.tab === k}">${TAB_ICONS[k]}<span>${l}</span>${k === "prod" && badge ? `<i class="badge">${badge}</i>` : ""}</button>`).join("")}</nav>` : "";
   const navOn = !!nav && !["settings", "control", "dishes"].includes(S.tab), barH = S.tab === "order" || S.tab === "prod" ? barHtml() : S.tab === "dishes" && S.lab === "book" && S.re ? `<div class="bar sbar"><button class="btn big full" id="reSave">שמור</button></div>` : "";
   document.body.classList.toggle("has-tabbar", navOn);
@@ -4419,7 +4587,7 @@ function renderInner() {
   else if (!S.site && mySites().length > 1) html = viewSites();
   else if (!S.site || !ACTIVE.includes(role())) html = viewWaiting();
   else html = viewApp();
-  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "wG"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
+  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "gAskQ", "wG"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
   $("app").innerHTML = html;
   const grp = html.startsWith('<div class="auth grp"'); document.body.classList.toggle("grpb", grp);
   if (grp && !S.site) delete document.documentElement.dataset.site;
@@ -4444,6 +4612,7 @@ app.addEventListener("submit", (e) => {
   if (e.target.id === "addF") { const n = $("nN").value.trim(), c = $("nC").value, d = parseInt($("nD").value, 10) || 4; if (n) { addItem(n, c, d); $("nN").value = ""; } else { toast("כתבו שם להכנה"); $("nN").focus(); } }
   if (e.target.id === "dAddF") addDish($("dN").value);
   if (e.target.id === "askF") askClaude();
+  if (e.target.id === "gAskF") groupAsk();
   if (e.target.id === "vapidF") setDoc(doc(db, "settings", "app"), { vapid: $("vapid").value.trim() }, { merge: true }).then(() => toast("נשמר ✓")).catch(() => toast("לא נשמר"));
 });
 app.addEventListener("click", (e) => {
@@ -4458,7 +4627,8 @@ app.addEventListener("click", (e) => {
   else if (t.id === "logout") { clearTimeout(flushTimer); S.sheet = null; render(); flush().then(runAutoNow).finally(() => signOut(auth)); }
   else if (t.id === "menu") { S.prevTab = S.tab; S.tab = "settings"; S.set = null; S.enter = true; render(); jumpTo(0); }
   else if (t.id === "navBack") {
-    if (S.tab === "control" && S.ctl === "report") S.ctl = "reports";
+    if (S.tab === "control" && S.ctl === "report" && S.repObj) { S.ctl = null; S.repObj = null; }
+    else if (S.tab === "control" && S.ctl === "report") S.ctl = "reports";
     else if (S.tab === "control" && S.ctl) S.ctl = null;
     else if (S.tab === "settings" && S.set) S.set = null;
     else if (S.tab === "control") { S.tab = "settings"; S.set = null; }
@@ -4497,7 +4667,15 @@ app.addEventListener("click", (e) => {
   else if (d.repk) requestReport(d.repk);
   else if (t.id === "askGo") { e.preventDefault(); askClaude(); }
   else if (t.id === "wdBtn" && can.owner()) { S.sheet = { type: "wdays" }; render(); }
-  else if (t.id === "ctlBtn" && can.owner()) { S.sheet = null; S.tab = "control"; S.ctl = null; S.enter = true; loadCtl(); render(); jumpTo(0); }
+  else if (t.id === "ctlBtn" && can.group()) { S.sheet = null; S.tab = "control"; S.ctl = null; S.repObj = null; S.enter = true; if (can.owner()) loadCtl(); loadGroup(true); render(); jumpTo(0); }
+  else if (d.carea) { S.ctlArea = d.carea; render(); }
+  else if (d.icat) { S.icat = S.icat || {}; const g = grouped(items(true)), i = g.findIndex(([c]) => c === d.icat); S.icat[d.icat] = !(S.icat[d.icat] ?? i === 0); render(); }
+  else if (t.id === "addOpen") { S.addOpen = true; render(); setTimeout(() => $("nN") && $("nN").focus(), 50); }
+  else if (t.id === "backupBtn") backupAll();
+  else if (t.id === "itemsGo") { S.tab = "items"; S.enter = true; render(); jumpTo(0); }
+  else if (d.grep) { const [k, id] = d.grep.split("|"), r = ((((S.grp || {}).sites || {})[k] || {}).reps || []).find((x) => x.id === id); if (r) { S.repObj = r; S.ctl = "report"; S.enter = true; render(); jumpTo(0); } }
+  else if (d.gdel) { S.grpAsks = (S.grpAsks || []).filter((a) => a.id !== d.gdel); render(); deleteDoc(doc(db, "group", d.gdel)).catch(() => {}); }
+  else if (t.id === "gAskGo") { e.preventDefault(); groupAsk(); }
   else if (d.theme) { store("rosie-theme", d.theme); applyTheme(); render(); }
   else if (d.setp) { S.set = d.setp; S.enter = true; render(); jumpTo(0); }
   else if (t.id === "copyCode") { const c = (S.profile && S.profile.username) || ""; try { navigator.clipboard.writeText(c).then(() => toast("הקוד הועתק")).catch(() => toast(c)); } catch (er) { toast(c); } }

@@ -55,7 +55,7 @@ ${JSON.stringify({ cost: L.cost, wage: L.wage, minWageTopUp: L.comp, tips: L.tip
     actions: (Array.isArray(A.actions) ? A.actions : []).slice(0, 2).map((x) => ({ title: strOf(x && x.title, 160), saving: strOf(x && x.saving, 60) })).filter((x) => x.title) };
   await mref.set(fsSafe({ laborAI: out }), { merge: true });
   await d.ref.set({ ai: "done", aiAt: Date.now() }, { merge: true });
-  await send(["owner"], `שעות עובדים נותחו · ${ym.slice(5)}/${ym.slice(0, 4)}`, out.headline || "הניתוח מוכן בכרטיס העלויות");
+  await send(["owner"], `ניתוח שעות מוכן · ${ym.slice(5)}/${ym.slice(0, 4)}`, out.headline || "הניתוח מוכן בכרטיס העלויות");
   console.log("labor analyzed", d.id);
 }
 /* סיכום שעות עובדים מטאביט (בלי שמות) לדוחות */
@@ -92,7 +92,7 @@ async function send(roles, title, body) {
   const targets = [];
   const isOwn = (u) => u.role === "admin" && u.username === OWNER;
   const roleAt = (u) => { if (isOwn(u) || u.chief === true) return "admin"; const r = SITE === "rosie" ? u.role : ((u.sites || {})[SITE] || "none"); return r === "fmgr" ? "admin" : r; };
-  if (SITE !== "rosie") title = `${SN} · ${title}`;
+  title = `${SN} · ${title}`;
   users.filter((u) => roles.includes(roleAt(u)) || (roles.includes("owner") && isOwn(u))).forEach((u) => Object.entries(u.push || {}).forEach(([h, v]) => v && v.t && targets.push({ uid: u.uid, h, t: v.t })));
   if (!targets.length) { console.log("no devices for", roles); return; }
   const res = await fcm.sendEachForMulticast({
@@ -109,9 +109,9 @@ async function send(roles, title, body) {
   }));
 }
 
-// 0. עובד חדש נרשם למסעדה הזו → התראה למנהלים (וגדי). פעם אחת לכל עובד
+// 0. עובד חדש נרשם למסעדה הזו → התראה לגדי (רק הוא מאשר). פעם אחת לכל עובד
 for (const u of users.filter((x) => !(x.notified || {})[SITE] && (SITE === "rosie" ? x.role === "pending" : (x.sites || {})[SITE] === "pending"))) {
-  await send(["admin"], "עובד חדש נרשם", `${u.name || u.username} מחכה לאישור · צוות`);
+  await send(["owner"], "עובד חדש", `${u.name || u.username} · מחכה לאישור`);
   await db.collection("users").doc(u.uid).set({ notified: { [SITE]: true } }, { merge: true });
   u.notified = Object.assign({}, u.notified, { [SITE]: true });
 }
@@ -126,9 +126,9 @@ for (const d of pendings.docs) {
   const moved = o.movedTo && !sum(o.sent);
   if (moved && !o.isChange) { await d.ref.set({ notifiedRev: o.rev || 1 }, { merge: true }); continue; }
   const quiet = o.notifiedRev && Date.now() - (o.notifiedAt || 0) < 10 * 60000;
-  if (moved) await send(["admin", "prod"], "הזמנה הועברה ליום אחר", `משלוח ${label(d.id)} → ${label(o.movedTo)} · לאישור${o.sentBy ? " · " + o.sentBy : ""}`);
-  else if (!quiet) await send(["admin", "prod"], o.isChange ? "בקשת שינוי בהזמנה" : o.notifiedRev ? "ההזמנה עודכנה" : "הזמנה חדשה ממתינה לאישור",
-    `משלוח ${label(d.id)} · ${sum(o.sent)} קופסאות${o.sentBy ? " · " + o.sentBy : ""}${o.late ? " · אחרי 16:00" : ""}`);
+  if (moved) await send(["admin", "prod"], "הזמנה הועברה", `${label(d.id)} ← ${label(o.movedTo)}${o.sentBy ? " · " + o.sentBy : ""}`);
+  else if (!quiet) await send(["admin", "prod"], o.isChange ? "שינוי בהזמנה" : o.notifiedRev ? "הזמנה עודכנה" : "הזמנה חדשה",
+    `${label(d.id)} · ${sum(o.sent)} קופסאות${o.sentBy ? " · " + o.sentBy : ""}${o.late ? " · אחרי 16:00" : ""}`);
   await d.ref.set(quiet ? { notifiedRev: o.rev || 1 } : { notifiedRev: o.rev || 1, notifiedAt: Date.now() }, { merge: true });
 }
 
@@ -138,7 +138,7 @@ for (const d of approved.docs) {
   const o = d.data();
   if ((o.notifiedApprovedRev || 0) >= (o.approvedRev || 1) || o.status !== "approved") continue;
   const adj = Array.isArray(o.adjusted) ? o.adjusted.length : 0;
-  await send(["rosie"], "ההזמנה אושרה ✓", `משלוח ${label(d.id)} · ${sum(o.approved)} קופסאות${adj ? ` · המטבח שינה ${adj} כמויות` : ""}`);
+  await send(["rosie"], "הזמנה אושרה", `${label(d.id)} · ${sum(o.approved)} קופסאות${adj ? ` · ${adj} כמויות שונו` : ""}`);
   await d.ref.set({ notifiedApprovedRev: o.approvedRev || 1 }, { merge: true });
 }
 
@@ -147,7 +147,7 @@ const rejected = await C("orders").where("rejected.at", ">=", Date.now() - 2 * 8
 for (const d of rejected.docs) {
   const o = d.data(), r = o.rejected || {};
   if ((o.notifiedRejected || 0) >= (r.at || 0)) continue;
-  await send(["rosie"], r.change ? "בקשת השינוי נדחתה" : "ההזמנה נדחתה", `${r.note ? r.note + " · " : ""}משלוח ${label(d.id)}${r.change ? "" : " · אפשר לתקן ולשלוח שוב"}`);
+  await send(["rosie"], r.change ? "שינוי נדחה" : "הזמנה נדחתה", `${label(d.id)}${r.note ? " · " + r.note : ""}`);
   await d.ref.set({ notifiedRejected: r.at || Date.now() }, { merge: true });
 }
 
@@ -159,7 +159,7 @@ for (const k of [todayKey, tomorrowKey]) {
   const key = JSON.stringify(shorts.map(([i, x]) => [i, x.short]));
   if (!shorts.length || P.notifiedShort === key) continue;
   const cat = (await C("catalog").doc("items").get()).data()?.items || {};
-  await send(["rosie", "admin"], `חוסר צפוי במשלוח ${label(k)}`, shorts.map(([i, x]) => `${(cat[i] && cat[i].n) || i} ${x.short}${x.shortNote ? " (" + x.shortNote + ")" : ""}`).join(", "));
+  await send(["rosie", "admin"], `חוסר · ${label(k)}`, shorts.map(([i, x]) => `${(cat[i] && cat[i].n) || i} ${x.short}${x.shortNote ? " (" + x.shortNote + ")" : ""}`).join(", "));
   await ref.set({ notifiedShort: key }, { merge: true });
 }
 
@@ -169,7 +169,7 @@ if (hour >= 6 && hour < 16) {
     const o = d.data(); if (d.id < todayKey) continue;
     const waited = Date.now() - (o.sentAt || Date.now());
     if (waited < 30 * 60000 || Date.now() - (o.remindedAt || 0) < 60 * 60000) continue;
-    await send(["admin", "prod"], "הזמנה עדיין ממתינה לאישור", `משלוח ${label(d.id)} · ${sum(o.sent)} קופסאות · ממתינה ${Math.round(waited / 60000) >= 120 ? Math.round(waited / 3600000) + " שעות" : Math.round(waited / 60000) + " דקות"}`);
+    await send(["admin", "prod"], "ממתינה לאישור", `${label(d.id)} · ${sum(o.sent)} קופסאות · ${Math.round(waited / 60000) >= 120 ? Math.round(waited / 3600000) + " שעות" : Math.round(waited / 60000) + " דקות"}`);
     await d.ref.set({ remindedAt: Date.now() }, { merge: true });
   }
 }
@@ -183,7 +183,7 @@ if (!NOCUT && hour >= 13 && minsTo(16, 30) >= 15) {
     const ap = o.approved || {}, its = P.items || {};
     const open = Object.keys(ap).filter((k) => +ap[k] > 0 && !(its[k] && its[k].done && (its[k].forQty || 0) >= +ap[k]));
     const ready = Object.keys(ap).filter((k) => +ap[k] > 0).length - open.length;
-    if (open.length) await send(["prod", "admin"], open.length === 1 ? "נשארה הכנה אחת למשלוח היום" : `נשארו ${open.length} הכנות למשלוח היום`, `עוד ${dur(minsTo(16, 30))} עד 16:30${ready ? ` · ${pl(ready, "אחת כבר מוכנה", "כבר מוכנות")}` : ""}`);
+    if (open.length) await send(["prod", "admin"], open.length === 1 ? "נשארה הכנה אחת" : `נשארו ${open.length} הכנות`, `${dur(minsTo(16, 30))} עד 16:30${ready ? ` · ${pl(ready, "אחת מוכנה", "מוכנות")}` : ""}`);
     await mref.set({ prodLast: todayKey }, { merge: true });
   }
 }
@@ -196,7 +196,7 @@ for (const d of recv.docs) {
   const miss = extraMiss(o, (await C("production").doc(d.id).get()).data());
   if (!Object.keys(miss).length) { await d.ref.set({ notifiedReceived: true }, { merge: true }); continue; }
   const cat = (await C("catalog").doc("items").get()).data()?.items || {};
-  await send(["admin", "prod"], `חסר במשלוח ל${SN}`, Object.entries(miss).map(([k, v]) => `${(cat[k] && cat[k].n) || k} ${v}`).join(", "));
+  await send(["admin", "prod"], "חסר במשלוח", Object.entries(miss).map(([k, v]) => `${(cat[k] && cat[k].n) || k} ${v}`).join(", "));
   await d.ref.set({ notifiedReceived: true }, { merge: true });
 }
 
@@ -207,8 +207,8 @@ if (!NOCUT && left <= 70 && left >= 10 && !OFF.includes(tomorrow.getUTCDay())) {
   const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.last !== todayKey) {
     const t = (await C("orders").doc(tomorrowKey).get()).data() || {};
-    await send(["admin", "rosie"], `נשארו ${dur(left)} לסגירת ההזמנה`,
-      t.sentAt ? `ההזמנה ל${label(tomorrowKey)} נשלחה ✓ — אפשר לעדכן עד 16:00` : `עוד לא נשלחה הזמנה ל${label(tomorrowKey)}. ההזמנות נסגרות ב-16:00`);
+    await send(["admin", "rosie"], t.sentAt ? `ההזמנה נסגרת בעוד ${dur(left)}` : `לא נשלחה הזמנה · ${dur(left)} לסגירה`,
+      t.sentAt ? `${label(tomorrowKey)} · נשלחה, אפשר לעדכן עד 16:00` : `${label(tomorrowKey)} · נסגרת ב-16:00`);
     await ref.set({ last: todayKey, at: Date.now() }, { merge: true });
   }
 }
@@ -231,10 +231,10 @@ if (today.getUTCDay() === 0 && hour >= 8 && hour < 12) {
       return { boxes, days, late, short, waste, wp: boxes ? Math.round((waste / boxes) * 1000) / 10 : 0 };
     };
     const a = wk(dk(7), dk(1)), b = wk(dk(14), dk(8));
-    if (a.days && !process.env.ANTHROPIC_API_KEY) await send(["admin"], `סיכום שבועי · ${SN}`,
+    if (a.days && !process.env.ANTHROPIC_API_KEY) await send(["admin"], "סיכום שבועי",
       `${a.boxes} קופסאות ב-${a.days} ימים · פחת ${a.wp}%${b.days ? ` (קודם ${b.wp}%)` : ""} · ${pl(a.short, "חוסר אחד", "חוסרים")} · ${pl(a.late, "הזמנה אחת", "הזמנות")} אחרי 16:00`);
     const oc = (await C("credits").where("status", "==", "open").get()).docs.map((x) => x.data()).filter((c) => Date.now() - (c.at || 0) > 3 * 86400000);
-    if (oc.length) await send(["admin"], `זיכויים פתוחים מספקים · ${oc.length}`, `סה״כ ₪${Math.round(oc.reduce((a, c) => a + (+c.amt || 0), 0))} · ${[...new Set(oc.map((c) => c.sup))].slice(0, 3).join(", ")}. לבקש בחשבונית הבאה`);
+    if (oc.length) await send(["admin"], `${oc.length} זיכויים פתוחים`, `₪${Math.round(oc.reduce((a, c) => a + (+c.amt || 0), 0))} · ${[...new Set(oc.map((c) => c.sup))].slice(0, 3).join(", ")} · לבקש בחשבונית הבאה`);
     await ref.set({ weekly: todayKey }, { merge: true });
   }
 }
@@ -279,7 +279,7 @@ if (nowMin >= 19 * 60 + 45 && nowMin < 21 * 60) {
     if (o.status === "approved") {
       const need = (await C("dishes").get()).docs.map((d) => d.data()).filter((d) => d.n && (d.weighings || []).length < 5)
         .sort((a, b) => (a.weighings || []).length - (b.weighings || []).length).slice(0, 2);
-      if (need.length) await send(["admin"], "שקילה בסרוויס ⚖️", `${need.map((d) => d.n).join(" + ")}. מנה אחת מכל אחת, לפני שיוצאת`);
+      if (need.length) await send(["admin"], "שקילת מנות", `${need.map((d) => d.n).join(" + ")} · מנה אחת מכל אחת לפני שיוצאת`);
     }
     await ref.set({ weighRem: todayKey }, { merge: true });
   }
@@ -357,7 +357,7 @@ covers = מספר סועדים/אורחים אם מופיע. total = סה״כ מ
       } catch (e) { console.log("ai failed", d.id, e.message); const tries = (ph.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true }); }
     }
     if (pend.length) await pref.set({ p: prices }, { merge: true });
-    if (alerts.length) await send(["admin"], "עליית מחיר אצל ספק 📈", alerts.slice(0, 4).join(" · "));
+    if (alerts.length) await send(["admin"], "עליית מחיר אצל ספק", alerts.slice(0, 4).join(" · "));
 
     // 10ב. קובץ טאביט חודשי → Claude ממלא את כרטיס העלויות ואת ימי השירות
     for (const d of (await C("uploads").where("ai", "==", "pending").get()).docs.filter((x) => x.data().kind !== "labor").slice(0, 1)) {
@@ -406,7 +406,7 @@ if (nowMin >= 22 * 60 + 30) {
   if (m.closeRem !== todayKey) {
     const o = (await C("orders").doc(todayKey).get()).data() || {}, dd = (await C("days").doc(todayKey).get()).data() || {};
     const perm = (((await C("settings").doc("app").get()).data() || {}).perm || {}).close || [];
-    if (perm.includes("rosie") && o.status === "approved" && !dd.closedAt && dd.covers == null) await send(["rosie"], "סגירת ערב", "צלמו את דו״ח הקופה של היום");
+    if (perm.includes("rosie") && o.status === "approved" && !dd.closedAt && dd.covers == null) await send(["rosie"], "סגירת ערב", "לצלם את דו״ח הקופה");
     await ref.set({ closeRem: todayKey }, { merge: true });
   }
 }
@@ -632,6 +632,29 @@ if (AI_KEY) {
       console.log("labor failed", d.id, e.message); const tries = (u.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true });
       if (tries >= 3) await C("months").doc(u.ym).set({ laborAI: { state: "error", at: Date.now() } }, { merge: true });
     }
+  }
+}
+// 11ד. קבוצה: סיכום קצר ושאלות של הבעלים על כל המסעדות. הנתונים מגיעים מהאפליקציה (רק בריצה של רוזי)
+if (SITE === "rosie" && AI_KEY) {
+  for (const d of (await db.collection("group").where("status", "==", "pending").limit(2).get()).docs) {
+    if (timeLeft() < 120000) break;
+    const g = d.data(), data = JSON.stringify(g.data || []).slice(0, 12000);
+    try {
+      if (g.kind === "brief") {
+        const A = jsonOf(await claude(`אתה מנהל תפעול של קבוצת מסעדות. הנתונים: 7 הימים האחרונים לכל מסעדה, והכסף של החודש הנוכחי עד היום. ${data}
+כתוב לבעלים בעברית פשוטה ומדויקת, רק לפי הנתונים, בלי להמציא.
+החזר JSON בלבד: {"good":"מה טוב","watch":"מה דורש תשומת לב","todo":"מה לעשות עכשיו","detail":"הסבר מלא"}.
+good, watch, todo: עד 8 מילים כל אחד, עם שם מסעדה ומספר כשיש.
+detail: מסודר. לכל מסעדה כותרת "## שם", ואחריה נקודות "- " קצרות: מה טוב, מה לא, ומה לעשות ולמה. בסוף "## לכל הקבוצה" עם 2-3 נקודות. בלי הקדמות.`, { max: 6000, effort: "low", timeout: 100000 }));
+        await d.ref.set(fsSafe({ status: "done", short: { good: strOf(A.good, 90), watch: strOf(A.watch, 90), todo: strOf(A.todo, 90) }, long: strOf(A.detail, 4000), doneAt: Date.now() }), { merge: true });
+      } else {
+        const a = await claude(`אתה מנהל תפעול של קבוצת מסעדות. הנתונים: 7 הימים האחרונים לכל מסעדה, והכסף של החודש. ${data}
+ענה בעברית, קצר ומדויק (עד 6 שורות), רק לפי הנתונים. אם חסר מידע, אמור מה חסר. בלי הקדמות.
+השאלה: ${strOf(g.q, 500)}`, { max: 3000, effort: "low", timeout: 90000 });
+        await d.ref.set({ status: "done", a: a.slice(0, 2500), doneAt: Date.now() }, { merge: true });
+      }
+      console.log("group", g.kind, "done");
+    } catch (e) { console.log("group failed", e.message); const tries = (g.aiTries || 0) + 1; await d.ref.set({ status: tries >= 3 ? "error" : "pending", aiTries: tries }, { merge: true }); }
   }
 }
 console.log("done", todayKey, hour);
