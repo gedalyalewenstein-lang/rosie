@@ -4213,7 +4213,7 @@ function grpSum(x, qo, qp, qw, cat, rep, money, from, today) {
   const tomSt = t.status === "approved" ? "אושרה" : t.status === "pending" ? "ממתינה לאישור" : t.status === "rejected" ? "נדחתה" : t.status === "cancelled" ? "בוטלה" : t.sentAt ? "נשלחה" : "לא נשלחה";
   const ms = money ? moneyStats(ymOf(new Date()), money) : null;
   return { k: x.k, n: x.f, noCut: !!x.noCut, orders: n, boxes, late, shortN, shortDays, wBoxes, wPct: boxes ? Math.round((wBoxes / boxes) * 1000) / 10 : 0, topW, tomSt, tomBoxes: sum(qtySource(t)) || sum(t.items || {}),
-    money: ms && (ms.sales || ms.food) ? { sales: ms.sales, food: ms.food, fc: ms.fc, pc: ms.pc } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())) };
+    money: ms && ms.sales > 0 ? { sales: ms.sales, food: ms.food, fc: ms.fc, pc: ms.pc } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())) };
 }
 function grpAlerts(s) {
   const a = [], h = new Date().getHours();
