@@ -8,11 +8,11 @@ const DN = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "�
 admin.initializeApp({ credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
 const db = admin.firestore(), fcm = admin.messaging();
 /* מסעדה: אותו שרת רץ פעם לכל מסעדה (SITE). רוזי בשורש המסד, השאר תחת sites/<site>/ — הנתונים לא מתערבבים */
-const SITES = { rosie: "רוזי", jaco: "ג'אקו סטריט" };
+const SITES = { rosie: "רוזי", jaco: "ג'קו סטריט" };
 const SITE = process.env.SITE || "rosie";
 if (!SITES[SITE]) { console.log("unknown site"); process.exit(0); }
 const SN = SITES[SITE];
-/* ג'אקו: בלי שעת סגירה ובלי שעת סיום לייצור — בלי תזכורות שתלויות בהן */
+/* ג'קו: בלי שעת סגירה ובלי שעת סיום לייצור — בלי תזכורות שתלויות בהן */
 const NOCUT = SITE === "jaco";
 const C = (n) => (SITE === "rosie" ? db.collection(n) : db.collection("sites").doc(SITE).collection(n));
 // 0. מחיקת משתמש לגמרי (רק הבעלים מבקש מתוך האפליקציה): חשבון ההתחברות + הפרופיל

@@ -7,13 +7,13 @@
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="רוזי">
-<title>הזמנות רוזי</title>
+<meta name="apple-mobile-web-app-title" content="ג'קו סטריט">
+<title>קבוצת ג'קו סטריט</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Secular+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@700;900&family=Secular+One&display=swap">
 <style>
 /* Rosie — "rose garden at night". Plum-night surfaces, petal-pink actions, leaf-green for done.
    Display numbers & brand: Secular One. Everything else: Assistant. Dark by default, day mode for bright kitchens. */
@@ -988,7 +988,7 @@ header{z-index:4}
 .zcard .st small{color:var(--mute);font-size:14px}
 
 /* =====================================================================
-   מסעדות: ג'אקו סטריט — אותו עיצוב, צבע כתום־זעפרן במקום ורוד
+   מסעדות: ג'קו סטריט — אותו עיצוב, צבע כתום־זעפרן במקום ורוד
    ===================================================================== */
 :root[data-site="jaco"]{--acc:#FF8A3D; --acc-ink:#FFA766; --acc-soft:rgba(255,138,61,.16)}
 :root[data-site="jaco"][data-theme="light"]{--acc:#D9631E; --acc-ink:#B8500F; --acc-soft:rgba(217,99,30,.11)}
@@ -1018,10 +1018,39 @@ header{z-index:4}
 .chip.acc{min-width:40px;justify-content:center;margin-inline-end:6px;padding:8px 10px}
 .chip.acc svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
 
+/* שער הקבוצה: ג'קו סטריט, שחור וזהב, שלט רחוב. אותו מראה בכהה ובבהיר */
+:root{--jk-bg:#0D0B09;--jk-card:#16130F;--jk-line:#3A3122;--jk-gold:#C9A24A;--jk-gold2:#E8CD84;--jk-ink:#F3EBDD;--jk-mute:#A39783}
+.jsign{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:12px 26px 13px;margin:0 auto 10px;border:2px solid var(--jk-gold);border-radius:10px;outline:1px solid var(--jk-gold);outline-offset:4px;background:linear-gradient(180deg,#1C1812,#0F0D0A);color:var(--jk-gold2);box-shadow:0 18px 44px -20px rgba(201,162,74,.55)}
+.jsign small{font:700 12px/1 "Assistant",system-ui,sans-serif;letter-spacing:.32em;color:var(--jk-gold);margin-inline-start:.32em}
+.jsign b{font:900 31px/1.05 "Frank Ruhl Libre","Times New Roman",serif;letter-spacing:.01em;white-space:nowrap}
+body.grpb,:root[data-theme] body.grpb{background:radial-gradient(90% 55% at 50% 0%,rgba(201,162,74,.13),transparent 70%),var(--jk-bg);color:var(--jk-ink);color-scheme:dark}
+body.grpb .glow,body.grpb header,body.grpb .tabbar{display:none}
+.auth.grp{background:transparent}
+.auth.grp .authcard{background:var(--jk-card);border:1px solid var(--jk-line);box-shadow:0 30px 70px -30px rgba(0,0,0,.8);color:var(--jk-ink)}
+.auth.grp h1{color:var(--jk-ink);margin-top:6px}
+.auth.grp .sub,.auth.grp .center,.auth.grp label{color:var(--jk-mute)}
+.auth.grp input{background:#0F0D0A;border-color:var(--jk-line);color:var(--jk-ink)}
+.auth.grp input:focus{border-color:var(--jk-gold);box-shadow:0 0 0 3px rgba(201,162,74,.22)}
+.auth.grp .btn:not(.ghost){background:linear-gradient(180deg,var(--jk-gold2),var(--jk-gold));color:#16110A;box-shadow:0 10px 24px -10px rgba(201,162,74,.6)}
+.auth.grp .btn.ghost{background:transparent;color:var(--jk-ink);border:1px solid var(--jk-line)}
+.auth.grp .link{color:var(--jk-gold2)}
+.auth.grp .seg button{color:var(--jk-mute)}
+.auth.grp .seg button[aria-pressed="true"]{background:var(--jk-gold);color:#16110A}
+.auth.grp .sitec{background:#0F0D0A;border-color:var(--jk-line);color:var(--jk-ink)}
+.auth.grp .sitec small{color:var(--jk-mute)}
+.auth.grp .splash{min-height:60vh;display:grid;place-items:center}
+.about .jsign{margin-bottom:8px}
+#intro .in-sign{animation:rise .6s .1s both}
+#intro:has(.in-sign){background:radial-gradient(90% 55% at 50% 35%,rgba(201,162,74,.16),transparent 70%),#0D0B09}
+#intro:has(.in-sign) .in-sub{color:#A39783}
+#intro:has(.in-sign) .in-goals li{color:#F3EBDD}
+.auth.grp .seg{background:#0F0D0A;border:1px solid var(--jk-line)}
+.auth.grp input::placeholder{color:#6E6556}
+
 </style>
 </head>
 <body>
-<div id="intro" aria-hidden="true"><div class="in-rose"><svg class="rose" viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(24 24)"><g transform="rotate(0)"><ellipse class="p1" rx="8.5" ry="13" cy="-9" style="animation-delay:0.05s"/></g><g transform="rotate(72)"><ellipse class="p1" rx="8.5" ry="13" cy="-9" style="animation-delay:0.12s"/></g><g transform="rotate(144)"><ellipse class="p1" rx="8.5" ry="13" cy="-9" style="animation-delay:0.19s"/></g><g transform="rotate(216)"><ellipse class="p1" rx="8.5" ry="13" cy="-9" style="animation-delay:0.26s"/></g><g transform="rotate(288)"><ellipse class="p1" rx="8.5" ry="13" cy="-9" style="animation-delay:0.33s"/></g><g transform="rotate(36)"><ellipse class="p2" rx="6" ry="9" cy="-6" style="animation-delay:0.42s"/></g><g transform="rotate(108)"><ellipse class="p2" rx="6" ry="9" cy="-6" style="animation-delay:0.47s"/></g><g transform="rotate(180)"><ellipse class="p2" rx="6" ry="9" cy="-6" style="animation-delay:0.52s"/></g><g transform="rotate(252)"><ellipse class="p2" rx="6" ry="9" cy="-6" style="animation-delay:0.57s"/></g><g transform="rotate(324)"><ellipse class="p2" rx="6" ry="9" cy="-6" style="animation-delay:0.62s"/></g><circle class="c" r="6.2"/><path class="s" d="M-2.6 0.8a2.8 2.8 0 1 1 3.6 2.4"/></g></svg></div><div class="in-word">רוזי</div><div class="in-sub">הזמנות ממטבח הייצור</div>
+<div id="intro" aria-hidden="true"><div class="jsign in-sign"><small>קבוצת</small><b>ג'קו סטריט</b></div><div class="in-sub">הזמנות וייצור</div>
 <ol class="in-goals"><li><i>✓</i>מזמינים בקלות</li><li><i>✓</i>מכינים בדיוק</li><li><i>✓</i>מגיע בזמן</li></ol></div>
 <script>
 (function(){try{var t=localStorage.getItem("rosie-theme");document.documentElement.dataset.theme=t==="light"||(t==="auto"&&matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}
@@ -1490,7 +1519,7 @@ const DEFAULT_CATALOG = {
  }
 };
 
-// רשימת ההכנות של ג'אקו סטריט (מהדף של גדי, 27.10). תוקף התחלתי 3 ימים לכל הכנה — משנים בכרטיס ההכנה.
+// רשימת ההכנות של ג'קו סטריט (מהדף של גדי, 27.10). תוקף התחלתי 3 ימים לכל הכנה — משנים בכרטיס ההכנה.
 const DEFAULT_CATALOG_JACO = {
  "j01": {
   "n": "זיתים סיגר",
@@ -2195,7 +2224,7 @@ let PROD_SEQ = ["בישולים", "יבשים ושימורים", "איולי ו�
 /* מסעדות: לכל אחת נתונים נפרדים לגמרי. רוזי בשורש המסד (כמו תמיד), השאר תחת sites/<מפתח>/ */
 const SITES = [
   { k: "rosie", n: "רוזי", f: "רוזי", cats: CATS, seq: PROD_SEQ },
-  { k: "jaco", n: "ג'אקו", f: "ג'אקו סטריט", noCut: true,
+  { k: "jaco", n: "ג'קו", f: "ג'קו סטריט", noCut: true,
     cats: ["מבושלים", "צירים ורטבי בשר", "בצקים", "בשר", "דגים", "אילנה", "רטבים", "קרמים", "מטבלים", "טיגונים", "ירקות חי", "עלים", "יבשים", "שונות"],
     seq: ["מבושלים", "צירים ורטבי בשר", "בצקים", "אילנה", "בשר", "דגים", "רטבים", "קרמים", "מטבלים", "טיגונים", "ירקות חי", "עלים", "יבשים", "שונות"] },
 ];
@@ -2204,7 +2233,7 @@ const SN = () => siteOf(S.site).n;
 /* נתיב באוסף של המסעדה הנוכחית */
 const CP = (n) => (S.site && S.site !== "rosie" ? `sites/${S.site}/${n}` : n);
 const ACTIVE = ["rosie", "prod", "admin"];
-/* ג'אקו: בלי שעת סגירה להזמנה ובלי שעת סיום לייצור (גדי יקבע אחרי שיראה איך עובדים) */
+/* ג'קו: בלי שעת סגירה להזמנה ובלי שעת סיום לייצור (גדי יקבע אחרי שיראה איך עובדים) */
 const hasCut = () => !siteOf(S.site).noCut;
 const DN = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 const DS = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
@@ -2392,8 +2421,8 @@ function chooseSite(k) {
   S.site = k; applySite(); S.enter = true; startData(); render(); jumpTo(0);
 }
 function viewSites() {
-  return `<div class="auth"><div class="card authcard sitepick">
-    <h1>שלום ${esc(myName())}</h1><p class="sub">לאיזו מסעדה נכנסים?</p>
+  return `<div class="auth grp"><div class="card authcard sitepick">
+    ${SIGN}<h1>שלום ${esc(myName())}</h1><p class="sub">לאיזו מסעדה נכנסים?</p>
     <div class="sites">${SITES.map((x) => { const ok = ACTIVE.includes(siteRole(S.profile, x.k)); return `<button class="sitec s-${x.k}" data-site="${x.k}" ${ok ? "" : "disabled"}><i aria-hidden="true">${esc(x.f[0])}</i><span><b>${esc(x.f)}</b><small>${ok ? esc(roleLabel(S.profile, x.k)) : "אין גישה"}</small></span>${ok ? '<span class="schev">‹</span>' : `<span class="lock" aria-hidden="true">${SVG(IC.lock)}</span>`}</button>`; }).join("")}</div>
     <button class="btn ghost full" id="logout">יציאה</button></div></div>`;
 }
@@ -3009,6 +3038,7 @@ async function copyText() {
 
 /* ---------- graphics ---------- */
 /* סימן הוורד: חמישה עלי כותרת בשתי שכבות וליבה מסולסלת */
+const SIGN = `<div class="jsign" aria-label="קבוצת ג'קו סטריט"><small>קבוצת</small><b>ג'קו סטריט</b></div>`;
 const ROSE = `<svg class="rose" viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(24 24)">${[0, 72, 144, 216, 288].map((r) => `<g transform="rotate(${r})"><ellipse class="p1" rx="8.5" ry="13" cy="-9"/></g>`).join("")}${[36, 108, 180, 252, 324].map((r) => `<g transform="rotate(${r})"><ellipse class="p2" rx="6" ry="9" cy="-6"/></g>`).join("")}<circle class="c" r="6.2"/><path class="s" d="M-2.6 0.8a2.8 2.8 0 1 1 3.6 2.4"/></g></svg>`;
 const CAT_ICONS = {
   "ירקות וחיתוכים": '<path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14Z"/><path d="M5 19 13 11"/>',
@@ -3030,9 +3060,8 @@ const I = {
 };
 function viewAuth() {
   const signup = S.authMode === "signup";
-  return `<div class="auth"><form class="card authcard" id="authF" novalidate>
-    <div class="logo" aria-hidden="true">${ROSE}</div>
-    <h1>רוזי</h1><p class="sub">הזמנות ממטבח הייצור</p>
+  return `<div class="auth grp"><form class="card authcard" id="authF" novalidate>
+    ${SIGN}<p class="sub">כניסת צוות</p>
     ${signup ? `<div class="field"><label for="n">שם מלא</label><input id="n" autocomplete="name" required></div>
     <div class="field"><label>מסעדה</label><div class="seg wide" role="group" aria-label="מסעדה">${SITES.map((x) => `<button type="button" data-sus="${x.k}" aria-pressed="${(S.signSite || "rosie") === x.k}">${esc(x.f)}</button>`).join("")}</div></div>` : ""}
     <div class="field"><label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="off" spellcheck="false" dir="ltr" placeholder="ariel" required></div>
@@ -3044,8 +3073,8 @@ function viewAuth() {
 }
 function viewWaiting() {
   const blocked = role() === "blocked";
-  return `<div class="auth"><div class="card authcard">
-    <div class="logo" aria-hidden="true">${ROSE}</div>
+  return `<div class="auth grp"><div class="card authcard">
+    ${SIGN}
     <h1>שלום ${esc(myName())}</h1>
     <p class="sub">${blocked ? "הגישה שלך הוסרה. פנה למנהל." : "ההרשמה נקלטה. המנהל צריך לאשר אותך ולקבוע לך תפקיד, ואז הדף ייפתח לבד."}</p>
     <button class="btn ghost full" id="logout">יציאה</button>
@@ -3622,11 +3651,11 @@ function viewSettings() {
   return h;
 }
 function viewAbout() {
-  return `<div class="about"><div class="alogo">${ROSE}</div><h2>רוזי</h2><p>הזמנות וייצור למטבח</p></div>` +
+  return `<div class="about">${SIGN}<p>הזמנות וייצור למטבח</p></div>` +
     grp([row({ t: "גרסה", v: `${APP_VER} · אוקטובר 2026` }), row({ t: "המטבח שלך", v: `${siteOf(S.site).f} · מטבח הייצור` }), row({ t: "התפקיד שלך", v: ROLES[role()] || "" })]) +
     grp([`<div class="srow tall"><span class="st"><b>מה חדש</b><small>מצלמים ו-Claude ממלא, פנקס מתכונים חדש עם צפייה ועריכה, דוחות ושאלות ל-Claude, קובץ טאביט בכרטיס העלויות, וגלילה חלקה יותר.</small></span></div>`,
       `<div class="srow tall"><span class="st"><b>פרטיות ונתונים</b><small>הנתונים נשמרים בחשבון המאובטח של המטבח, וכל עובד רואה רק מה שרלוונטי לתפקיד שלו.</small></span></div>`]) +
-    `<p class="copyr">© 2026 רוזי</p>`;
+    `<p class="copyr">© 2026 קבוצת ג'קו סטריט</p>`;
 }
 function viewGuide() {
   const G = {
@@ -4271,7 +4300,7 @@ function viewSheet() {
       <div class="sbtns"><button class="btn badb" id="sResetOk" ${sh.busy || !sh.counts ? "disabled" : ""}>${sh.busy ? "מוחק…" : "מחק הכל"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "ios") {
     b = `<h3>התראות באייפון</h3><p>באייפון אפשר לקבל התראות רק מהאפליקציה שעל מסך הבית:</p>
-      <ol class="steps"><li>לוחצים על כפתור השיתוף בספארי (ריבוע עם חץ למעלה)</li><li>בוחרים ״הוסף למסך הבית״</li><li>פותחים את ״רוזי״ ממסך הבית, נכנסים, ומפעילים התראות מהתפריט</li></ol>
+      <ol class="steps"><li>לוחצים על כפתור השיתוף בספארי (ריבוע עם חץ למעלה)</li><li>בוחרים ״הוסף למסך הבית״</li><li>פותחים את האפליקציה ממסך הבית, נכנסים, ומפעילים התראות מהתפריט</li></ol>
       <div class="sbtns"><button class="btn" id="sClose">הבנתי</button></div>`;
   }
   return `<div class="scrim" id="scrim"></div><div class="sheet" role="dialog" aria-modal="true">${b}</div>`;
@@ -4370,12 +4399,13 @@ function renderInner() {
   const sy = window.scrollY;
   let html;
   if (!S.user) html = viewAuth();
-  else if (!S.profile) html = `<div class="splash"><div class="logo" aria-hidden="true">${ROSE}</div></div>`;
+  else if (!S.profile) html = `<div class="auth grp"><div class="splash">${SIGN}</div></div>`;
   else if (!S.site && mySites().length > 1) html = viewSites();
   else if (!S.site || !ACTIVE.includes(role())) html = viewWaiting();
   else html = viewApp();
   const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "wG"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
   $("app").innerHTML = html;
+  document.body.classList.toggle("grpb", html.startsWith('<div class="auth grp"'));
   if (S.enter) { S.enter = false; setTimeout(() => { const m = document.querySelector("main.enter"); if (m) m.classList.remove("enter"); }, 400); }
   Object.keys(keep).forEach((id) => { const el = $(id); if (el) el.value = keep[id]; });
   /* קפיצה לקטגוריה: רק לקטגוריות שמופיעות כרגע במסך (אחרת הכפתור לא עושה כלום) */
