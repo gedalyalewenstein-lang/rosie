@@ -12,6 +12,11 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     timeout-minutes: 9
+    # אותו שרת לכל מסעדה, במקביל. הנתונים של כל מסעדה נפרדים
+    strategy:
+      fail-fast: false
+      matrix:
+        site: [rosie, jaco]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,8 +31,10 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
+          SITE: ${{ matrix.site }}
         run: node notify.mjs
       - name: Keep schedule alive
+        if: matrix.site == 'rosie'
         run: |
           last=$(git log -1 --format=%ct)
           if [ $(( $(date +%s) - last )) -gt 3456000 ]; then

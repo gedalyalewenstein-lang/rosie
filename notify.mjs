@@ -7,8 +7,16 @@ const DN = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "�
 
 admin.initializeApp({ credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
 const db = admin.firestore(), fcm = admin.messaging();
+/* מסעדה: אותו שרת רץ פעם לכל מסעדה (SITE). רוזי בשורש המסד, השאר תחת sites/<site>/ — הנתונים לא מתערבבים */
+const SITES = { rosie: "רוזי", jaco: "ג'אקו סטריט" };
+const SITE = process.env.SITE || "rosie";
+if (!SITES[SITE]) { console.log("unknown site"); process.exit(0); }
+const SN = SITES[SITE];
+/* ג'אקו: בלי שעת סגירה ובלי שעת סיום לייצור — בלי תזכורות שתלויות בהן */
+const NOCUT = SITE === "jaco";
+const C = (n) => (SITE === "rosie" ? db.collection(n) : db.collection("sites").doc(SITE).collection(n));
 // 0. מחיקת משתמש לגמרי (רק הבעלים מבקש מתוך האפליקציה): חשבון ההתחברות + הפרופיל
-for (const d of (await db.collection("deletions").get()).docs) {
+for (const d of SITE === "rosie" ? (await db.collection("deletions").get()).docs : []) {
   try { await admin.auth().deleteUser(d.id); }
   catch (e) { if (!/not-found|no user record/i.test(`${e.code} ${e.message}`)) { console.log("user delete failed", d.id, e.message); continue; } }
   await db.collection("users").doc(d.id).delete().catch(() => {});
@@ -27,10 +35,44 @@ const dur = (x) => { const h = Math.floor(x / 60), m = x % 60; if (!h) return `$
 const todayKey = keyOf(today), tomorrow = new Date(today.getTime() + 86400000), tomorrowKey = keyOf(tomorrow);
 const label = (k) => { const [y, m, d] = k.split("-").map(Number); const dt = new Date(Date.UTC(y, m - 1, d)); return `${k === tomorrowKey ? "מחר" : k === todayKey ? "היום" : DN[dt.getUTCDay()]} ${pad(d)}/${pad(m)}`; };
 const sum = (m) => Object.values(m || {}).reduce((a, v) => a + (+v > 0 ? +v : 0), 0);
+/* ניתוח שעות עובדים מטאביט על ידי Claude (רק סיכומים, בלי שמות) */
+async function laborAI(d, ym) {
+  const mref = C("months").doc(ym), M = (await mref.get()).data() || {}, L = M.laborTabit;
+  if (!L) { await d.ref.set({ ai: "skip" }, { merge: true }); return; }
+  const [y, m] = ym.split("-").map(Number), last = new Date(Date.UTC(y, m, 0)).getUTCDate(), from = `${ym}-01`, to = `${ym}-${pad(last)}`;
+  const st = await periodStats(from, to < keyOf(today) ? to : keyOf(today), true);
+  const WD = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"], wd = {};
+  (L.byDay || []).forEach((x) => { const w = WD[new Date(x.d + "T12:00:00Z").getUTCDay()]; wd[w] = wd[w] || { days: 0, hours: 0, cost: 0 }; wd[w].days++; wd[w].hours += x.h; wd[w].cost += x.c; });
+  const prompt = `אתה יועץ תפעול וכספים בכיר למסעדות בישראל. כתוב לבעלים, גדי, שף ומנהל מקצועי. עבוד רק מהנתונים, אל תמציא מספרים.
+זה סיכום דוח שעות העובדים מטאביט של מסעדת ${SN} לחודש ${ym} (בלי שמות עובדים):
+${JSON.stringify({ cost: L.cost, wage: L.wage, minWageTopUp: L.comp, tips: L.tips, hours: L.hours, overtimeHours: L.ot, holidayHours: L.hol, staff: L.staff, byRole: L.byRole, byWeekday: wd })}
+נתוני החודש מהאפליקציה (מכירות, רכש, קופסאות, פחת): ${JSON.stringify(st)}
+החזר JSON בלבד בלי טקסט נוסף:
+{"headline":"משפט אחד עם המספר הכי חשוב","points":["3 עד 4 תובנות קצרות עם מספרים: עלות עובדים מהמכירות אם יש מכירות, שעה ממוצעת, שעות נוספות, תפקידים ויום בשבוע חריגים"],"actions":[{"title":"פעולה מעשית אחת","saving":"חיסכון משוער בשקלים לחודש או ריק"}]}
+עד 2 פעולות. עברית קצרה ופשוטה.`;
+  const A = jsonOf(await claude(prompt, { max: 12000, effort: "medium", timeout: 120000 }));
+  const out = { state: "done", at: Date.now(), headline: strOf(A.headline, 200), points: (Array.isArray(A.points) ? A.points : Array.isArray(A.summary) ? A.summary : []).map((x) => strOf(x, 240)).filter(Boolean).slice(0, 4),
+    actions: (Array.isArray(A.actions) ? A.actions : []).slice(0, 2).map((x) => ({ title: strOf(x && x.title, 160), saving: strOf(x && x.saving, 60) })).filter((x) => x.title) };
+  await mref.set(fsSafe({ laborAI: out }), { merge: true });
+  await d.ref.set({ ai: "done", aiAt: Date.now() }, { merge: true });
+  await send(["owner"], `שעות עובדים נותחו · ${ym.slice(5)}/${ym.slice(0, 4)}`, out.headline || "הניתוח מוכן בכרטיס העלויות");
+  console.log("labor analyzed", d.id);
+}
+/* סיכום שעות עובדים מטאביט (בלי שמות) לדוחות */
+const labOf = (M) => { const L = M && M.laborTabit; return L ? { cost: L.cost, wage: L.wage, minWageTopUp: L.comp, tips: L.tips, hours: L.hours, staff: L.staff, byRole: L.byRole } : null; };
+/* חסר בקבלה מעבר לחוסר שהייצור כבר דיווח. רשומות ישנות (בלי v:2) כללו גם אותו */
+const extraMiss = (o, P) => {
+  const m = (o && o.received && o.received.missing) || {}; if (o && o.received && o.received.v === 2) return m;
+  const its = (P && P.items) || {}, out = {};
+  Object.keys(m).forEach((k) => { const x = its[k], sh = x && x.done && x.short > 0 ? +x.short : 0, v = (+m[k] || 0) - sh; if (v > 0) out[k] = v; });
+  return out;
+};
 
 // מי מקבל
 const users = (await db.collection("users").get()).docs.map((d) => ({ uid: d.id, ...d.data() }));
 const OWNER = process.env.OWNER_USERNAME || "gadi";
+// השם של גדי באפליקציה (פעם אחת): "גדי לוינשטיין"
+if (SITE === "rosie") for (const u of users) if (u.username === OWNER && u.role === "admin" && u.name !== "גדי לוינשטיין") { await db.collection("users").doc(u.uid).set({ name: "גדי לוינשטיין" }, { merge: true }); u.name = "גדי לוינשטיין"; }
 // Claude: קריאה אחת, עם מקום לחשיבה ומגבלת זמן
 const T0 = Date.now(), timeLeft = () => 6.5 * 60000 - (Date.now() - T0); // ריצה אחת מוגבלת ל-9 דקות ב-GitHub
 const AI_KEY = process.env.ANTHROPIC_API_KEY, AI_MODEL = process.env.AI_MODEL || "claude-sonnet-5-5";
@@ -48,7 +90,10 @@ const numOf = (v) => (typeof v === "number" && isFinite(v) ? v : typeof v === "s
 const strOf = (v, n = 60) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 async function send(roles, title, body) {
   const targets = [];
-  users.filter((u) => roles.includes(u.role) || (roles.includes("owner") && u.role === "admin" && u.username === OWNER)).forEach((u) => Object.entries(u.push || {}).forEach(([h, v]) => v && v.t && targets.push({ uid: u.uid, h, t: v.t })));
+  const isOwn = (u) => u.role === "admin" && u.username === OWNER;
+  const roleAt = (u) => { if (isOwn(u) || u.chief === true) return "admin"; const r = SITE === "rosie" ? u.role : ((u.sites || {})[SITE] || "none"); return r === "fmgr" ? "admin" : r; };
+  if (SITE !== "rosie") title = `${SN} · ${title}`;
+  users.filter((u) => roles.includes(roleAt(u)) || (roles.includes("owner") && isOwn(u))).forEach((u) => Object.entries(u.push || {}).forEach(([h, v]) => v && v.t && targets.push({ uid: u.uid, h, t: v.t })));
   if (!targets.length) { console.log("no devices for", roles); return; }
   const res = await fcm.sendEachForMulticast({
     tokens: targets.map((x) => x.t),
@@ -65,19 +110,23 @@ async function send(roles, title, body) {
 }
 
 // 1. הזמנה חדשה / בקשת שינוי → מנהלים + מטבח ייצור
-const pendings = await db.collection("orders").where("status", "==", "pending").get();
+const pendings = await C("orders").where("status", "==", "pending").get();
 for (const d of pendings.docs) {
   const o = d.data(); if (d.id < todayKey) continue;
   if ((o.notifiedRev || 0) >= (o.rev || 1)) continue;
   // עדכונים אוטומטיים צפופים: התראה אחת לכל 10 דקות לכל היותר, כדי לא להציף
+  // הזמנה שהועברה ליום אחר: אם עוד לא אושרה — ההתראה על היום החדש מספיקה
+  const moved = o.movedTo && !sum(o.sent);
+  if (moved && !o.isChange) { await d.ref.set({ notifiedRev: o.rev || 1 }, { merge: true }); continue; }
   const quiet = o.notifiedRev && Date.now() - (o.notifiedAt || 0) < 10 * 60000;
-  if (!quiet) await send(["admin", "prod"], o.isChange ? "בקשת שינוי בהזמנה" : o.notifiedRev ? "ההזמנה עודכנה" : "הזמנה חדשה ממתינה לאישור",
+  if (moved) await send(["admin", "prod"], "הזמנה הועברה ליום אחר", `משלוח ${label(d.id)} → ${label(o.movedTo)} · לאישור${o.sentBy ? " · " + o.sentBy : ""}`);
+  else if (!quiet) await send(["admin", "prod"], o.isChange ? "בקשת שינוי בהזמנה" : o.notifiedRev ? "ההזמנה עודכנה" : "הזמנה חדשה ממתינה לאישור",
     `משלוח ${label(d.id)} · ${sum(o.sent)} קופסאות${o.sentBy ? " · " + o.sentBy : ""}${o.late ? " · אחרי 16:00" : ""}`);
   await d.ref.set(quiet ? { notifiedRev: o.rev || 1 } : { notifiedRev: o.rev || 1, notifiedAt: Date.now() }, { merge: true });
 }
 
 // 2. הזמנה אושרה → רוזי
-const approved = await db.collection("orders").where("approvedAt", ">=", Date.now() - 2 * 86400000).get();
+const approved = await C("orders").where("approvedAt", ">=", Date.now() - 2 * 86400000).get();
 for (const d of approved.docs) {
   const o = d.data();
   if ((o.notifiedApprovedRev || 0) >= (o.approvedRev || 1) || o.status !== "approved") continue;
@@ -87,7 +136,7 @@ for (const d of approved.docs) {
 }
 
 // 2ב. הזמנה או בקשת שינוי נדחו → רוזי
-const rejected = await db.collection("orders").where("rejected.at", ">=", Date.now() - 2 * 86400000).get();
+const rejected = await C("orders").where("rejected.at", ">=", Date.now() - 2 * 86400000).get();
 for (const d of rejected.docs) {
   const o = d.data(), r = o.rejected || {};
   if ((o.notifiedRejected || 0) >= (r.at || 0)) continue;
@@ -97,12 +146,12 @@ for (const d of rejected.docs) {
 
 // 2ג. חוסר צפוי מהייצור → רוזי + מנהלים
 for (const k of [todayKey, tomorrowKey]) {
-  const ref = db.collection("production").doc(k), P = (await ref.get()).data();
+  const ref = C("production").doc(k), P = (await ref.get()).data();
   if (!P || !P.items) continue;
   const shorts = Object.entries(P.items).filter(([, x]) => x && x.done && x.short > 0);
   const key = JSON.stringify(shorts.map(([i, x]) => [i, x.short]));
   if (!shorts.length || P.notifiedShort === key) continue;
-  const cat = (await db.collection("catalog").doc("items").get()).data()?.items || {};
+  const cat = (await C("catalog").doc("items").get()).data()?.items || {};
   await send(["rosie", "admin"], `חוסר צפוי במשלוח ${label(k)}`, shorts.map(([i, x]) => `${(cat[i] && cat[i].n) || i} ${x.short}${x.shortNote ? " (" + x.shortNote + ")" : ""}`).join(", "));
   await ref.set({ notifiedShort: key }, { merge: true });
 }
@@ -119,11 +168,11 @@ if (hour >= 6 && hour < 16) {
 }
 
 // 2ה. 13:00 ביום המשלוח: נשארו הכנות פתוחות → טבחי ייצור + מנהלים (סיום ייצור: 16:30)
-if (hour >= 13 && minsTo(16, 30) >= 15) {
-  const mref = db.collection("meta").doc("reminders"), mm = (await mref.get()).data() || {};
+if (!NOCUT && hour >= 13 && minsTo(16, 30) >= 15) {
+  const mref = C("meta").doc("reminders"), mm = (await mref.get()).data() || {};
   if (mm.prodLast !== todayKey) {
-    const o0 = (await db.collection("orders").doc(todayKey).get()).data() || {}, o = o0.status === "cancelled" ? {} : o0;
-    const P = (await db.collection("production").doc(todayKey).get()).data() || {};
+    const o0 = (await C("orders").doc(todayKey).get()).data() || {}, o = o0.status === "cancelled" ? {} : o0;
+    const P = (await C("production").doc(todayKey).get()).data() || {};
     const ap = o.approved || {}, its = P.items || {};
     const open = Object.keys(ap).filter((k) => +ap[k] > 0 && !(its[k] && its[k].done && (its[k].forQty || 0) >= +ap[k]));
     const ready = Object.keys(ap).filter((k) => +ap[k] > 0).length - open.length;
@@ -133,22 +182,24 @@ if (hour >= 13 && minsTo(16, 30) >= 15) {
 }
 
 // 3. חוסר בקבלת משלוח → מנהלים + מטבח ייצור
-const recv = await db.collection("orders").where("received.at", ">=", Date.now() - 86400000).get();
+const recv = await C("orders").where("received.at", ">=", Date.now() - 86400000).get();
 for (const d of recv.docs) {
-  const o = d.data(), miss = (o.received && o.received.missing) || {};
-  if (o.notifiedReceived || !Object.keys(miss).length) continue;
-  const cat = (await db.collection("catalog").doc("items").get()).data()?.items || {};
-  await send(["admin", "prod"], "חסר במשלוח לרוזי", Object.entries(miss).map(([k, v]) => `${(cat[k] && cat[k].n) || k} ${v}`).join(", "));
+  const o = d.data();
+  if (o.notifiedReceived || !Object.keys((o.received && o.received.missing) || {}).length) continue;
+  const miss = extraMiss(o, (await C("production").doc(d.id).get()).data());
+  if (!Object.keys(miss).length) { await d.ref.set({ notifiedReceived: true }, { merge: true }); continue; }
+  const cat = (await C("catalog").doc("items").get()).data()?.items || {};
+  await send(["admin", "prod"], `חסר במשלוח ל${SN}`, Object.entries(miss).map(([k, v]) => `${(cat[k] && cat[k].n) || k} ${v}`).join(", "));
   await d.ref.set({ notifiedReceived: true }, { merge: true });
 }
 
 // 4. תזכורת לפני סגירת ההזמנה (16:00) → מנהלים + רוזי. הטקסט לפי הזמן שבאמת נשאר. לא ערב יום שהמטבח סגור (ברירת מחדל: שישי ושבת)
 const left = minsTo(CUTOFF);
-const OFF = ((await db.collection("settings").doc("app").get()).data() || {}).offDays || [5, 6];
-if (left <= 70 && left >= 10 && !OFF.includes(tomorrow.getUTCDay())) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+const OFF = ((await C("settings").doc("app").get()).data() || {}).offDays || [5, 6];
+if (!NOCUT && left <= 70 && left >= 10 && !OFF.includes(tomorrow.getUTCDay())) {
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.last !== todayKey) {
-    const t = (await db.collection("orders").doc(tomorrowKey).get()).data() || {};
+    const t = (await C("orders").doc(tomorrowKey).get()).data() || {};
     await send(["admin", "rosie"], `נשארו ${dur(left)} לסגירת ההזמנה`,
       t.sentAt ? `ההזמנה ל${label(tomorrowKey)} נשלחה ✓ — אפשר לעדכן עד 16:00` : `עוד לא נשלחה הזמנה ל${label(tomorrowKey)}. ההזמנות נסגרות ב-16:00`);
     await ref.set({ last: todayKey, at: Date.now() }, { merge: true });
@@ -157,31 +208,32 @@ if (left <= 70 && left >= 10 && !OFF.includes(tomorrow.getUTCDay())) {
 
 // 5. סיכום שבועי למנהל — יום ראשון בבוקר (08:00–12:00), על ראשון–שבת שעברו, מול השבוע שלפניו
 if (today.getUTCDay() === 0 && hour >= 8 && hour < 12) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.weekly !== todayKey) {
     const dk = (n) => keyOf(new Date(today.getTime() - n * 86400000));
     const q = (o) => (o && o.status !== "cancelled" && o.approved && sum(o.approved) > 0 ? o.approved : o && o.status !== "rejected" && o.status !== "cancelled" ? o.sent || {} : {});
-    const ords = (await db.collection("orders").where(admin.firestore.FieldPath.documentId(), ">=", dk(14)).where(admin.firestore.FieldPath.documentId(), "<=", dk(1)).get()).docs;
-    const prods = (await db.collection("production").where(admin.firestore.FieldPath.documentId(), ">=", dk(14)).where(admin.firestore.FieldPath.documentId(), "<=", dk(1)).get()).docs;
-    const wst = (await db.collection("waste").where("day", ">=", dk(14)).get()).docs.map((d) => d.data());
+    const ords = (await C("orders").where(admin.firestore.FieldPath.documentId(), ">=", dk(14)).where(admin.firestore.FieldPath.documentId(), "<=", dk(1)).get()).docs;
+    const prods = (await C("production").where(admin.firestore.FieldPath.documentId(), ">=", dk(14)).where(admin.firestore.FieldPath.documentId(), "<=", dk(1)).get()).docs;
+    const wst = (await C("waste").where("day", ">=", dk(14)).get()).docs.map((d) => d.data());
+    const pm = {}; prods.forEach((d) => (pm[d.id] = d.data()));
     const wk = (from, to) => {
       let boxes = 0, days = 0, late = 0, short = 0, waste = 0;
-      ords.forEach((d) => { if (d.id < from || d.id > to) return; const o = d.data(), b = sum(q(o)); if (!b) return; boxes += b; days++; if (o.late) late++; short += Object.keys((o.received && o.received.missing) || {}).length; });
+      ords.forEach((d) => { if (d.id < from || d.id > to) return; const o = d.data(), b = sum(q(o)); if (!b) return; boxes += b; days++; if (o.late) late++; short += Object.keys(extraMiss(o, pm[d.id])).length; });
       prods.forEach((d) => { if (d.id < from || d.id > to) return; short += Object.values(d.data().items || {}).filter((x) => x && x.done && x.short > 0).length; });
       wst.forEach((w) => { if (w.day >= from && w.day <= to) waste += +w.qty || 0; });
       return { boxes, days, late, short, waste, wp: boxes ? Math.round((waste / boxes) * 1000) / 10 : 0 };
     };
     const a = wk(dk(7), dk(1)), b = wk(dk(14), dk(8));
-    if (a.days && !process.env.ANTHROPIC_API_KEY) await send(["admin"], "סיכום שבועי · רוזי",
+    if (a.days && !process.env.ANTHROPIC_API_KEY) await send(["admin"], `סיכום שבועי · ${SN}`,
       `${a.boxes} קופסאות ב-${a.days} ימים · פחת ${a.wp}%${b.days ? ` (קודם ${b.wp}%)` : ""} · ${pl(a.short, "חוסר אחד", "חוסרים")} · ${pl(a.late, "הזמנה אחת", "הזמנות")} אחרי 16:00`);
-    const oc = (await db.collection("credits").where("status", "==", "open").get()).docs.map((x) => x.data()).filter((c) => Date.now() - (c.at || 0) > 3 * 86400000);
+    const oc = (await C("credits").where("status", "==", "open").get()).docs.map((x) => x.data()).filter((c) => Date.now() - (c.at || 0) > 3 * 86400000);
     if (oc.length) await send(["admin"], `זיכויים פתוחים מספקים · ${oc.length}`, `סה״כ ₪${Math.round(oc.reduce((a, c) => a + (+c.amt || 0), 0))} · ${[...new Set(oc.map((c) => c.sup))].slice(0, 3).join(", ")}. לבקש בחשבונית הבאה`);
     await ref.set({ weekly: todayKey }, { merge: true });
   }
 }
 // 6. מזג אוויר אוטומטי לכל יום (אחרי 21:00, פעם ביום) — אתמול בנתונים סופיים + היום
 if (hour >= 21) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.weather !== todayKey) {
     try {
       const LAT = process.env.ROSIE_LAT || "31.778", LON = process.env.ROSIE_LON || "35.219";
@@ -190,7 +242,7 @@ if (hour >= 21) {
       for (let i = 0; i < (D.time || []).length; i++) {
         const w = { tmax: D.temperature_2m_max[i], tmin: D.temperature_2m_min[i], rain: D.precipitation_sum[i], wind: D.wind_speed_10m_max[i], src: "open-meteo" };
         if (Object.values(w).some((v) => v == null)) continue;
-        await db.collection("days").doc(D.time[i]).set({ date: D.time[i], weather: w }, { merge: true });
+        await C("days").doc(D.time[i]).set({ date: D.time[i], weather: w }, { merge: true });
       }
       await ref.set({ weather: todayKey }, { merge: true });
     } catch (e) { console.log("weather failed", e.message); }
@@ -199,14 +251,14 @@ if (hour >= 21) {
 
 // 8. חגים מלוח השנה העברי (פעם ביום) — לשבועיים קדימה
 {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.hol !== todayKey) {
     try {
       const end = keyOf(new Date(today.getTime() + 14 * 86400000));
       const r = await fetch(`https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&ss=off&mf=off&c=off&s=off&i=on&lg=he&start=${todayKey}&end=${end}`);
       const j = await r.json(), by = {};
       (j.items || []).filter((x) => x.category === "holiday" && x.date).forEach((x) => { const d = x.date.slice(0, 10); (by[d] = by[d] || []).push(x.hebrew || x.title); });
-      for (const [d, t] of Object.entries(by)) await db.collection("days").doc(d).set({ date: d, holiday: [...new Set(t)].join(" · ").slice(0, 80) }, { merge: true });
+      for (const [d, t] of Object.entries(by)) await C("days").doc(d).set({ date: d, holiday: [...new Set(t)].join(" · ").slice(0, 80) }, { merge: true });
       await ref.set({ hol: todayKey }, { merge: true });
     } catch (e) { console.log("holidays failed", e.message); }
   }
@@ -214,11 +266,11 @@ if (hour >= 21) {
 
 // 9. תזכורת שקילה (19:45) — 2 מנות שהכי חסרות להן שקילות, רק ביום עבודה
 if (nowMin >= 19 * 60 + 45 && nowMin < 21 * 60) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.weighRem !== todayKey) {
-    const o = (await db.collection("orders").doc(todayKey).get()).data() || {};
+    const o = (await C("orders").doc(todayKey).get()).data() || {};
     if (o.status === "approved") {
-      const need = (await db.collection("dishes").get()).docs.map((d) => d.data()).filter((d) => d.n && (d.weighings || []).length < 5)
+      const need = (await C("dishes").get()).docs.map((d) => d.data()).filter((d) => d.n && (d.weighings || []).length < 5)
         .sort((a, b) => (a.weighings || []).length - (b.weighings || []).length).slice(0, 2);
       if (need.length) await send(["admin"], "שקילה בסרוויס ⚖️", `${need.map((d) => d.n).join(" + ")}. מנה אחת מכל אחת, לפני שיוצאת`);
     }
@@ -231,10 +283,10 @@ if (nowMin >= 19 * 60 + 45 && nowMin < 21 * 60) {
   const KEY = process.env.ANTHROPIC_API_KEY, MODEL = process.env.AI_MODEL || "claude-sonnet-5-5";
   const sref = db.collection("settings").doc("app"), st = (await sref.get()).data() || {};
   const WS = process.env.ANTHROPIC_WORKSPACE_ID ? { "anthropic-workspace-id": process.env.ANTHROPIC_WORKSPACE_ID } : {};
-  if (!!KEY !== !!st.ai) await sref.set({ ai: !!KEY }, { merge: true });
-  if (!KEY && st.aiStat) await sref.update({ aiStat: admin.firestore.FieldValue.delete() });
+  if (SITE === "rosie" && !!KEY !== !!st.ai) await sref.set({ ai: !!KEY }, { merge: true });
+  if (SITE === "rosie" && !KEY && st.aiStat) await sref.update({ aiStat: admin.firestore.FieldValue.delete() });
   // בדיקת חיבור ל-Claude: מיד אחרי שהמפתח נוסף, ואחר כך פעם ב-12 שעות
-  if (KEY && (!st.aiStat || Date.now() - (st.aiStat.at || 0) > 12 * 3600000 || (!st.aiStat.ok && Date.now() - (st.aiStat.at || 0) > 30 * 60000))) {
+  if (SITE === "rosie" && KEY && (!st.aiStat || Date.now() - (st.aiStat.at || 0) > 12 * 3600000 || (!st.aiStat.ok && Date.now() - (st.aiStat.at || 0) > 30 * 60000))) {
     let stat;
     try {
       const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", signal: AbortSignal.timeout(60000), headers: { "content-type": "application/json", authorization: `Bearer ${KEY}`, ...WS, "anthropic-version": "2023-06-01" }, body: JSON.stringify({ model: MODEL, max_tokens: 300, output_config: { effort: "low" }, messages: [{ role: "user", content: "ok" }] }) });
@@ -253,15 +305,15 @@ if (nowMin >= 19 * 60 + 45 && nowMin < 21 * 60) {
 {"date":"YYYY-MM-DD","covers":0,"total":0,"items":[{"name":"שם המנה/פריט","qty":0,"total":0}]}
 covers = מספר סועדים/אורחים אם מופיע. total = סה״כ מכירות. items = מכירות לפי פריט אם מופיעות. שדה שלא ניתן לקרוא = null. אל תמציא.`,
     };
-    const pend = (await db.collection("photos").where("ai", "==", "pending").limit(2).get()).docs;
-    const pref = db.collection("meta").doc("prices"), prices = ((await pref.get()).data() || {}).p || {}, alerts = [];
+    const pend = (await C("photos").where("ai", "==", "pending").limit(2).get()).docs;
+    const pref = C("meta").doc("prices"), prices = ((await pref.get()).data() || {}).p || {}, alerts = [];
     const nrm = (x) => String(x || "").replace(/["'׳״.,/()\-]/g, " ").replace(/\s+/g, " ").trim();
     for (const d of pend) {
       if (timeLeft() < 120000) break;
       const ph = d.data();
       try {
         if (!P[ph.kind]) { await d.ref.set({ ai: "skip" }, { merge: true }); continue; }
-        const img = ((await db.collection("photoData").doc(d.id).get()).data() || {}).img || "";
+        const img = ((await C("photoData").doc(d.id).get()).data() || {}).img || "";
         const mm = img.match(/^data:(image\/[a-z]+);base64,(.+)$/);
         if (!mm) throw new Error("no image");
         const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -288,7 +340,7 @@ covers = מספר סועדים/אורחים אם מופיע. total = סה״כ מ
           items.forEach((x) => { if (!(x.unitPrice > 0) || !sup) return; const k = `${sup}|${x.name}`.replace(/[./]/g, " ").slice(0, 100), prev = prices[k]; if (prev && prev.v > 0 && x.unitPrice >= prev.v * 1.1) alerts.push(`${x.name} (${sup}) עלה ${Math.round((x.unitPrice / prev.v - 1) * 100)}%`); prices[k] = { v: x.unitPrice, at: Date.now() }; });
         } else {
           clean.covers = N(A.covers); patch.aiData = clean;
-          const day = ph.day || clean.date, dref = db.collection("days").doc(day), D = (await dref.get()).data() || {}, dp = { date: day, sales: items.map((x) => ({ name: x.name, qty: x.qty, total: x.total })) };
+          const day = ph.day || clean.date, dref = C("days").doc(day), D = (await dref.get()).data() || {}, dp = { date: day, sales: items.map((x) => ({ name: x.name, qty: x.qty, total: x.total })) };
           if (D.covers == null && clean.covers != null) dp.covers = clean.covers;
           if (D.salesTotal == null && clean.total != null) dp.salesTotal = clean.total;
           await dref.set(dp, { merge: true });
@@ -301,16 +353,17 @@ covers = מספר סועדים/אורחים אם מופיע. total = סה״כ מ
     if (alerts.length) await send(["admin"], "עליית מחיר אצל ספק 📈", alerts.slice(0, 4).join(" · "));
 
     // 10ב. קובץ טאביט חודשי → Claude ממלא את כרטיס העלויות ואת ימי השירות
-    for (const d of (await db.collection("uploads").where("ai", "==", "pending").limit(1).get()).docs) {
+    for (const d of (await C("uploads").where("ai", "==", "pending").get()).docs.filter((x) => x.data().kind !== "labor").slice(0, 1)) {
       if (timeLeft() < 200000) break;
       const u = d.data();
       try {
+        if (u.kind === "labor") continue;
         if (u.kind !== "tabit" || !/^\d{4}-\d{2}$/.test(u.ym || "")) { await d.ref.set({ ai: "skip" }, { merge: true }); continue; }
         const content = [];
         if (u.text) content.push({ type: "text", text: `הקובץ (${u.name || "טאביט"}), בפורמט CSV:\n${String(u.text).slice(0, 400000)}` });
         else if (u.mime === "application/pdf") content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data: u.data } });
         else content.push({ type: "image", source: { type: "base64", media_type: "image/jpeg", data: u.data } });
-        content.push({ type: "text", text: `זה דו״ח ממערכת הקופה טאביט (Tabit) של מסעדת רוזי בישראל, לחודש ${u.ym}. חלץ את הנתונים והחזר JSON בלבד, בלי טקסט נוסף, במבנה:
+        content.push({ type: "text", text: `זה דו״ח ממערכת הקופה טאביט (Tabit) של מסעדת ${SN} בישראל, לחודש ${u.ym}. חלץ את הנתונים והחזר JSON בלבד, בלי טקסט נוסף, במבנה:
 {"month":"YYYY-MM","sales":0,"salesNet":0,"covers":0,"checks":0,"days":[{"date":"YYYY-MM-DD","sales":0,"covers":0}],"categories":[{"name":"","total":0}],"items":[{"name":"","qty":0,"total":0}],"labor":null,"discounts":null,"notes":""}
 sales = סה״כ מכירות לכל החודש כולל מע״מ. salesNet = לפני מע״מ אם מופיע. covers = מספר סועדים. checks = מספר חשבונות/שולחנות. days = פירוט יומי אם מופיע. categories = מכירות לפי קטגוריה. items = עד 60 הפריטים עם הכי הרבה מכירות. labor = עלות עובדים לחודש אם מופיעה. discounts = הנחות/ביטולים בשקלים אם מופיעים. notes = משפט אחד על משהו חריג בקובץ, אם יש.
 מספר שלא מופיע = null. אל תמציא ואל תעריך.` });
@@ -321,11 +374,11 @@ sales = סה״כ מכירות לכל החודש כולל מע״מ. salesNet = ל
           categories: (Array.isArray(A.categories) ? A.categories : []).slice(0, 24).map((x) => ({ name: strOf(x && x.name), total: numOf(x && x.total) })).filter((x) => x.name && x.total != null),
           items: (Array.isArray(A.items) ? A.items : []).slice(0, 60).map((x) => ({ name: strOf(x && x.name), qty: numOf(x && x.qty), total: numOf(x && x.total) })).filter((x) => x.name),
           at: Date.now(), file: strOf(u.name, 80), upload: d.id };
-        await db.collection("months").doc(ym).set(fsSafe({ tabit: T }), { merge: true });
+        await C("months").doc(ym).set(fsSafe({ tabit: T }), { merge: true });
         let nd = 0;
         for (const r of (Array.isArray(A.days) ? A.days : []).slice(0, 31)) {
           const day = strOf(r && r.date, 10); if (!day.startsWith(ym)) continue;
-          const dref = db.collection("days").doc(day), D = (await dref.get()).data() || {}, dp = { date: day, tabit: true }, sl = numOf(r.sales), cv = numOf(r.covers);
+          const dref = C("days").doc(day), D = (await dref.get()).data() || {}, dp = { date: day, tabit: true }, sl = numOf(r.sales), cv = numOf(r.covers);
           if (D.salesTotal == null && sl > 0) dp.salesTotal = sl;
           if (D.covers == null && cv > 0) dp.covers = Math.round(cv);
           await dref.set(dp, { merge: true }); nd++;
@@ -333,21 +386,43 @@ sales = סה״כ מכירות לכל החודש כולל מע״מ. salesNet = ל
         await d.ref.set({ ai: "done", aiAt: Date.now(), days: nd, ym }, { merge: true });
         await send(["owner"], `קובץ טאביט נקרא · ${ym.slice(5)}/${ym.slice(0, 4)}`, [T.sales ? `מכירות ₪${Math.round(T.sales).toLocaleString("he-IL")}` : "", T.covers ? `${T.covers} סועדים` : "", nd ? `${nd} ימים` : ""].filter(Boolean).join(" · ") || "הנתונים עודכנו");
         console.log("tabit read", d.id, nd);
-      } catch (e) { console.log("tabit failed", d.id, e.message); const tries = (u.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true }); }
+      } catch (e) {
+        console.log("upload failed", d.id, e.message); const tries = (u.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true });
+      }
     }
   }
 }
 
 // 7. תזכורת ״סגירת ערב״ לרוזי ב-22:30 — רק ביום שהיה בו משלוח, ורק אם עוד לא נסגר
 if (nowMin >= 22 * 60 + 30) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   if (m.closeRem !== todayKey) {
-    const o = (await db.collection("orders").doc(todayKey).get()).data() || {}, dd = (await db.collection("days").doc(todayKey).get()).data() || {};
-    const perm = (((await db.collection("settings").doc("app").get()).data() || {}).perm || {}).close || [];
+    const o = (await C("orders").doc(todayKey).get()).data() || {}, dd = (await C("days").doc(todayKey).get()).data() || {};
+    const perm = (((await C("settings").doc("app").get()).data() || {}).perm || {}).close || [];
     if (perm.includes("rosie") && o.status === "approved" && !dd.closedAt && dd.covers == null) await send(["rosie"], "סגירת ערב", "צלמו את דו״ח הקופה של היום");
     await ref.set({ closeRem: todayKey }, { merge: true });
   }
 }
+// 10ג. מתכון מצילום → Claude ממלא את המתכון
+if (AI_KEY) {
+  const RCAT = ["רטבים", "בצקים", "מנות", "קינוחים", "אחר"], RYU = ["ק״ג", "ליטר", "קופסאות", "מנות", "יח׳"], RU = ["ק״ג", "גרם", "ליטר", "מ״ל", "יח׳", "כף", "כפית", "כוס", "צרור", "קופסה"];
+  for (const d of (await C("recipes").where("ai", "==", "pending").limit(2).get()).docs) {
+    if (timeLeft() < 150000) break;
+    const r = d.data(), mm = String(r.photo || "").match(/^data:(image\/[a-z]+);base64,(.+)$/);
+    try {
+      if (!mm) { await d.ref.set({ ai: "error" }, { merge: true }); continue; }
+      const A = jsonOf(await claude([{ type: "image", source: { type: "base64", media_type: mm[1], data: mm[2] } }, { type: "text", text: `זה צילום של מתכון ממטבח מקצועי בישראל (כתב יד, דף מודפס או מסך). העתק אותו בדיוק, בעברית, והחזר JSON בלבד בלי טקסט נוסף:
+{"name":"","category":"אחת מ: ${RCAT.join(", ")}","yieldQty":0,"yieldUnit":"אחת מ: ${RYU.join(", ")}","minutes":0,"ingredients":[{"name":"","qty":0,"unit":"אחת מ: ${RU.join(", ")} או ריק"}],"steps":[""],"notes":""}
+yieldQty = כמה יוצא מהמתכון אם כתוב. minutes = זמן עבודה אם כתוב. כמות שלא כתובה = null. steps = שלבי ההכנה לפי הסדר, משפט קצר לכל שלב. notes = אחסון, תוקף או אלרגנים אם כתובים. אל תמציא ואל תוסיף רכיבים שלא כתובים.` }], { max: 16000, effort: "medium", timeout: 120000 }));
+      const ings = (Array.isArray(A.ingredients) ? A.ingredients : []).slice(0, 80).map((x) => ({ n: strOf(x && x.name), q: numOf(x && x.qty), u: RU.includes(x && x.unit) ? x.unit : "" })).filter((x) => x.n);
+      const steps = (Array.isArray(A.steps) ? A.steps : []).map((x) => strOf(x, 400)).filter(Boolean).join("\n").slice(0, 4000);
+      await d.ref.set(Object.assign(fsSafe({ n: strOf(A.name) || "מתכון מצילום", cat: RCAT.includes(A.category) ? A.category : r.cat || "אחר", yq: numOf(A.yieldQty), yu: RYU.includes(A.yieldUnit) ? A.yieldUnit : "ק״ג", min: numOf(A.minutes), ings, steps, notes: strOf(A.notes, 1000),
+        ai: "done", aiAt: Date.now(), updatedAt: Date.now(), updatedBy: "Claude" }), { photo: admin.firestore.FieldValue.delete() }), { merge: true });
+      console.log("recipe read", d.id, ings.length);
+    } catch (e) { console.log("recipe failed", d.id, e.message); const tries = (r.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries }, { merge: true }); }
+  }
+}
+
 // 11. Claude למנהל: דוחות (יומי / שבועי / חודשי / לפי בקשה) ושאלות חופשיות — רק לבעלים
 const shiftKey = (k, n) => keyOf(new Date(Date.UTC(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8)) + n * 86400000));
 const spanDays = (a, b) => Math.round((Date.UTC(+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(8)) - Date.UTC(+a.slice(0, 4), +a.slice(5, 7) - 1, +a.slice(8))) / 86400000) + 1;
@@ -358,7 +433,7 @@ function kpisOf(c, p) {
   const K = [];
   K.push({ k: "boxes", label: "קופסאות", v: fmtN(c.boxes), d: pct(c.boxes, p.boxes), unit: "%", good: null });
   K.push({ k: "waste", label: "פחת", v: c.waste.pctOfOrdered + "%", d: pts(c.waste.pctOfOrdered, p.waste.pctOfOrdered), unit: "נק׳", good: pts(c.waste.pctOfOrdered, p.waste.pctOfOrdered) == null ? null : c.waste.pctOfOrdered <= p.waste.pctOfOrdered });
-  if (c.production.days) K.push({ k: "ontime", label: "מוכן עד 16:30", v: onT(c) + "%", d: pts(onT(c), onT(p)), unit: "נק׳", good: pts(onT(c), onT(p)) == null ? null : onT(c) >= onT(p) });
+  if (c.production.days && !NOCUT) K.push({ k: "ontime", label: "מוכן עד 16:30", v: onT(c) + "%", d: pts(onT(c), onT(p)), unit: "נק׳", good: pts(onT(c), onT(p)) == null ? null : onT(c) >= onT(p) });
   if (c.sales.total) K.push({ k: "sales", label: "מכירות", v: "₪" + fmtN(c.sales.total), d: pct(c.sales.total, p.sales.total), unit: "%", good: p.sales.total ? c.sales.total >= p.sales.total : null });
   if (c.receipts.total) K.push({ k: "buy", label: "רכש", v: "₪" + fmtN(c.receipts.total), d: pct(c.receipts.total, p.receipts.total), unit: "%", good: p.receipts.total ? c.receipts.total <= p.receipts.total : null });
   if (c.foodCostPct != null) K.push({ k: "fc", label: "Food cost", v: c.foodCostPct + "%", d: pts(c.foodCostPct, p.foodCostPct), unit: "נק׳", good: p.foodCostPct != null ? c.foodCostPct <= p.foodCostPct : null });
@@ -369,7 +444,7 @@ function priceMoves(c, p) {
   Object.entries(c.itemPrices || {}).forEach(([k, v]) => { const b = (p.itemPrices || {})[k]; if (b && b.avg > 0 && v.avg > 0) { const ch = Math.round(((v.avg - b.avg) / b.avg) * 1000) / 10; if (Math.abs(ch) >= 5) out.push({ item: k, from: b.avg, to: v.avg, changePct: ch, spend: v.spend }); } });
   return out.sort((a, b) => Math.abs(b.changePct) * b.spend - Math.abs(a.changePct) * a.spend).slice(0, 10);
 }
-const ROLE_TXT = `אתה סמנכ״ל תפעול וכספים בכיר שמלווה את מסעדת רוזי בישראל ואת מטבח הייצור המרכזי שלה (מכין הכנות בקופסאות של 4 ליטר ושולח לרוזי). אתה כותב לבעלים, גדי, שף ומנהל מקצועי. עבוד רק מהנתונים שמצורפים, אל תמציא מספרים, וכשחסר נתון אמור את זה במפורש. היה חד, מספרי וממוקד בכסף: פחת, ייצור יתר, חוסרים, עליות מחיר, Food cost.`;
+const ROLE_TXT = `אתה סמנכ״ל תפעול וכספים בכיר שמלווה את מסעדת ${SN} בישראל ואת מטבח הייצור המרכזי שלה (מכין הכנות בקופסאות של 4 ליטר ושולח לרוזי). אתה כותב לבעלים, גדי, שף ומנהל מקצועי. עבוד רק מהנתונים שמצורפים, אל תמציא מספרים, וכשחסר נתון אמור את זה במפורש. היה חד, מספרי וממוקד בכסף: פחת, ייצור יתר, חוסרים, עליות מחיר, Food cost.`;
 async function writeReport({ id, kind, from, to, title }) {
   const n = spanDays(from, to), monthly = kind === "monthly" || kind === "prevMonth";
   let pf = shiftKey(from, -n), pt = shiftKey(from, -1);
@@ -402,11 +477,11 @@ async function writeReport({ id, kind, from, to, title }) {
   const headline = clean ? clean.headline : (raw.split("\n").find((l) => l.trim() && !l.startsWith("#")) || "").slice(0, 200);
   const doc = { v: 2, kind, title, headline, kpis, from, to, prevFrom: pf, prevTo: pt, stats: cur, at: Date.now() };
   if (clean) doc.ai = clean; else doc.text = raw.slice(0, 12000);
-  await db.collection("reports").doc(id).set(fsSafe(doc));
+  await C("reports").doc(id).set(fsSafe(doc));
   return doc;
 }
 if (AI_KEY) {
-  const ref = db.collection("meta").doc("reminders"), m = (await ref.get()).data() || {};
+  const ref = C("meta").doc("reminders"), m = (await ref.get()).data() || {};
   const dk = (n) => keyOf(new Date(today.getTime() - n * 86400000));
   const KT = { daily: "דוח יומי", weekly: "דוח שבועי", monthly: "דוח חודשי", yesterday: "דוח יומי", "7d": "דוח 7 ימים", mtd: "דוח החודש עד היום", prevMonth: "דוח חודשי" };
   const rng = (a, b) => (a === b ? `${a.slice(8)}/${a.slice(5, 7)}` : `${a.slice(8)}/${a.slice(5, 7)}–${b.slice(8)}/${b.slice(5, 7)}`);
@@ -415,7 +490,7 @@ if (AI_KEY) {
   if (today.getUTCDay() === 0 && hour >= 8 && hour < 12 && m.repWeekly !== todayKey) jobs.push({ kind: "weekly", flag: "repWeekly", from: dk(7), to: dk(1) });
   if (+p.day === 1 && hour >= 8 && hour < 12 && m.repMonthly !== todayKey) { const pm = new Date(Date.UTC(+p.year, +p.month - 2, 1)), last = new Date(Date.UTC(+p.year, +p.month - 1, 0)); jobs.push({ kind: "monthly", flag: "repMonthly", from: keyOf(pm), to: keyOf(last) }); }
   // דוחות שגדי ביקש עכשיו מתוך חדר הבקרה
-  for (const d of (await db.collection("reportReq").where("status", "==", "pending").limit(1).get()).docs) {
+  for (const d of (await C("reportReq").where("status", "==", "pending").limit(1).get()).docs) {
     const r = d.data(), k = r.kind;
     const first = keyOf(new Date(Date.UTC(+p.year, +p.month - 1, 1))), pm = keyOf(new Date(Date.UTC(+p.year, +p.month - 2, 1))), pml = keyOf(new Date(Date.UTC(+p.year, +p.month - 1, 0)));
     const span = k === "yesterday" ? [dk(1), dk(1)] : k === "7d" ? [dk(7), dk(1)] : k === "mtd" ? (first <= dk(1) ? [first, dk(1)] : [pm, pml]) : k === "prevMonth" ? [pm, pml] : null;
@@ -439,20 +514,20 @@ if (AI_KEY) {
     }
   }
   // שאל את Claude: שאלה חופשית של גדי על הנתונים
-  for (const d of (await db.collection("asks").where("status", "==", "pending").limit(2).get()).docs) {
+  for (const d of (await C("asks").where("status", "==", "pending").limit(2).get()).docs) {
     if (timeLeft() < 160000) break;
     const a = d.data();
     try {
       const to = dk(1), from = dk(30), [cur, prev] = await Promise.all([periodStats(from, to, true), periodStats(dk(60), dk(31), true)]);
-      const ym = keyOf(today).slice(0, 7), M = (await db.collection("months").doc(ym).get()).data() || {}, PM = (await db.collection("months").doc(keyOf(new Date(Date.UTC(+p.year, +p.month - 2, 1))).slice(0, 7)).get()).data() || {};
-      const cat = Object.values((await db.collection("catalog").doc("items").get()).data()?.items || {}).filter((x) => !x.hidden).map((x) => ({ n: x.n, cat: x.c, shelfDays: x.d, kgPerBox: x.kg || null, pricePerKg: x.ppk || null })).slice(0, 120);
+      const ym = keyOf(today).slice(0, 7), M = (await C("months").doc(ym).get()).data() || {}, PM = (await C("months").doc(keyOf(new Date(Date.UTC(+p.year, +p.month - 2, 1))).slice(0, 7)).get()).data() || {};
+      const cat = Object.values((await C("catalog").doc("items").get()).data()?.items || {}).filter((x) => !x.hidden).map((x) => ({ n: x.n, cat: x.c, shelfDays: x.d, kgPerBox: x.kg || null, pricePerKg: x.ppk || null })).slice(0, 120);
       const prompt = `${ROLE_TXT}
 גדי שואל: "${String(a.q || "").slice(0, 500)}"
 ענה בעברית, ישר לעניין, עד 120 מילים. תן מספרים מדויקים מהנתונים ופעולה מומלצת אם רלוונטי. אם הנתונים לא מספיקים כדי לענות, אמור בדיוק מה חסר. בלי כותרות ובלי אימוג'י. מותר נקודות קצרות שמתחילות ב-"- ".
 30 הימים האחרונים (${from} עד ${to}): ${JSON.stringify(cur)}
 30 הימים שלפני: ${JSON.stringify(prev)}
-החודש הנוכחי (עלויות וטאביט): ${JSON.stringify({ labor: M.labor || null, tabit: M.tabit ? { sales: M.tabit.sales, covers: M.tabit.covers, categories: M.tabit.categories, items: (M.tabit.items || []).slice(0, 30) } : null })}
-החודש הקודם: ${JSON.stringify({ labor: PM.labor || null, tabit: PM.tabit ? { sales: PM.tabit.sales, covers: PM.tabit.covers, categories: PM.tabit.categories, items: (PM.tabit.items || []).slice(0, 30) } : null })}
+החודש הנוכחי (עלויות וטאביט): ${JSON.stringify({ labor: M.labor || (M.laborTabit && M.laborTabit.cost) || null, laborDetail: labOf(M), tabit: M.tabit ? { sales: M.tabit.sales, covers: M.tabit.covers, categories: M.tabit.categories, items: (M.tabit.items || []).slice(0, 30) } : null })}
+החודש הקודם: ${JSON.stringify({ labor: PM.labor || (PM.laborTabit && PM.laborTabit.cost) || null, laborDetail: labOf(PM), tabit: PM.tabit ? { sales: PM.tabit.sales, covers: PM.tabit.covers, categories: PM.tabit.categories, items: (PM.tabit.items || []).slice(0, 30) } : null })}
 ההכנות במטבח הייצור: ${JSON.stringify(cat)}
 שינויי מחיר אצל ספקים: ${JSON.stringify(priceMoves(cur, prev))}`;
       const ans = (await claude(prompt, { max: 12000, effort: "high", timeout: 150000 })).slice(0, 3000);
@@ -464,31 +539,32 @@ if (AI_KEY) {
 }
 function isr(ts) { const q = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(ts)).map((x) => [x.type, x.value])); return { day: `${q.year}-${q.month}-${q.day}`, min: +q.hour * 60 + +q.minute }; }
 async function periodStats(from, to, withLabor) {
-  const between = (col) => db.collection(col).where(admin.firestore.FieldPath.documentId(), ">=", from).where(admin.firestore.FieldPath.documentId(), "<=", to).get();
-  const cat = (await db.collection("catalog").doc("items").get()).data()?.items || {}, nm = (k) => (cat[k] && cat[k].n) || k;
+  const between = (col) => C(col).where(admin.firestore.FieldPath.documentId(), ">=", from).where(admin.firestore.FieldPath.documentId(), "<=", to).get();
+  const cat = (await C("catalog").doc("items").get()).data()?.items || {}, nm = (k) => (cat[k] && cat[k].n) || k;
   const [qo, qp, qd] = await Promise.all([between("orders"), between("production"), between("days")]);
   const qty = (o) => (o.approved && sum(o.approved) > 0 ? o.approved : o.sent || {});
+  const pmS = {}; qp.docs.forEach((d) => (pmS[d.id] = d.data()));
   let boxes = 0, deliveryDays = 0, late = 0, changes = 0, missing = 0, rejected = 0; const perItem = {};
-  qo.docs.forEach((d) => { const o = d.data(); if (o.status === "cancelled") return; const q = qty(o), b = sum(q); if (!b) return; deliveryDays++; boxes += b; if (o.late) late++; changes += o.changeCount || 0; if (o.status === "rejected") rejected++; missing += Object.keys((o.received && o.received.missing) || {}).length; Object.entries(q).forEach(([k, v]) => { if (+v > 0) perItem[k] = (perItem[k] || 0) + +v; }); });
+  qo.docs.forEach((d) => { const o = d.data(); if (o.status === "cancelled") return; const q = qty(o), b = sum(q); if (!b) return; deliveryDays++; boxes += b; if (o.late) late++; changes += o.changeCount || 0; if (o.status === "rejected") rejected++; missing += Object.keys(extraMiss(o, pmS[d.id])).length; Object.entries(q).forEach(([k, v]) => { if (+v > 0) perItem[k] = (perItem[k] || 0) + +v; }); });
   let shorts = 0, onTime = 0, prodDays = 0;
   qp.docs.forEach((d) => { const its = Object.values(d.data().items || {}); if (!its.length) return; prodDays++; shorts += its.filter((x) => x && x.short > 0).length; const last = Math.max(...its.map((x) => (x && x.at) || 0)); if (its.every((x) => x && x.done) && last && isr(last).day === d.id && isr(last).min <= 16 * 60 + 30) onTime++; });
-  const wst = (await db.collection("waste").where("day", ">=", from).get()).docs.map((d) => d.data()).filter((w) => w.day <= to);
+  const wst = (await C("waste").where("day", ">=", from).get()).docs.map((d) => d.data()).filter((w) => w.day <= to);
   const wItem = {}; wst.forEach((w) => (wItem[w.k] = (wItem[w.k] || 0) + (+w.qty || 0)));
   const wasteBoxes = wst.reduce((a, w) => a + (+w.qty || 0), 0);
-  const ph = (await db.collection("photos").where("day", ">=", from).get()).docs.map((d) => d.data()).filter((x) => x.day <= to && x.kind === "r");
+  const ph = (await C("photos").where("day", ">=", from).get()).docs.map((d) => d.data()).filter((x) => x.day <= to && x.kind === "r");
   const ip = {}; ph.forEach((r) => ((r.aiData && r.aiData.items) || []).forEach((x) => { if (!(x && x.unitPrice > 0 && x.name)) return; const k = `${String(x.name).slice(0, 40)} · ${r.sup || "ספק"}`; const e = ip[k] || (ip[k] = { n: 0, sum: 0, spend: 0 }); e.n++; e.sum += +x.unitPrice; e.spend += +x.total || +x.unitPrice * (+x.qty || 1); }));
   const itemPrices = Object.fromEntries(Object.entries(ip).sort((a, b) => b[1].spend - a[1].spend).slice(0, 40).map(([k, e]) => [k, { avg: Math.round((e.sum / e.n) * 100) / 100, spend: Math.round(e.spend) }]));
   const byCat = {}, bySup = {}; ph.forEach((r) => { const a = +r.amt || 0; byCat[r.cat || "ללא סוג"] = (byCat[r.cat || "ללא סוג"] || 0) + a; bySup[r.sup || "לא ידוע"] = (bySup[r.sup || "לא ידוע"] || 0) + a; });
   let covers = 0, salesSum = 0, salesDays = 0; qd.docs.forEach((d) => { const x = d.data(); if (+x.covers > 0) covers += +x.covers; if (+x.salesTotal > 0) { salesSum += +x.salesTotal; salesDays++; } });
-  const cr = (await db.collection("credits").where("status", "==", "open").get()).docs.map((d) => d.data());
+  const cr = (await C("credits").where("status", "==", "open").get()).docs.map((d) => d.data());
   const fromMs = Date.UTC(+from.slice(0, 4), +from.slice(5, 7) - 1, +from.slice(8)), toMs = Date.UTC(+to.slice(0, 4), +to.slice(5, 7) - 1, +to.slice(8)) + 86400000;
-  const dishes = (await db.collection("dishes").get()).docs.map((d) => d.data()).map((x) => { const w = (x.weighings || []).filter((v) => v.at >= fromMs && v.at < toMs).map((v) => +v.g); const rg = (x.comps || []).reduce((a, c) => a + (c.u === "ק״ג" ? (+c.q || 0) * 1000 : +c.q || 0), 0); return w.length ? { dish: x.n, weighings: w.length, avgGrams: Math.round(w.reduce((a, b) => a + b, 0) / w.length), recipeGrams: rg || null } : null; }).filter(Boolean);
+  const dishes = (await C("dishes").get()).docs.map((d) => d.data()).map((x) => { const w = (x.weighings || []).filter((v) => v.at >= fromMs && v.at < toMs).map((v) => +v.g); const rg = (x.comps || []).reduce((a, c) => a + (c.u === "ק״ג" ? (+c.q || 0) * 1000 : +c.q || 0), 0); return w.length ? { dish: x.n, weighings: w.length, avgGrams: Math.round(w.reduce((a, b) => a + b, 0) / w.length), recipeGrams: rg || null } : null; }).filter(Boolean);
   const top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n);
   const WD = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"], byWd = {};
   qo.docs.forEach((d) => { const o = d.data(); if (o.status === "cancelled") return; const b = sum(qty(o)); if (!b) return; const w = WD[new Date(Date.UTC(+d.id.slice(0, 4), +d.id.slice(5, 7) - 1, +d.id.slice(8))).getUTCDay()]; (byWd[w] = byWd[w] || []).push(b); });
   const out = {
     deliveryDays, boxes, avgBoxesPerDay: deliveryDays ? Math.round((boxes / deliveryDays) * 10) / 10 : 0, lateOrders: late, changeRequests: changes, rejected, deliveriesWithMissing: missing,
-    production: { days: prodDays, shortItems: shorts, completedByDeadline: onTime, deadline: "16:30" },
+    production: { days: prodDays, shortItems: shorts, completedByDeadline: NOCUT ? null : onTime, deadline: NOCUT ? null : "16:30" },
     waste: { boxes: wasteBoxes, pctOfOrdered: boxes ? Math.round((wasteBoxes / boxes) * 1000) / 10 : 0, topItems: top(wItem, 5).map(([k, v]) => ({ item: nm(k), boxes: v, ordered: perItem[k] || 0 })) },
     topOrdered: top(perItem, 6).map(([k, v]) => ({ item: nm(k), boxes: v })),
     receipts: { count: ph.length, total: Math.round(ph.reduce((a, r) => a + (+r.amt || 0), 0)), byCategory: byCat, topSuppliers: top(bySup, 5).map(([sup, total]) => ({ supplier: sup, total: Math.round(total) })) },
@@ -501,13 +577,55 @@ async function periodStats(from, to, withLabor) {
   };
   { const food = Object.entries(byCat).filter(([c]) => c !== "אחר").reduce((a, [, v]) => a + v, 0); if (salesSum) out.foodCostPct = Math.round((food / salesSum) * 1000) / 10; }
   if (withLabor) {
-    const ym = from.slice(0, 7), M = (await db.collection("months").doc(ym).get()).data() || {}, T = M.tabit || null, whole = from.endsWith("-01") && spanDays(from, to) >= 28;
-    const lab = +M.labor || +(T && T.labor) || 0; out.laborCost = lab || null;
+    const ym = from.slice(0, 7), M = (await C("months").doc(ym).get()).data() || {}, T = M.tabit || null, whole = from.endsWith("-01") && spanDays(from, to) >= 28;
+    const lab = +M.labor || +(M.laborTabit && M.laborTabit.cost) || +(T && T.labor) || 0; out.laborCost = lab || null;
+    if (labOf(M)) out.laborDetail = labOf(M);
     const food = Object.entries(byCat).filter(([c]) => c !== "אחר").reduce((a, [, v]) => a + v, 0), sales = whole && T && T.sales > 0 ? T.sales : salesSum;
     if (T) out.tabit = { sales: T.sales, covers: T.covers, checks: T.checks, discounts: T.discounts, categories: T.categories, topItems: (T.items || []).slice(0, 25), notes: T.notes };
     if (sales) { out.foodCostPct = Math.round((food / sales) * 1000) / 10; if (lab && whole) out.primeCostPct = Math.round(((food + lab) / sales) * 1000) / 10; }
   }
   return out;
+}
+// 11ג. Claude מציע הזמנה למחר (מצב צל: רק להשוואה בחדר הבקרה של גדי, לא מוצג לצוות)
+if (AI_KEY && hour >= 12 && hour < CUTOFF && !OFF.includes(tomorrow.getUTCDay()) && timeLeft() > 150000) {
+  const dref = C("days").doc(tomorrowKey), D = (await dref.get()).data() || {};
+  if (!D.aiSugg) {
+    try {
+      const cat = Object.entries((await C("catalog").doc("items").get()).data()?.items || {}).filter(([, x]) => x && x.active !== false).map(([k, x]) => ({ k, n: x.n, c: x.c, shelfDays: x.d }));
+      const from = shiftKey(tomorrowKey, -56), FP = admin.firestore.FieldPath.documentId();
+      const [qo, qp] = await Promise.all([C("orders").where(FP, ">=", from).where(FP, "<=", todayKey).get(), C("production").where(FP, ">=", shiftKey(todayKey, -14)).where(FP, "<=", todayKey).get()]);
+      const qty = (o) => (o.status === "cancelled" ? {} : o.approved && sum(o.approved) > 0 ? o.approved : o.sent || {});
+      const wd = tomorrow.getUTCDay(), sameDay = {}, recent = {};
+      qo.docs.forEach((d) => { const q = qty(d.data()); if (!sum(q)) return; const w = new Date(d.id + "T12:00:00Z").getUTCDay(); const m = {}; Object.entries(q).forEach(([k, v]) => { if (+v > 0) m[k] = +v; }); if (w === wd) sameDay[d.id] = m; if (d.id >= shiftKey(todayKey, -14)) recent[d.id] = m; });
+      const waste = {}; (await C("waste").where("day", ">=", shiftKey(todayKey, -14)).get()).docs.forEach((d) => { const w = d.data(); if (w.k) waste[w.k] = (waste[w.k] || 0) + (+w.qty || 0); });
+      const shorts = {}; qp.docs.forEach((d) => Object.entries(d.data().items || {}).forEach(([k, x]) => { if (x && x.short > 0) shorts[k] = (shorts[k] || 0) + +x.short; }));
+      const prompt = `אתה שף מטבח ייצור מנוסה. מסעדת ${SN} מזמינה כל יום הכנות בקופסאות של 4 ליטר ממטבח הייצור. הצע כמה קופסאות להזמין לכל הכנה למשלוח של יום ${DN[wd]} ${tomorrowKey}.
+עבוד רק מהנתונים. העדף את אותו יום בשבוע בשבועות הקודמים, התחשב בפחת (מה שנזרק = הוזמן יותר מדי), בחוסרים, בתוקף ההכנה, בחג ובמזג האוויר.
+ההכנות: ${JSON.stringify(cat)}
+הזמנות ביום ${DN[wd]} ב-8 השבועות האחרונים: ${JSON.stringify(sameDay)}
+הזמנות ב-14 הימים האחרונים: ${JSON.stringify(recent)}
+פחת ב-14 הימים האחרונים (קופסאות): ${JSON.stringify(waste)}
+חוסרים בייצור ב-14 הימים האחרונים: ${JSON.stringify(shorts)}
+היום המבוקש: ${JSON.stringify({ holiday: D.holiday || null, weather: D.weather || null })}
+החזר JSON בלבד: {"items":{"מפתח ההכנה":כמות},"note":"משפט אחד קצר על מה ששונה מהרגיל, או ריק"}. רק הכנות עם כמות מעל 0. כמויות בשלמים או בחצאים.`;
+      const A = jsonOf(await claude(prompt, { max: 12000, effort: "medium", timeout: 120000 })), keys = new Set(cat.map((x) => x.k)), items = {};
+      Object.entries(A.items && typeof A.items === "object" ? A.items : {}).forEach(([k, v]) => { const n = numOf(v); if (keys.has(k) && n > 0) items[k] = Math.round(n * 2) / 2; });
+      await dref.set({ date: tomorrowKey, aiSugg: { items, note: strOf(A.note, 200), at: Date.now() } }, { merge: true });
+      console.log("sugg", tomorrowKey, Object.keys(items).length);
+    } catch (e) { console.log("sugg failed", e.message); }
+  }
+}
+// 11ב. ניתוח שעות עובדים מטאביט → Claude (אחרי שכלי הדוחות מוכנים)
+if (AI_KEY) {
+  for (const d of (await C("uploads").where("ai", "==", "pending").get()).docs.filter((x) => x.data().kind === "labor").slice(0, 1)) {
+    if (timeLeft() < 150000) break;
+    const u = d.data();
+    try { if (!/^\d{4}-\d{2}$/.test(u.ym || "")) { await d.ref.set({ ai: "skip" }, { merge: true }); continue; } await laborAI(d, u.ym); }
+    catch (e) {
+      console.log("labor failed", d.id, e.message); const tries = (u.aiTries || 0) + 1; await d.ref.set({ ai: tries >= 3 ? "error" : "pending", aiTries: tries, aiErr: String(e.message).slice(0, 200) }, { merge: true });
+      if (tries >= 3) await C("months").doc(u.ym).set({ laborAI: { state: "error", at: Date.now() } }, { merge: true });
+    }
+  }
 }
 console.log("done", todayKey, hour);
 process.exit(0);
