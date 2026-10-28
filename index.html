@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="he" dir="rtl" translate="no" class="notranslate">
+<html lang="he" dir="rtl" translate="no" class="notranslate" data-app="mizo">
+<!-- mizo -->
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -13,7 +14,8 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Secular+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Secular+One&display=swap" media="print" onload="this.media='all'">
+<meta name="generator" content="mizo">
 <style>
 /* Rosie — "rose garden at night". Plum-night surfaces, petal-pink actions, leaf-green for done.
    Display numbers & brand: Secular One. Everything else: Assistant. Dark by default, day mode for bright kitchens. */
@@ -67,7 +69,7 @@ button{font-family:inherit}
 .authcard{width:100%;max-width:380px;padding:34px 24px 24px;text-align:center}
 .authcard h1{font-family:var(--disp);font-weight:400;font-size:30px;margin:0}
 .authcard .sub{margin:2px 0 24px;color:var(--mute);font-size:15px}
-.authcard .field{text-align:right}
+.authcard .field{text-align:start}
 .field{display:grid;gap:6px;margin-bottom:14px}
 .field label{font-size:14px;font-weight:600;color:var(--mute)}
 .field input,.field select,.notebox textarea,.ta{border:1.5px solid var(--line);background:var(--raise);color:var(--ink);border-radius:14px;padding:13px 14px;font:inherit;font-size:16px}
@@ -125,7 +127,7 @@ section.cat{scroll-margin-top:200px}
 .track li.bad{color:var(--bad);font-weight:700} .track li.bad i{background:var(--bad);border-color:var(--bad)}
 .track li.warn{color:var(--warn)} .track li.warn i{background:var(--warn);border-color:var(--warn)}
 .track li small{display:block;font-size:11.5px;font-weight:700;color:var(--warn)}
-.banner{display:flex;align-items:center;gap:10px;width:100%;border:1px solid transparent;text-align:right;font:inherit;color:var(--ink);background:var(--paper);border-radius:18px;padding:13px 15px;margin-bottom:10px;flex-wrap:wrap}
+.banner{display:flex;align-items:center;gap:10px;width:100%;border:1px solid transparent;text-align:start;font:inherit;color:var(--ink);background:var(--paper);border-radius:18px;padding:13px 15px;margin-bottom:10px;flex-wrap:wrap}
 .banner > svg{flex:0 0 auto}
 .banner > span:first-of-type{flex:1;min-width:180px;font-size:15px}
 .banner i{font-style:normal;font-weight:700;color:var(--warn);font-size:14px}
@@ -211,7 +213,7 @@ output.chg{color:var(--acc-ink)!important;opacity:1!important}
 .hint{font-size:13.5px;color:var(--mute);margin:0 6px 12px}
 .donebar{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:15px;border-radius:18px;padding:14px 16px;cursor:pointer;margin-top:4px}
 .donelist{margin-top:8px}
-.drow{width:100%;border:0;border-top:1px solid var(--line);background:none;text-align:right;color:var(--ink);cursor:pointer;font:inherit}
+.drow{width:100%;border:0;border-top:1px solid var(--line);background:none;text-align:start;color:var(--ink);cursor:pointer;font:inherit}
 .drow:first-child{border-top:0}
 .drow .nm b{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--mute)}
 .tick{width:32px;height:32px;border-radius:50%;background:var(--ok);color:var(--on-ok);display:grid;place-items:center;font-size:16px;font-weight:800;flex:0 0 auto}
@@ -266,7 +268,7 @@ body.has-tabbar .bar{bottom:calc(66px + env(safe-area-inset-bottom,0px));padding
 .me{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .me b{display:block;font-size:18px}
 .me small{color:var(--mute)}
-.mitem{display:flex;align-items:center;gap:10px;width:100%;border:0;background:var(--raise);color:var(--ink);border-radius:16px;padding:15px;font-size:16px;font-weight:600;cursor:pointer;margin-top:8px;text-align:right}
+.mitem{display:flex;align-items:center;gap:10px;width:100%;border:0;background:var(--raise);color:var(--ink);border-radius:16px;padding:15px;font-size:16px;font-weight:600;cursor:pointer;margin-top:8px;text-align:start}
 .steps{padding-inline-start:22px;line-height:1.9}
 @keyframes up{from{transform:translateY(30px);opacity:0}}
 @keyframes fade{from{opacity:0}}
@@ -297,18 +299,18 @@ section.card > h3.pad-x{padding-top:15px}
 .clabels span{flex:1;min-width:0;font-size:11.5px;color:var(--mute);text-align:center;white-space:nowrap;overflow:visible}
 .more{width:100%;border:0;border-top:1px solid var(--line);background:none;color:var(--acc-ink);font-weight:700;padding:14px;cursor:pointer;font-size:15px}
 .tbl{display:grid}
-.tr{display:grid;grid-template-columns:1fr 54px 62px 84px;gap:8px;align-items:center;padding:11px 16px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:right;font:inherit;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;width:100%}
+.tr{display:grid;grid-template-columns:1fr 54px 62px 84px;gap:8px;align-items:center;padding:11px 16px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:start;font:inherit;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;width:100%}
 .tr span:not(:first-child){text-align:center}
 .tr b{font-weight:600}
 .tr.th{cursor:default;color:var(--mute);font-size:13px;font-weight:700;border-top:0;padding-block:6px}
 .trx{display:flex;flex-wrap:wrap;gap:6px;padding:4px 16px 12px;background:var(--raise)}
 .trx span{background:var(--paper);border-radius:12px;padding:6px 10px;text-align:center;min-width:46px}
 .trx span small{display:block;color:var(--mute);font-size:11.5px}
-.trx span.wide{flex-basis:100%;text-align:right;background:none;padding:4px 0 0;color:var(--mute);font-size:13px}
+.trx span.wide{flex-basis:100%;text-align:start;background:none;padding:4px 0 0;color:var(--mute);font-size:13px}
 .badv{color:var(--bad)} .warnv{color:var(--warn)} .nw{white-space:nowrap}
 .shw{font-style:normal;color:var(--warn);font-weight:700}
 .hist{display:grid}
-.hrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:right;font:inherit;width:100%;cursor:pointer}
+.hrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:start;font:inherit;width:100%;cursor:pointer}
 .hrow.static{cursor:default}
 .hd{flex:1;min-width:120px}
 .hd b{display:block;font-weight:700}
@@ -393,7 +395,7 @@ section.card.danger h3{color:var(--bad)}
 .wk i{font-style:normal;font-size:11px;margin-inline-start:3px;vertical-align:3px}
 .wk i.up{color:var(--ok)} .wk i.dn{color:var(--bad)}
 .wk i.nt{color:var(--mute)}
-.rrow{width:100%;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:right;font:inherit;cursor:pointer}
+.rrow{width:100%;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);text-align:start;font:inherit;cursor:pointer}
 .rrow:first-child{border-top:0}
 .rdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--mute);flex:0 0 auto}
 .rdot.on{background:var(--ok);border-color:var(--ok)}
@@ -434,7 +436,7 @@ section.card.danger h3{color:var(--bad)}
 .pgal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .pthumb{position:relative;border:1px solid var(--line);background:var(--paper);border-radius:14px;overflow:hidden;padding:0;cursor:pointer;aspect-ratio:3/4;font:inherit;color:#fff}
 .pthumb img{width:100%;height:100%;object-fit:cover;display:block}
-.pthumb span{position:absolute;inset:auto 0 0;padding:16px 7px 6px;background:linear-gradient(transparent,rgba(0,0,0,.78));font-size:11.5px;font-weight:700;text-align:right;line-height:1.3;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pthumb span{position:absolute;inset:auto 0 0;padding:16px 7px 6px;background:linear-gradient(transparent,rgba(0,0,0,.78));font-size:11.5px;font-weight:700;text-align:start;line-height:1.3;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .pthumb small{display:block;font-weight:400;opacity:.8;font-size:10.5px}
 .pnew{display:flex;gap:6px;overflow-x:auto;margin:8px 0 12px}
 .pnew img{height:110px;border-radius:12px;border:1px solid var(--line)}
@@ -444,7 +446,7 @@ section.card.danger h3{color:var(--bad)}
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .pgrid .ta{min-width:0;width:100%}
 .xlist{display:grid;gap:8px;margin:14px 0 4px}
-.xrow{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);background:var(--raise);color:var(--ink);border-radius:14px;padding:13px 14px;font:inherit;font-size:15.5px;font-weight:600;cursor:pointer;text-align:right}
+.xrow{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);background:var(--raise);color:var(--ink);border-radius:14px;padding:13px 14px;font:inherit;font-size:15.5px;font-weight:600;cursor:pointer;text-align:start}
 .xrow[aria-pressed="true"]{border-color:var(--acc)}
 .xbox{width:24px;height:24px;border-radius:7px;border:2px solid var(--mute);display:grid;place-items:center;font-size:14px;flex:0 0 auto}
 .xrow[aria-pressed="true"] .xbox{background:var(--acc);border-color:var(--acc);color:#2B0E1A}
@@ -474,13 +476,13 @@ section.card.danger h3{color:var(--bad)}
 .clbl{display:block;font-weight:800;font-size:14.5px;margin:14px 0 8px}
 .cbig{width:100%;font-size:28px;text-align:center;padding:12px;font-weight:800}
 .zbtn{display:block;text-align:center;cursor:pointer}
-.icbtn{display:block;border:0;background:none;color:inherit;font:inherit;text-align:right;padding:0;cursor:pointer;flex:1;min-width:0}
+.icbtn{display:block;border:0;background:none;color:inherit;font:inherit;text-align:start;padding:0;cursor:pointer;flex:1;min-width:0}
 .addc{color:var(--acc);font-weight:700}
 .byield.two{grid-template-columns:1fr 1fr;margin-top:10px}
 .rcats{width:100%;display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:8px}
 .rcats button{padding:8px 2px;font-size:12.5px}
 .suplist.cats{margin-top:6px}
-.closecard{flex-wrap:nowrap;width:100%;border:1px solid var(--acc);background:var(--acc-soft);color:var(--ink);font:inherit;text-align:right;cursor:pointer;display:flex;align-items:center;gap:10px}
+.closecard{flex-wrap:nowrap;width:100%;border:1px solid var(--acc);background:var(--acc-soft);color:var(--ink);font:inherit;text-align:start;cursor:pointer;display:flex;align-items:center;gap:10px}
 .closecard .chev{margin-inline-start:auto}
 .clbl small{font-weight:400;color:var(--mute);font-size:12.5px}
 .zbtn{margin-top:4px}
@@ -576,7 +578,7 @@ body{background:radial-gradient(1100px 520px at 50% -180px,rgba(184,74,104,.16),
 .stdrow img{width:64px;height:64px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .stdrow label{flex:1;text-align:center;cursor:pointer}
 .tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0}
-.tcard{border:1px solid var(--line);background:var(--raise);border-radius:16px;overflow:hidden;padding:0;cursor:pointer;color:var(--ink);font:inherit;text-align:right;box-shadow:var(--edge)}
+.tcard{border:1px solid var(--line);background:var(--raise);border-radius:16px;overflow:hidden;padding:0;cursor:pointer;color:var(--ink);font:inherit;text-align:start;box-shadow:var(--edge)}
 .tcard img,.tcard .tph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
 .tcard .tph{display:grid;place-items:center;font-size:30px;background:var(--paper)}
 .tcard b{display:block;padding:9px 11px;font-size:14.5px}
@@ -609,7 +611,7 @@ body{background:radial-gradient(1100px 520px at 50% -180px,rgba(184,74,104,.16),
 .wp{font-family:var(--disp);font-size:17px;text-align:left;color:var(--mute)}
 .wp.hi{color:var(--warn)}
 .dsec{margin-bottom:10px;overflow:hidden}
-.dsh{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;border:0;background:none;color:var(--ink);font:inherit;text-align:right;padding:15px 16px;cursor:pointer}
+.dsh{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;border:0;background:none;color:var(--ink);font:inherit;text-align:start;padding:15px 16px;cursor:pointer}
 .dsh b{font-size:15.5px}
 .dsh small{color:var(--mute);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dsh .chev{color:var(--mute)}
@@ -732,7 +734,7 @@ output.bump{animation:bump .32s var(--spring)}
 .grp{background:var(--paper);border-radius:12px;overflow:hidden;margin-bottom:22px}
 .gh+.grp{margin-top:0}
 .gfoot{font-size:13px;color:var(--mute);margin:-14px 16px 22px;line-height:1.4}
-.srow{width:100%;display:flex;align-items:center;gap:12px;min-height:46px;padding:7px 16px;border:0;background:none;color:var(--ink);font:inherit;text-align:right;position:relative;cursor:default}
+.srow{width:100%;display:flex;align-items:center;gap:12px;min-height:46px;padding:7px 16px;border:0;background:none;color:var(--ink);font:inherit;text-align:start;position:relative;cursor:default}
 button.srow{cursor:pointer;transition:background .15s}
 button.srow:active{background:var(--raise)}
 .srow+.srow::before{content:"";position:absolute;top:0;right:16px;left:0;height:.5px;background:var(--line)}
@@ -875,7 +877,7 @@ button.srow:active{background:var(--raise)}
 .mgrp .srow small{font-size:12.5px}
 .tbst{display:flex;align-items:center;gap:2px;white-space:nowrap}
 /* 2.2: כרטיס הכנה, העברה, שעון אחד */
-.irow{width:100%;border:0;background:none;color:inherit;font:inherit;text-align:right;cursor:pointer}
+.irow{width:100%;border:0;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}
 .irow.off .nm b{color:var(--mute)}
 .irow .schev{color:var(--mute);font-size:20px}
 .pill svg{width:13px;height:13px;vertical-align:-2px;margin-inline-end:4px;fill:none;stroke:currentColor;stroke-width:2.2}
@@ -1003,7 +1005,7 @@ header{z-index:4}
 /* מסך בחירת מסעדה */
 .sitepick h1{margin:0 0 4px}
 .sites{display:grid;gap:10px;margin:18px 0 14px}
-.sitec{display:flex;align-items:center;gap:14px;width:100%;border:0;border-radius:16px;background:var(--raise);color:var(--ink);font:inherit;text-align:right;padding:14px 16px;cursor:pointer;transition:transform .12s}
+.sitec{display:flex;align-items:center;gap:14px;width:100%;border:0;border-radius:16px;background:var(--raise);color:var(--ink);font:inherit;text-align:start;padding:14px 16px;cursor:pointer;transition:transform .12s}
 .sitec:active{transform:scale(.98)}
 .sitec i{flex:0 0 auto;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:22px;color:#fff}
 .sitec.s-rosie i{background:linear-gradient(160deg,#FF9AB4,#E0436A)}
@@ -1038,7 +1040,7 @@ body.grpb .glow{display:none}
 .qa b{display:block;padding-inline-end:34px}
 /* שער: בלי כרטיס, ישר על הרקע, כמו אפליקציות גדולות */
 .auth.grp{display:block;min-height:100vh;padding:max(56px,9vh) 0 40px}
-.auth.grp .authcard{background:none;border:0;box-shadow:none;max-width:400px;margin:0 auto;padding:0 24px;text-align:right}
+.auth.grp .authcard{background:none;border:0;box-shadow:none;max-width:400px;margin:0 auto;padding:0 24px;text-align:start}
 .auth.grp .jsign{display:flex;width:max-content;margin:0 auto 44px}
 .auth.grp .gt{font:700 26px/1.2 var(--ui);letter-spacing:-.01em;margin:0 0 4px;color:var(--ink)}
 .auth.grp .gs{margin:0 0 4px;color:var(--mute);font-size:15px}
@@ -1057,8 +1059,8 @@ body.grpb .glow{display:none}
 .opt[aria-checked="true"]{border-color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,var(--raise))}
 .opt[aria-checked="true"] i{border:6px solid var(--ink)}
 .opt:focus-visible,.auth.grp .btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.auth.grp h1{font:700 26px/1.2 var(--ui);letter-spacing:-.01em;margin:0 0 6px;text-align:right}
-.auth.grp h1+.sub{margin:0 0 26px;text-align:right;font-size:15px}
+.auth.grp h1{font:700 26px/1.2 var(--ui);letter-spacing:-.01em;margin:0 0 6px;text-align:start}
+.auth.grp h1+.sub{margin:0 0 26px;text-align:start;font-size:15px}
 .auth.grp .btn.ghost{height:50px;border-radius:14px}
 /* ---------- נתונים: 4 מספרים, גרף, תשומת לב ---------- */
 .kpi4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:4px 0 12px}
@@ -1098,12 +1100,63 @@ body.grpb .glow{display:none}
 .sok{margin:8px 2px 10px;color:var(--ok);font-size:14.5px;font-weight:600}
 .srep{margin:4px -16px 0;width:calc(100% + 32px);border-top:1px solid var(--line)!important;border-radius:0 0 18px 18px}
 /* פריטים: קטגוריות מתקפלות */
-.cath{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 16px;font:800 15.5px var(--ui);cursor:pointer;margin-bottom:8px;text-align:right}
+.cath{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 16px;font:800 15.5px var(--ui);cursor:pointer;margin-bottom:8px;text-align:start}
 .cath > span:first-child{display:inline-flex;align-items:center;gap:8px}
 .cath .ct{font-weight:700;font-size:13.5px;color:var(--mute)}.cath .chev{font-style:normal;margin-inline-start:6px}
 .cath[aria-expanded="true"]{margin-bottom:6px}
 .addopen{margin-bottom:14px}
 .guide1{padding:16px;display:grid;gap:4px;margin-bottom:6px}.guide1 b{font-size:16.5px}.guide1 span{color:var(--mute);font-size:14.5px}
+
+/* =====================================================================
+   mizo 2.3 — ליטוש מקצועי. אותם כפתורים ואותה התנהגות; רק מראה, באייפון ובאנדרואיד
+   ===================================================================== */
+/* אנדרואיד: אותו פונט ואותה תחושה כמו באייפון */
+:root{--ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Hebrew","Assistant","Roboto","Rubik",system-ui,sans-serif}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+button,input,select,textarea{font-family:var(--ui)}
+/* רקע נקי: הזוהר הצבעוני למעלה עדין בהרבה */
+.glow{opacity:.45}:root[data-theme="light"] .glow{opacity:.25}
+/* כפתורי + ו-− גדולים יותר: לחיצה בטוחה גם עם כפפות וידיים רטובות */
+.step{height:40px;border-radius:10px}
+.step button,.step button:last-child{width:46px;height:40px;font-size:24px}
+.step output{min-width:34px;font-size:18px}
+/* הכנה שכבר בהזמנה: רקע עדין בצבע המסעדה */
+.row.on{background:color-mix(in srgb,var(--acc) 7%,transparent)}
+/* מספרים מיושרים בכל מקום */
+.qty,.kp b,.sk b,.sm b,.tile b,.hq,.day span{font-variant-numeric:tabular-nums}
+/* טעינה: שלד אפור במקום "טוען…" */
+.skel{display:grid;gap:10px;padding:6px 0}
+.skel i{display:block;height:56px;border-radius:12px;background:var(--paper);position:relative;overflow:hidden}
+.skel i:nth-child(1){height:72px}.skel i:nth-child(4){width:70%}
+.skel i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ink) 5%,transparent),transparent);transform:translateX(100%);animation:skel 1.3s ease-in-out infinite}
+@keyframes skel{to{transform:translateX(-100%)}}
+/* גרף: עמודות מעוגלות, קו ממוצע מקווקו, בלי רשת */
+.chart .avg{stroke:var(--mute);stroke-width:1;stroke-dasharray:4 4;opacity:.7}
+.chart .grid{display:none}
+/* הצעה לשיפור */
+.ta.idea{width:100%;min-height:110px;resize:vertical;margin:6px 0 14px;line-height:1.45}
+.ta.idea::placeholder{color:var(--mute2,rgba(235,235,245,.3))}
+/* mizo: סימן שקט */
+.mz{margin:2px 0 0;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--mute);opacity:.35;text-transform:lowercase}
+/* תנועה: קצרה ועדינה. מי שביקש פחות תנועה בטלפון — בלי תנועה בכלל */
+main.enter{animation-duration:.24s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* לחיצה: משוב מיידי, בלי השהיה של 300ms באנדרואיד */
+button,a,label,.row,.srow{touch-action:manipulation}
+/* כפתור השליחה כשהוא לא לחיץ: מצב ברור וקריא, לא דהוי */
+.barin .btn:disabled,:root[data-theme] .barin .btn:disabled,:root[data-site] .barin .btn:not(.ghost):not(.okb):not(.badb):disabled{opacity:1;background:rgba(255,255,255,.2)!important;color:#fff!important}
+/* אנגלית (משמאל לימין): אותו עיצוב במראה הפוך. עברית וערבית לא משתנות */
+[dir="ltr"] .tl li::before{right:auto;left:6px}
+[dir="ltr"] .row+.row::before,[dir="ltr"] .rrow+.rrow::before,[dir="ltr"] .srow+.srow::before{right:0;left:16px}
+[dir="ltr"] .srow:has(.ib)+.srow:has(.ib)::before{right:0;left:58px}
+[dir="ltr"] .row.on::after{right:auto;left:6px}
+[dir="ltr"] .sw::after{right:auto;left:2px;transition:left .28s var(--spring)}
+[dir="ltr"] .sw.on::after{right:auto;left:22px}
+[dir="ltr"] .schev,[dir="ltr"] .chev-l{display:inline-block;transform:scaleX(-1)}
+[data-lang="en"] .kp small,[data-lang="en"] .sk span,[data-lang="en"] .tile small,[data-lang="en"] .gh,[data-lang="en"] .cath > span:first-child{text-transform:capitalize}
+/* ערבית: פונט המערכת של ערבית בכל טלפון */
+[data-lang="ar"]{--ui:-apple-system,BlinkMacSystemFont,"SF Arabic","Geeza Pro","Noto Sans Arabic","Noto Naskh Arabic","Assistant",system-ui,sans-serif}
 
 </style>
 </head>
@@ -2267,7 +2320,51 @@ const DEFAULT_CATALOG_JACO = {
  }
 };
 
+/* שפות: עברית (המקור), ערבית ואנגלית. כל טקסט בממשק עובר כאן אחרי שהוא מוצג.
+   מילון לפי הטקסט בעברית; מספרים מוחלפים ב-{n}, ותבניות עם (.+) לטקסט שמשתנה (שמות, הכנות). */
+const LANGS = [["he", "עברית"], ["ar", "العربية"], ["en", "English"]];
+const LANG = (() => { try { const l = localStorage.getItem("mizo-lang"); return ["ar", "en"].includes(l) ? l : "he"; } catch (e) { return "he"; } })();
+const I18N = { ar: {}, en: {} };
+const I18N_PAT = { ar: [], en: [] };
+const HEB = /[\u0590-\u05FF]/, NUMRE = /\d+(?:[.,:/]\d+)*/g, TRC = new Map();
+function tr(t) {
+  if (LANG === "he" || !t || !HEB.test(t)) return null;
+  const hit = TRC.get(t); if (hit !== undefined) return hit;
+  const D = I18N[LANG], nums = t.match(NUMRE) || [], k = t.replace(NUMRE, "{n}");
+  let v = D[t] != null ? D[t] : null;
+  if (v == null && D[k] != null) { let i = 0; v = D[k].replace(/\{n\}/g, () => (nums[i++] ?? "")); }
+  if (v == null) for (const [re, out] of I18N_PAT[LANG]) { const m = t.match(re); if (m) { v = out.replace(/\$(\d)/g, (_, i) => { const x = m[+i] || ""; return tr(x.trim()) ?? x; }); break; } }
+  if (v == null && typeof window !== "undefined" && window.__miss) window.__miss.add(k);
+  TRC.set(t, v); return v;
+}
+const ATTRS = ["placeholder", "aria-label", "title"];
+function trNode(root) {
+  if (!root) return;
+  if (root.nodeType === 3) { const s = root.nodeValue, t = s.trim(); if (!t) return; const v = tr(t); if (v != null) root.nodeValue = s.replace(t, v); return; }
+  if (root.nodeType !== 1 && root.nodeType !== 11) return;
+  if (root.nodeType === 1) { if (root.tagName === "SCRIPT" || root.tagName === "STYLE") return; ATTRS.forEach((a) => { const x = root.getAttribute && root.getAttribute(a); if (x && HEB.test(x)) { const v = tr(x.trim()); if (v != null) root.setAttribute(a, v); } }); }
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, { acceptNode: (n) => (n.nodeType === 1 && (n.tagName === "SCRIPT" || n.tagName === "STYLE") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT) });
+  let n; while ((n = w.nextNode())) {
+    if (n.nodeType === 3) { const s = n.nodeValue, t = s.trim(); if (t && HEB.test(t)) { const v = tr(t); if (v != null) n.nodeValue = s.replace(t, v); } }
+    else for (const a of ATTRS) { const x = n.getAttribute(a); if (x && HEB.test(x)) { const v = tr(x.trim()); if (v != null) n.setAttribute(a, v); } }
+  }
+}
+function startI18n() {
+  if (LANG === "he") return;
+  const h = document.documentElement; h.lang = LANG; h.dir = LANG === "en" ? "ltr" : "rtl"; h.dataset.lang = LANG;
+  trNode(document.body);
+  new MutationObserver((ms) => { for (const m of ms) { if (m.type === "characterData") { const t = m.target.nodeValue.trim(); if (t && HEB.test(t)) trNode(m.target); } else m.addedNodes.forEach(trNode); } })
+    .observe(document.body, { childList: true, subtree: true, characterData: true });
+}
 
+/* מילון — נבנה ע״י app/i18n/build_dict.py. שמות הכנות ושמות אנשים נשארים כמו שהם */
+Object.assign(I18N.ar, {"(אוטומטי)": "(تلقائي)", "(גרם)": "(غرام)", "(הכנה שנמחקה)": "(تحضير محذوف)", "(חלקי)": "(جزئي)", "+ עובדים": "+ عمال", "Claude ודוחות": "Claude والتقارير", "Claude חושב · תקבל התראה": "Claude يفكر · ستصلك إشعار", "Claude כותב": "Claude يكتب", "Claude לא מחובר": "Claude غير متصل", "Claude מול ההזמנות": "Claude مقابل الطلبيات", "Claude מכין את הדוח · תקבל התראה": "Claude يحضّر التقرير · ستصلك إشعار", "Claude מנתח": "Claude يحلّل", "Claude מציע כל יום בצהריים את ההזמנה למחר": "Claude يقترح كل يوم عند الظهر طلبية الغد", "Claude קורא": "Claude يقرأ", "Claude קורא וממלא": "Claude يقرأ ويعبّئ", "Excel, PDF או צילום": "Excel أو PDF أو صورة", "{n} בהזמנה": "{n} في الطلبية", "{n} הזמנות": "{n} طلبيات", "{n} הזמנות אחרי {n}": "{n} طلبيات بعد {n}", "{n} היום": "{n} اليوم", "{n} הימים האחרונים": "آخر {n} يومًا", "{n} הכנה נשארה": "بقي {n} تحضير", "{n} הכנות": "{n} تحضيرات", "{n} הכנות נשארו": "بقيت {n} تحضيرات", "{n} חוסרים ב-{n} ימים": "{n} نواقص في {n} أيام", "{n} ימים": "{n} أيام", "{n} מתוך {n} קופסאות · להזמין פחות": "{n} من {n} علب · اطلبوا أقل", "{n} פעמים בתקופה": "{n} مرات في الفترة", "{n} קופסאות": "{n} علب", "{n} שינויים": "{n} تغييرات", "{n}% · {n} קופסאות": "{n}% · {n} علب", "© {n} קבוצת ג'קו סטריט": "© {n} مجموعة جاكو ستريت", "· {n} · {n} קופסאות": "· {n} · {n} علب", "· אחרי {n}": "· بعد {n}", "· בעלים": "· المالك", "· זוהה אוטומטית": "· تم التعرّف تلقائيًا", "· משלוח": "· توصيل", "· משלוח מחר {n} · {n} קופסאות": "· توصيل غدًا {n} · {n} علب", "· עודכן ע״י": "· حدّثه", "· שבת/חג": "· سبت/عيد", "אוגוסט": "آب", "אודות": "حول", "אוטומטי": "تلقائي", "אוקטובר": "تشرين الأول", "אושר": "تمت الموافقة", "אושרה": "تمت الموافقة", "אושרה ✓": "تمت الموافقة ✓", "אושרה ✓ {n}": "تمت الموافقة ✓ {n}", "אזור": "المنطقة", "אחר": "آخر", "אחרונות": "الأخيرة", "אחרי {n}": "بعد {n}", "אחרי {n} — עדיין אפשר לשלוח": "بعد {n} — لا يزال ممكنًا الإرسال", "אחרי {n} — עדיין אפשר לשלוח, המטבח יאשר": "بعد {n} — لا يزال ممكنًا الإرسال، والمطبخ سيوافق", "אחרי ההרשמה המנהל מאשר אותך": "بعد التسجيل يوافق عليك المدير", "איולי ורטבים": "أيولي وصلصات", "איחורים": "تأخيرات", "איכות": "الجودة", "אילנה": "إيلانا", "אין": "لا يوجد", "אין גישה": "لا يوجد دخول", "אין הזמנה מאושרת ליום הזה": "لا توجد طلبية موافق عليها لهذا اليوم", "אין הזמנות בתקופה.": "لا توجد طلبيات في هذه الفترة.", "אין זיכויים פתוחים": "لا توجد أرصدة دائنة مفتوحة", "אין חיבור לאינטרנט": "لا يوجد اتصال بالإنترنت", "אין כלים פעילים": "لا توجد أدوات مفعّلة", "אין עדיין נתונים": "لا توجد بيانات بعد", "אין פעולות": "لا توجد إجراءات", "אין קליטה טובה. נשמר בטלפון ויישלח לבד": "الإشارة ضعيفة. تم الحفظ في الهاتف وسيُرسل تلقائيًا", "אין ✓": "لا ✓", "איפה הכי הרבה פחת?": "أين أكثر هدر؟", "איפוס כל הנתונים": "إعادة ضبط كل البيانات", "איפוס נתונים": "إعادة ضبط البيانات", "אישור": "موافقة", "אישור ההזמנה": "الموافقة على الطلبية", "אישור השינוי": "الموافقة على التغيير", "אישור קבלה": "تأكيد الاستلام", "אישור קבלה: הכל התקבל": "تأكيد الاستلام: وصل كل شيء", "אנשים": "الأشخاص", "אפריל": "نيسان", "אתמול": "أمس", "א׳": "أحد", "א׳–ה׳": "أحد–خميس", "ב-{n} ימים": "في {n} أيام", "באייפון אפשר לקבל התראות רק מהאפליקציה שעל מסך הבית:": "على الآيفون تصل الإشعارات فقط من التطبيق الموجود على الشاشة الرئيسية:", "בהיר": "فاتح", "בוחרים ״הוסף למסך הבית״": "اختاروا «إضافة إلى الشاشة الرئيسية»", "בוטלה": "أُلغيت", "בזמן": "في الوقت", "בחירה מה לכלול בייצוא": "اختيار ما يُشمل في التصدير", "בחר הכנה": "اختر تحضيرًا", "בחר הכנה…": "اختر تحضيرًا…", "בחרו מסעדה": "اختاروا مطعمًا", "ביום סגור אין הזמנה ואין תזכורות, והוא לא נספר בנתונים.": "في اليوم المغلق لا توجد طلبية ولا تذكيرات، ولا يُحسب في البيانات.", "ביטול": "إلغاء", "ביטול ההזמנה": "إلغاء الطلبية", "בייצור": "في الإنتاج", "ביקשו": "طلبوا", "בישולים": "طبخات", "בלי טלפונים": "بدون مكالمات", "בלי טעויות": "بدون أخطاء", "במכשיר הזה": "على هذا الجهاز", "בעלים": "المالك", "בעלים · הכול": "المالك · كل شيء", "בעלים · כל המסעדות": "المالك · كل المطاعم", "בצקים": "عجائن", "בקשות שינוי": "طلبات تغيير", "בקשת השינוי נדחתה": "طلب التغيير رُفض", "בקשת השינוי נדחתה. נשארה ההזמנה המאושרת": "طلب التغيير رُفض. بقيت الطلبية الموافق عليها", "בקשת השינוי נשלחה": "طلب التغيير أُرسل", "בקשת שינוי": "طلب تغيير", "בקשת שינוי בהזמנה": "طلب تغيير في الطلبية", "בקשת שינוי ממתינה לאישור": "طلب تغيير بانتظار الموافقة", "בקשת שינוי:": "طلب تغيير:", "ברגע שיחובר": "عندما يتصل", "בשר": "لحوم", "בשר ודגים": "لحوم وأسماك", "ב׳": "اثنين", "ג'קו": "جاكو", "ג'קו סטריט": "جاكو ستريت", "גבינות": "أجبان", "גיבוי נתונים": "نسخ احتياطي للبيانات", "גישה:": "الدخول:", "גם": "أيضًا", "גם מחר {n}": "غدًا أيضًا {n}", "גרם": "غرام", "גרסה": "الإصدار", "גרסה {n}": "الإصدار {n}", "ג׳": "ثلاثاء", "דגים": "أسماك", "דוח": "تقرير", "דוח עכשיו": "تقرير الآن", "דוחות": "تقارير", "דורש תשומת לב": "يحتاج انتباه", "דו״ח קופה": "تقرير الصندوق", "דחה הזמנה": "رفض الطلبية", "דחה שינוי": "رفض التغيير", "דחיית בקשת השינוי": "رفض طلب التغيير", "דחיית ההזמנה": "رفض الطلبية", "דיווח חוסר:": "تبليغ عن نقص:", "דצמבר": "كانون الأول", "ד׳": "أربعاء", "האפליקציה": "التطبيق", "הבנתי": "فهمت", "הגדרות": "الإعدادات", "הגיבוי ירד": "تم تنزيل النسخة الاحتياطية", "הגיבוי נכשל": "فشل النسخ الاحتياطي", "הגישה שלך הוסרה. פנה למנהל.": "تم إلغاء دخولك. توجّه للمدير.", "הדוח לא נמצא": "التقرير غير موجود", "הדפדפן הזה לא תומך בהתראות": "هذا المتصفح لا يدعم الإشعارات", "ההודעה": "الرسالة", "ההזמנה אושרה ✓": "تمت الموافقة على الطلبية ✓", "ההזמנה בוטלה": "أُلغيت الطلبية", "ההזמנה המאושרת הקודמת נשארת בתוקף.": "الطلبية الموافق عليها السابقة تبقى سارية.", "ההזמנה השתנתה או אושרה בדיוק עכשיו — בדוק שוב לפני אישור": "الطلبية تغيّرت أو تمت الموافقة عليها الآن — افحص مرة أخرى قبل الموافقة", "ההזמנה למחר מחכה לאישור": "طلبية الغد بانتظار الموافقة", "ההזמנה למחר עוד לא נשלחה": "طلبية الغد لم تُرسل بعد", "ההזמנה נדחתה": "رُفضت الطلبية", "ההזמנה נדחתה.": "رُفضت الطلبية.", "ההזמנה נשלחה": "أُرسلت الطلبية", "ההזמנה עודכנה ·": "تم تحديث الطلبية ·", "ההזמנה עודכנה אצל המטבח": "تم تحديث الطلبية عند المطبخ", "ההזמנה שוחזרה": "تمت استعادة الطلبية", "ההזמנה, האישור והחוסרים כתובים": "الطلبية والموافقة والنواقص مكتوبة", "ההזמנות למחר נסגרות ב-{n}": "طلبيات الغد تُغلق الساعة {n}", "ההעברה נכשלה": "فشل النقل", "ההערה לא נשמרה": "الملاحظة لم تُحفظ", "ההערה נמחקה": "حُذفت الملاحظة", "ההערה נשמרה. המטבח יראה אותה": "حُفظت الملاحظة. المطبخ سيراها", "ההתראות הופעלו בטלפון הזה ✓": "تم تفعيل الإشعارات على هذا الهاتف ✓", "ההתראות חסומות. אפשר לאשר בהגדרות הדפדפן": "الإشعارات محظورة. يمكن السماح بها في إعدادات المتصفح", "הודלק": "تم التشغيل", "הודעה": "رسالة", "הודעה לצוות": "رسالة للفريق", "הודעה מגדי": "رسالة من جادي", "הוזמן ב-": "طُلب في", "הוזמנו": "طُلبت", "הוחזרה": "أُعيدت", "הוכן חלקית:": "حُضّر جزئيًا:", "הוכן:": "حُضّر:", "הוסף": "إضافة", "הוסתרה": "أُخفيت", "הועברה ל": "نُقلت إلى", "הועתק. הדבק בצ׳אט ובקש ניתוח": "تم النسخ. الصقوه في المحادثة واطلبوا تحليلًا", "הורדת התמונות נכשלה": "فشل تنزيل الصور", "הזיכוי נרשם. תקבל תזכורת עד שיתקבל": "تم تسجيل الرصيد الدائن. ستصلك تذكيرات حتى يُستلم", "הזמנה": "طلبية", "הזמנה הבאה": "الطلبية التالية", "הזמנה חדשה": "طلبية جديدة", "הזמנה חדשה למעלה: מאשרים": "طلبية جديدة في الأعلى: وافقوا عليها", "הזמנה חדשה ממתינה לאישור": "طلبية جديدة بانتظار الموافقة", "הזמנה ל": "طلبية لـ", "הזמנה נסגרת": "الطلبية تُغلق", "הזמנה נסגרת רביעי {n}": "الطلبية تُغلق الأربعاء {n}", "הזמנה נסגרת שלישי {n}": "الطلبية تُغلق الثلاثاء {n}", "הזמנה נסגרת שני {n}": "الطلبية تُغلق الاثنين {n}", "הזמנה נסגרת ראשון {n}": "الطلبية تُغلق الأحد {n}", "הזמנה נסגרת חמישי {n}": "الطلبية تُغلق الخميس {n}", "הזמנה נסגרת שישי {n}": "الطلبية تُغلق الجمعة {n}", "הזמנה נסגרת שבת {n}": "الطلبية تُغلق السبت {n}", "הזמנות": "طلبيات", "הזמנות וייצור": "طلبيات وإنتاج", "הזמנות לאקסל (CSV)": "الطلبيات إلى Excel (CSV)", "החודש": "هذا الشهر", "החודש הקודם": "الشهر الماضي", "החודש עד היום": "الشهر حتى اليوم", "החזרה": "إرجاع", "החלפת מסעדה": "تبديل المطعم", "החשבון והקוד האישי": "الحساب والرمز الشخصي", "החשבון שלי": "حسابي", "היום": "اليوم", "היסטוריית הזמנות": "سجل الطلبيات", "הכול": "الكل", "הכול במקום אחד, בזמן אמת.": "كل شيء في مكان واحد، في الوقت الحقيقي.", "הכול מוכן למשלוח": "كل شيء جاهز للتوصيل", "הכנה": "تحضير", "הכנה חדשה:": "تحضير جديد:", "הכנה נשארה": "تحضير متبقٍ", "הכנה שנזרקת שוב ושוב יורדת לבד בהצעת ההזמנה.": "التحضير الذي يُرمى مرارًا ينخفض تلقائيًا في اقتراح الطلبية.", "הכנה:": "تحضير:", "הכנות": "تحضيرات", "הכנות נשארו": "تحضيرات متبقية", "המחיקה נכשלה — נסה שוב": "فشل الحذف — حاول مرة أخرى", "המנה נשמרה": "تم حفظ الطبق", "המנהלים": "المدراء", "המסעדה מזמינה, מטבח ההכנות מכין ומאשר.": "المطعم يطلب، ومطبخ التحضيرات يحضّر ويوافق.", "המשלוח הגיע: מאשרים, או מסמנים מה חסר": "وصل التوصيل: أكّدوا، أو حدّدوا ما ينقص", "המשלוח התקבל ✓": "تم استلام التوصيل ✓", "המשלוח של היום הגיע?": "هل وصل توصيل اليوم؟", "המשתמש נמחק": "تم حذف المستخدم", "המתכון נשמר": "تم حفظ الوصفة", "הסבר מלא": "شرح كامل", "הסיסמאות לא זהות": "كلمات المرور غير متطابقة", "הסיסמה הנוכחית שגויה": "كلمة المرور الحالية خاطئة", "הסיסמה עודכנה": "تم تحديث كلمة المرور", "הסיסמה צריכה להיות לפחות {n} תווים": "كلمة المرور يجب أن تكون {n} أحرف على الأقل", "העברה ליום אחר": "نقل إلى يوم آخر", "העברת הזמנה": "نقل الطلبية", "הערב נסגר ✓ Claude יקרא את הדו״ח": "تم إغلاق المساء ✓ Claude سيقرأ التقرير", "הערה": "ملاحظة", "הערה להכנה": "ملاحظة للتحضير", "הערה למטבח": "ملاحظة للمطبخ", "הערה למטבח הייצור": "ملاحظة لمطبخ الإنتاج", "הערות": "ملاحظات", "הערות הגשה": "ملاحظات التقديم", "הערות:": "ملاحظات:", "העתק": "نسخ", "העתק לניתוח בצ׳אט": "نسخ للتحليل في المحادثة", "הפעלת ההתראות נכשלה": "فشل تفعيل الإشعارات", "הפעלת התראות בטלפון הזה": "تفعيل الإشعارات على هذا الهاتف", "הפק דוח עכשיו": "أصدر تقريرًا الآن", "הצג את כל": "عرض كل", "הצג רק מה שבהזמנה": "عرض ما في الطلبية فقط", "הצעה לשיפור": "اقتراح للتحسين", "הצעות לשיפור": "اقتراحات للتحسين", "הקובץ גדול מדי. נסו לייצא כ-Excel": "الملف كبير جدًا. جرّبوا التصدير كـ Excel", "הקובץ ירד. צרף אותו לצ׳אט": "تم تنزيل الملف. أرفقه بالمحادثة", "הקובץ עלה ✓ Claude קורא אותו": "تم رفع الملف ✓ Claude يقرأه", "הקובץ עלה ✓ ייקרא כש-Claude יחובר": "تم رفع الملف ✓ سيُقرأ عندما يتصل Claude", "הקוד האישי שלך": "رمزك الشخصي", "הקוד הועתק": "تم نسخ الرمز", "הקלד את סיסמת המנהל": "اكتب كلمة مرور المدير", "הרשמה": "تسجيل", "השבוע שעבר": "الأسبوع الماضي", "השינוי חל מיד אצל כל עובדי ג'קו. כיבוי לא מוחק נתונים.": "التغيير يسري فورًا على كل عمال جاكو. الإيقاف لا يحذف بيانات.", "השינוי חל מיד אצל כל עובדי רוזי. כיבוי לא מוחק נתונים.": "التغيير يسري فورًا على كل عمال روزي. الإيقاف لا يحذف بيانات.", "השינוי נשלח למטבח לאישור": "أُرسل التغيير للمطبخ للموافقة", "השליחה נכשלה — בדוק חיבור ונסה שוב": "فشل الإرسال — افحص الاتصال وحاول مرة أخرى", "השלמה": "إكمال", "השקילה לא נשמרה": "الوزن لم يُحفظ", "התאמה ממוצעת": "تطابق متوسط", "התמונה גדולה מדי": "الصورة كبيرة جدًا", "התקבל": "استُلم", "התקבל ברוזי": "استُلم في روزي", "התקבל ברוזי {n}": "استُلم في روزي {n}", "התקבלה": "استُلمت", "התראה לטלפון": "إشعار للهاتف", "התראות": "إشعارات", "התראות באייפון": "إشعارات على الآيفون", "התראות לטלפון": "إشعارات للهاتف", "התראות פעילות בטלפון הזה ✓": "الإشعارات مفعّلة على هذا الهاتف ✓", "ה׳": "خميس", "ו׳": "جمعة", "זיכויים מספקים": "أرصدة دائنة من الموردين", "זרקתם משהו: ⋯ ← פחת": "رميتم شيئًا: ⋯ ← هدر", "חדר בקרה": "غرفة التحكم", "חדר שליטה": "غرفة القيادة", "חודשי": "شهري", "חוסר ·": "نقص ·", "חוסר מראש": "نقص مسبق", "חוסר צפוי": "نقص متوقع", "חוסר צפוי במשלוח היום": "نقص متوقع في توصيل اليوم", "חוסר:": "نقص:", "חוסרים": "نواقص", "חוקי האבטחה לא עודכנו": "قواعد الأمان لم تُحدّث", "חזרה": "رجوع", "חיסכון": "توفير", "חיפוש": "بحث", "חיפוש הכנה": "بحث عن تحضير", "חיפוש מתכון או רכיב": "بحث عن وصفة أو مكوّن", "חלבי": "ألبان", "חמישי": "الخميس", "חמישי {n}": "الخميس {n}", "חסום": "محظور", "חסר": "ناقص", "חסר / פגום בקבלה הזו?": "ناقص / تالف في هذا الاستلام؟", "חסר בקבלה": "ناقص عند الاستلام", "חסר בקבלה:": "ناقص عند الاستلام:", "חסר משהו": "ينقص شيء", "חסר מתכון": "تنقص وصفة", "חסר ספק או פירוט": "ينقص مورّد أو تفاصيل", "חסר: מסמנים כמה יצא": "ناقص: حدّدوا كم خرج", "חסרה עלות עובדים": "تنقص تكلفة العمال", "חצי": "نصف", "חריג": "استثنائي", "טבח · הזמנות": "طبّاخ · طلبيات", "טבח הכנות": "طبّاخ تحضيرات", "טבחי הזמנות": "طبّاخو الطلبيات", "טבחי הכנות": "طبّاخو التحضيرات", "טוען": "جارٍ التحميل", "טיגונים": "مقليات", "טיוטה": "مسودة", "טיוטה · נשמרת אוטומטית": "مسودة · تُحفظ تلقائيًا", "טיפים (לא בעלות)": "بقشيش (ليس من التكلفة)", "טעינה": "تحميل", "טעינה {n} שנ׳ · מסך {n}ms בממוצע · {n}ms לכל היותר": "تحميل {n} ث · شاشة {n}ms بالمعدل · {n}ms كحد أقصى", "טעינת המנות נכשלה": "فشل تحميل الأطباق", "טעינת המתכונים נכשלה": "فشل تحميل الوصفات", "טעינת הנתונים נכשלה": "فشل تحميل البيانات", "טעינת התמונות נכשלה": "فشل تحميل الصور", "יבש": "جاف", "יבשים": "جافة", "יבשים ושימורים": "جافة ومعلبات", "יולי": "تموز", "יום": "يوم", "יום משלוח": "يوم التوصيل", "יומי": "يومي", "יומן ודוחות": "السجل والتقارير", "יומן פעולות": "سجل الإجراءات", "יומן שינויים": "سجل التغييرات", "יוני": "حزيران", "יותר מדי ניסיונות. נסה שוב בעוד כמה דקות": "محاولات كثيرة. حاول بعد بضع دقائق", "יח׳": "وحدة", "יימחקו לגמרי. ההזמנות והפעולות שלו נשארות.": "سيُحذف نهائيًا. طلبياته وإجراءاته تبقى.", "יימחקו לצמיתות:": "سيُحذف نهائيًا:", "ייצוא": "تصدير", "ייצור": "الإنتاج", "ייצור בזמן": "إنتاج في الوقت", "ייצור בזמן {n}%": "إنتاج في الوقت {n}%", "ייצור:": "الإنتاج:", "ימי העבודה עודכנו": "تم تحديث أيام العمل", "ימי עבודה": "أيام العمل", "ימי עבודה:": "أيام العمل:", "ימי תוקף": "أيام الصلاحية", "ינואר": "كانون الثاني", "יעד {n}% ומעלה": "الهدف {n}% وأكثر", "יציאה": "خروج", "יציאה מהחשבון": "الخروج من الحساب", "ירקות": "خضار", "ירקות וחיתוכים": "خضار وتقطيع", "ירקות חי": "خضار طازجة", "יש שינויים שלא נשלחו": "توجد تغييرات لم تُرسل", "כבר יש הזמנה": "توجد طلبية بالفعل", "כבר רשום?": "مسجّل من قبل؟", "כהה": "داكن", "כובה": "تم الإيقاف", "כולם": "الجميع", "כוס": "كوب", "כל אחד רואה את אותה רשימה": "الجميع يرى نفس القائمة", "כל ההכנות מוכנות.": "كل التحضيرات جاهزة.", "כל החודש, כולל מעסיק (משכורות, נסיעות, הפרשות)": "كل الشهر، شامل صاحب العمل (رواتب، مواصلات، مساهمات)", "כל המסעדות": "كل المطاعم", "כלים": "أدوات", "כללי": "عام", "כמה גרם?": "كم غرام؟", "כמה מכינים": "كم نحضّر", "כמה קופסאות יצאו?": "كم علبة خرجت؟", "כמות": "الكمية", "כמות (קופסאות)": "الكمية (علب)", "כן": "نعم", "כן, להחזיר": "نعم، أرجِع", "כניסה": "دخول", "כף": "ملعقة", "כפית": "ملعقة صغيرة", "כרטיס עלויות (Food / Prime cost)": "بطاقة التكاليف (Food / Prime cost)", "כשג'קו ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.": "عندما ترسل جاكو طلبية وتتم الموافقة عليها، ستظهر هنا للإنتاج.", "כשרוזי ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.": "عندما ترسل روزي طلبية وتتم الموافقة عليها، ستظهر هنا للإنتاج.", "כתבו שם להכנה": "اكتبوا اسم التحضير", "כתוב את השם שלך": "اكتب اسمك", "לא הצלחתי לעדכן. נסה שוב": "لم أتمكن من التحديث. حاول مرة أخرى", "לא הצלחתי לקרוא את הנתונים": "لم أتمكن من قراءة البيانات", "לא הצלחתי לקרוא את הקובץ": "لم أتمكن من قراءة الملف", "לא התקבל אישור מהדפדפן": "لم يصل إذن من المتصفح", "לא מחובר": "غير متصل", "לא נטען": "لم يُحمّل", "לא ניתן ליצור פרופיל. בדוק את הגדרות Firestore": "لا يمكن إنشاء ملف شخصي. افحص إعدادات Firestore", "לא נמחק": "لم يُحذف", "לא נמצא": "غير موجود", "לא נמצאה הכנה": "لم يُعثر على تحضير", "לא נקרא · לפתוח ולמלא": "لم يُقرأ · افتحوا واملأوا", "לא נשלח": "لم يُرسل", "לא נשלחה": "لم تُرسل", "לא נשמר": "لم يُحفظ", "לא נשמר — בדוק חיבור": "لم يُحفظ — افحص الاتصال", "לא נשמר — בדוק חיבור ונסה שוב": "لم يُحفظ — افحص الاتصال وحاول مرة أخرى", "לא נשמר, נסו שוב": "لم يُحفظ، حاولوا مرة أخرى", "לא פעילות בטלפון הזה": "غير مفعّلة على هذا الهاتف", "לאיזו מסעדה נכנסים?": "إلى أي مطعم تدخلون؟", "לאישור ←": "للموافقة ←", "לבדוק השבוע": "للفحص هذا الأسبوع", "לבטל את ההזמנה?": "إلغاء الطلبية؟", "לדחות את בקשת השינוי?": "رفض طلب التغيير؟", "לדחות את ההזמנה?": "رفض الطلبية؟", "להחזיר לרשימה?": "إرجاع إلى القائمة؟", "לוחצים + על כל הכנה שצריך": "اضغطوا + على كل تحضير تحتاجونه", "לוחצים על כפתור השיתוף בספארי (ריבוע עם חץ למעלה)": "اضغطوا على زر المشاركة في سفاري (مربع مع سهم للأعلى)", "ליטר": "لتر", "ללא סוג": "بدون نوع", "ללא שינוי": "بدون تغيير", "למחוק את השקילה?": "حذف الوزن؟", "למחוק את התמונה?": "حذف الصورة؟", "למחוק את רישום הפחת?": "حذف تسجيل الهدر؟", "למי": "لمن", "למשל: אין מספיק חומר גלם, להזמין פחות": "مثلًا: لا توجد مواد خام كافية، اطلبوا أقل", "למשל: אירוע בוטל, הזמנה כפולה": "مثلًا: أُلغيت مناسبة، طلبية مكررة", "למשל: כפתור שמעתיק את ההזמנה של אתמול": "مثلًا: زر ينسخ طلبية أمس", "למשל: לחתוך דק יותר, להביא מוקדם": "مثلًا: تقطيع أرفع، إحضار مبكرًا", "למשל: לחתוך דק, בלי חריף": "مثلًا: تقطيع رفيع، بدون حار", "למשל: מחר המטבח נפתח ב-{n}": "مثلًا: غدًا يفتح المطبخ الساعة {n}", "לפי הכנה": "حسب التحضير", "לפי טאביט": "حسب تابيت", "לפי טאביט ·": "حسب تابيت ·", "לפי יום בשבוע": "حسب يوم الأسبوع", "לצ׳אט ולאקסל": "للمحادثة ولـ Excel", "לשלוח מוקדם יותר": "أرسلوا أبكر", "מאי": "أيار", "מאשרים ומתקנים הזמנות": "وافقوا وصحّحوا الطلبيات", "מבושלים": "مطبوخات", "מבט על": "نظرة عامة", "מגיע בזמן": "يصل في الوقت", "מדריך קצר": "دليل قصير", "מה (למשל: אורז)": "ماذا (مثلًا: أرز)", "מה זה חוסך": "ماذا يوفّر", "מה חסר במשלוח?": "ماذا ينقص في التوصيل؟", "מה יש בצלחת?": "ماذا في الصحن؟", "מה לכלול בייצוא?": "ماذا يُشمل في التصدير؟", "מה לעשות": "ماذا نفعل", "מה עושים": "ماذا نفعل", "מה, למשל: {n} ק״ג עגבניות": "ماذا، مثلًا: {n} كغ طماطم", "מהירות במכשיר הזה": "السرعة على هذا الجهاز", "מהקבלות": "من الإيصالات", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים.": "يحذف الطلبيات والإنتاج والهدر. التحضيرات والعمال والإعدادات تبقى.", "מוחק…": "جارٍ الحذف…", "מוכן למשלוח ·": "جاهز للتوصيل ·", "מול השבוע שלפניו": "مقابل الأسبوع السابق", "מולא כמו": "تمت التعبئة مثل", "מולא לפי ממוצע — אפשר לתקן": "تمت التعبئة حسب المعدل — يمكن التصحيح", "מופיע ברשימת ההזמנה": "يظهر في قائمة الطلبية", "מזמינים בקלות": "نطلب بسهولة", "מזמינים לפי מה שבאמת יוצא": "نطلب حسب ما يُستهلك فعلًا", "מחובר": "متصل", "מחיקה": "حذف", "מחיקת משתמש:": "حذف مستخدم:", "מחיר גבוה": "سعر مرتفع", "מחיר לק״ג": "السعر للكيلو", "מחק": "حذف", "מחק הכל": "حذف الكل", "מחק לגמרי": "حذف نهائي", "מחק רישום": "حذف التسجيل", "מחק שקילה": "حذف الوزن", "מחר": "غدًا", "מטבלים": "غموسات", "מי נכנס לאיזו מסעדה": "من يدخل إلى أي مطعم", "מי רואה מה": "من يرى ماذا", "מילוי מהיר": "تعبئة سريعة", "מכין…": "جارٍ التحضير…", "מכינים בדיוק": "نحضّر بدقة", "מכינים לפי הרשימה": "حضّروا حسب القائمة", "מכירות": "المبيعات", "מכירות ₪": "المبيعات ₪", "מכל המסעדות": "من كل المطاعم", "ממוצע": "المعدل", "ממוצע {n} שבועות · {n}": "معدل {n} أسابيع · {n}", "ממוצע לפי יום בשבוע": "المعدل حسب يوم الأسبوع", "ממוצע קופסאות": "معدل العلب", "ממתין": "بانتظار", "ממתין לאישור": "بانتظار الموافقة", "ממתין לאישור המנהל. הדף ייפתח לבד אחרי האישור.": "بانتظار موافقة المدير. الصفحة ستُفتح تلقائيًا بعد الموافقة.", "ממתינה": "بانتظار", "ממתינה לאישור": "بانتظار الموافقة", "מנה": "طبق", "מנה חדשה:": "طبق جديد:", "מנהל בכל המסעדות": "مدير في كل المطاعم", "מנהל מטבח": "مدير المطبخ", "מנהל מטבח (שף תפעולי)": "مدير المطبخ (شيف تشغيلي)", "מנהל מסעדה": "مدير المطعم", "מנהלים": "مدراء", "מנות": "أطباق", "מנות מוכנות": "أطباق جاهزة", "מסעדה": "مطعم", "מעדכן…": "جارٍ التحديث…", "מפתח": "المطوّر", "מפתח · בעלים": "المطوّر · المالك", "מצב יום (למטבח מואר)": "وضع النهار (لمطبخ مضاء)", "מצב לילה": "وضع الليل", "מצב צל: רק לך. הצוות לא רואה את ההצעות.": "وضع الظل: لك فقط. الفريق لا يرى الاقتراحات.", "מקלידים משקל בגרם": "أدخلوا الوزن بالغرام", "מראה": "المظهر", "מרץ": "آذار", "משהו השתבש. נסה שוב": "حدث خطأ. حاول مرة أخرى", "משלוח": "توصيل", "משלוח היום": "توصيل اليوم", "משלוח מחר": "توصيل غدًا", "משלוח ראשון {n}": "توصيل الأحد {n}", "משלוח שני {n}": "توصيل الاثنين {n}", "משלוח שלישי {n}": "توصيل الثلاثاء {n}", "משלוח רביעי {n}": "توصيل الأربعاء {n}", "משלוח חמישי {n}": "توصيل الخميس {n}", "משלוח שישי {n}": "توصيل الجمعة {n}", "משלוח שבת {n}": "توصيل السبت {n}", "משקל בגרם": "الوزن بالغرام", "מתוך": "من", "מתוך {n}": "من {n}", "מתכון חדש": "وصفة جديدة", "מתכון מצילום": "وصفة من صورة", "מתכונים": "وصفات", "מ״ל": "مل", "נבדק": "تم الفحص", "נדחתה": "رُفضت", "נובמבר": "تشرين الثاني", "נוסף:": "أُضيف:", "נמחק": "حُذف", "נמחקה": "حُذفت", "נמחקו": "حُذفت", "נסגר": "أُغلق", "נפתח": "فُتح", "נק׳": "نقطة", "נרשם ע״י": "سجّله", "נרשם. המטבח יראה מה חסר": "تم التسجيل. المطبخ سيرى ما ينقص", "נרשם:": "تم التسجيل:", "נשארו": "متبقٍ", "נשלח אחרי {n}": "أُرسل بعد {n}", "נשלחה": "أُرسلت", "נשלחה {n} · ממתינה לאישור": "أُرسلت {n} · بانتظار الموافقة", "נשלחה אחרי {n}": "أُرسلت بعد {n}", "נשלחו": "أُرسلت", "נשלחת · תוך כמה דקות בטלפונים": "قيد الإرسال · خلال دقائق في الهواتف", "נשלחת…": "قيد الإرسال…", "נשמר": "تم الحفظ", "נשמר · Claude יענה כשיחובר": "تم الحفظ · Claude سيجيب عندما يتصل", "נשמר ✓": "تم الحفظ ✓", "נשמר ✓ Claude קורא את המתכון": "تم الحفظ ✓ Claude يقرأ الوصفة", "נשמר ✓ Claude קורא את הקבלה": "تم الحفظ ✓ Claude يقرأ الإيصال", "נשמר ✓ ייקרא כש-Claude יחובר": "تم الحفظ ✓ سيُقرأ عندما يتصل Claude", "נתוני הזמנות": "بيانات الطلبيات", "נתונים": "البيانات", "נתונים: חוסרים, פחת ועלויות": "البيانات: نواقص وهدر وتكاليف", "סגור": "إغلاق", "סגור מילוי מהיר": "إغلاق التعبئة السريعة", "סגירת ערב": "إغلاق المساء", "סגירת ערב (דו״ח קופה וסועדים)": "إغلاق المساء (تقرير الصندوق والزبائن)", "סה״כ": "المجموع", "סומן שהזיכוי התקבל ✓": "تم تحديد أن الرصيد الدائن استُلم ✓", "סועדים": "زبائن", "סופר…": "جارٍ العدّ…", "סיבה": "السبب", "סיבה (לא חובה)": "السبب (اختياري)", "סיום": "إنهاء", "סיכום": "ملخص", "סיכום:": "ملخص:", "סיסמה": "كلمة المرور", "סיסמה חדשה": "كلمة مرور جديدة", "סיסמה חדשה: לפחות {n} תווים": "كلمة مرور جديدة: {n} أحرف على الأقل", "סיסמה נוכחית": "كلمة المرور الحالية", "סיסמה שגויה": "كلمة مرور خاطئة", "סיסמת המנהל": "كلمة مرور المدير", "סכום": "المبلغ", "סכום אחר, כולל הפרשות מעסיק:": "مبلغ آخر، شامل مساهمات صاحب العمل:", "סכום ₪": "المبلغ ₪", "ספטמבר": "أيلول", "ספק": "المورّد", "עבודה יומית": "العمل اليومي", "עבר {n}": "مرّت {n}", "עד {n}": "حتى {n}", "עדכון": "تحديث", "עדכון לפני אישור:": "تحديث قبل الموافقة:", "עדכון מתכון": "تحديث الوصفة", "עובד": "عامل", "עובד חדש?": "عامل جديد؟", "עוד": "المزيد", "עוד {n} שעות ו-{n} דקות עד {n}": "بقيت {n} ساعات و{n} دقائق حتى {n}", "עוד {n} דקות עד {n}": "بقيت {n} دقائق حتى {n}", "עוד שעה עד {n}": "بقيت ساعة حتى {n}", "עוד שעתיים עד {n}": "بقيت ساعتان حتى {n}", "עוד {n} שעות עד {n}": "بقيت {n} ساعات حتى {n}", "עוד שעה ו-{n} דקות עד {n}": "بقيت ساعة و{n} دقائق حتى {n}", "עוד שעתיים ו-{n} דקות עד {n}": "بقيت ساعتان و{n} دقائق حتى {n}", "עוד אין דוחות": "لا توجد تقارير بعد", "עוד אין הצעות": "لا توجد اقتراحات بعد", "עוד אין מתכונים": "لا توجد وصفات بعد", "עוד אף מכשיר לא הפעיל התראות.": "لم يفعّل أي جهاز الإشعارات بعد.", "עוד אפשרויות": "خيارات أخرى", "עוד לא הוזמן כלום ליום הזה": "لم يُطلب شيء لهذا اليوم بعد", "עודכן": "تم التحديث", "עודכן ע״י": "حدّثه", "עלויות": "التكاليف", "עלות": "التكلفة", "עלות עובדים": "تكلفة العمال", "עלים": "أوراق", "עם התיקונים": "مع التصحيحات", "עריכה": "تعديل", "עריכת מתכון": "تعديل الوصفة", "פברואר": "شباط", "פג תוקף": "منتهي الصلاحية", "פגום": "تالف", "פותחים את האפליקציה ממסך הבית, נכנסים, ומפעילים התראות מהתפריט": "افتحوا التطبيق من الشاشة الرئيسية، ادخلوا، وفعّلوا الإشعارات من القائمة", "פחות": "أقل", "פחות פחת": "هدر أقل", "פחת": "هدر", "פחת לאקסל (CSV)": "الهدر إلى Excel (CSV)", "פחת לפי יום": "الهدر حسب اليوم", "פחת:": "هدر:", "פנקס מתכונים": "دفتر الوصفات", "פעילות בטלפון הזה": "مفعّلة على هذا الهاتف", "פריטים": "الأصناف", "פריטים: מוסיפים הכנה ומעדכנים תוקף": "الأصناف: أضيفوا تحضيرًا وحدّثوا الصلاحية", "פתוח": "مفتوح", "צוות": "الفريق", "צוות ג'קו": "فريق جاكو", "צוות הייצור": "فريق الإنتاج", "צוות ותפקידים": "الفريق والأدوار", "צוות רוזי": "فريق روزي", "צילום מתכון": "تصوير وصفة", "צילום קבלה": "تصوير إيصال", "צירים ורטבי בשר": "مرق وصلصات لحم", "צלמו את דו״ח הקופה": "صوّروا تقرير الصندوق", "צפייה וניהול": "عرض وإدارة", "צרור": "حزمة", "צריך לפחות יום עבודה אחד": "يلزم يوم عمل واحد على الأقل", "צריך לפרסם את החוקים ב-Firebase": "يجب نشر القواعد في Firebase", "קבוצת": "مجموعة", "קבוצת ג'קו סטריט": "مجموعة جاكو ستريت", "קבלה": "إيصال", "קבלה מספק": "إيصال من مورّد", "קבלה עם חוסר:": "استلام مع نقص:", "קבלות": "إيصالات", "קבלות ותמונות": "إيصالات وصور", "קבלות ספקים (סכומים)": "إيصالات الموردين (مبالغ)", "קובץ טאביט": "ملف تابيت", "קובץ טאביט נקרא ✓": "تمت قراءة ملف تابيت ✓", "קובץ להורדה": "ملف للتنزيل", "קופסאות": "علب", "קופסאות לפי יום": "العلب حسب اليوم", "קופסה": "علبة", "קופסה ≈": "علبة ≈", "קטגוריה": "الفئة", "קינוחים": "حلويات", "קפיצה לקטגוריה": "انتقال إلى فئة", "קריאת קבלות ודוחות": "قراءة الإيصالات والتقارير", "קרמים": "كريمات", "ק״ג": "كغ", "ק״ג נטו בקופסה": "كغ صافٍ في العلبة", "ראשון": "الأحد", "ראשון {n}": "الأحد {n}", "רביעי": "الأربعاء", "רביעי {n}": "الأربعاء {n}", "רגיל": "عادي", "רוזי": "روزي", "רטבים": "صلصات", "רישום פחת": "تسجيل هدر", "רכיבים": "مكوّنات", "רכש מזון": "مشتريات الطعام", "רכש ₪{n}": "مشتريات ₪{n}", "רק אתה משנה גישה למסעדות. בעלים רואה ומנהל את כל המסעדות.": "أنت فقط تغيّر الدخول للمطاعم. المالك يرى ويدير كل المطاعم.", "רק מה שהוזמן": "ما طُلب فقط", "רשימת ההכנות נטענה": "تم تحميل قائمة التحضيرات", "רשימת ההכנות, העובדים וההגדרות נשארים. אי אפשר לשחזר אחרי המחיקה.": "قائمة التحضيرات والعمال والإعدادات تبقى. لا يمكن الاستعادة بعد الحذف.", "שאלה ל-Claude": "سؤال لـ Claude", "שאלה ל-Claude על כל המסעדות": "سؤال لـ Claude عن كل المطاعم", "שאלו את Claude על הנתונים": "اسألوا Claude عن البيانات", "שאלת ק״ג לקופסה בייצור": "سؤال الكغ للعلبة في الإنتاج", "שבועי": "أسبوعي", "שבת": "السبت", "שבת {n}": "السبت {n}", "שבת/חג": "سبت/عيد", "שגיאה": "خطأ", "שוב, לאימות": "مرة أخرى، للتأكيد", "שולח עדכון…": "جارٍ إرسال التحديث…", "שולחים הזמנה": "أرسلوا الطلبية", "שולחים הזמנה עד {n}": "أرسلوا الطلبية حتى {n}", "שומר…": "جارٍ الحفظ…", "שונות": "متفرقات", "שוקלים מנה מוכנה, רגע לפני שהיא יוצאת": "زنوا الطبق الجاهز قبل خروجه مباشرة", "שחזור ההזמנה": "استعادة الطلبية", "שינוי סיסמה": "تغيير كلمة المرور", "שישי": "الجمعة", "שישי {n}": "الجمعة {n}", "שלום": "مرحبًا", "שלח הזמנה": "أرسل الطلبية", "שלח שוב": "أرسل مرة أخرى", "שליחה": "إرسال", "שליחה מחדש ·": "إعادة إرسال ·", "שליחת הזמנה": "إرسال طلبية", "שליחת הזמנה ·": "إرسال طلبية ·", "שלישי": "الثلاثاء", "שלישי {n}": "الثلاثاء {n}", "שם ההכנה": "اسم التحضير", "שם המנה": "اسم الطبق", "שם המשתמש תפוס. בחר שם אחר": "اسم المستخدم محجوز. اختر اسمًا آخر", "שם מלא": "الاسم الكامل", "שם מנה": "اسم الطبق", "שם מנה חדשה": "اسم طبق جديد", "שם משתמש": "اسم المستخدم", "שם משתמש או סיסמה שגויים": "اسم المستخدم أو كلمة المرور خاطئة", "שם משתמש באנגלית בלבד: אותיות, ספרות, נקודה או מקף": "اسم المستخدم بالإنجليزية فقط: أحرف، أرقام، نقطة أو شرطة", "שמור": "حفظ", "שמור שקילה": "حفظ الوزن", "שני": "الاثنين", "שני {n}": "الاثنين {n}", "שנ׳": "ث", "שעה": "ساعة", "שעות": "ساعات", "שעות נוספות": "ساعات إضافية", "שעתיים": "ساعتان", "שפה": "اللغة", "שקילה:": "وزن:", "שקילות": "أوزان", "שקילות מנות": "أوزان الأطباق", "שקילת מנה": "وزن طبق", "שקילת מנות": "وزن الأطباق", "ש׳": "سبت", "תאריך": "التاريخ", "תאריך משלוח": "تاريخ التوصيل", "תהליך": "العملية", "תודה, נשלח": "شكرًا، تم الإرسال", "תוקף": "الصلاحية", "תוקף {n} ימים": "صلاحية {n} أيام", "תוקף {n} ימים ·": "صلاحية {n} أيام ·", "תחזית": "توقّع", "תיקון ידני": "تصحيح يدوي", "תמונה אחת לא נטענה": "صورة واحدة لم تُحمّل", "תמונות (קובץ להורדה)": "صور (ملف للتنزيل)", "תמונות מהתהליך": "صور من العملية", "תפוקה ומחיר בכרטיס הכנה": "المردود والسعر في بطاقة التحضير", "תפקיד": "الدور", "תפקיד:": "الدور:", "תקבל התראה כשהמטבח יאשר": "ستصلك إشعار عندما يوافق المطبخ", "תקופה": "الفترة", "‹ הגדרות": "‹ الإعدادات", "‹ חדר בקרה": "‹ غرفة التحكم", "‹ חדר שליטה": "‹ غرفة القيادة", "‹ סגור": "‹ إغلاق", "‹ דוחות": "‹ التقارير", "‹ חזרה": "‹ رجوع", "‹ ביטול": "‹ إلغاء", "‹ מתכונים": "‹ الوصفات", "✓ אישור": "✓ موافقة", "✓ אישור עם התיקונים": "✓ موافقة مع التصحيحات", "✓ בממוצע": "✓ بالمعدل", "✓ הכול תקין": "✓ كل شيء سليم", "✓ הכל התקבל": "✓ وصل كل شيء", "✓ כן, בוצע": "✓ نعم، تم", "✓ מתכון": "✓ وصفة", "✓ על כל הכנה שמוכנה": "✓ على كل تحضير جاهز", "✕ בטל הזמנה": "✕ إلغاء الطلبية", "✕ דחה": "✕ رفض", "✕ דחה הזמנה": "✕ رفض الطلبية", "⬇ הורד גיבוי מלא לפני המחיקה (מומלץ)": "⬇ نزّل نسخة احتياطية كاملة قبل الحذف (موصى به)", "＋ הוסף": "＋ إضافة", "＋ הוסף הכנות שלא הוזמנו": "＋ إضافة تحضيرات لم تُطلب", "＋ הכנה חדשה": "＋ تحضير جديد", "＋ העלאה": "＋ رفع", "＋ זיכוי": "＋ رصيد دائن", "＋ חדש": "＋ جديد", "＋ עוד רכיב": "＋ مكوّن آخر", "כמו ראשון שעבר · {n}": "مثل الأحد الماضي · {n}", "כמו שני שעבר · {n}": "مثل الاثنين الماضي · {n}", "כמו שלישי שעבר · {n}": "مثل الثلاثاء الماضي · {n}", "כמו רביעי שעבר · {n}": "مثل الأربعاء الماضي · {n}", "כמו חמישי שעבר · {n}": "مثل الخميس الماضي · {n}", "כמו שישי שעבר · {n}": "مثل الجمعة الماضي · {n}", "כמו שבת שעבר · {n}": "مثل السبت الماضي · {n}", "{n} · {n} קופסאות": "{n} · {n} علب", "{n} · {n} קופסה": "{n} · {n} علبة", "עובד חדש": "عامل جديد", "מחכה לאישור": "بانتظار الموافقة", "הזמנה הועברה": "الطلبية نُقلت", "שינוי בהזמנה": "تغيير في الطلبية", "הזמנה עודכנה": "الطلبية حُدّثت", "הזמנה אושרה": "الطلبية تمت الموافقة عليها", "הזמנה נדחתה": "الطلبية رُفضت", "שינוי נדחה": "التغيير رُفض", "חוסר": "نقص", "נשארה הכנה אחת": "بقي تحضير واحد", "נשארו {n} הכנות": "بقيت {n} تحضيرات", "חסר במשלוח": "ناقص في التوصيل", "לא נשלחה הזמנה": "لم تُرسل طلبية", "סיכום שבועי": "ملخص أسبوعي", "{n} זיכויים פתוחים": "{n} أرصدة دائنة مفتوحة", "עליית מחיר אצל ספק": "ارتفاع سعر عند مورّد", "Claude ענה": "Claude أجاب", "הדוח מוכן": "التقرير جاهز", "אין מספיק נתונים לדוח": "لا توجد بيانات كافية للتقرير", "מחר {n}": "غدًا {n}", "היום {n}": "اليوم {n}", "{n} כמויות שונו": "{n} كميات تغيّرت", "{n} דקות": "{n} دقائق", "{n} שעות": "{n} ساعات", "שעה ו-{n} דקות": "ساعة و{n} دقائق", "שעתיים ו-{n} דקות": "ساعتان و{n} دقائق", "{n} שעות ו-{n} דקות": "{n} ساعات و{n} دقائق", "{n} דקות עד {n}": "{n} دقائق حتى {n}", "שעה עד {n}": "ساعة حتى {n}", "שעתיים עד {n}": "ساعتان حتى {n}", "{n} שעות עד {n}": "{n} ساعات حتى {n}", "אחת מוכנה": "واحد جاهز", "{n} מוכנות": "{n} جاهزة", "נשלחה, אפשר לעדכן עד {n}": "أُرسلت، يمكن التحديث حتى {n}", "נסגרת ב-{n}": "تُغلق الساعة {n}", "לבקש בחשבונית הבאה": "اطلبوه في الفاتورة القادمة", "מנה אחת מכל אחת לפני שיוצאת": "طبق واحد من كل واحد قبل خروجه", "לצלם את דו״ח הקופה": "صوّروا تقرير الصندوق"});
+I18N_PAT.ar.push([new RegExp("^עוד (.+)$"), "المزيد: $1"], [new RegExp("^פחות (.+)$"), "أقل: $1"], [new RegExp("^סמן (.+) כבוצע$"), "علّم «$1» كمُنجز"], [new RegExp("^שלום (.+)$"), "مرحبًا $1"], [new RegExp("^(.+) · (\\d+:\\d+) · (\\d+) קופסאות$"), "$1 · $2 · $3 علب"], [new RegExp("^אושרה ✓ (\\d+:\\d+) · (.+)$"), "تمت الموافقة ✓ $1 · $2"], [new RegExp("^פחת (\\d+(?:\\.\\d+)?)% · (.+)$"), "هدر $1% · $2"], [new RegExp("^חוסר · (.+)$"), "نقص · $1"], [new RegExp("^(ראשון|שני|שלישי|רביעי|חמישי|שישי|שבת) ([\\d/]+) · (.+?) · (.+)$"), "$1 $2 · $3 · $4"], [new RegExp("^תפקיד (.+)$"), "دور $1"], [new RegExp("^(.+) · (\\d+:\\d+)$"), "$1 · $2"], [new RegExp("^חוסר צפוי במשלוח (.+)$"), "نقص متوقع في توصيل $1"], [new RegExp("^הערה מ(.+):$"), "ملاحظة من $1:"], [new RegExp("^(\\d+) קופסאות · (.+)$"), "$1 علب · $2"], [new RegExp("^ההזמנה נסגרת בעוד (.+)$"), "الطلبية تُغلق بعد $1"], [new RegExp("^(.+) לסגירה$"), "$1 للإغلاق"], [new RegExp("^(.+) ← (.+)$"), "$1 ← $2"], [new RegExp("^ניתוח שעות מוכן · (.+)$"), "تحليل الساعات جاهز · $1"], [new RegExp("^קובץ טאביט נקרא · (.+)$"), "تمت قراءة ملف تابيت · $1"]);
+Object.assign(I18N.en, {"(אוטומטי)": "(auto)", "(גרם)": "(g)", "(הכנה שנמחקה)": "(deleted prep)", "(חלקי)": "(partial)", "+ עובדים": "+ staff", "Claude ודוחות": "Claude & reports", "Claude חושב · תקבל התראה": "Claude is thinking · you'll get a notification", "Claude כותב": "Claude is writing", "Claude לא מחובר": "Claude not connected", "Claude מול ההזמנות": "Claude vs. orders", "Claude מכין את הדוח · תקבל התראה": "Claude is preparing the report · you'll get a notification", "Claude מנתח": "Claude is analyzing", "Claude מציע כל יום בצהריים את ההזמנה למחר": "Every day at noon Claude suggests tomorrow's order", "Claude קורא": "Claude is reading", "Claude קורא וממלא": "Claude reads and fills in", "Excel, PDF או צילום": "Excel, PDF or photo", "{n} בהזמנה": "{n} per order", "{n} הזמנות": "{n} orders", "{n} הזמנות אחרי {n}": "{n} orders after {n}", "{n} היום": "{n} today", "{n} הימים האחרונים": "Last {n} days", "{n} הכנה נשארה": "{n} prep left", "{n} הכנות": "{n} preps", "{n} הכנות נשארו": "{n} preps left", "{n} חוסרים ב-{n} ימים": "{n} shortages on {n} days", "{n} ימים": "{n} days", "{n} מתוך {n} קופסאות · להזמין פחות": "{n} of {n} boxes · order less", "{n} פעמים בתקופה": "{n} times in period", "{n} קופסאות": "{n} boxes", "{n} שינויים": "{n} changes", "{n}% · {n} קופסאות": "{n}% · {n} boxes", "© {n} קבוצת ג'קו סטריט": "© {n} Jaco Street Group", "· {n} · {n} קופסאות": "· {n} · {n} boxes", "· אחרי {n}": "· after {n}", "· בעלים": "· owner", "· זוהה אוטומטית": "· detected automatically", "· משלוח": "· delivery", "· משלוח מחר {n} · {n} קופסאות": "· delivery tomorrow {n} · {n} boxes", "· עודכן ע״י": "· updated by", "· שבת/חג": "· Sabbath/holiday", "אוגוסט": "August", "אודות": "About", "אוטומטי": "Auto", "אוקטובר": "October", "אושר": "Approved", "אושרה": "Approved", "אושרה ✓": "Approved ✓", "אושרה ✓ {n}": "Approved ✓ {n}", "אזור": "Area", "אחר": "Other", "אחרונות": "Recent", "אחרי {n}": "After {n}", "אחרי {n} — עדיין אפשר לשלוח": "After {n} — you can still send", "אחרי {n} — עדיין אפשר לשלוח, המטבח יאשר": "After {n} — you can still send, the kitchen will approve", "אחרי ההרשמה המנהל מאשר אותך": "After you sign up, the manager approves you", "איולי ורטבים": "Aioli & sauces", "איחורים": "Late", "איכות": "Quality", "אילנה": "Ilana", "אין": "None", "אין גישה": "No access", "אין הזמנה מאושרת ליום הזה": "No approved order for this day", "אין הזמנות בתקופה.": "No orders in this period.", "אין זיכויים פתוחים": "No open credits", "אין חיבור לאינטרנט": "No internet connection", "אין כלים פעילים": "No active tools", "אין עדיין נתונים": "No data yet", "אין פעולות": "No actions", "אין קליטה טובה. נשמר בטלפון ויישלח לבד": "Weak signal. Saved on the phone and will send automatically", "אין ✓": "No ✓", "איפה הכי הרבה פחת?": "Where is the most waste?", "איפוס כל הנתונים": "Reset all data", "איפוס נתונים": "Reset data", "אישור": "Approve", "אישור ההזמנה": "Approve order", "אישור השינוי": "Approve change", "אישור קבלה": "Confirm receipt", "אישור קבלה: הכל התקבל": "Confirm receipt: everything arrived", "אנשים": "People", "אפריל": "April", "אתמול": "Yesterday", "א׳": "Sun", "א׳–ה׳": "Sun–Thu", "ב-{n} ימים": "on {n} days", "באייפון אפשר לקבל התראות רק מהאפליקציה שעל מסך הבית:": "On iPhone, notifications only work from the app on the home screen:", "בהיר": "Light", "בוחרים ״הוסף למסך הבית״": "Choose “Add to Home Screen”", "בוטלה": "Cancelled", "בזמן": "On time", "בחירה מה לכלול בייצוא": "Choose what to export", "בחר הכנה": "Choose a prep", "בחר הכנה…": "Choose a prep…", "בחרו מסעדה": "Choose a restaurant", "ביום סגור אין הזמנה ואין תזכורות, והוא לא נספר בנתונים.": "A closed day has no order or reminders, and isn't counted in the data.", "ביטול": "Cancel", "ביטול ההזמנה": "Cancel order", "בייצור": "In production", "ביקשו": "Requested", "בישולים": "Cooking", "בלי טלפונים": "No phone calls", "בלי טעויות": "No mistakes", "במכשיר הזה": "On this device", "בעלים": "Owner", "בעלים · הכול": "Owner · everything", "בעלים · כל המסעדות": "Owner · all restaurants", "בצקים": "Doughs", "בקשות שינוי": "Change requests", "בקשת השינוי נדחתה": "Change request declined", "בקשת השינוי נדחתה. נשארה ההזמנה המאושרת": "Change declined. The approved order stays", "בקשת השינוי נשלחה": "Change request sent", "בקשת שינוי": "Change request", "בקשת שינוי בהזמנה": "Change request on the order", "בקשת שינוי ממתינה לאישור": "Change request awaiting approval", "בקשת שינוי:": "Change request:", "ברגע שיחובר": "Once connected", "בשר": "Meat", "בשר ודגים": "Meat & fish", "ב׳": "Mon", "ג'קו": "Jaco", "ג'קו סטריט": "Jaco Street", "גבינות": "Cheeses", "גיבוי נתונים": "Data backup", "גישה:": "Access:", "גם": "also", "גם מחר {n}": "Tomorrow too {n}", "גרם": "g", "גרסה": "Version", "גרסה {n}": "Version {n}", "ג׳": "Tue", "דגים": "Fish", "דוח": "Report", "דוח עכשיו": "Report now", "דוחות": "Reports", "דורש תשומת לב": "Needs attention", "דו״ח קופה": "Register report", "דחה הזמנה": "Decline order", "דחה שינוי": "Decline change", "דחיית בקשת השינוי": "Decline change request", "דחיית ההזמנה": "Decline order", "דיווח חוסר:": "Report shortage:", "דצמבר": "December", "ד׳": "Wed", "האפליקציה": "App", "הבנתי": "Got it", "הגדרות": "Settings", "הגיבוי ירד": "Backup downloaded", "הגיבוי נכשל": "Backup failed", "הגישה שלך הוסרה. פנה למנהל.": "Your access was removed. Contact the manager.", "הדוח לא נמצא": "Report not found", "הדפדפן הזה לא תומך בהתראות": "This browser doesn't support notifications", "ההודעה": "Message", "ההזמנה אושרה ✓": "Order approved ✓", "ההזמנה בוטלה": "Order cancelled", "ההזמנה המאושרת הקודמת נשארת בתוקף.": "The previous approved order stays in effect.", "ההזמנה השתנתה או אושרה בדיוק עכשיו — בדוק שוב לפני אישור": "The order just changed or was approved — check again before approving", "ההזמנה למחר מחכה לאישור": "Tomorrow's order is awaiting approval", "ההזמנה למחר עוד לא נשלחה": "Tomorrow's order hasn't been sent yet", "ההזמנה נדחתה": "Order declined", "ההזמנה נדחתה.": "Order declined.", "ההזמנה נשלחה": "Order sent", "ההזמנה עודכנה ·": "Order updated ·", "ההזמנה עודכנה אצל המטבח": "Order updated in the kitchen", "ההזמנה שוחזרה": "Order restored", "ההזמנה, האישור והחוסרים כתובים": "Order, approval and shortages are in writing", "ההזמנות למחר נסגרות ב-{n}": "Orders for tomorrow close at {n}", "ההעברה נכשלה": "Move failed", "ההערה לא נשמרה": "Note not saved", "ההערה נמחקה": "Note deleted", "ההערה נשמרה. המטבח יראה אותה": "Note saved. The kitchen will see it", "ההתראות הופעלו בטלפון הזה ✓": "Notifications on for this phone ✓", "ההתראות חסומות. אפשר לאשר בהגדרות הדפדפן": "Notifications are blocked. Allow them in the browser settings", "הודלק": "Turned on", "הודעה": "Message", "הודעה לצוות": "Message to staff", "הודעה מגדי": "Message from Gadi", "הוזמן ב-": "Ordered on", "הוזמנו": "Ordered", "הוחזרה": "Restored", "הוכן חלקית:": "Partly made:", "הוכן:": "Made:", "הוסף": "Add", "הוסתרה": "Hidden", "הועברה ל": "Moved to", "הועתק. הדבק בצ׳אט ובקש ניתוח": "Copied. Paste in the chat and ask for an analysis", "הורדת התמונות נכשלה": "Photo download failed", "הזיכוי נרשם. תקבל תזכורת עד שיתקבל": "Credit logged. You'll get reminders until it's received", "הזמנה": "Order", "הזמנה הבאה": "Next order", "הזמנה חדשה": "New order", "הזמנה חדשה למעלה: מאשרים": "New order at the top: approve it", "הזמנה חדשה ממתינה לאישור": "New order awaiting approval", "הזמנה ל": "Order for", "הזמנה נסגרת": "Order closes", "הזמנה נסגרת רביעי {n}": "Order closes Wed {n}", "הזמנה נסגרת שלישי {n}": "Order closes Tue {n}", "הזמנה נסגרת שני {n}": "Order closes Mon {n}", "הזמנה נסגרת ראשון {n}": "Order closes Sun {n}", "הזמנה נסגרת חמישי {n}": "Order closes Thu {n}", "הזמנה נסגרת שישי {n}": "Order closes Fri {n}", "הזמנה נסגרת שבת {n}": "Order closes Sat {n}", "הזמנות": "Orders", "הזמנות וייצור": "Orders & production", "הזמנות לאקסל (CSV)": "Orders to Excel (CSV)", "החודש": "This month", "החודש הקודם": "Last month", "החודש עד היום": "Month to date", "החזרה": "Undo", "החלפת מסעדה": "Switch restaurant", "החשבון והקוד האישי": "Account and personal code", "החשבון שלי": "My account", "היום": "Today", "היסטוריית הזמנות": "Order history", "הכול": "All", "הכול במקום אחד, בזמן אמת.": "Everything in one place, in real time.", "הכול מוכן למשלוח": "All ready for delivery", "הכנה": "Prep", "הכנה חדשה:": "New prep:", "הכנה נשארה": "prep left", "הכנה שנזרקת שוב ושוב יורדת לבד בהצעת ההזמנה.": "A prep that keeps getting thrown out drops automatically in the suggested order.", "הכנה:": "Prep:", "הכנות": "Preps", "הכנות נשארו": "preps left", "המחיקה נכשלה — נסה שוב": "Delete failed — try again", "המנה נשמרה": "Dish saved", "המנהלים": "managers", "המסעדה מזמינה, מטבח ההכנות מכין ומאשר.": "The restaurant orders, the prep kitchen makes and approves.", "המשלוח הגיע: מאשרים, או מסמנים מה חסר": "Delivery arrived: confirm, or mark what's missing", "המשלוח התקבל ✓": "Delivery received ✓", "המשלוח של היום הגיע?": "Did today's delivery arrive?", "המשתמש נמחק": "User deleted", "המתכון נשמר": "Recipe saved", "הסבר מלא": "Full explanation", "הסיסמאות לא זהות": "Passwords don't match", "הסיסמה הנוכחית שגויה": "Current password is wrong", "הסיסמה עודכנה": "Password updated", "הסיסמה צריכה להיות לפחות {n} תווים": "Password needs at least {n} characters", "העברה ליום אחר": "Move to another day", "העברת הזמנה": "Move order", "הערב נסגר ✓ Claude יקרא את הדו״ח": "Evening closed ✓ Claude will read the report", "הערה": "Note", "הערה להכנה": "Prep note", "הערה למטבח": "Note to the kitchen", "הערה למטבח הייצור": "Note to the production kitchen", "הערות": "Notes", "הערות הגשה": "Plating notes", "הערות:": "Notes:", "העתק": "Copy", "העתק לניתוח בצ׳אט": "Copy for analysis in chat", "הפעלת ההתראות נכשלה": "Couldn't turn on notifications", "הפעלת התראות בטלפון הזה": "Turn on notifications on this phone", "הפק דוח עכשיו": "Create report now", "הצג את כל": "Show all", "הצג רק מה שבהזמנה": "Show only what's in the order", "הצעה לשיפור": "Suggest an improvement", "הצעות לשיפור": "Improvement ideas", "הקובץ גדול מדי. נסו לייצא כ-Excel": "File too large. Try exporting as Excel", "הקובץ ירד. צרף אותו לצ׳אט": "File downloaded. Attach it to the chat", "הקובץ עלה ✓ Claude קורא אותו": "File uploaded ✓ Claude is reading it", "הקובץ עלה ✓ ייקרא כש-Claude יחובר": "File uploaded ✓ will be read once Claude is connected", "הקוד האישי שלך": "Your personal code", "הקוד הועתק": "Code copied", "הקלד את סיסמת המנהל": "Enter the manager password", "הרשמה": "Sign up", "השבוע שעבר": "Last week", "השינוי חל מיד אצל כל עובדי ג'קו. כיבוי לא מוחק נתונים.": "Applies right away to all Jaco staff. Turning off deletes no data.", "השינוי חל מיד אצל כל עובדי רוזי. כיבוי לא מוחק נתונים.": "Applies right away to all Rosie staff. Turning off deletes no data.", "השינוי נשלח למטבח לאישור": "Change sent to the kitchen for approval", "השליחה נכשלה — בדוק חיבור ונסה שוב": "Send failed — check the connection and try again", "השלמה": "Top-up", "השקילה לא נשמרה": "Weight not saved", "התאמה ממוצעת": "Average match", "התמונה גדולה מדי": "Image too large", "התקבל": "Received", "התקבל ברוזי": "Received at Rosie", "התקבל ברוזי {n}": "Received at Rosie {n}", "התקבלה": "Received", "התראה לטלפון": "Phone notification", "התראות": "Notifications", "התראות באייפון": "Notifications on iPhone", "התראות לטלפון": "Phone notifications", "התראות פעילות בטלפון הזה ✓": "Notifications on for this phone ✓", "ה׳": "Thu", "ו׳": "Fri", "זיכויים מספקים": "Supplier credits", "זרקתם משהו: ⋯ ← פחת": "Threw something out: ⋯ ← waste", "חדר בקרה": "Control room", "חדר שליטה": "Command room", "חודשי": "Monthly", "חוסר ·": "Shortage ·", "חוסר מראש": "Known shortage", "חוסר צפוי": "Expected shortage", "חוסר צפוי במשלוח היום": "Expected shortage in today's delivery", "חוסר:": "Short:", "חוסרים": "Shortages", "חוקי האבטחה לא עודכנו": "Security rules not updated", "חזרה": "Back", "חיסכון": "Savings", "חיפוש": "Search", "חיפוש הכנה": "Search preps", "חיפוש מתכון או רכיב": "Search recipe or ingredient", "חלבי": "Dairy", "חמישי": "Thu", "חמישי {n}": "Thu {n}", "חסום": "Blocked", "חסר": "Missing", "חסר / פגום בקבלה הזו?": "Missing / damaged in this delivery?", "חסר בקבלה": "Missing on receipt", "חסר בקבלה:": "Missing on receipt:", "חסר משהו": "Something's missing", "חסר מתכון": "No recipe", "חסר ספק או פירוט": "Supplier or details missing", "חסר: מסמנים כמה יצא": "Short: mark how much came out", "חסרה עלות עובדים": "Labor cost missing", "חצי": "Half", "חריג": "Unusual", "טבח · הזמנות": "Cook · orders", "טבח הכנות": "Prep cook", "טבחי הזמנות": "Order cooks", "טבחי הכנות": "Prep cooks", "טוען": "Loading", "טיגונים": "Fried", "טיוטה": "Draft", "טיוטה · נשמרת אוטומטית": "Draft · saved automatically", "טיפים (לא בעלות)": "Tips (not in cost)", "טעינה": "Load", "טעינה {n} שנ׳ · מסך {n}ms בממוצע · {n}ms לכל היותר": "Load {n}s · screen {n}ms avg · {n}ms max", "טעינת המנות נכשלה": "Couldn't load dishes", "טעינת המתכונים נכשלה": "Couldn't load recipes", "טעינת הנתונים נכשלה": "Couldn't load data", "טעינת התמונות נכשלה": "Couldn't load photos", "יבש": "Dry", "יבשים": "Dry goods", "יבשים ושימורים": "Dry & canned", "יולי": "July", "יום": "Day", "יום משלוח": "Delivery day", "יומי": "Daily", "יומן ודוחות": "Log & reports", "יומן פעולות": "Activity log", "יומן שינויים": "Change log", "יוני": "June", "יותר מדי ניסיונות. נסה שוב בעוד כמה דקות": "Too many attempts. Try again in a few minutes", "יח׳": "pcs", "יימחקו לגמרי. ההזמנות והפעולות שלו נשארות.": "Will be fully deleted. Their orders and actions stay.", "יימחקו לצמיתות:": "Will be permanently deleted:", "ייצוא": "Export", "ייצור": "Production", "ייצור בזמן": "Production on time", "ייצור בזמן {n}%": "Production on time {n}%", "ייצור:": "Production:", "ימי העבודה עודכנו": "Work days updated", "ימי עבודה": "Work days", "ימי עבודה:": "Work days:", "ימי תוקף": "Shelf days", "ינואר": "January", "יעד {n}% ומעלה": "Target {n}% or more", "יציאה": "Log out", "יציאה מהחשבון": "Log out", "ירקות": "Vegetables", "ירקות וחיתוכים": "Veg & cuts", "ירקות חי": "Raw veg", "יש שינויים שלא נשלחו": "Unsent changes", "כבר יש הזמנה": "There's already an order", "כבר רשום?": "Already registered?", "כהה": "Dark", "כובה": "Turned off", "כולם": "Everyone", "כוס": "cup", "כל אחד רואה את אותה רשימה": "Everyone sees the same list", "כל ההכנות מוכנות.": "All preps are ready.", "כל החודש, כולל מעסיק (משכורות, נסיעות, הפרשות)": "Whole month, incl. employer costs (wages, travel, contributions)", "כל המסעדות": "All restaurants", "כלים": "Tools", "כללי": "General", "כמה גרם?": "How many grams?", "כמה מכינים": "How much to make", "כמה קופסאות יצאו?": "How many boxes came out?", "כמות": "Quantity", "כמות (קופסאות)": "Quantity (boxes)", "כן": "Yes", "כן, להחזיר": "Yes, undo", "כניסה": "Log in", "כף": "tbsp", "כפית": "tsp", "כרטיס עלויות (Food / Prime cost)": "Cost card (Food / Prime cost)", "כשג'קו ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.": "When Jaco sends an order and it's approved, it shows up here for production.", "כשרוזי ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.": "When Rosie sends an order and it's approved, it shows up here for production.", "כתבו שם להכנה": "Write a prep name", "כתוב את השם שלך": "Write your name", "לא הצלחתי לעדכן. נסה שוב": "Couldn't update. Try again", "לא הצלחתי לקרוא את הנתונים": "Couldn't read the data", "לא הצלחתי לקרוא את הקובץ": "Couldn't read the file", "לא התקבל אישור מהדפדפן": "The browser didn't allow it", "לא מחובר": "Not connected", "לא נטען": "Not loaded", "לא ניתן ליצור פרופיל. בדוק את הגדרות Firestore": "Can't create a profile. Check the Firestore settings", "לא נמחק": "Not deleted", "לא נמצא": "Not found", "לא נמצאה הכנה": "No prep found", "לא נקרא · לפתוח ולמלא": "Not read · open and fill in", "לא נשלח": "Not sent", "לא נשלחה": "Not sent", "לא נשמר": "Not saved", "לא נשמר — בדוק חיבור": "Not saved — check the connection", "לא נשמר — בדוק חיבור ונסה שוב": "Not saved — check the connection and try again", "לא נשמר, נסו שוב": "Not saved, try again", "לא פעילות בטלפון הזה": "Off on this phone", "לאיזו מסעדה נכנסים?": "Which restaurant?", "לאישור ←": "To approve ←", "לבדוק השבוע": "Check this week", "לבטל את ההזמנה?": "Cancel the order?", "לדחות את בקשת השינוי?": "Decline the change request?", "לדחות את ההזמנה?": "Decline the order?", "להחזיר לרשימה?": "Back to the list?", "לוחצים + על כל הכנה שצריך": "Tap + on every prep you need", "לוחצים על כפתור השיתוף בספארי (ריבוע עם חץ למעלה)": "Tap the Share button in Safari (square with an up arrow)", "ליטר": "L", "ללא סוג": "No type", "ללא שינוי": "No change", "למחוק את השקילה?": "Delete the weighing?", "למחוק את התמונה?": "Delete the photo?", "למחוק את רישום הפחת?": "Delete the waste entry?", "למי": "To", "למשל: אין מספיק חומר גלם, להזמין פחות": "e.g. not enough raw material, order less", "למשל: אירוע בוטל, הזמנה כפולה": "e.g. event cancelled, duplicate order", "למשל: כפתור שמעתיק את ההזמנה של אתמול": "e.g. a button that copies yesterday's order", "למשל: לחתוך דק יותר, להביא מוקדם": "e.g. slice thinner, bring early", "למשל: לחתוך דק, בלי חריף": "e.g. slice thin, no chili", "למשל: מחר המטבח נפתח ב-{n}": "e.g. tomorrow the kitchen opens at {n}", "לפי הכנה": "By prep", "לפי טאביט": "From Tabit", "לפי טאביט ·": "From Tabit ·", "לפי יום בשבוע": "By weekday", "לצ׳אט ולאקסל": "For chat and Excel", "לשלוח מוקדם יותר": "Send earlier", "מאי": "May", "מאשרים ומתקנים הזמנות": "Approve and fix orders", "מבושלים": "Cooked", "מבט על": "Overview", "מגיע בזמן": "Arrives on time", "מדריך קצר": "Quick guide", "מה (למשל: אורז)": "What (e.g. rice)", "מה זה חוסך": "What it saves", "מה חסר במשלוח?": "What's missing from the delivery?", "מה יש בצלחת?": "What's on the plate?", "מה לכלול בייצוא?": "What to export?", "מה לעשות": "What to do", "מה עושים": "What to do", "מה, למשל: {n} ק״ג עגבניות": "What, e.g. {n} kg tomatoes", "מהירות במכשיר הזה": "Speed on this device", "מהקבלות": "From receipts", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים.": "Deletes orders, production and waste. Preps, staff and settings stay.", "מוחק…": "Deleting…", "מוכן למשלוח ·": "Ready for delivery ·", "מול השבוע שלפניו": "vs. the week before", "מולא כמו": "Filled like", "מולא לפי ממוצע — אפשר לתקן": "Filled from the average — you can fix it", "מופיע ברשימת ההזמנה": "Shows in the order list", "מזמינים בקלות": "Order easily", "מזמינים לפי מה שבאמת יוצא": "Order by what really sells", "מחובר": "Connected", "מחיקה": "Delete", "מחיקת משתמש:": "Delete user:", "מחיר גבוה": "High price", "מחיר לק״ג": "Price per kg", "מחק": "Delete", "מחק הכל": "Delete all", "מחק לגמרי": "Delete for good", "מחק רישום": "Delete entry", "מחק שקילה": "Delete weighing", "מחר": "Tomorrow", "מטבלים": "Dips", "מי נכנס לאיזו מסעדה": "Who can enter which restaurant", "מי רואה מה": "Who sees what", "מילוי מהיר": "Quick fill", "מכין…": "Preparing…", "מכינים בדיוק": "Prep exactly", "מכינים לפי הרשימה": "Prep from the list", "מכירות": "Sales", "מכירות ₪": "Sales ₪", "מכל המסעדות": "From all restaurants", "ממוצע": "Average", "ממוצע {n} שבועות · {n}": "{n}-week average · {n}", "ממוצע לפי יום בשבוע": "Average by weekday", "ממוצע קופסאות": "Average boxes", "ממתין": "Pending", "ממתין לאישור": "Awaiting approval", "ממתין לאישור המנהל. הדף ייפתח לבד אחרי האישור.": "Waiting for the manager. The page opens by itself once approved.", "ממתינה": "Pending", "ממתינה לאישור": "Awaiting approval", "מנה": "Dish", "מנה חדשה:": "New dish:", "מנהל בכל המסעדות": "Manager in all restaurants", "מנהל מטבח": "Kitchen manager", "מנהל מטבח (שף תפעולי)": "Kitchen manager (ops chef)", "מנהל מסעדה": "Restaurant manager", "מנהלים": "Managers", "מנות": "Dishes", "מנות מוכנות": "Ready dishes", "מסעדה": "Restaurant", "מעדכן…": "Updating…", "מפתח": "Developer", "מפתח · בעלים": "Developer · owner", "מצב יום (למטבח מואר)": "Day mode (for a bright kitchen)", "מצב לילה": "Night mode", "מצב צל: רק לך. הצוות לא רואה את ההצעות.": "Shadow mode: only you. Staff don't see the suggestions.", "מקלידים משקל בגרם": "Type the weight in grams", "מראה": "Appearance", "מרץ": "March", "משהו השתבש. נסה שוב": "Something went wrong. Try again", "משלוח": "Delivery", "משלוח היום": "Delivery today", "משלוח מחר": "Delivery tomorrow", "משלוח ראשון {n}": "Delivery Sun {n}", "משלוח שני {n}": "Delivery Mon {n}", "משלוח שלישי {n}": "Delivery Tue {n}", "משלוח רביעי {n}": "Delivery Wed {n}", "משלוח חמישי {n}": "Delivery Thu {n}", "משלוח שישי {n}": "Delivery Fri {n}", "משלוח שבת {n}": "Delivery Sat {n}", "משקל בגרם": "Weight in grams", "מתוך": "of", "מתוך {n}": "of {n}", "מתכון חדש": "New recipe", "מתכון מצילום": "Recipe from photo", "מתכונים": "Recipes", "מ״ל": "ml", "נבדק": "Checked", "נדחתה": "Declined", "נובמבר": "November", "נוסף:": "Added:", "נמחק": "Deleted", "נמחקה": "Deleted", "נמחקו": "Deleted", "נסגר": "Closed", "נפתח": "Opened", "נק׳": "pts", "נרשם ע״י": "Logged by", "נרשם. המטבח יראה מה חסר": "Logged. The kitchen will see what's missing", "נרשם:": "Logged:", "נשארו": "left", "נשלח אחרי {n}": "Sent after {n}", "נשלחה": "Sent", "נשלחה {n} · ממתינה לאישור": "Sent {n} · awaiting approval", "נשלחה אחרי {n}": "Sent after {n}", "נשלחו": "Sent", "נשלחת · תוך כמה דקות בטלפונים": "Sending · on phones within minutes", "נשלחת…": "Sending…", "נשמר": "Saved", "נשמר · Claude יענה כשיחובר": "Saved · Claude will answer once connected", "נשמר ✓": "Saved ✓", "נשמר ✓ Claude קורא את המתכון": "Saved ✓ Claude is reading the recipe", "נשמר ✓ Claude קורא את הקבלה": "Saved ✓ Claude is reading the receipt", "נשמר ✓ ייקרא כש-Claude יחובר": "Saved ✓ will be read once Claude is connected", "נתוני הזמנות": "Order data", "נתונים": "Data", "נתונים: חוסרים, פחת ועלויות": "Data: shortages, waste and costs", "סגור": "Close", "סגור מילוי מהיר": "Close quick fill", "סגירת ערב": "Evening close", "סגירת ערב (דו״ח קופה וסועדים)": "Evening close (register report and covers)", "סה״כ": "Total", "סומן שהזיכוי התקבל ✓": "Marked credit as received ✓", "סועדים": "Covers", "סופר…": "Counting…", "סיבה": "Reason", "סיבה (לא חובה)": "Reason (optional)", "סיום": "Finish", "סיכום": "Summary", "סיכום:": "Summary:", "סיסמה": "Password", "סיסמה חדשה": "New password", "סיסמה חדשה: לפחות {n} תווים": "New password: at least {n} characters", "סיסמה נוכחית": "Current password", "סיסמה שגויה": "Wrong password", "סיסמת המנהל": "Manager password", "סכום": "Amount", "סכום אחר, כולל הפרשות מעסיק:": "Other amount, incl. employer contributions:", "סכום ₪": "Amount ₪", "ספטמבר": "September", "ספק": "Supplier", "עבודה יומית": "Daily work", "עבר {n}": "Past {n}", "עד {n}": "By {n}", "עדכון": "Update", "עדכון לפני אישור:": "Update before approval:", "עדכון מתכון": "Update recipe", "עובד": "Worker", "עובד חדש?": "New here?", "עוד": "More", "עוד {n} שעות ו-{n} דקות עד {n}": "{n} h {n} min until {n}", "עוד {n} דקות עד {n}": "{n} min until {n}", "עוד שעה עד {n}": "1 hour until {n}", "עוד שעתיים עד {n}": "2 hours until {n}", "עוד {n} שעות עד {n}": "{n} hours until {n}", "עוד שעה ו-{n} דקות עד {n}": "1 h {n} min until {n}", "עוד שעתיים ו-{n} דקות עד {n}": "2 h {n} min until {n}", "עוד אין דוחות": "No reports yet", "עוד אין הצעות": "No ideas yet", "עוד אין מתכונים": "No recipes yet", "עוד אף מכשיר לא הפעיל התראות.": "No device has turned on notifications yet.", "עוד אפשרויות": "More options", "עוד לא הוזמן כלום ליום הזה": "Nothing ordered for this day yet", "עודכן": "Updated", "עודכן ע״י": "Updated by", "עלויות": "Costs", "עלות": "Cost", "עלות עובדים": "Labor cost", "עלים": "Leaves", "עם התיקונים": "with fixes", "עריכה": "Edit", "עריכת מתכון": "Edit recipe", "פברואר": "February", "פג תוקף": "Expired", "פגום": "Damaged", "פותחים את האפליקציה ממסך הבית, נכנסים, ומפעילים התראות מהתפריט": "Open the app from the home screen, log in, and turn on notifications in the menu", "פחות": "Less", "פחות פחת": "Less waste", "פחת": "Waste", "פחת לאקסל (CSV)": "Waste to Excel (CSV)", "פחת לפי יום": "Waste by day", "פחת:": "Waste:", "פנקס מתכונים": "Recipe book", "פעילות בטלפון הזה": "On for this phone", "פריטים": "Items", "פריטים: מוסיפים הכנה ומעדכנים תוקף": "Items: add preps and update shelf life", "פתוח": "Open", "צוות": "Staff", "צוות ג'קו": "Jaco staff", "צוות הייצור": "production staff", "צוות ותפקידים": "Staff and roles", "צוות רוזי": "Rosie staff", "צילום מתכון": "Photo of recipe", "צילום קבלה": "Photo of receipt", "צירים ורטבי בשר": "Stocks & meat sauces", "צלמו את דו״ח הקופה": "Photograph the register report", "צפייה וניהול": "View and manage", "צרור": "bunch", "צריך לפחות יום עבודה אחד": "At least one work day is needed", "צריך לפרסם את החוקים ב-Firebase": "Publish the rules in Firebase", "קבוצת": "GROUP", "קבוצת ג'קו סטריט": "Jaco Street Group", "קבלה": "Receipt", "קבלה מספק": "Supplier receipt", "קבלה עם חוסר:": "Received with shortage:", "קבלות": "Receipts", "קבלות ותמונות": "Receipts and photos", "קבלות ספקים (סכומים)": "Supplier receipts (amounts)", "קובץ טאביט": "Tabit file", "קובץ טאביט נקרא ✓": "Tabit file read ✓", "קובץ להורדה": "File to download", "קופסאות": "boxes", "קופסאות לפי יום": "Boxes by day", "קופסה": "box", "קופסה ≈": "box ≈", "קטגוריה": "Category", "קינוחים": "Desserts", "קפיצה לקטגוריה": "Jump to category", "קריאת קבלות ודוחות": "Reading receipts and reports", "קרמים": "Creams", "ק״ג": "kg", "ק״ג נטו בקופסה": "Net kg per box", "ראשון": "Sun", "ראשון {n}": "Sun {n}", "רביעי": "Wed", "רביעי {n}": "Wed {n}", "רגיל": "Normal", "רוזי": "Rosie", "רטבים": "Sauces", "רישום פחת": "Log waste", "רכיבים": "Ingredients", "רכש מזון": "Food purchases", "רכש ₪{n}": "Purchases ₪{n}", "רק אתה משנה גישה למסעדות. בעלים רואה ומנהל את כל המסעדות.": "Only you change restaurant access. An owner sees and manages all restaurants.", "רק מה שהוזמן": "Only what's ordered", "רשימת ההכנות נטענה": "Prep list loaded", "רשימת ההכנות, העובדים וההגדרות נשארים. אי אפשר לשחזר אחרי המחיקה.": "The prep list, staff and settings stay. This can't be undone.", "שאלה ל-Claude": "Ask Claude", "שאלה ל-Claude על כל המסעדות": "Ask Claude about all restaurants", "שאלו את Claude על הנתונים": "Ask Claude about the data", "שאלת ק״ג לקופסה בייצור": "Ask kg per box in production", "שבועי": "Weekly", "שבת": "Sat", "שבת {n}": "Sat {n}", "שבת/חג": "Sabbath/holiday", "שגיאה": "Error", "שוב, לאימות": "Again, to confirm", "שולח עדכון…": "Sending update…", "שולחים הזמנה": "Send the order", "שולחים הזמנה עד {n}": "Send the order by {n}", "שומר…": "Saving…", "שונות": "Misc", "שוקלים מנה מוכנה, רגע לפני שהיא יוצאת": "Weigh a finished dish right before it goes out", "שחזור ההזמנה": "Restore order", "שינוי סיסמה": "Change password", "שישי": "Fri", "שישי {n}": "Fri {n}", "שלום": "Hello", "שלח הזמנה": "Send order", "שלח שוב": "Send again", "שליחה": "Send", "שליחה מחדש ·": "Resent ·", "שליחת הזמנה": "Order sent", "שליחת הזמנה ·": "Order sent ·", "שלישי": "Tue", "שלישי {n}": "Tue {n}", "שם ההכנה": "Prep name", "שם המנה": "Dish name", "שם המשתמש תפוס. בחר שם אחר": "Username taken. Choose another", "שם מלא": "Full name", "שם מנה": "Dish name", "שם מנה חדשה": "New dish name", "שם משתמש": "Username", "שם משתמש או סיסמה שגויים": "Wrong username or password", "שם משתמש באנגלית בלבד: אותיות, ספרות, נקודה או מקף": "Username in English only: letters, digits, dot or dash", "שמור": "Save", "שמור שקילה": "Save weighing", "שני": "Mon", "שני {n}": "Mon {n}", "שנ׳": "s", "שעה": "1 hour", "שעות": "Hours", "שעות נוספות": "Overtime", "שעתיים": "2 hours", "שפה": "Language", "שקילה:": "Weighing:", "שקילות": "Weighings", "שקילות מנות": "Dish weighings", "שקילת מנה": "Weigh a dish", "שקילת מנות": "Weigh dishes", "ש׳": "Sat", "תאריך": "Date", "תאריך משלוח": "Delivery date", "תהליך": "Process", "תודה, נשלח": "Thanks, sent", "תוקף": "Shelf life", "תוקף {n} ימים": "Shelf life {n} days", "תוקף {n} ימים ·": "Shelf life {n} days ·", "תחזית": "Forecast", "תיקון ידני": "Manual fix", "תמונה אחת לא נטענה": "One photo didn't load", "תמונות (קובץ להורדה)": "Photos (file to download)", "תמונות מהתהליך": "Process photos", "תפוקה ומחיר בכרטיס הכנה": "Yield and price on the prep card", "תפקיד": "Role", "תפקיד:": "Role:", "תקבל התראה כשהמטבח יאשר": "You'll be notified when the kitchen approves", "תקופה": "Period", "‹ הגדרות": "‹ Settings", "‹ חדר בקרה": "‹ Control room", "‹ חדר שליטה": "‹ Command room", "‹ סגור": "‹ Close", "‹ דוחות": "‹ Reports", "‹ חזרה": "‹ Back", "‹ ביטול": "‹ Cancel", "‹ מתכונים": "‹ Recipes", "✓ אישור": "✓ Approve", "✓ אישור עם התיקונים": "✓ Approve with fixes", "✓ בממוצע": "✓ on average", "✓ הכול תקין": "✓ All good", "✓ הכל התקבל": "✓ All received", "✓ כן, בוצע": "✓ Yes, done", "✓ מתכון": "✓ Recipe", "✓ על כל הכנה שמוכנה": "✓ on each prep that's ready", "✕ בטל הזמנה": "✕ Cancel order", "✕ דחה": "✕ Decline", "✕ דחה הזמנה": "✕ Decline order", "⬇ הורד גיבוי מלא לפני המחיקה (מומלץ)": "⬇ Download a full backup first (recommended)", "＋ הוסף": "＋ Add", "＋ הוסף הכנות שלא הוזמנו": "＋ Add preps not ordered", "＋ הכנה חדשה": "＋ New prep", "＋ העלאה": "＋ Upload", "＋ זיכוי": "＋ Credit", "＋ חדש": "＋ New", "＋ עוד רכיב": "＋ Another ingredient", "כמו ראשון שעבר · {n}": "Like last Sunday · {n}", "כמו שני שעבר · {n}": "Like last Monday · {n}", "כמו שלישי שעבר · {n}": "Like last Tuesday · {n}", "כמו רביעי שעבר · {n}": "Like last Wednesday · {n}", "כמו חמישי שעבר · {n}": "Like last Thursday · {n}", "כמו שישי שעבר · {n}": "Like last Friday · {n}", "כמו שבת שעבר · {n}": "Like last Saturday · {n}", "{n} · {n} קופסאות": "{n} · {n} boxes", "{n} · {n} קופסה": "{n} · {n} box", "עובד חדש": "New worker", "מחכה לאישור": "waiting for approval", "הזמנה הועברה": "Order moved", "שינוי בהזמנה": "Order change", "הזמנה עודכנה": "Order updated", "הזמנה אושרה": "Order approved", "הזמנה נדחתה": "Order declined", "שינוי נדחה": "Change declined", "חוסר": "Shortage", "נשארה הכנה אחת": "One prep left", "נשארו {n} הכנות": "{n} preps left", "חסר במשלוח": "Missing from delivery", "לא נשלחה הזמנה": "No order sent", "סיכום שבועי": "Weekly summary", "{n} זיכויים פתוחים": "{n} open credits", "עליית מחיר אצל ספק": "Supplier price increase", "Claude ענה": "Claude answered", "הדוח מוכן": "Report ready", "אין מספיק נתונים לדוח": "Not enough data for a report", "מחר {n}": "Tomorrow {n}", "היום {n}": "Today {n}", "{n} כמויות שונו": "{n} quantities changed", "{n} דקות": "{n} min", "{n} שעות": "{n} hours", "שעה ו-{n} דקות": "1 h {n} min", "שעתיים ו-{n} דקות": "2 h {n} min", "{n} שעות ו-{n} דקות": "{n} h {n} min", "{n} דקות עד {n}": "{n} min until {n}", "שעה עד {n}": "1 hour until {n}", "שעתיים עד {n}": "2 hours until {n}", "{n} שעות עד {n}": "{n} hours until {n}", "אחת מוכנה": "one ready", "{n} מוכנות": "{n} ready", "נשלחה, אפשר לעדכן עד {n}": "sent, can update until {n}", "נסגרת ב-{n}": "closes at {n}", "לבקש בחשבונית הבאה": "ask on the next invoice", "מנה אחת מכל אחת לפני שיוצאת": "one plate of each before it goes out", "לצלם את דו״ח הקופה": "photograph the register report"});
+I18N_PAT.en.push([new RegExp("^עוד (.+)$"), "More $1"], [new RegExp("^פחות (.+)$"), "Less $1"], [new RegExp("^סמן (.+) כבוצע$"), "Mark $1 done"], [new RegExp("^שלום (.+)$"), "Hello $1"], [new RegExp("^(.+) · (\\d+:\\d+) · (\\d+) קופסאות$"), "$1 · $2 · $3 boxes"], [new RegExp("^אושרה ✓ (\\d+:\\d+) · (.+)$"), "Approved ✓ $1 · $2"], [new RegExp("^פחת (\\d+(?:\\.\\d+)?)% · (.+)$"), "Waste $1% · $2"], [new RegExp("^חוסר · (.+)$"), "Short · $1"], [new RegExp("^(ראשון|שני|שלישי|רביעי|חמישי|שישי|שבת) ([\\d/]+) · (.+?) · (.+)$"), "$1 $2 · $3 · $4"], [new RegExp("^תפקיד (.+)$"), "Role of $1"], [new RegExp("^(.+) · (\\d+:\\d+)$"), "$1 · $2"], [new RegExp("^חוסר צפוי במשלוח (.+)$"), "Expected shortage in delivery $1"], [new RegExp("^הערה מ(.+):$"), "Note from $1:"], [new RegExp("^(\\d+) קופסאות · (.+)$"), "$1 boxes · $2"], [new RegExp("^ההזמנה נסגרת בעוד (.+)$"), "Order closes in $1"], [new RegExp("^(.+) לסגירה$"), "$1 to close"], [new RegExp("^(.+) ← (.+)$"), "$1 ← $2"], [new RegExp("^ניתוח שעות מוכן · (.+)$"), "Hours analysis ready · $1"], [new RegExp("^קובץ טאביט נקרא · (.+)$"), "Tabit file read · $1"]);
+
+
+startI18n();
 const fb = initializeApp(firebaseConfig);
 const auth = getAuth(fb);
 /* מטמון מקומי: שינויים נשמרים בטלפון גם בלי קליטה, ונשלחים כשהחיבור חוזר */
@@ -2455,6 +2552,7 @@ onAuthStateChanged(auth, async (user) => {
   unsub.profile = onSnapshot(doc(db, "users", user.uid), (s) => {
     const before = S.site + "|" + role();
     S.profile = s.exists() ? s.data() : null;
+    if (S.profile && (S.profile.lang || "he") !== LANG) updateDoc(doc(db, "users", user.uid), { lang: LANG }).catch(() => {});
     S.pushOn = !!(S.profile && S.profile.push && store("rosie-push") && S.profile.push[store("rosie-push")]);
     /* הגישה למסעדה הנוכחית הוסרה ויש מסעדה אחרת → חזרה למסך הבחירה */
     if (S.site && !ACTIVE.includes(role()) && mySites().length) { sessionSafe("rosie-site", ""); location.reload(); return; }
@@ -2997,7 +3095,7 @@ async function backupAll() {
   try {
     const all = await allDocs(), out = {};
     Object.keys(all).forEach((n) => (out[n] = Object.fromEntries(all[n].map((d) => [d.id, d.data()]))));
-    download(`rosie-backup-${dkey(new Date())}.json`, JSON.stringify({ at: new Date().toISOString(), catalog: S.catalog, ...out }, null, 1), "application/json");
+    download(`mizo-backup-${dkey(new Date())}.json`, JSON.stringify({ at: new Date().toISOString(), catalog: S.catalog, ...out }, null, 1), "application/json");
     toast("הגיבוי ירד");
   } catch (e) { toast("הגיבוי נכשל"); }
 }
@@ -3058,7 +3156,7 @@ function exportCSV(kind) {
       });
     });
   }
-  download(`rosie-${kind}-${D.from}_${D.today}.csv`, "﻿" + rows.map((r) => r.map(csvCell).join(",")).join("\n"), "text/csv;charset=utf-8");
+  download(`mizo-${S.site}-${kind}-${D.from}_${D.today}.csv`, "﻿" + rows.map((r) => r.map(csvCell).join(",")).join("\n"), "text/csv;charset=utf-8");
 }
 function exportText(inc) {
   inc = inc || { dishes: true, receipts: true };
@@ -3208,7 +3306,7 @@ function viewOrder() {
   const isToday = S.day === dkey(new Date());
   let h = closeCard() + pendingBanner() + (can.order() ? shortBanner(S.todayProd, "במשלוח היום") : "") + receiptCard() + (!isToday ? shortBanner(S.prod, `במשלוח ${dayName(S.day)}`) : "");
   h += statusLine(false);
-  if (S.order === null || !S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
+  if (S.order === null || !S.catalog) return h + SKEL;
   if (o.rejected && o.rejected.at > (o.sentAt || 0)) h += `<div class="banner bad"><span><b>${o.rejected.change ? "בקשת השינוי נדחתה" : "ההזמנה נדחתה"}${o.rejected.by ? " ע״י " + esc(o.rejected.by) : ""}${o.rejected.note ? ":" : ""}</b> ${esc(o.rejected.note || "")}${o.rejected.change ? "" : "<br><small>אפשר לתקן ולשלוח שוב.</small>"}</span></div>`;
   const adj = o.status === "approved" && !isDirty() && Array.isArray(o.adjusted) ? o.adjusted : [];
   if (adj.length) h += `<div class="banner info"><span><b>המטבח עדכן כמויות באישור:</b> ${adj.map(chg).map(({ k, f, t }) => `${esc(itemBy(k).n)} ${num(t)} (ביקשתם ${num(f)})`).join(" · ")}</span></div>`;
@@ -3270,7 +3368,7 @@ function prodTools() {
 }
 function viewProd() {
   let h = pendingBanner() + statusLine(true) + approvalCard();
-  if (!S.catalog || S.order === null || S.prod === null) return h + `<div class="empty"><b>טוען…</b></div>`;
+  if (!S.catalog || S.order === null || S.prod === null) return h + SKEL;
   const o = O();
   if (!hasApproved(o)) {
     return h + (o.status === "pending" ? "" : o.status === "rejected" ? `<div class="empty"><b>ההזמנה נדחתה</b>${o.rejected && o.rejected.note ? esc(o.rejected.note) : ""}</div>` : (!o.sentAt && sum(o.items) > 0 ? `<div class="empty"><b>${SN()} מכינים הזמנה כרגע</b>טיוטה של ${count(o.items)} הכנות${o.updatedBy ? `, עודכנה ע״י ${esc(o.updatedBy)} ב-${hm(o.updatedAt)}` : ""}. היא תגיע לאישור כשישלחו.</div>` : `<div class="empty"><b>${o.sentAt ? "ממתין לאישור" : "אין הזמנה מאושרת ליום הזה"}</b>${o.sentAt ? "" : `כש${SN()} ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.`}</div>`))
@@ -3319,7 +3417,8 @@ function viewProd() {
 function barChart(vals, labels, opts) {
   const W = 600, H = 150, n = vals.length, max = Math.max(1, ...vals), bw = W / n, gap = Math.min(6, bw * 0.28);
   let s = `<div class="chartbox"><div class="ctip" aria-live="polite">${esc(opts.hint || "")}</div><svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.title)}" preserveAspectRatio="none">`;
-  [0.5, 1].forEach((f) => { const y = H * (1 - f) + 1; s += `<line class="grid" x1="0" x2="${W}" y1="${y}" y2="${y}" vector-effect="non-scaling-stroke"/>`; });
+  const nz = vals.filter((v) => v > 0), avg = nz.length ? nz.reduce((a, b) => a + b, 0) / nz.length : 0;
+  if (avg) { const y = H - (H - 2) * (avg / max); s += `<line class="avg" x1="0" x2="${W}" y1="${y}" y2="${y}" vector-effect="non-scaling-stroke"/>`; }
   vals.forEach((v, i) => {
     const x = W - (i + 1) * bw + gap / 2, w = Math.max(1.5, bw - gap), h = (H - 2) * (v / max), y = H - h;
     s += `<g class="b" data-tip="${esc(labels[i])} · ${fmt(v)} קופסאות"><rect class="hit" x="${x - gap / 2}" y="0" width="${bw}" height="${H}"/>`;
@@ -3482,8 +3581,8 @@ function moneyCard() {
 }
 function viewData() {
   let h = `<div class="tools"><div class="seg" role="group" aria-label="תקופה">${[14, 30, 90].map((r) => `<button data-range="${r}" aria-pressed="${S.range === r}">${r} ימים</button>`).join("")}</div></div>`;
-  if (!S.data || S.dataBusy) return h + `<div class="empty"><b>טוען נתונים…</b></div>`;
-  if (!S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
+  if (!S.data || S.dataBusy) return h + SKEL;
+  if (!S.catalog) return h + SKEL;
   const st = stats(), nd = st.days.length || 1, D = S.data;
   const dsec = (k, title, meta, body) => `<section class="card dsec"><button class="dsh" data-dsec="${k}" aria-expanded="${!!(S.dsec || {})[k]}"><b>${title}</b><small>${meta}</small><span class="chev">${(S.dsec || {})[k] ? "▴" : "▾"}</span></button>${(S.dsec || {})[k] ? `<div class="dsb">${body()}</div>` : ""}</section>`;
   if (!st.days.length) return h + `<div class="empty"><b>עוד אין נתונים בתקופה הזו</b></div>` + (perm("money") ? moneyCard() : "");
@@ -3540,7 +3639,7 @@ function viewData() {
     h += `<button class="hrow" data-oday="${k}" aria-expanded="${open}"><span class="hd"><b>${DN[parse(k).getDay()]} ${ddmm(parse(k))}</b><small>${o.sentBy ? esc(o.sentBy) + " · " + hm(o.sentAt) : "לא נשלחה"}</small></span><span class="hq">${sum(q) || sum(o.items)}<small>קופסאות</small></span><span class="hp">${st2}${o.late ? `<span class="pill late">אחרי 16:00</span>` : ""}${o.changeCount ? `<span class="pill">${o.changeCount} שינויים</span>` : ""}${rc}</span></button>`;
     if (open) {
       const m = sum(q) ? q : o.items || {};
-      h += `<div class="hx">${Object.keys(m).filter((i) => okKey(i) && +m[i] > 0).map((i) => `<span>${esc(itemBy(i).n)} <b>${num(m[i])}</b></span>`).join("")}${o.note ? `<p class="anote">${I.note}<span>${esc(o.note)}</span></p>` : ""}${Object.keys(shK).length ? `<p class="warnv">חוסר מהייצור: ${Object.keys(shK).map((i) => esc(itemBy(i).n) + " " + num(shK[i].n)).join(", ")}</p>` : ""}${count(xm) ? `<p class="badv">חסר בקבלה: ${Object.keys(xm).map((i) => esc(itemBy(i).n) + " " + num(xm[i])).join(", ")}</p>` : ""}${o.approvedBy ? `<p class="hint">אושרה ע״י ${esc(o.approvedBy)} ${hm(o.approvedAt)}</p>` : ""}${o.cancelled ? `<p class="badv">בוטלה ע״י ${esc(o.cancelled.by)}${o.cancelled.note ? ": " + esc(o.cancelled.note) : ""}</p>` : ""}<p class="hrow-act"><button class="btn small ghost" data-log="${k}">🕘 יומן שינויים</button> ${o.status === "cancelled" ? `<button class="btn small ghost" data-uncancel="${k}">שחזר הזמנה</button>` : `<button class="btn small ghost badt" data-cancel="${k}">✕ בטל הזמנה (לא בוצעה)</button>`}</p></div>`;
+      h += `<div class="hx">${Object.keys(m).filter((i) => okKey(i) && +m[i] > 0).map((i) => `<span>${esc(itemBy(i).n)} <b>${num(m[i])}</b></span>`).join("")}${o.note ? `<p class="anote">${I.note}<span>${esc(o.note)}</span></p>` : ""}${Object.keys(shK).length ? `<p class="warnv">חוסר מהייצור: ${Object.keys(shK).map((i) => esc(itemBy(i).n) + " " + num(shK[i].n)).join(", ")}</p>` : ""}${count(xm) ? `<p class="badv">חסר בקבלה: ${Object.keys(xm).map((i) => esc(itemBy(i).n) + " " + num(xm[i])).join(", ")}</p>` : ""}${o.approvedBy ? `<p class="hint">אושרה ע״י ${esc(o.approvedBy)} ${hm(o.approvedAt)}</p>` : ""}${o.cancelled ? `<p class="badv">בוטלה ע״י ${esc(o.cancelled.by)}${o.cancelled.note ? ": " + esc(o.cancelled.note) : ""}</p>` : ""}<p class="hrow-act"><button class="btn small ghost" data-log="${k}">יומן שינויים</button> ${o.status === "cancelled" ? `<button class="btn small ghost" data-uncancel="${k}">שחזר הזמנה</button>` : `<button class="btn small ghost badt" data-cancel="${k}">✕ בטל הזמנה (לא בוצעה)</button>`}</p></div>`;
     }
   });
   if (hist.length > 10 && !S.histAll) h += `<button class="more" id="histAll">הצג את כל ${hist.length} ההזמנות</button>`;
@@ -3574,7 +3673,7 @@ function viewLab() {
   return S.lab === "photos" ? viewPhotos() : S.lab === "book" ? viewBook() : viewDishes();
 }
 function viewDishes() {
-  if (!S.dishes) { if (!S.dLoading) { S.dLoading = true; loadDishes().finally(() => { S.dLoading = false; }); } return `<div class="empty"><b>טוען…</b></div>`; }
+  if (!S.dishes) { if (!S.dLoading) { S.dLoading = true; loadDishes().finally(() => { S.dLoading = false; }); } return SKEL; }
   const ids = Object.keys(S.dishes).sort((x, y) => dishLevel(S.dishes[x]) - dishLevel(S.dishes[y]) || (S.dishes[x].n || "").localeCompare(S.dishes[y].n || "", "he"));
   const full = ids.filter((id) => dishLevel(S.dishes[id]) === 2).length;
   let h = !ids.length ? "" : `<div class="progress-card dgoal"><div><b>${full} מתוך ${ids.length}</b> מנות מוכנות</div><div class="progress"><div style="width:${ids.length ? Math.round((full / ids.length) * 100) : 0}%"></div></div></div>`;
@@ -3670,11 +3769,20 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.2.0";
+const APP_VER = "2.3.0";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
+/* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
+function speedLine() {
+  const P = window.__perf || { n: 0, total: 0, max: 0 }, avg = P.n ? P.total / P.n : 0;
+  return `טעינה ${S.loadMs ? (S.loadMs / 1000).toFixed(1) + " שנ׳" : "—"} · מסך ${Math.round(avg)}ms בממוצע · ${Math.round(P.max)}ms לכל היותר`;
+}
+const SKEL = `<div class="skel" aria-label="טוען" role="status"><i></i><i></i><i></i><i></i></div>`;
 const IC = {
   ai: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>',
+  idea: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/>',
+  speed: '<path d="M12 14l4-5M4 18a9 9 0 1 1 16 0"/>',
   key: '<rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5h8v2M9 13h6"/>', lock: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
   bell: '<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/>', moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
   help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/>', info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/>',
@@ -3708,11 +3816,13 @@ function viewSettings() {
   h += grp([
     row({ id: "pushBtn", icon: ICB("#FF453A", IC.bell), t: "התראות", s: S.pushOn ? "פעילות בטלפון הזה" : "לא פעילות בטלפון הזה", right: `<span class="sw ${S.pushOn ? "on" : ""}" aria-hidden="true"></span>` }),
     `<div class="srow">${ICB("#5E5CE6", IC.moon)}<span class="st"><b>מראה</b></span><div class="seg mini" role="group">${[["dark", "כהה"], ["light", "בהיר"], ["auto", "אוטומטי"]].map(([k, l]) => `<button data-theme="${k}" aria-pressed="${th === k}">${l}</button>`).join("")}</div></div>`,
+    `<div class="srow">${ICB("#0A84FF", IC.globe)}<span class="st"><b>שפה</b></span><div class="seg mini" role="group" aria-label="שפה">${LANGS.map(([k, l]) => `<button data-lang="${k}" aria-pressed="${LANG === k}" lang="${k}">${l}</button>`).join("")}</div></div>`,
   ], "במכשיר הזה");
   if (mySites().length > 1) h += grp([row({ id: "siteSw", icon: ICB("var(--acc)", IC.users), t: "החלפת מסעדה", v: esc(siteOf(S.site).f), chev: true })]);
   if (can.group()) h += grp([row({ id: "ctlBtn", icon: ICB("#1C1C1E;border:1px solid var(--line)", IC.shield), t: can.owner() ? "חדר בקרה" : "חדר שליטה", s: "כל המסעדות", chev: true })]);
   h += grp([
     row({ data: 'data-setp="guide"', icon: ICB("#30D158", IC.help), t: "מדריך קצר", chev: true }),
+    row({ id: "ideaBtn", icon: ICB("#FFD60A", IC.idea), t: "הצעה לשיפור", chev: true }),
     row({ data: 'data-setp="about"', icon: ICB("#FF6F91", IC.info), t: "אודות", v: `גרסה ${APP_VER}`, chev: true }),
   ]);
   h += `<div class="grp"><button class="srow center" id="logout"><b class="danger">יציאה מהחשבון</b></button></div>`;
@@ -3721,7 +3831,7 @@ function viewSettings() {
 function viewAbout() {
   return `<div class="about">${SIGN}</div>` +
     grp([row({ t: "גרסה", v: APP_VER }), row({ t: "מסעדה", v: esc(siteOf(S.site).f) }), row({ t: "תפקיד", v: esc(roleLabel(S.profile, S.site)) })]) +
-    `<p class="copyr">© 2026 קבוצת ג'קו סטריט</p>`;
+    `<p class="copyr">© 2026 קבוצת ג'קו סטריט</p><p class="mz" aria-hidden="true">mizo</p>`;
 }
 function viewGuide() {
   const r = role(), cut = hasCut();
@@ -3782,7 +3892,7 @@ const RUNITS = ["ק״ג", "גרם", "ליטר", "מ״ל", "יח׳", "כף", "כ�
 const bookCat = (r) => (BCATS.includes(r.cat) ? r.cat : "אחר");
 const stepsOf = (r) => String(r.steps || "").split("\n").map((x) => x.replace(/^\d+[.)]\s*/, "").trim()).filter(Boolean);
 function viewBook() {
-  if (!S.book) { if (!S.bLoading) { S.bLoading = true; loadBook().finally(() => { S.bLoading = false; }); } return `<div class="empty"><b>טוען…</b></div>`; }
+  if (!S.book) { if (!S.bLoading) { S.bLoading = true; loadBook().finally(() => { S.bLoading = false; }); } return SKEL; }
   if (S.re) return recipeEdit();
   if (S.rv && S.book[S.rv]) return recipePage(S.rv);
   const q = (S.bq || "").trim(), all = Object.keys(S.book);
@@ -3960,8 +4070,8 @@ async function openPhoto(id) {
 }
 const ils = (n) => "₪" + Math.round(n).toLocaleString("he-IL");
 function viewPhotos() {
-  if (!S.photos) { if (!S.pLoading) { S.pLoading = true; loadPhotos().finally(() => { S.pLoading = false; }); } return `<div class="empty"><b>טוען…</b></div>`; }
-  let h = `<div class="pbtns${S.upBusy ? " busy" : ""}"><label class="btn" for="fileR">${S.upBusy ? `<span class="spin"></span> שומר…` : "📄 קבלה מספק"}</label><label class="btn ghost" for="fileP">📷 תמונה מהתהליך</label>
+  if (!S.photos) { if (!S.pLoading) { S.pLoading = true; loadPhotos().finally(() => { S.pLoading = false; }); } return SKEL; }
+  let h = `<div class="pbtns${S.upBusy ? " busy" : ""}"><label class="btn" for="fileR">${S.upBusy ? `<span class="spin"></span> שומר…` : "קבלה מספק"}</label><label class="btn ghost" for="fileP">תמונה מהתהליך</label>
     <input type="file" id="fileR" accept="image/*" multiple hidden><input type="file" id="fileP" accept="image/*" multiple hidden></div>` + creditBar();
   const all = Object.entries(S.photos).sort((a, b) => (b[1].day || "").localeCompare(a[1].day || "") || b[1].at - a[1].at);
   const mk = todayKey().slice(0, 7), rec = all.filter(([, p]) => p.kind === "r" && (p.day || "").startsWith(mk));
@@ -4021,7 +4131,7 @@ async function runExport() {
 function viewItems() {
   let h = "";
   h += S.addOpen ? `<form class="card form" id="addF"><input id="nN" placeholder="שם ההכנה" aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${c}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>` : `<button class="btn ghost full addopen" id="addOpen">＋ הכנה חדשה</button>`;
-  if (!S.catalog) return h + `<div class="empty"><b>טוען…</b></div>`;
+  if (!S.catalog) return h + SKEL;
   S.icat = S.icat || {};
   grouped(items(true)).forEach(([cat, list], ci) => {
     const open = S.icat[cat] ?? ci === 0;
@@ -4123,7 +4233,7 @@ function viewControl() {
   if (!can.group()) return `<div class="empty"><b>אין גישה</b></div>`;
   if (S.ctl === "report" && S.repObj) return viewReport(S.repObj);
   if (!can.owner()) return viewGroup();
-  if (!S.ctlData) { loadCtl(); return `<div class="empty"><b>טוען…</b></div>`; }
+  if (!S.ctlData) { loadCtl(); return SKEL; }
   const C = S.ctlData, today = todayKey(), evToday = C.ev.filter((e) => dkey(new Date(e.at)) === today);
   if (S.ctl === "log") {
     const F = [["all", "הכול"], ["הזמנות", "הזמנות"], ["ייצור", "ייצור"], ["אחר", "אחר"]], f = S.logF || "all";
@@ -4141,6 +4251,8 @@ function viewControl() {
       grp(daily.map(sw), "עבודה יומית") + grp(view.map(sw), "צפייה וניהול", `השינוי חל מיד אצל כל ${R === "admin" ? "המנהלים" : R === "prod" ? "צוות הייצור" : `עובדי ${SN()}`}. כיבוי לא מוחק נתונים.`);
   }
   if (S.ctl === "team") return viewStaff();
+  if (S.ctl === "ideas") return viewIdeas();
+  if (S.ctl === "bcast") return viewBcast();
   if (S.ctl === "access") return viewAccess();
   if (S.ctl === "sugg") return viewSugg(C);
   if (S.ctl === "reports") return viewReports(C);
@@ -4157,7 +4269,7 @@ function viewControl() {
       row({ data: 'data-ctl="team"', icon: ICB("#FF9F0A", IC.users), t: `צוות ${SN()}`, v: pend ? `<span class="pill warn">${pend} ממתינים</span>` : `${staffOfSite().length}`, chev: true }),
       row({ data: 'data-ctl="access"', icon: ICB("#FF8A3D", IC.lock), t: "מי נכנס לאיזו מסעדה", chev: true }),
       row({ data: 'data-ctl="perm"', icon: ICB("#30D158", IC.lock), t: "מי רואה מה", chev: true }),
-    ]);
+    ]) + grp([row({ data: 'data-ctl="bcast"', icon: ICB("#FF453A", IC.bell), t: "הודעה לצוות", s: "התראה לטלפון", chev: true })]);
   }
   if (A === "app") return h + grp([
       row({ id: "wdBtn", icon: ICB("#5E5CE6", IC.cal), t: "ימי עבודה", v: wdTxt(), chev: true }),
@@ -4165,13 +4277,62 @@ function viewControl() {
       row({ icon: ICB("#D97757", IC.ai), t: "Claude", s: aiLine().s, right: `<span class="aist ${aiLine().c}">${aiLine().v}</span>` }),
       row({ id: "itemsGo", icon: ICB("#64D2FF", IC.list), t: "הכנות", v: `${items(true).length}`, chev: true }),
       row({ id: "backupBtn", icon: ICB("#8E8E93", IC.doc), t: "גיבוי נתונים", s: "קובץ להורדה", chev: true }),
+      row({ icon: ICB("#32D74B", IC.speed), t: "מהירות במכשיר הזה", s: speedLine() }),
     ], SN()) + grp([row({ id: "resetBtn", icon: ICB("#FF453A", IC.reset), t: "איפוס נתונים", danger: true, chev: true })], "", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים.");
   h += grp([
     row({ data: 'data-ctl="log"', icon: ICB("#0A84FF", IC.list), t: "יומן פעולות", v: `${evToday.length} היום`, chev: true }),
     row({ data: 'data-ctl="reports"', icon: ICB("#D97757", IC.ai), t: "Claude ודוחות", s: C.reps[0] ? esc(C.reps[0].headline || C.reps[0].title || "") : "", chev: true }),
+    row({ id: "ideasGo", icon: ICB("#FFD60A", IC.idea), t: "הצעות לשיפור", s: "מכל המסעדות", chev: true }),
   ], SN());
   if (C.ev.length) h += grp(C.ev.slice(0, 5).map(evRow), "אחרונות");
   return h;
+}
+/* ---------- הודעה לצוות: גדי כותב, השרת שולח התראה לטלפונים (עד 5 דקות) ---------- */
+const BC_R = [["", "כולם"], ["rosie", "טבחי הזמנות"], ["prod", "טבחי הכנות"], ["admin", "מנהלים"]];
+function viewBcast() {
+  const B = S.bc = S.bc || { sites: [S.site], role: "" };
+  if (!S.bcList) loadBcast();
+  let h = `<div class="field"><label>למי</label><div class="opts">${SITES.map((x) => `<button type="button" class="opt" data-bcs="${x.k}" aria-checked="${B.sites.includes(x.k)}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>
+    <div class="seg wide" role="group" aria-label="תפקיד">${BC_R.map(([k, l]) => `<button data-bcr="${k}" aria-pressed="${B.role === k}">${l}</button>`).join("")}</div>
+    <textarea class="ta idea" id="bcIn" rows="3" maxlength="300" placeholder="למשל: מחר המטבח נפתח ב-8:00" aria-label="ההודעה"></textarea>
+    <button class="btn full" id="bcSend" ${B.busy ? "disabled" : ""}>שליחה</button>`;
+  const L = S.bcList || [];
+  if (L.length) h += grp(L.map((b) => { const sent = Object.values(b.sent || {}).reduce((a, n) => a + (+n || 0), 0); return `<div class="srow"><span class="st"><b>${esc(b.text)}</b><small>${ddmm(new Date(b.at))} ${hm(b.at)} · ${(b.sites || []).map((k) => esc(siteOf(k).n)).join(" + ")} · ${b.status === "done" ? `נשלחה ל-${sent} מכשירים` : "נשלחת…"}</small></span></div>`; }), "נשלחו");
+  return h;
+}
+async function loadBcast() {
+  S.bcList = [];
+  try { const q = await getDocs(query(collection(db, "broadcasts"), orderBy("at", "desc"), limit(10))); S.bcList = q.docs.map((d) => Object.assign({ id: d.id }, d.data())); } catch (e) {}
+  renderSoon();
+}
+async function sendBcast() {
+  const B = S.bc, i = $("bcIn"), t = ((i && i.value) || "").trim();
+  if (!t) { if (i) i.focus(); return; }
+  if (!B.sites.length) { toast("בחרו מסעדה"); return; }
+  B.busy = true; render();
+  const x = { title: B.sites.length > 1 ? "הודעה מגדי" : "הודעה", text: t.slice(0, 300), sites: B.sites.slice(), roles: B.role ? [B.role] : [], status: "pending", at: Date.now(), by: myName() };
+  try { await setDoc(doc(db, "broadcasts", "b" + Date.now().toString(36)), x); if (i) i.value = ""; S.bcList = [x].concat(S.bcList || []); toast("נשלחת · תוך כמה דקות בטלפונים"); }
+  catch (e) { toast("לא נשלח"); }
+  B.busy = false; render();
+}
+/* ---------- הצעות לשיפור: כל עובד שולח, רק גדי רואה ---------- */
+async function sendIdea() {
+  const sh = S.sheet, i = $("ideaIn"), t = ((i && i.value) || "").trim(); if (!sh) return;
+  if (t.length < 3) { if (i) i.focus(); return; }
+  sh.busy = true; render();
+  try { await setDoc(doc(db, "feedback", "f" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5)), { text: t.slice(0, 1000), by: myName(), site: S.site || "rosie", role: role(), at: Date.now() }); S.sheet = null; render(); toast("תודה, נשלח"); }
+  catch (e) { sh.busy = false; render(); toast("לא נשלח"); }
+}
+async function loadIdeas() {
+  if (!can.owner()) return;
+  try { const q = await getDocs(query(collection(db, "feedback"), orderBy("at", "desc"), limit(50))); S.ideas = q.docs.map((d) => Object.assign({ id: d.id }, d.data())); }
+  catch (e) { S.ideas = []; }
+  renderSoon();
+}
+function viewIdeas() {
+  if (!S.ideas) { loadIdeas(); return SKEL; }
+  if (!S.ideas.length) return `<div class="bempty"><b>עוד אין הצעות</b></div>`;
+  return `<div class="asks">${S.ideas.map((x) => `<div class="qa"><button class="qx" data-ideadel="${esc(x.id)}" aria-label="מחק">×</button><b>${esc(x.by || "")} · ${esc(siteOf(x.site).f)}</b><p>${esc(x.text).replace(/\n/g, "<br>")}</p><small class="mute">${ddmm(new Date(x.at))} ${hm(x.at)}</small></div>`).join("")}</div>`;
 }
 /* ---------- קבוצה: מבט על כל המסעדות (גדי ובעלים) ---------- */
 async function loadGroup(force) {
@@ -4243,16 +4404,16 @@ function watchGroup() {
 }
 async function requestBrief() {
   if (S.briefReq || !S.grp) return; S.briefReq = true;
-  try { await setDoc(doc(db, "group", "b" + Date.now().toString(36)), { kind: "brief", status: "pending", at: Date.now(), by: myName(), data: grpPayload() }); } catch (e) {}
+  try { await setDoc(doc(db, "group", "b" + Date.now().toString(36)), { kind: "brief", status: "pending", at: Date.now(), by: myName(), lang: LANG, data: grpPayload() }); } catch (e) {}
 }
 async function groupAsk() {
   const i = $("gAskQ"), q = ((i && i.value) || "").trim(); if (!q) { if (i) i.focus(); return; }
-  try { await setDoc(doc(db, "group", "a" + Date.now().toString(36)), { kind: "ask", status: "pending", q: q.slice(0, 500), at: Date.now(), by: myName(), data: grpPayload() }); if (i) i.value = ""; }
+  try { await setDoc(doc(db, "group", "a" + Date.now().toString(36)), { kind: "ask", status: "pending", q: q.slice(0, 500), at: Date.now(), by: myName(), lang: LANG, data: grpPayload() }); if (i) i.value = ""; }
   catch (e) { toast("לא נשלח"); }
 }
 const qaHtml = (a, del) => `<div class="qa"><button class="qx" ${del}="${esc(a.id)}" aria-label="סגור">×</button><b>${esc(a.q)}</b>${a.status === "done" ? `<p>${esc(a.a || "").replace(/\n/g, "<br>")}</p>` : a.status === "error" ? `<p class="badt">Claude לא הצליח לענות</p>` : `<p class="mute"><span class="spin"></span>Claude חושב…</p>`}</div>`;
 function viewGroup() {
-  if (!S.grp) { loadGroup(); return `<div class="empty"><b>טוען…</b></div>`; }
+  if (!S.grp) { loadGroup(); return SKEL; }
   const G = S.grp, br = S.grpBrief, open = !!(S.dsec || {}).brief;
   let h = `<section class="card brief"><div class="bhd">${ICB("#D97757", IC.ai)}<b>Claude</b>${br && br.status === "done" ? `<small>${ddmm(new Date(br.doneAt || br.at))} ${hm(br.doneAt || br.at)}</small>` : ""}</div>`;
   if (br && br.status === "done" && br.short) {
@@ -4288,7 +4449,7 @@ function accessLine(u) {
 }
 function viewAccess() {
   const list = (S.staff || []).filter((u) => !isOwnerP(u)).sort((a, b) => String(a.name || a.username).localeCompare(String(b.name || b.username), "he"));
-  if (!list.length) return `<div class="empty"><b>טוען…</b></div>`;
+  if (!list.length) return SKEL;
   return grp(list.map((u) => row({ data: `data-access="${u.uid}"`, t: esc(u.name || u.username), s: esc(accessLine(u)), chev: true })), "", "רק אתה משנה גישה למסעדות. בעלים רואה ומנהל את כל המסעדות.");
 }
 function accessSheet(sh) {
@@ -4338,7 +4499,7 @@ function viewStaff() {
   /* כל מסעדה רואה רק את העובדים שלה. הבעלים ומנהל ראשי מופיעים בכולן */
   const raw = (u) => (S.site === "rosie" ? u.role || "none" : ((u.sites || {})[S.site] || "none"));
   const list = staffOfSite().map((u) => Object.assign({}, u, { role: u.chief === true || isOwnerP(u) ? (isOwnerP(u) ? "admin" : raw(u) === "none" ? "admin" : raw(u)) : raw(u), _lock: u.chief === true || (S.site !== "rosie" && isOwnerP(u)) })).sort((a, b) => (order[a.role] ?? 9) - (order[b.role] ?? 9));
-  if (!list.length) return h + `<div class="empty"><b>טוען…</b></div>`;
+  if (!list.length) return h + SKEL;
   h += `<div class="list">`;
   list.forEach((u) => {
     const me = S.user && u.uid === S.user.uid, np = Object.keys(u.push || {}).length;
@@ -4354,7 +4515,10 @@ function viewStaff() {
 function viewSheet() {
   const sh = S.sheet; if (!sh) return "";
   let b = "";
-  if (sh.type === "done") {
+  if (sh.type === "idea") {
+    b = `<h3>הצעה לשיפור</h3><textarea class="ta idea" id="ideaIn" rows="4" maxlength="1000" placeholder="למשל: כפתור שמעתיק את ההזמנה של אתמול" aria-label="הצעה לשיפור"></textarea>
+      <button class="btn full" id="ideaSend" ${sh.busy ? "disabled" : ""}>שליחה</button>`;
+  } else if (sh.type === "done") {
     const it = itemBy(sh.k), today = dkey(new Date()), v = prodQty(sh.k), total = sh.prev + sh.made, lack = v - total;
     b = `<h3>כמה קופסאות יצאו?</h3><p class="big">${esc(it.n)}</p>
       ${sh.prev ? `<p class="hint" style="text-align:right;margin:-8px 0 6px">כבר הוכנו קודם ${sh.prev} מתוך ${v}</p>` : ""}
@@ -4390,7 +4554,7 @@ function viewSheet() {
     b = `<div class="me"><div class="avatar lg" aria-hidden="true">${esc(initials(myName()))}</div><div><b>${esc(myName())}</b><small>${roleLabel(S.profile, S.site)}</small></div></div>
       <button class="mitem" id="pushBtn">${I.bell}<span>${S.pushOn ? "התראות פעילות בטלפון הזה ✓" : "הפעלת התראות בטלפון הזה"}</span></button>
       ${can.group() ? `<button class="mitem" id="ctlBtn"><span>${can.owner() ? "חדר בקרה" : "חדר שליטה"}</span></button>` : ""}
-      <button class="mitem" id="themeBtn"><span>${document.documentElement.dataset.theme === "light" ? "☾ מצב לילה" : "☀ מצב יום (למטבח מואר)"}</span></button>
+      <button class="mitem" id="themeBtn"><span>${document.documentElement.dataset.theme === "light" ? "מצב לילה" : "מצב יום (למטבח מואר)"}</span></button>
       <button class="mitem" id="logout"><span>יציאה מהחשבון</span></button>
       <div class="sbtns"><button class="btn ghost" id="sClose">סגור</button></div>`;
   } else if (sh.type === "dish") {
@@ -4524,6 +4688,7 @@ function jumpHtml() {
   return `<nav class="jump" aria-label="קפיצה לקטגוריה">${cats.map((c) => `<button data-jump="cat-${CATS.indexOf(c)}">${catIcon(c)}${esc(c)}${q[c] ? `<i>${q[c]}</i>` : ""}</button>`).join("")}</nav>`;
 }
 function viewApp() {
+  if (!S.loadMs) S.loadMs = Math.round(performance.now());
   const base = new Date(); let days = "";
   for (let i = 0; i < 8; i++) {
     const d = addDays(base, i), k = dkey(d);
@@ -4539,7 +4704,7 @@ function viewApp() {
   const badge = can.produce() ? S.pendingList.length : 0;
   const dl = `${dayName(S.day)} ${ddmm(parse(S.day))}`;
   const LAB_T = { dishes: "שקילת מנות", book: "מתכונים", photos: "קבלות ותמונות" };
-  const CTL_T = { log: "יומן פעולות", perm: "מי רואה מה", team: "צוות ותפקידים", reports: "Claude ודוחות", sugg: "Claude מול ההזמנות", access: "מי נכנס לאיזו מסעדה" };
+  const CTL_T = { bcast: "הודעה לצוות", ideas: "הצעות לשיפור", log: "יומן פעולות", perm: "מי רואה מה", team: "צוות ותפקידים", reports: "Claude ודוחות", sugg: "Claude מול ההזמנות", access: "מי נכנס לאיזו מסעדה" };
   if (S.tab === "control" && S.ctl === "report") { const r = S.repObj || ((S.ctlData || {}).reps || []).find((x) => x.id === S.rep); CTL_T.report = r ? (REP_K[r.kind] ? `דוח ${REP_K[r.kind][0]}` : "דוח") : "דוח"; }
   const SET_T = { about: "אודות", guide: "מדריך קצר" };
   const [title, sub] = {
@@ -4561,6 +4726,7 @@ function viewApp() {
     <main class="wrap ${S.enter ? "enter" : ""}">${body}</main>${barH}${navOn ? nav : ""}${viewSheet()}`;
 }
 let rq = 0;
+try { console.log("%cmizo", "font:700 13px system-ui;color:#888"); } catch (e) {}
 function renderSoon() { if (rq) return; rq = requestAnimationFrame(() => { rq = 0; render(); }); }
 window.__perf = { n: 0, total: 0, max: 0 };
 /* גלילה מיידית (בלי אנימציה) — כדי שרינדור או מעבר מסך לא "ירוצו" באמצע גלילה חלקה */
@@ -4587,7 +4753,7 @@ function renderInner() {
   else if (!S.site && mySites().length > 1) html = viewSites();
   else if (!S.site || !ACTIVE.includes(role())) html = viewWaiting();
   else html = viewApp();
-  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "gAskQ", "wG"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
+  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "gAskQ", "wG", "ideaIn", "bcIn"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
   $("app").innerHTML = html;
   const grp = html.startsWith('<div class="auth grp"'); document.body.classList.toggle("grpb", grp);
   if (grp && !S.site) delete document.documentElement.dataset.site;
@@ -4671,12 +4837,19 @@ app.addEventListener("click", (e) => {
   else if (d.carea) { S.ctlArea = d.carea; render(); }
   else if (d.icat) { S.icat = S.icat || {}; const g = grouped(items(true)), i = g.findIndex(([c]) => c === d.icat); S.icat[d.icat] = !(S.icat[d.icat] ?? i === 0); render(); }
   else if (t.id === "addOpen") { S.addOpen = true; render(); setTimeout(() => $("nN") && $("nN").focus(), 50); }
-  else if (t.id === "backupBtn") backupAll();
+  else if (t.id === "ideaBtn") { S.sheet = { type: "idea" }; render(); setTimeout(() => $("ideaIn") && $("ideaIn").focus(), 60); }
+  else if (t.id === "ideaSend") sendIdea();
+  else if (d.bcs) { const B = S.bc; B.sites = B.sites.includes(d.bcs) ? B.sites.filter((k) => k !== d.bcs) : B.sites.concat(d.bcs); render(); }
+  else if (d.bcr != null && S.bc) { S.bc.role = d.bcr; render(); }
+  else if (t.id === "bcSend") sendBcast();
+  else if (d.ideadel) { S.ideas = (S.ideas || []).filter((x) => x.id !== d.ideadel); render(); deleteDoc(doc(db, "feedback", d.ideadel)).catch(() => {}); }
+  else if (t.id === "ideasGo") { S.ctl = "ideas"; S.enter = true; loadIdeas(); render(); jumpTo(0); }
   else if (t.id === "itemsGo") { S.tab = "items"; S.enter = true; render(); jumpTo(0); }
   else if (d.grep) { const [k, id] = d.grep.split("|"), r = ((((S.grp || {}).sites || {})[k] || {}).reps || []).find((x) => x.id === id); if (r) { S.repObj = r; S.ctl = "report"; S.enter = true; render(); jumpTo(0); } }
   else if (d.gdel) { S.grpAsks = (S.grpAsks || []).filter((a) => a.id !== d.gdel); render(); deleteDoc(doc(db, "group", d.gdel)).catch(() => {}); }
   else if (t.id === "gAskGo") { e.preventDefault(); groupAsk(); }
   else if (d.theme) { store("rosie-theme", d.theme); applyTheme(); render(); }
+  else if (d.lang && t.closest(".seg")) { try { localStorage.setItem("mizo-lang", d.lang); } catch (er) {} location.reload(); }
   else if (d.setp) { S.set = d.setp; S.enter = true; render(); jumpTo(0); }
   else if (t.id === "copyCode") { const c = (S.profile && S.profile.username) || ""; try { navigator.clipboard.writeText(c).then(() => toast("הקוד הועתק")).catch(() => toast(c)); } catch (er) { toast(c); } }
   else if (t.id === "pwBtn") { S.sheet = { type: "pw", err: "" }; render(); const i = $("pwOld"); if (i) i.focus(); }
