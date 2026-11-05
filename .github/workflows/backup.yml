@@ -1,0 +1,40 @@
+# גיבוי לילי מוצפן של כל המסד. בשחרור: להעתיק ל-.github/workflows/backup.yml במאגר החי
+# צריך סוד BACKUP_KEY: מפתח אקראי של לפחות 32 תווים (מומלץ 40), לפי docs/migration.md. גדי שומר עותק במקום בטוח — בלי המפתח אי אפשר לשחזר
+name: גיבוי לילי
+on:
+  schedule:
+    - cron: "40 0 * * *"   # 02:40 בחורף / 03:40 בקיץ (שעון ישראל)
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server  # קבצי השרת בתיקיית server/ (לא באתר)
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+      - name: Install
+        run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund --silent  # גרסה מדויקת מ-package-lock.json
+      - name: Backup (encrypted) + restore drill
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
+        run: node backup.mjs "mizo-backup-$(date -u +%F).enc"
+      - name: Save for 30 days
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: mizo-backup-${{ github.run_id }}
+          path: server/mizo-backup-*.enc
+          retention-days: 30
+          if-no-files-found: error

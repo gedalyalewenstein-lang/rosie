@@ -1,10 +1,10 @@
 /* דמו מיזו: כניסה בלי סיסמה. בוחרים תפקיד במסך הפתיחה */
-const ROLES={chef:"u_chef",cook:"u_cook",prod:"u_prod"};
+const ROLES={chef:"u_chef",group:"u_group",cook:"u_cook",prod:"u_prod"};
 let cb=null, cur=null;
 try{ const r=sessionStorage.getItem("mizo-demo-role"); if(r&&ROLES[r]) cur={uid:ROLES[r],email:r+"@demo.mizo"}; }catch(e){}
 export function getAuth(){return {get currentUser(){return cur}}}
 export function onAuthStateChanged(a,f){cb=f;setTimeout(()=>f(cur),0);return ()=>{}}
-export function demoLogin(r){ cur={uid:ROLES[r]||ROLES.chef,email:r+"@demo.mizo"}; try{sessionStorage.setItem("mizo-demo-role",r)}catch(e){} cb&&cb(cur); }
+export function demoLogin(r){ cur={uid:ROLES[r]||ROLES.chef,email:r+"@demo.mizo"}; let was=null; try{was=sessionStorage.getItem("mizo-demo-role"); sessionStorage.setItem("mizo-demo-role",r)}catch(e){} if((was==="group")!==(r==="group")){ try{ if(r==="group") sessionStorage.removeItem("rosie-site"); }catch(e){} location.reload(); return; } cb&&cb(cur); }
 window.__demoLogin=demoLogin;
 export async function signInWithEmailAndPassword(){ demoLogin("chef"); return {user:cur} }
 export async function createUserWithEmailAndPassword(){ demoLogin("chef"); return {user:cur} }

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /*.mjs$
+Disallow: /server/
+Allow: /
+Sitemap: https://gedalyalewenstein-lang.github.io/rosie/sitemap.xml

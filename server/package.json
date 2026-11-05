@@ -1,0 +1,9 @@
+{
+  "name": "mizo-server",
+  "private": true,
+  "description": "תלויות השרת (התראות, גיבוי, מעבר). גרסה מדויקת + package-lock.json, ובתהליכים: npm ci",
+  "type": "module",
+  "dependencies": {
+    "firebase-admin": "12.7.0"
+  }
+}

@@ -1,5 +1,5 @@
 /* דמו מיזו: מסד נתונים בזיכרון של הדפדפן */
-try { sessionStorage.setItem("rosie-site", "rosie"); } catch (e) {}
+try { if (sessionStorage.getItem("mizo-demo-role") !== "group") sessionStorage.setItem("rosie-site", "rosie"); } catch (e) {}
 /* דמו מיזו: Firestore בזיכרון של הדפדפן, נטען מהנתונים הבדויים. שום דבר לא יוצא מהטלפון */
 const store=JSON.parse(JSON.stringify(window.__DEMO_SEED||{})); const subs=[];
 window.__store=store;
@@ -18,7 +18,7 @@ window.__emit=emit;
 function test(w,id,d){const x=w.f==="__id__"?id:(d||{})[w.f];if(x===undefined)return false;return w.op==="=="?x===w.v:w.op===">="?x>=w.v:w.op==="<="?x<=w.v:true}
 function colDocs0(ref){const L=ref.path.split("/").length+1;return Object.keys(store).filter(k=>k.startsWith(ref.path+"/")&&k.split("/").length===L).map(k=>({id:k.split("/").pop(),data:()=>JSON.parse(JSON.stringify(store[k]))})).filter(d=>ref.wheres.every(w=>test(w,d.id,store[ref.path+"/"+d.id])))}
 export function onSnapshot(ref,a,b){const next=typeof a==="function"?a:b;const s={fire:()=>{ if(ref.kind==="doc")next(snapDoc(ref.path)); else next({docs:colDocs(ref)}) }};subs.push(s);setTimeout(s.fire,0);return ()=>{const i=subs.indexOf(s);if(i>=0)subs.splice(i,1)}}
-function merge(a,b){for(const k in b){const sp=__apply(a[k],b[k]);if(sp!==undefined){a[k]=sp;continue}if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])&&!b[k].__op&&a[k]&&typeof a[k]==="object"&&!Array.isArray(a[k]))merge(a[k],b[k]);else if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])){a[k]=merge({},b[k])}else a[k]=JSON.parse(JSON.stringify(b[k]))}return a}
+function merge(a,b){for(const k in b){if(b[k]&&b[k].__op==="del"){delete a[k];continue}const sp=__apply(a[k],b[k]);if(sp!==undefined){a[k]=sp;continue}if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])&&!b[k].__op&&a[k]&&typeof a[k]==="object"&&!Array.isArray(a[k]))merge(a[k],b[k]);else if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])){a[k]=merge({},b[k])}else a[k]=JSON.parse(JSON.stringify(b[k]))}return a}
 export async function setDoc(ref,data,opt){ __validate(data,false,ref.path); if(opt&&opt.merge)store[ref.path]=merge(store[ref.path]||{},data); else store[ref.path]=JSON.parse(JSON.stringify(data)); setTimeout(emit,0); fakeServer(ref.path)}
 export async function getDoc(ref){ if(/^photoData\//.test(ref.path)&&!store[ref.path]&&window.__DEMO_IMG){const img=window.__DEMO_IMG(ref.path.split("/")[1]); if(img) store[ref.path]={img};} return snapDoc(ref.path)}
 export async function getDocs(ref){return {docs:colDocs(ref)}}
@@ -32,6 +32,7 @@ export function writeBatch(){const ops=[];return {delete:(r)=>ops.push(()=>{dele
 
 /* ---- Firestore value rules (to catch bugs the real database would reject) ---- */
 export function arrayUnion(...v) { return { __op: "au", v }; }
+export function deleteField() { return { __op: "del" }; }
 export function increment(n) { return { __op: "inc", n }; }
 function __validate(x, inArr, path) {
   if (x === undefined) throw new Error("Firestore: undefined value at " + path);
@@ -52,7 +53,7 @@ function later(path, patch, ms){ setTimeout(()=>{ if(!store[path]) return; store
 function answer(q){ const s=S_(), t=String(q||"");
   if(/מחיר|התייקר|יקר|ספק/.test(t)) return `עגבניות שרי עלו מ-₪24 ל-₪29 אצל ירקות הגליל. עברתם לפרי השדה ב-₪23.\n- חיסכון: ${ils(s.save.tomato)} בחודש.\n- מלפפון עלה ב-8%, לעקוב.`;
   if(/(פחת|זבל).*(עלה|עלייה|גדל)|למה.*פחת/.test(t)) return `בשבוע שעבר נרשמו ${s.wk.waste === 0.5 ? "חצי קופסה" : s.wk.waste + " קופסאות"} פחת, ${s.wk.wastePct}% מ-${s.wk.boxes} קופסאות. זה לא עלייה, זה נמוך.${s.wk.top ? `\n- הכי הרבה: ${s.wk.top}.` : ""}\n- להמשיך להזמין לפי הצעת הכמויות.`;
-  if(/מלאי|להזמין/.test(t)) return `המלאי המשוער והצעת ההזמנה ליומיים מחושבים מהקבלות ומהייצור.\n- נמצא בנתונים ← פחת ומלאי, לפי ספק.\n- אף אחד לא סופר: מה שנקנה פחות מה שיצא.`;
+  if(/מלאי|להזמין/.test(t)) return `המלאי המשוער והצעת ההזמנה ליומיים מחושבים מהקבלות ומהייצור.\n- נמצא בנתונים ← פער ומלאי, לפי ספק.\n- אף אחד לא סופר: מה שנקנה פחות מה שיצא.`;
   if(/עובד|שכר|משמרת|שעות/.test(t)) return `עלות העובדים 29% מהמכירות, נקודה מעל היעד.\n- 96 שעות נוספות, רובן בחמישי.\n- להקדים משמרת טבח שנייה בחמישי בשעה: ${ils(s.save.labor)} בחודש.`;
   if(/פחת|זבל|זורק/.test(t)) return `ייצור היתר ירד מ-${s.wE}% ל-${s.wL}% מאז שמטבח הייצור עובד לפי הצעת הכמויות.\n- הכי מבוזבז: עגבניות שרי חצויות וחסה שטופה.\n- חיסכון מהפחת: ${ils(s.save.waste)} בחודש.`;
   if(/מנה|מכפיל|תמחור|רווח/.test(t)) return `ריגטוני שמנת פטריות במכפיל 2.6, מתחת ליעד 3.\n- להעלות מחיר ב-₪11 (ל-₪83), או 65 גר׳ פחות רוטב.\n- שאר המנות מעל 3.`;

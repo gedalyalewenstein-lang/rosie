@@ -1,0 +1,76 @@
+# שחזור מגיבוי לילי — מהטלפון, בלי לגעת במפתח שירות. בשחרור: להעתיק ל-.github/workflows/restore.yml במאגר החי
+# Actions ← "שחזור מגיבוי" ← Run workflow. ברירת מחדל = תוכנית בלבד (כלום לא נכתב)
+name: שחזור מגיבוי
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "מספר הריצה של 'גיבוי לילי' (מהכתובת: .../actions/runs/<המספר>)"
+        required: true
+      site:
+        description: "מסעדה (rosie / jaco / מפתח מהרשימה) או all"
+        required: true
+        default: all
+      as:
+        description: "לא חובה: לשחזר לתוך מסעדה אחרת (תרגיל), למשל drill"
+        required: false
+        default: ""
+      target:
+        description: "לאיזה פרויקט"
+        type: choice
+        options: [FIREBASE_SERVICE_ACCOUNT, FIREBASE_SERVICE_ACCOUNT_MIZO]
+        default: FIREBASE_SERVICE_ACCOUNT
+      apply:
+        description: "לכתוב באמת? (בלי סימון = תוכנית בלבד)"
+        type: boolean
+        default: false
+      confirm:
+        description: "לכתיבה: להקליד את שם הפרויקט של היעד (rosie-orders-b7ea5 או mizo-db6f7)"
+        required: false
+        default: ""
+permissions:
+  contents: read
+  actions: read  # להוריד את קובץ הגיבוי מהריצה
+concurrency:
+  group: restore
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server  # קבצי השרת בתיקיית server/ (לא באתר)
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+      - name: Install
+        run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund --silent
+      - name: Download backup
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          pattern: mizo-backup-*
+          merge-multiple: true
+          path: server/bk
+      - name: Drill + plan / restore
+        env:
+          BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
+          FIREBASE_SERVICE_ACCOUNT_TARGET: ${{ secrets[inputs.target] }}
+          RESTORE_CONFIRM: ${{ inputs.confirm }}
+          IN_SITE: ${{ inputs.site }}
+          IN_AS: ${{ inputs.as }}
+          IN_APPLY: ${{ inputs.apply }}
+        run: |
+          F=$(ls bk/*.enc | tail -1)
+          node restore.mjs "$F" --drill
+          set -- "$F"
+          [ "$IN_SITE" != "all" ] && set -- "$@" --site "$IN_SITE"
+          [ -n "$IN_AS" ] && set -- "$@" --as "$IN_AS"
+          [ "$IN_APPLY" = "true" ] && set -- "$@" --apply
+          node restore.mjs "$@"

@@ -21,17 +21,20 @@
   const at = (d, h, m) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m || 0).getTime();
   const ym = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
   const OFFD = [5, 6]; // שישי ושבת סגור
-  const store = {};
+  let store = {};
+  let ROLE = null; try { ROLE = sessionStorage.getItem("mizo-demo-role"); } catch (e) {}
+  /* כל מסעדה נבנית מאותו מחולל, עם זרע אחר. בעלים של קבוצה רואה שתי מסעדות */
+  function gen(NAME, BR) {
 
   /* ---------- אנשים ---------- */
   const U = {
-    chef: { username: "chef", name: "שף נועם", role: "admin", chief: true },
+    chef: { username: "chef", name: "שף נועם", role: "admin", chiefOf: ["rosie", "jaco"] },
     cook: { username: "maya", name: "מאיה", role: "rosie" },
     prod: { username: "eli", name: "אלי", role: "prod" },
     cook2: { username: "omer", name: "עומר", role: "rosie" },
     prod2: { username: "samir", name: "סמיר", role: "prod" },
   };
-  Object.entries(U).forEach(([k, u]) => (store["users/u_" + k] = Object.assign({ createdAt: at(addD(TODAY, -45), 10), lang: "he" }, u)));
+  Object.entries(U).forEach(([k, u]) => (store["users/u_" + k] = Object.assign({ createdAt: at(addD(TODAY, -45), 10), lang: "he", site: "rosie" }, u)));
   store["settings/app"] = { offDays: OFFD, ai: true, aiStat: { ok: true, at: NOW.getTime() - 20 * 60000 } };
 
   /* ---------- חומרי גלם וספקים ---------- */
@@ -65,7 +68,8 @@
   const items = {};
   /* עלות לק״ג של כל הכנה מוכנה (חומר גלם אחרי קילוף ופחת עיבוד), כמו שמנהל מילא בכרטיס ההכנה */
   const PPK = { v1: 46, v2: 17, v3: 55, v4: 44, v5: 12, v6: 41, v7: 38, v8: 102, v9: 64, c1: 177, c2: 67, s1: 32, s2: 26, s3: 49, s4: 90, s5: 29, k1: 44, k2: 29, k3: 65, k4: 13, k5: 130, k6: 81, d1: 10, d2: 93 };
-  P.forEach(([k, n, c, d, raw, kpb, kg], i) => { items[k] = { n, c, d, pos: i, active: true, kg, ppk: PPK[k] }; });
+  /* עלות לק״ג = מחיר חומר הגלם × ק״ג גלם לקופסה ÷ ק״ג מוכן בקופסה (תואם לקבלות) */
+  P.forEach(([k, n, c, d, raw, kpb, kg], i) => { items[k] = { n, c, d, pos: i, active: true, kg, ppk: RAW[raw] ? Math.round((RAW[raw][2] * kpb / kg) * 10) / 10 : PPK[k] }; });
   store["catalog/items"] = { items };
 
   /* ---------- ימי פעילות: 30 יום אחורה ---------- */
@@ -79,7 +83,7 @@
   let boxesTot = 0, wasteKgEarly = 0, wasteKgLate = 0, buyKgEarly = 0, buyKgLate = 0;
   days.forEach((d, di) => {
     const k = dk(d), past = d < TODAY, isToday = k === dk(TODAY), tomorrow = k === dk(NEXT);
-    const over = di < mizoStart ? 1.22 : 1.04; // הזמנת יתר לפני שהתחילו לעבוד עם ההצעה
+    const over = di < mizoStart ? 1.15 : 1.08; // הזמנת יתר לפני שהתחילו לעבוד עם ההצעה (שיפור צנוע ואמין)
     const q = {};
     P.forEach(([key, , , , , , , avg]) => { const v = Math.round(avg * W(d) * over * (0.8 + rnd() * 0.45)); if (v > 0) q[key] = v; });
     if (tomorrow) { // ההזמנה הבאה: נשלחה ומחכה לאישור של מטבח הייצור
@@ -155,7 +159,7 @@
   const totalUse = {}; Object.keys(used).forEach((rk) => (totalUse[rk] = used[rk]));
   const receipts = [];
   buyDays.forEach((d, bi) => {
-    const early = (d - start) / 86400000 < mizoStart, waste = early ? 0.25 : 0.08;
+    const early = (d - start) / 86400000 < mizoStart, waste = early ? 0.18 : 0.09;
     const bySup = {};
     Object.keys(RAW).forEach((rk) => {
       const kg = round(((totalUse[rk] || 0) / buyDays.length) * (1 + waste) * (rk === "salmon" ? 0.82 + rnd() * 0.36 : 0.9 + rnd() * 0.2), 10); if (!(kg > 0.3)) return;
@@ -175,14 +179,14 @@
     });
   });
   /* רכש לליין (בשר, דגים, חלבי, לחמים) שלא עובר דרך מטבח הייצור: משלים ל-Food cost מציאותי.
-     לפני מיזו ~33.5%, אחרי ~29.8% (פחות קנייה "ליתר ביטחון" ומחיר טוב יותר) */
+     לפני מיזו ~33%, אחרי ~31.5% (ברוטו) (פחות קנייה "ליתר ביטחון" ומחיר טוב יותר) */
   const salesOf = (a, b) => Object.entries(store).filter(([k, v]) => k.startsWith("days/") && k.slice(5) >= a && k.slice(5) < b).reduce((x, [, v]) => x + v.salesTotal, 0);
   const foodOf = (a, b) => receipts.filter((r) => r.day >= a && r.day < b).reduce((x, r) => x + r.total, 0);
   const cut = dk(addD(start, mizoStart)), endK = dk(TODAY), startK = dk(start);
   /* רכש לליין: מה שלא עובר דרך מטבח הייצור (סלמון לצריבה, חלב וגבינות לליין, לחם, שמן) */
   const LINE = [["פילה סלמון טרי", 94, "ק״ג", "meat"], ["חלב 3%", 6.4, "ליטר", "dairy"], ["גבינת עיזים", 68, "ק״ג", "dairy"], ["ביצים L", 38, "תבנית", "dairy"], ["לחם מחמצת", 18, "ק״ג", "dry"], ["שמן זית כתית", 36, "ליטר", "dry"], ["קפה פולים", 92, "ק״ג", "dry"]];
   const SH = [0.3, 0.12, 0.2, 0.09, 0.14, 0.1, 0.05];
-  [[startK, cut, 0.335], [cut, endK, 0.298]].forEach(([a, b, fc], pi) => {
+  [[startK, cut, 0.33], [cut, endK, 0.315]].forEach(([a, b, fc], pi) => {
     const need = salesOf(a, b) * fc - foodOf(a, b), bd = buyDays.filter((d) => dk(d) >= a && dk(d) < b);
     if (!(need > 0) || !bd.length) return;
     bd.forEach((d, i) => {
@@ -200,14 +204,14 @@
   // כמה דוחות Z מצולמים
   days.filter((d) => d < TODAY).forEach((d, i) => { const k = dk(d), D = store["days/" + k]; if (!D) return;
     const zl = [["סועדים", String(D.covers)], ["מכירות ברוטו", "₪" + D.salesTotal.toLocaleString("en-US")], ["ממוצע לסועד", "₪" + Math.round(D.salesTotal / D.covers)]]; zl.total = "₪" + D.salesTotal.toLocaleString("en-US");
-    store[`photos/z${i}`] = { kind: "z", day: k, ai: "done", at: at(d, 23, 40), by: U.chef.name, note: "", thumb: photoOf(`z${i}`, "z", "בית לבנה", zl, true), aiData: { date: k, covers: D.covers, total: D.salesTotal, items: [] } }; });
+    store[`photos/z${i}`] = { kind: "z", day: k, ai: "done", at: at(d, 23, 40), by: U.chef.name, note: "", thumb: photoOf(`z${i}`, "z", NAME, zl, true), aiData: { date: k, covers: D.covers, total: D.salesTotal, items: [] } }; });
 
   /* ---------- חודש: טאביט, עובדים, ניתוחים ---------- */
   const M = ym(TODAY), salesM = Object.entries(store).filter(([k]) => k.startsWith("days/" + M)).reduce((a, [, v]) => a + v.salesTotal, 0);
   const coversM = Object.entries(store).filter(([k]) => k.startsWith("days/" + M)).reduce((a, [, v]) => a + v.covers, 0);
-  const laborM = Math.round(salesM * 0.29);
+  const laborM = Math.round(salesM * 0.245); // ~29% מהמכירות בלי מע״מ
   store["months/" + M] = { labor: null, tabit: { sales: salesM, covers: coversM, at: NOW.getTime() - 3 * 3600000 },
-    laborTabit: { cost: laborM, hours: Math.round(laborM / 58), ot: 96, staff: 14, tips: Math.round(coversM * 7.5), hol: 0, byRole: { "טבחים": Math.round(laborM * 0.46), "מלצרים": Math.round(laborM * 0.34), "שטיפה": Math.round(laborM * 0.1), "ניהול": Math.round(laborM * 0.1) }, at: NOW.getTime() - 3 * 3600000 },
+    laborTabit: { cost: laborM, hours: Math.round(laborM / 58), ot: 96, staff: 14, tips: Math.round(salesM * 0.1), hol: 0, byRole: { "טבחים": Math.round(laborM * 0.46), "מלצרים": Math.round(laborM * 0.34), "שטיפה": Math.round(laborM * 0.1), "ניהול": Math.round(laborM * 0.1) }, at: NOW.getTime() - 3 * 3600000 },
     laborAI: { state: "done", at: NOW.getTime() - 3 * 3600000, headline: "עלות העובדים 29% מהמכירות, נקודה אחת מעל היעד",
       points: [`שעה ממוצעת ₪58`, "96 שעות נוספות, רובן בחמישי", "חמישי הוא היום הכי יקר בעובדים, וגם הכי רווחי"],
       actions: [{ title: "להקדים משמרת טבח שנייה בחמישי בשעה", saving: "₪1,400 לחודש" }] } };
@@ -222,12 +226,12 @@
   const DISH = [
     ["סלט עגבניות שרי ובולגרית", 58, [["עגבניות שרי חצויות", 160], ["בולגרית מפוררת", 60], ["עשבים קצוצים", 10], ["ויניגרט לימון", 35], ["בצל קצוץ", 20]]],
     ["ריגטוני שמנת פטריות", 72, [["ריגטוני מבושל", 300], ["רוטב שמנת פטריות", 200], ["פטריות פרוסות", 80], ["פרמז׳ן מגורד", 25], ["שאלוט פרוס דק", 20]]],
-    ["סלמון צרוב, תרד וחמאת עשבים", 118, [["סלמון מנוקה בפורציות", 180], ["תרד בייבי שטוף", 60], ["חמאת עשבים", 30], ["קונפי שום", 15]]],
+    ["סלמון צרוב, תרד וחמאת עשבים", 118, [["סלמון מנוקה בפורציות", 180], ["תרד בייבי שטוף", 60], ["חמאת עשבים", 30], ["קונפי שום", 15], ["חצילים קלויים", 100], ["ויניגרט לימון", 20]]],
     ["פוקאצ׳ה ואיולי שום", 34, [["בצק פוקאצ׳ה", 200], ["איולי שום", 50], ["קונפי שום", 20]]],
-    ["חציל קלוי, טחינה ואגוזים", 52, [["חצילים קלויים", 260], ["טחינה מוכנה", 80], ["אגוזי מלך קלויים", 20], ["עשבים קצוצים", 8]]],
+    ["חציל קלוי, טחינה ואגוזים", 52, [["חצילים קלויים", 260], ["טחינה מוכנה", 80], ["אגוזי מלך קלויים", 20], ["עשבים קצוצים", 8], ["בצק פוקאצ׳ה", 80]]],
     ["סלט ירוק", 44, [["חסה שטופה", 140], ["מלפפון בקוביות", 80], ["ויניגרט לימון", 30], ["עשבים קצוצים", 8], ["אגוזי מלך קלויים", 10]]],
     ["פסטה פסטו ופרמז׳ן", 64, [["ריגטוני מבושל", 280], ["פסטו עשבים", 80], ["פרמז׳ן מגורד", 25], ["עגבניות שרי חצויות", 50]]],
-    ["פלפלים קלויים ובולגרית", 54, [["פלפל קלוי ומקולף", 180], ["בולגרית מפוררת", 45], ["פסטו עשבים", 25], ["בצל מקורמל", 30]]],
+    ["פלפלים קלויים ובולגרית", 54, [["פלפל קלוי ומקולף", 180], ["בולגרית מפוררת", 45], ["פסטו עשבים", 25], ["בצל מקורמל", 30], ["בצק פוקאצ׳ה", 60], ["איולי שום", 20]]],
   ];
   const byN = {}; Object.entries(items).forEach(([k, it]) => (byN[it.n] = k));
   DISH.forEach(([n, price, comps], i) => {
@@ -245,12 +249,12 @@
   const avgPpk = Object.values(RAW).reduce((a, r) => a + r[2], 0) / Object.keys(RAW).length;
   const daysEarly = mizoStart, daysLate = Math.max(1, days.length - mizoStart);
   const wasteMonthEarly = (wasteKgEarly / daysEarly) * 22 * 17, wasteMonthLate = (wasteKgLate / daysLate) * 22 * 17; // ₪17 לק״ג ממוצע משוקלל
-  const wE = 22, wL = 4; // ייצור יתר: הזמנו 22% מעל הצריכה לפני מיזו, 4% אחרי
+  const wE = 15, wL = 8; // ייצור יתר: הזמנו 15% מעל הצריכה לפני מיזו, 8% אחרי
   const boxCost = P.reduce((a, p) => a + p[5] * RAW[p[4]][2], 0) / P.length, boxesDay = P.reduce((a, p) => a + p[7], 0);
   const overSave = boxesDay * ((wE - wL) / 100) * boxCost * 0.3 * 22; // כ-30% מייצור היתר נזרק
   const prepSpendLate = receipts.filter((r) => r.day >= cut && /^r/.test(r.id)).reduce((a, r) => a + r.total, 0);
   const SAVE = {
-    waste: Math.round((prepSpendLate * ((0.25 - 0.08) / 1.25) * 0.3) / 10) * 10, // קנייה עודפת שנחסכה; כ-30% ממנה היה הולך לפח, השאר נכנס למלאי
+    waste: Math.round((prepSpendLate * ((0.18 - 0.09) / 1.18) * 0.3) / 10) * 10, // קנייה עודפת שנחסכה; כ-30% ממנה היה הולך לפח, השאר נכנס למלאי
     tomato: Math.round(((29 - 23) * tomKgLate) / 10) * 10, // מה שנקנה במחיר החדש, מול המחיר אחרי ההתייקרות
     dish: 1150, labor: 1400,
   };
@@ -260,7 +264,7 @@
   const from30 = dk(addD(TODAY, -29)), apr = Object.entries(store).filter(([k, v]) => k.startsWith("orders/") && k.slice(7) >= from30 && k.slice(7) <= dk(TODAY) && v.status === "approved");
   const nOrders = apr.length, nBoxes = apr.reduce((a, [, v]) => a + Object.values(v.approved).reduce((x, y) => x + y, 0), 0);
   const recM = receipts.filter((r) => r.day.startsWith(M)).length, fcM = Math.round((foodM / Math.max(1, salesM)) * 1000) / 10;
-  window.__DEMO_STATS = { wE, wL, fcM, nOrders, nBoxes, name: "בית לבנה", save: SAVE, boxes: nBoxes, covers: coversM, sales: salesM, receipts: recM, fcEarly, fcLate, dishes: DISH.length, preps: P.length };
+  window.__DEMO_STATS = { wE, wL, fcM, nOrders, nBoxes, name: NAME, save: SAVE, boxes: nBoxes, covers: coversM, sales: salesM, receipts: recM, fcEarly, fcLate, dishes: DISH.length, preps: P.length };
   const ils = (v) => "₪" + Math.round(v).toLocaleString("en-US");
 
   /* ---------- מספרים לשבוע האחרון, מהנתונים עצמם ---------- */
@@ -293,7 +297,7 @@
   /* ---------- מבט על (סיכום Claude) ---------- */
   store["group/b1"] = { kind: "brief", status: "done", at: NOW.getTime() - 50 * 60000, by: U.chef.name,
     short: { good: `ייצור יתר ירד ל־${wL}%, חיסכון ${ils(SAVE.total)}`, watch: "ריגטוני פטריות במכפיל 2.6", todo: "לתמחר מחדש לפני סוף השבוע" },
-    long: `## בית לבנה\n- טוב: ייצור היתר ירד מ-${wE}% ל-${wL}% מאז שעובדים לפי הצעת הכמויות.\n- טוב: Food cost בשבועיים האחרונים ${fcLate}%, לעומת ${fcEarly}% לפני מיזו. לכל החודש ${fcM}%.\n- לא טוב: ריגטוני שמנת פטריות במכפיל 2.6.\n- לעשות: להעלות מחיר ב-₪11 (ל-₪83) או להקטין את הרוטב.\n## לסיכום\n- חיסכון החודש: ${ils(SAVE.total)}.\n- להמשיך לצלם כל קבלה. ככה מזהים עליות מחיר ביום שהן קורות.` };
+    long: `## ${NAME}\n- טוב: ייצור היתר ירד מ-${wE}% ל-${wL}% מאז שעובדים לפי הצעת הכמויות.\n- טוב: Food cost בשבועיים האחרונים ${fcLate}%, לעומת ${fcEarly}% לפני מיזו. לכל החודש ${fcM}%.\n- לא טוב: ריגטוני שמנת פטריות במכפיל 2.6.\n- לעשות: להעלות מחיר ב-₪11 (ל-₪83) או להקטין את הרוטב.\n## לסיכום\n- חיסכון החודש: ${ils(SAVE.total)}.\n- להמשיך לצלם כל קבלה. ככה מזהים עליות מחיר ביום שהן קורות.` };
   store["asks/a1"] = { q: "איזו הכנה הכי מבוזבזת החודש?", a: `עגבניות שרי חצויות וחסה: לפני מיזו הוזמנו כ-${wE}% יותר ממה שנצרך, וחלק הלך לפח. בשבועיים האחרונים ${wL}%.\n- להמשיך להזמין לפי ההצעה, במיוחד בימי ראשון ושני.`, status: "done", at: NOW.getTime() - 5 * 3600000 };
 
   /* ---------- יומן פעולות ---------- */
@@ -301,6 +305,16 @@
   A.forEach(([t, text, by, role, m], i) => { const a = NOW.getTime() - m * 60000; store["activity/a" + i] = { t, text, by, role, uid: "u" + i, at: a, day: dk(new Date(a)) }; });
   store["credits/c1"] = { sup: SUP.veg, what: "ארגז חסה פגום", amt: 64, reason: "פגום", day: dk(addD(TODAY, -4)), status: "open", at: at(addD(TODAY, -4), 10), by: U.cook.name };
 
+  return { store, STATS: window.__DEMO_STATS, RAW, SUP };
+  }
+  const A1 = gen("בית לבנה", 0), stats1 = A1.STATS; store = A1.store;
+  if (ROLE === "group") {
+    const keep = store; seed = 20261177; store = {}; const A2 = gen("בית לבנה נמל", 1);
+    Object.entries(A2.store).forEach(([k, v]) => { if (/^(users|group|asks)\//.test(k)) return; keep["sites/jaco/" + k] = v; });
+    store = keep; window.__DEMO_STATS = stats1;
+    store["users/u_group"] = { username: "dana", name: "דנה", role: "admin", chiefOf: ["rosie", "jaco"], createdAt: Date.now() - 45 * 864e5, lang: "he" };
+    const b = store["group/b1"]; if (b) { b.short = { good: "בשתי המסעדות ייצור היתר ירד, הנמל עדיין גבוה במעט", watch: "הנמל: Food cost מעל היעד", todo: "להשוות כמויות רוטב בין המסעדות" }; b.long = (b.long || "") + (A2.store["group/b1"] ? "\n\n" + A2.store["group/b1"].long : ""); }
+  }
   window.__DEMO_SEED = store;
-  window.__DEMO_RAW = { RAW, SUP };
+  window.__DEMO_RAW = { RAW: A1.RAW, SUP: A1.SUP };
 })();
