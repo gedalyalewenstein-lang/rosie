@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4pag+Sp31O/qO0KZuTb1+25Y5lSSHIbgCStuXVjG/H0=' 'sha256-9KE6xdAQc498/rR1nRlegm5iwbemuRU/Qu9jQZivblQ=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4pag+Sp31O/qO0KZuTb1+25Y5lSSHIbgCStuXVjG/H0=' 'sha256-PehAo14M9X1CXCMEhdBxjUp5i2j+Y46o2Jl9Q2F+YOk=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -2326,6 +2326,107 @@ body:not(.scrolled) .navbar::before{-webkit-backdrop-filter:none;backdrop-filter
 :root[data-theme] .barin,.barin{background:var(--accbar);-webkit-backdrop-filter:none;backdrop-filter:none}
 /* מבחן אפל, הזמנה וייצור: מפס הימים לכרטיס הראשון 16 כמו במוקאפ (היה 32: ריפוד main ועוד שוליים של הכרטיס) */
 body:has(.days) main.wrap > :is(.status.card,.pcard,.banner,.rcvg,.zcard):first-child{margin-top:0}
+/* ---------- 2.5.1 (בדיקת הטלפון של נועם) ----------
+   כפתור ראשי = טינט של מיזו בכל המסעדות. צבע המסעדה (בית לבנה כתום, מסעדה חדשה) לא נוגע בכפתורים הראשיים */
+:root{--btn:#E39AAB;--on-btn:#1C0F13}
+:root[data-theme="light"]{--btn:#9C3F57;--on-btn:#FFFFFF}
+.btn:not(.ghost):not(.okb):not(.badb),
+:root[data-theme] .btn:not(.ghost):not(.okb):not(.badb),:root[data-site] .btn:not(.ghost):not(.okb):not(.badb),
+:root[data-site] .barin .btn:not(.ghost):not(.okb):not(.badb),:root[data-theme] .barin .btn:not(.ghost):not(.okb):not(.badb){background:var(--btn);color:var(--on-btn)}
+/* גיליון שאלה (במקום prompt/confirm של הדפדפן) */
+.askm{margin:-8px 0 16px;text-align:center;font:var(--f-sub);color:var(--label2)}
+.askg{margin-bottom:8px}
+.askrow{min-height:52px;cursor:text}
+.askin{flex:0 1 128px;min-width:0;height:44px;border:0;background:transparent;color:var(--label);font:var(--f-body);font-variant-numeric:tabular-nums;text-align:end;padding:0}
+.askin[readonly]{flex:1 1 auto;font:var(--f-sub);color:var(--label2);text-align:start}
+.askin:focus{outline:none}
+.askrow:focus-within{background:var(--fill)}
+.sheet .err:empty{min-height:0;margin:0}
+/* מסעדה חדשה: 8 צבעים קבועים, טבעת בחירה כמו ב-iOS */
+.nscols{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;gap:4px 0;padding:8px;margin-bottom:16px}
+.nsc{position:relative;width:44px;height:44px;display:grid;place-items:center;border:0;padding:0;background:none;border-radius:999px;cursor:pointer;transition-property:transform;transition-duration:120ms}
+.nsc::after{content:"";position:absolute;inset:0;border-radius:999px;box-shadow:inset 0 0 0 2px var(--c);opacity:0;pointer-events:none;transition-property:opacity;transition-duration:120ms} /* טבעת הבחירה: רק opacity */
+.nsc i{width:32px;height:32px;border-radius:999px;background:var(--c);transition-property:transform;transition-duration:120ms}
+.nsc[aria-checked="true"]::after{opacity:1}
+.nsc[aria-checked="true"] i{transform:scale(.875)}
+@media (prefers-reduced-motion:reduce){.nsc i{transition-duration:0ms}}
+.nsc:focus-visible{outline:2px solid var(--label);outline-offset:2px}
+.selw{position:relative;display:flex;align-items:center;gap:8px;color:var(--label2)}
+.nssel{-webkit-appearance:none;appearance:none;border:0;background:transparent;color:var(--label2);font:var(--f-body);font-variant-numeric:tabular-nums;height:44px;padding:0;cursor:pointer}
+.nssel:focus-visible{outline:2px solid var(--tint);outline-offset:2px;border-radius:8px}
+.selw .schev,[dir="ltr"] .selw .schev{transform:translateY(-2px) rotate(-45deg);pointer-events:none} /* שברון ⌄ של בורר (כמו בשורות, מסובב למטה) */
+.sheet .grp + .err{margin-top:8px}
+/* בחירה ברשימה (עובד לאיפוס, למי לשלוח): סימון ✓ בטינט בסוף השורה */
+.pck{width:24px;height:24px;margin-inline-start:auto;flex:none;color:var(--tint)}
+.pck svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pwrl .srow{min-height:60px}
+.pwrl .avatar.sm{background:var(--fill);border:0;color:var(--label)}
+/* הודעה לצוות */
+.bcv .seg{margin:0 0 16px}
+.bcg{padding:0}
+.bcta{display:block;width:100%;min-height:120px;resize:none;border:0;background:transparent;color:var(--label);font:var(--f-body);padding:12px 16px}
+.bcta:focus{outline:none}
+.bcta::placeholder{color:var(--label3)}
+.bcv .btn.bcsend{height:50px;min-height:50px;padding-block:0;margin:16px 0 8px}
+/* כניסה: לוגו ושדות נכנסים במסך אחד ב-390×844, בלי גלילה (גם עם פס הכתובת של הדפדפן ו-safe area) */
+.auth.grp{min-height:calc(100vh - env(safe-area-inset-top,0px));min-height:calc(100dvh - env(safe-area-inset-top,0px));padding:clamp(24px,7dvh,56px) 0 calc(24px + env(safe-area-inset-bottom,0px))}
+.auth.grp{margin:0;border-radius:0}
+.auth.grp .mzsign{margin:0 auto 28px}
+.auth.grp .btn.full:not(.ghost):not(.okb):not(.badb){background:var(--btn);color:var(--on-btn);height:50px;min-height:50px;border-radius:999px;font:var(--f-head);margin-top:4px}
+.auth.grp .authcard{animation:none}
+.auth.grp .aenter .mzsign{animation:mzLogoIn 400ms var(--ease) both}
+.auth.grp .aenter > .field,.auth.grp .aenter > .btn{animation:mzFade 300ms var(--ease) both}
+.auth.grp .aenter > .field:nth-of-type(1){animation-delay:120ms}
+.auth.grp .aenter > .field:nth-of-type(2){animation-delay:180ms}
+.auth.grp .aenter > .btn{animation-delay:240ms}
+@keyframes mzLogoIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .auth.grp .aenter .mzsign,.auth.grp .aenter > .field,.auth.grp .aenter > .btn{animation:mzFade 150ms linear both;animation-delay:0ms}
+}
+/* עדשת זכוכית בסרגל הלשוניות (iOS 26): כמוסה אחת בגוון הטינט, קו 0.5px, בלי זוהר ובלי צל צבעוני.
+   הטינט עובר רק לאייקון ולתווית; הגלולה האפורה של הלשונית הנבחרת יורדת */
+.tabbar{touch-action:pan-y}
+.tlens{position:absolute;top:0;left:0;width:0;height:0;border-radius:999px;pointer-events:none;z-index:0;
+  background:color-mix(in srgb,var(--tint) 18%,transparent);box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--tint) 45%,transparent);
+  transition-property:transform,opacity;transition-duration:300ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.tlens.still,.tlens.drag{transition-duration:0ms}
+.tab{position:relative;z-index:1}
+.tab[aria-selected="true"],:root[data-theme] .tab[aria-selected="true"]{background:none}
+@media (prefers-reduced-motion:reduce){.tlens{transition-duration:0ms}}
+@media (prefers-reduced-transparency:reduce){.tlens{background:color-mix(in srgb,var(--tint) 22%,var(--grp))}}
+/* פס הימים: עיגול הטינט הוא שכבה אחת שגולשת בין ימים (slidePill, 250ms). המספר עצמו שקוף מעליה */
+.days{position:relative}
+.dpill{position:absolute;top:0;left:0;width:0;height:0;border-radius:999px;background:var(--tint);pointer-events:none;z-index:0;
+  transition-property:transform,opacity;transition-duration:250ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.dpill.still{transition-duration:0ms}
+.days .day{position:relative;z-index:1}
+/* במנוחה העיגול שייך למספר (ניגודיות נמדדת עליו); בזמן הגלישה הוא מופיע רק אחרי שהגלולה נחתה (השהיה 250, בלי מעבר צבע) */
+.days .day b{transition-property:transform;transition-duration:120ms}
+.days .day[aria-pressed="true"] b{transition-property:transform,background-color,color;transition-duration:120ms,0ms,0ms;transition-delay:0ms,250ms,250ms}
+.dpill.fly{opacity:1}
+@media (prefers-reduced-motion:reduce){.dpill{transition-duration:0ms;opacity:0}.days .day[aria-pressed="true"] b{transition-delay:0ms}}
+/* הדגשה של עדכון חי (flash): שכבה, רק opacity */
+.hl{position:relative}
+.hl::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--tint-soft);opacity:1;pointer-events:none}
+.hl-out::after{opacity:0;transition-property:opacity;transition-duration:1200ms;transition-timing-function:ease-out}
+/* תנועה 1: הכנה שסומנה עכשיו — ✓ נכתב במקום (אותו עיגול כמו ב"בוצעו") עד שהרשימה מסתדרת */
+.prow.on .check i{background:var(--tint);box-shadow:none;animation:mzCheck 260ms var(--bounce) both}
+.prow.on .check i svg{animation:mzDraw 240ms 90ms var(--ease-out) forwards}
+.prow.on .nm b{color:var(--label2)}
+@media (prefers-reduced-motion:reduce){.prow.on .check i{animation:mzFade 150ms linear both}.prow.on .check i svg{animation:none;stroke-dashoffset:0}}
+/* תנועה 3: "שלח הזמנה" → "נשלחה ✓" בהצלבה אחרי שהשרת אישר */
+.btn.sendfx,.btn.sendfx:disabled{opacity:1;display:grid;place-items:center}
+.sendfx .sl{grid-area:1/1;display:inline-flex;align-items:center;gap:8px;transition-property:opacity,transform;transition-duration:250ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.sendfx .sl2{opacity:0;transform:translateY(4px)}
+.sendfx .sl2 svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.sendfx.go .sl1{opacity:0}
+.sendfx.go .sl2{opacity:1;transform:none}
+.sendfx.go .sl2 svg{animation:mzDraw 240ms 120ms var(--ease-out) forwards}
+@media (prefers-reduced-motion:reduce){.sendfx .sl{transition-duration:150ms;transform:none}.sendfx.go .sl2 svg{animation:none;stroke-dashoffset:0}}
+.bar .barin .btn.sendfx:disabled,:root[data-theme] .barin .btn.sendfx:disabled,:root[data-site] .barin .btn.sendfx:not(.ghost):not(.okb):not(.badb):disabled{background:var(--btn);color:var(--on-btn);opacity:1}
+/* 2.5.1b: "נשלחה ✓" = מצב הצלחה, לא כפתור מושבת (LANGUAGE §7): מילוי משני, טקסט label, ✓ ירוק. id גובר על כל כללי .barin .btn:disabled */
+.barin #send.sendfx,.barin #send.sendfx:disabled{background:var(--fill);color:var(--label);opacity:1;cursor:default}
+.barin #send.sendfx .sl2 svg{stroke:var(--ok)}
 
 </style>
 </head>
@@ -2408,7 +2509,7 @@ body:has(.days) main.wrap > :is(.status.card,.pcard,.banner,.rcvg,.zcard):first-
 import { initializeApp } from "./fb-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, reauthenticateWithCredential, EmailAuthProvider, updatePassword }
   from "./fb-auth.js";
-import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager, doc, collection, onSnapshot, setDoc as _setDoc, getDoc, getDocs, updateDoc as _updateDoc, deleteDoc as _deleteDoc, query, where, orderBy, limit, documentId, serverTimestamp, runTransaction, writeBatch, arrayUnion, increment, deleteField }
+import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager, doc, collection, onSnapshot, setDoc as _setDoc, getDoc, getDocs, updateDoc as _updateDoc, deleteDoc as _deleteDoc, query, where, orderBy, limit, documentId, serverTimestamp, runTransaction as _runTransaction, writeBatch, arrayUnion, increment, deleteField }
   from "./fb-firestore.js";
 import { getMessaging, getToken, onMessage, isSupported }
   from "./fb-messaging.js";
@@ -2542,6 +2643,32 @@ Object.assign(I18N.en, {"כמו ראשון שעבר, {n}": "Like last Sunday, {n
 Object.assign(I18N.ar, {"קבלה אחת": "فاتورة واحدة", "הכנה אחת": "تحضير واحد", "קופסה אחת": "علبة واحدة", "{n} קבלות החודש": "{n} فواتير هذا الشهر", "קבלה אחת החודש": "فاتورة واحدة هذا الشهر", "חזרה לייצור": "العودة إلى الإنتاج"});
 Object.assign(I18N.en, {"קבלה אחת": "One receipt", "הכנה אחת": "One prep", "קופסה אחת": "One box", "{n} קבלות החודש": "{n} receipts this month", "קבלה אחת החודש": "One receipt this month", "חזרה לייצור": "Back to production"});
 
+/* 2.5.1 */
+Object.assign(I18N.ar, {"יעדי עלות": "أهداف التكلفة", "מספר בין {n} ל-{n}": "رقم بين {n} و-{n}", "הקישור לדמו": "رابط العرض التجريبي", "קישור": "رابط", "צבע": "اللون", "שעת סגירה להזמנה": "ساعة إغلاق الطلبية", "אין הרשאה — החוקים לא עודכנו": "لا يوجد إذن — القواعد لم تُحدَّث", "בחרו עובד": "اختاروا عاملًا", "אין עובדים במסעדה הזו": "لا يوجد عمال في هذا المطعم", "מחיקת היסטוריה": "حذف السجل", "למחוק את ההיסטוריה?": "حذف السجل؟", "ההודעות שנשלחו יימחקו מהרשימה": "ستُحذف الرسائل المرسلة من القائمة", "ההיסטוריה נמחקה": "تم حذف السجل", "עם כל השקילות": "مع كل الأوزان", "בלי — אפשר להזמין עד המשלוח": "بدون — يمكن الطلب حتى التوصيل", "תקרה": "الحد الأقصى", "הודעה": "الرسالة", "למי": "لمن", "שעה": "الساعة"});
+Object.assign(I18N.en, {"יעדי עלות": "Cost targets", "מספר בין {n} ל-{n}": "A number from {n} to {n}", "הקישור לדמו": "Demo link", "קישור": "Link", "צבע": "Color", "שעת סגירה להזמנה": "Order cutoff time", "אין הרשאה — החוקים לא עודכנו": "No permission — rules not updated", "בחרו עובד": "Pick an employee", "אין עובדים במסעדה הזו": "No employees at this restaurant", "מחיקת היסטוריה": "Clear history", "למחוק את ההיסטוריה?": "Clear the history?", "ההודעות שנשלחו יימחקו מהרשימה": "Sent messages will be removed from the list", "ההיסטוריה נמחקה": "History cleared", "עם כל השקילות": "With all weighings", "בלי — אפשר להזמין עד המשלוח": "None — orders allowed until delivery", "תקרה": "Cap", "הודעה": "Message", "למי": "To", "שעה": "Time"});
+I18N_PAT.ar.push([new RegExp("^קריאות בחודש ל(.+)$"), "مكالمات شهريًا لـ$1"]);
+I18N_PAT.en.push([new RegExp("^קריאות בחודש ל(.+)$"), "Calls per month for $1"]);
+I18N_PAT.ar.push([new RegExp("^למחוק את המנה \"(.+)\"\\?$"), "حذف الطبق «$1»؟"]);
+I18N_PAT.en.push([new RegExp("^למחוק את המנה \"(.+)\"\\?$"), "Delete the dish \"$1\"?"]);
+I18N_PAT.ar.push([new RegExp("^למחוק את \"(.+)\"\\?$"), "حذف «$1»؟"]);
+I18N_PAT.en.push([new RegExp("^למחוק את \"(.+)\"\\?$"), "Delete \"$1\"?"]);
+I18N_PAT.ar.push([new RegExp("^(\\d+/\\d+ \\d+:\\d+), (.+), נשלחה ל-(\\d+) מכשירים$"), "$1، $2، أُرسلت إلى $3 أجهزة"]);
+I18N_PAT.en.push([new RegExp("^(\\d+/\\d+ \\d+:\\d+), (.+), נשלחה ל-(\\d+) מכשירים$"), "$1, $2, sent to $3 devices"]);
+I18N_PAT.ar.push([new RegExp("^(\\d+/\\d+ \\d+:\\d+), (.+), נשלחת…$"), "$1، $2، قيد الإرسال…"]);
+I18N_PAT.en.push([new RegExp("^(\\d+/\\d+ \\d+:\\d+), (.+), נשלחת…$"), "$1, $2, sending…"]);
+
+/* 2.5.1 מחיקת מסעדה */
+Object.assign(I18N.ar, {"מסעדות": "المطاعم", "נמחקה. שחזור עד {n}": "حُذف. الاستعادة حتى {n}", "בודק אם היא בשימוש…": "نتحقق إن كان قيد الاستخدام…", "מחיקת מסעדה": "حذف المطعم", "זו מסעדה מובנית במערכת": "هذا مطعم مدمج في النظام", "זו המסעדה הפעילה עכשיו. עברו למסעדה אחרת קודם": "هذا هو المطعم النشط الآن. انتقلوا إلى مطعم آخر أولًا", "עובד אחד משויך רק אליה": "عامل واحد مرتبط به فقط", "{n} עובדים משויכים רק אליה": "{n} عمال مرتبطون به فقط", "יש בה הזמנות ב-{n} הימים האחרונים": "فيه طلبيات في آخر {n} يومًا", "לא הצלחתי לבדוק. נסו שוב": "لم أتمكن من التحقق. حاولوا مجددًا", "הקלידו את שם המסעדה. אפשר לשחזר {n} יום": "اكتبوا اسم المطعم. يمكن الاستعادة خلال {n} يومًا", "השם לא תואם": "الاسم غير مطابق", "לא נמחקה. נסו שוב": "لم يُحذف. حاولوا مجددًا", "שחזור": "استعادة", "לא שוחזרה. נסו שוב": "لم تتم الاستعادة. حاولوا مجددًا", "נמחקה ב-{n}. תימחק לגמרי ב-{n}. הגיבוי הלילי האחרון לפני המחיקה נשמר.": "حُذف في {n}. سيُحذف نهائيًا في {n}. آخر نسخة احتياطية ليلية قبل الحذف محفوظة.", "נוספה": "أُضيف", "שם המסעדה": "اسم المطعم"});
+Object.assign(I18N.en, {"מסעדות": "Restaurants", "נמחקה. שחזור עד {n}": "Deleted. Restore until {n}", "בודק אם היא בשימוש…": "Checking if it's in use…", "מחיקת מסעדה": "Delete restaurant", "זו מסעדה מובנית במערכת": "This is a built-in restaurant", "זו המסעדה הפעילה עכשיו. עברו למסעדה אחרת קודם": "This is the active restaurant. Switch to another one first", "עובד אחד משויך רק אליה": "One employee belongs only to it", "{n} עובדים משויכים רק אליה": "{n} employees belong only to it", "יש בה הזמנות ב-{n} הימים האחרונים": "It has orders in the last {n} days", "לא הצלחתי לבדוק. נסו שוב": "Couldn't check. Try again", "הקלידו את שם המסעדה. אפשר לשחזר {n} יום": "Type the restaurant name. Restorable for {n} days", "השם לא תואם": "The name doesn't match", "לא נמחקה. נסו שוב": "Not deleted. Try again", "שחזור": "Restore", "לא שוחזרה. נסו שוב": "Not restored. Try again", "נמחקה ב-{n}. תימחק לגמרי ב-{n}. הגיבוי הלילי האחרון לפני המחיקה נשמר.": "Deleted on {n}. Fully removed on {n}. The last nightly backup before deletion is kept.", "נוספה": "Added", "שם המסעדה": "Restaurant name"});
+I18N_PAT.ar.push([new RegExp("^אי אפשר למחוק: (.+)\\.$"), "لا يمكن الحذف: $1."]);
+I18N_PAT.en.push([new RegExp("^אי אפשר למחוק: (.+)\\.$"), "Can't delete: $1."]);
+I18N_PAT.ar.push([new RegExp("^מחיקת (.+)$"), "حذف $1"]);
+I18N_PAT.en.push([new RegExp("^מחיקת (.+)$"), "Delete $1"]);
+I18N_PAT.ar.push([new RegExp("^(.+) נמחקה\\. אפשר לשחזר עד (\\d+/\\d+)$"), "حُذف $1. يمكن الاستعادة حتى $2"]);
+I18N_PAT.en.push([new RegExp("^(.+) נמחקה\\. אפשר לשחזר עד (\\d+/\\d+)$"), "$1 deleted. Restore until $2"]);
+I18N_PAT.ar.push([new RegExp("^(.+) שוחזרה$"), "تمت استعادة $1"]);
+I18N_PAT.en.push([new RegExp("^(.+) שוחזרה$"), "$1 restored"]);
+
 
 startI18n();
 /* ---------- דיווח שגיאות מהטלפון (לנועם): שגיאת קוד, הבטחה שנכשלה, או כתיבה שנדחתה. עד 5 בכל פתיחה, בלי כפילויות, בלי מידע אישי מעבר למזהה המשתמש ---------- */
@@ -2559,8 +2686,10 @@ function reportErr(kind, msg, stack) {
 window.addEventListener("error", (e) => reportErr("error", e.message, e.error && e.error.stack));
 window.addEventListener("unhandledrejection", (e) => { const r = e.reason || {}; reportErr("promise", r.message || String(r), r.stack); });
 /* כתיבה שנדחתה (הרשאה, שדה לא תקין): נרשמת כשגיאה ואז ממשיכה כרגיל לקוד שקרא לה */
-const wrapW = (f) => (...a) => f(...a).catch((e) => { reportErr("write", `${(a[0] && a[0].path) || ""} · ${(e && (e.code || e.message)) || e}`, e && e.stack); throw e; });
+const wrapW = (f) => (...a) => { S.myAt = Date.now(); return f(...a).catch((e) => { reportErr("write", `${(a[0] && a[0].path) || ""} · ${(e && (e.code || e.message)) || e}`, e && e.stack); throw e; }); };
 const setDoc = wrapW(_setDoc), updateDoc = wrapW(_updateDoc), deleteDoc = wrapW(_deleteDoc);
+/* טרנזקציה (שליחה, אישור): גם היא "כתיבה שלי" — לפני ואחרי, כדי שההד מהשרת לא יודגש כעדכון חי */
+const runTransaction = (...a) => { S.myAt = Date.now(); return _runTransaction(...a).finally(() => { S.myAt = Date.now(); }); };
 const fb = initializeApp(firebaseConfig);
 const auth = getAuth(fb);
 const DOMAIN = LOGIN_DOMAIN;
@@ -2593,7 +2722,11 @@ const SITES = [
 ];
 /* מסעדות שנוספו מחדר הבקרה בלי קוד (siteRegistry). בית לבנה ובית לבנה תמיד קיימים, גם אם הרשימה לא נטענה */
 const REG_CATS = ["ירקות וחיתוכים", "רטבים", "בישולים", "בשר ודגים", "יבשים ושימורים", "שונות"];
+/* מסעדה שנמחקה (archived): לא נכנסת לשום רשימה או בורר. נשמרת ב-ARCH (רק לבעלים) לשחזור ב-30 הימים הראשונים; אחר כך השרת מוחק */
+const ARCH = [], ARCH_DAYS = 30;
+const tsMs = (v) => (v && typeof v.toMillis === "function" ? v.toMillis() : v && typeof v.seconds === "number" ? v.seconds * 1000 : +v || 0); /* archivedAt = שעת השרת (Timestamp) */
 function addSite(k, d) {
+  if (d && d.archived === true) { if (/^[a-z][a-z0-9-]{1,19}$/.test(k) && !ARCH.some((x) => x.k === k)) ARCH.push({ k, d, at: tsMs(d.archivedAt) }); return false; }
   if (!/^[a-z][a-z0-9-]{1,19}$/.test(k) || SITES.some((x) => x.k === k) || !d || !d.name) return false;
   const cats = Array.isArray(d.cats) && d.cats.length ? d.cats.map((c) => String(c).slice(0, 30)).slice(0, 30) : REG_CATS.slice();
   SITES.push({ k, n: String(d.short || d.name).slice(0, 20), f: String(d.name).slice(0, 40), noCut: d.noCut === true, cats, seq: cats.slice(), color: /^#[0-9a-f]{6}$/i.test(d.color || "") ? d.color : "", added: +d.at || 0 });
@@ -2698,7 +2831,10 @@ const ONE = { "קבלות": "קבלה אחת", "הכנות": "הכנה אחת", 
 const plN = (n, w) => (+n === 1 ? ONE[w] : `${num(n)} ${w}`);
 const initials = (n) => String(n || "?").trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
 
-function cutoffFor(k) { if (!hasCut()) { const e = parse(k); e.setHours(23, 59, 0, 0); return e; } const d = addDays(parse(k), -1); d.setHours(CUTOFF_H, 0, 0, 0); return d; }
+/* שעת סגירה למסעדה: settings/app.cutH (נקבע ב"מסעדה חדשה"), ברירת מחדל 16:00. c16 מחליף "16:00" בטקסט רק כשהשעה אחרת */
+const cutHr = () => { const h = +((S.settings || {}).cutH); return Number.isInteger(h) && h >= 6 && h <= 23 ? h : CUTOFF_H; };
+const c16 = (t) => (cutHr() === CUTOFF_H ? t : t.replace(/16:00/g, String(cutHr()).padStart(2, "0") + ":00"));
+function cutoffFor(k) { if (!hasCut()) { const e = parse(k); e.setHours(23, 59, 0, 0); return e; } const d = addDays(parse(k), -1); d.setHours(cutHr(), 0, 0, 0); return d; }
 /* ימי עבודה של מטבח הייצור — ברירת מחדל: בלי שישי ושבת. ניתן לשנות במסך צוות */
 const offDays = () => { const o = (S.settings && S.settings.offDays) || [5, 6]; return Array.isArray(o) && o.length < 7 ? o : [5, 6]; };
 const isOff = (d) => offDays().includes(d.getDay());
@@ -2706,7 +2842,7 @@ function nextDelivery(from) {
   const now = from || new Date(); let d = addDays(now, 1);
   /* בלי שעת סגירה: מזמינים למחר. אחרי חצות ועד 06:00 (סוף סרוויס) — להיום */
   if (!hasCut()) { if (now.getHours() < 6) d = new Date(now); }
-  else if (now.getHours() >= CUTOFF_H) d = addDays(d, 1);
+  else if (now.getHours() >= cutHr()) d = addDays(d, 1);
   for (let i = 0; i < 7 && isOff(d); i++) d = addDays(d, 1);
   return dkey(d);
 }
@@ -2932,7 +3068,7 @@ function watchDay() {
   S.order = null; S.prod = null; S.upcoming = {}; pending = {}; approveDraft = {}; S.noteOpen = false; S.showDone = false; S.showAll = false;
   const day = S.day;
   unsub.order = onSnapshot(doc(db, CP("orders"), day), { includeMetadataChanges: true }, (s) => {
-    syncMark("o", s);
+    syncMark("o", s); S.snapAt = Date.now();
     const o = s.exists() ? s.data() : {};
     /* ההזמנה שנשמרה בטלפון הגיעה לשרת */
     const ss = S.sheet; if (ss && ss.type === "sent" && ss.queued && ss.day === day && !(s.metadata && s.metadata.hasPendingWrites) && (o.rev || 0) >= ss.rev) { ss.queued = false; toast("ההזמנה התקבלה ✓"); }
@@ -2949,7 +3085,7 @@ function watchDay() {
     if (o.status === "cancelled" && S.sheet && S.sheet.type === "sent" && S.sheet.day === day) S.sheet = null;
     S.order = o; renderSoon();
   });
-  unsub.prod = onSnapshot(doc(db, CP("production"), day), { includeMetadataChanges: true }, (s) => { syncMark("p", s); S.prod = s.exists() ? s.data() : {}; renderSoon(); });
+  unsub.prod = onSnapshot(doc(db, CP("production"), day), { includeMetadataChanges: true }, (s) => { syncMark("p", s); S.snapAt = Date.now(); S.prod = s.exists() ? s.data() : {}; renderSoon(); });
   if (can.produce()) {
     let d = parse(day), n = 0;
     while (n < 3) { d = addDays(d, 1); if (isOff(d) && d < addDays(parse(day), 21)) continue; const k = dkey(d), idx = n; unsub["up" + idx] = onSnapshot(doc(db, CP("orders"), k), (s) => { S.upcoming[k] = s.exists() ? s.data() : {}; renderSoon(); }); n++; }
@@ -3029,7 +3165,7 @@ async function trySend() {
   if (O().sentAt) return sendOrder();
   const [t1, nd] = okOrderDays();
   if (![t1, nd].includes(S.day)) return openDayCheck(nd);
-  if (hasCut() && S.day !== t1 && new Date().getHours() >= CUTOFF_H) {
+  if (hasCut() && S.day !== t1 && new Date().getHours() >= cutHr()) {
     let sent = true; try { const x = await getDoc(doc(db, CP("orders"), t1)); sent = !!(x.exists() && x.data().sentAt && x.data().status !== "cancelled"); } catch (e) {}
     if (!sent) { S.sheet = { type: "dayCheck", day: S.day, next: t1, nextSent: false, late: true }; render(); return; }
   }
@@ -3093,6 +3229,8 @@ async function sendOrderOnce(auto, dayArg) {
     if (isChange === null) return;
     if (auto) toast(queued ? "נשמר בטלפון · יישלח כשיחזור חיבור" : isChange ? "השינוי נשלח למטבח לאישור" : "ההזמנה עודכנה אצל המטבח");
     else {
+      /* תנועה 3: השרת אישר → הכפתור עובר בהצלבה ל"נשלחה" עם ✓ מצויר, רטט אחד (10). בלי קליטה: רק הרטט */
+      buzz(10); if (!queued) { S.sentFx = { day, at: Date.now() }; setTimeout(() => { if (S.sentFx && Date.now() - S.sentFx.at >= 2400) { S.sentFx = null; renderSoon(); } }, 2500); }
       S.sheet = { type: "sent", change: isChange, n: sum(sentMap || {}), c: count(sentMap || {}), day, queued: !!queued, rev }; render();
     }
   };
@@ -3229,6 +3367,18 @@ const logText = (e) => ({
     cancelled: `ביטול ההזמנה${e.note ? `: ${esc(e.note)}` : ""}`, restored: "שחזור ההזמנה",
   }[e.t] || e.t);
 const logCls = (t) => ({ approved: "ok", received: "ok", rejected: "bad", "change-rejected": "bad", cancelled: "bad", short: "warn", change: "warn" }[t] || "");
+/* תנועה 1: ✓ נכתב במקום. רק אחרי 600ms בלי מגע ברשימה השורות שבוצעו דועכות יחד והשאר עולות (FLIP 250). מגע חדש דוחה */
+function prodHold(k) { if (!S.hold || S.hold.day !== S.day) S.hold = { day: S.day, keys: new Set(), t: 0 }; S.hold.keys.add(k); prodSettleSoon(); }
+function prodSettleSoon() { if (!S.hold) return; clearTimeout(S.hold.t); S.hold.t = setTimeout(prodSettle, 600); }
+function prodSettle() {
+  const H = S.hold; if (!H) return;
+  if (S.sheet || S.tab !== "prod" || H.day !== S.day) { if (S.tab === "prod" && H.day === S.day) return prodSettleSoon(); S.hold = null; return render(); }
+  const main = document.querySelector("main"), rows = [...H.keys].filter((k) => isDone(k)).map((k) => main && main.querySelector(`.prow[data-key="p-${CSS.escape(k)}"]`)).filter(Boolean);
+  const go = () => flip(main, () => { S.hold = null; render(); });
+  if (!rows.length) return go();
+  const fades = rows.map((r) => r.animate([{ opacity: 1 }, { opacity: 0 }], { duration: RM() ? 150 : 200, easing: MEASE, fill: "forwards" }));
+  Promise.all(fades.map((a) => a.finished)).then(() => { if (S.hold !== H) return; go(); fades.forEach((a) => a.cancel()); }, () => {});
+}
 function confirmDone() {
   const sh = S.sheet, it = itemBy(sh.k), today = dkey(new Date()), v = prodQty(sh.k), total = sh.prev + sh.made;
   const base = { made: total, forQty: v, prodDate: today, by: myName(), at: Date.now() };
@@ -3241,6 +3391,7 @@ function confirmDone() {
     setProd(sh.k, Object.assign(base, { done: true, short: v - total, shortNote: note }));
     setDoc(doc(db, CP("orders"), S.day), { log: ev("short", { k: sh.k, n: v - total, note }) }, { merge: true }).catch(() => {});
   }
+  if (total >= v || sh.mode !== "later") prodHold(sh.k);
   S.sheet = null; render();
   act("prod", total >= v ? `הוכן: ${it.n} · ${total} קופסאות` : sh.mode === "later" ? `הוכן חלקית: ${it.n} · ${total} מתוך ${v}` : `חוסר: ${it.n} · ${v - total} קופסאות`);
   if (total >= v) toast(`${it.n} · תוקף עד ${ddmm(addDays(parse(today), it.d - 1))}`);
@@ -3305,11 +3456,11 @@ function alertUser(title, body) {
 function remindTick() {
   if (needConsent()) return;
   if (!S.user || !can.order() || !hasCut()) { S.reminder = 0; return; }
-  const now = new Date(), tomorrow = addDays(now, 1), cut = new Date(now); cut.setHours(CUTOFF_H, 0, 0, 0);
+  const now = new Date(), tomorrow = addDays(now, 1), cut = new Date(now); cut.setHours(cutHr(), 0, 0, 0);
   const left = Math.ceil((cut - now) / 60000), active = left > 0 && left <= 60 && !isOff(tomorrow);
   const key = "rosie-remind-" + dkey(now);
   S.reminder = active ? left : 0;
-  if (active && !store(key) && !S.pushOn) { store(key, "1"); alertUser(`נשארו ${durTxt(left)} לסגירת ההזמנה`, "ההזמנות למחר נסגרות ב-16:00"); }
+  if (active && !store(key) && !S.pushOn) { store(key, "1"); alertUser(`נשארו ${durTxt(left)} לסגירת ההזמנה`, c16("ההזמנות למחר נסגרות ב-16:00")); }
 }
 const durTxt = (x) => { const h = Math.floor(x / 60), m = x % 60; if (!h) return `${m} דקות`; const hh = h === 1 ? "שעה" : h === 2 ? "שעתיים" : `${h} שעות`; return m ? `${hh} ו-${m} דקות` : hh; };
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -3595,8 +3746,11 @@ const I = {
   clock: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
 };
 function viewAuth() {
-  const signup = S.authMode === "signup";
-  return `<div class="auth grp"><form class="card authcard" id="authF" novalidate>
+  /* כניסה: אנימציה רק בפעם הראשונה (אחרי שמסך הפתיחה יורד), ובלי גלילה שנשארה מהמסך הקודם */
+  const intro = !!document.getElementById("intro"), signup = S.authMode === "signup", enter = !S.authIn && !intro;
+  if (intro && !S.authWait) { S.authWait = true; const w = () => { if (document.getElementById("intro")) return setTimeout(w, 120); if ($("authF")) render(); }; setTimeout(w, 120); }
+  if (enter) { S.authIn = true; setTimeout(() => { if ($("authF")) window.scrollTo(0, 0); }, 0); }
+  return `<div class="auth grp"><form class="card authcard${enter ? " aenter" : ""}" id="authF" novalidate>
     ${SIGN}
     <h2 class="gt">${signup ? "הרשמה" : "כניסה"}</h2>${signup ? `<p class="gs">אחרי ההרשמה המנהל מאשר אותך</p>` : ""}
     ${signup ? `<div class="field"><label for="n">שם מלא</label><input id="n" autocomplete="name" maxlength="40" required></div>
@@ -3658,8 +3812,8 @@ function orderPill(o, forProd) {
   const draft = !forProd && sum(curItems()) > 0 ? `<span class="pill draft">טיוטה</span>` : "";
   if (!hasCut()) return draft;
   if (left > 0) { const h = Math.floor(left / 3600000), m = Math.floor((left % 3600000) / 60000); return `${draft}<span class="pill ${left <= 3600000 ? "warn" : "open"}">${left <= 3600000 ? I.clock : ""}נסגרת בעוד ${h ? h + " ש׳ " : ""}${m} ד׳</span>`; }
-  if (draft) return draft + `<span class="pill late">אחרי 16:00 — עדיין אפשר לשלוח</span>`;
-  return `<span class="pill late">אחרי 16:00 — עדיין אפשר לשלוח, המטבח יאשר</span>`;
+  if (draft) return draft + `<span class="pill late">${c16("אחרי 16:00 — עדיין אפשר לשלוח")}</span>`;
+  return `<span class="pill late">${c16("אחרי 16:00 — עדיין אפשר לשלוח, המטבח יאשר")}</span>`;
 }
 function statusLine(forProd, slim) {
   const d = parse(S.day), o = O();
@@ -3681,10 +3835,10 @@ function statusLine(forProd, slim) {
       ["התקבלה", o.received ? 2 : 0],
     ];
     let cur = cx;
-    track = `<ol class="track">${steps.map(([l, st]) => { let c = st === 2 ? "done" : st === 3 ? "done warn" : st === -1 ? "bad" : ""; if (!c && !cur && st >= 0) { c = "now"; cur = true; } return `<li class="${c}"><i></i><span>${l}</span></li>`; }).join("")}</ol>`;
+    track = `<ol class="track" data-xf="tr">${steps.map(([l, st]) => { let c = st === 2 ? "done" : st === 3 ? "done warn" : st === -1 ? "bad" : ""; if (!c && !cur && st >= 0) { c = "now"; cur = true; } return `<li class="${c}"><i></i><span>${l}</span></li>`; }).join("")}</ol>`;
   }
   if (slim) { const pl = `${syncPill()}${extra}`; return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}${pl ? `<div class="status slim"><div class="pills">${pl}</div></div>` : ""}`; } /* בייצור אחרי אישור: הכותרת והצעדים בכרטיס ההתקדמות */
-  return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}<div class="status card"><div class="when"><b>משלוח ${DN[d.getDay()]}, <span>${d.getDate()} ב${HMN[d.getMonth()]}</span></b>${hasCut() || upd || (!o.sentAt && S.order !== null) ? `<small>${!o.sentAt && S.order !== null && o.status !== "cancelled" ? "<span>עוד לא נשלחה.</span> " : ""}${hasCut() ? `<span>ההזמנה נסגרת ב${DN[cutoffFor(S.day).getDay()]} ב-16:00</span>` : ""}${upd ? `<span>${hasCut() ? upd : upd.replace(/^ · /, "")}</span>` : ""}</small>` : ""}</div><div class="pills">${syncPill()}${S.order === null ? "" : orderPill(o, forProd)}${extra}</div>${track}</div>`;
+  return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}<div class="status card" data-lv="status" data-v="${esc(o.status || "")}-${o.rev || 0}-${o.approvedRev || 0}"><div class="when" data-xf="st"><b>משלוח ${DN[d.getDay()]}, <span>${d.getDate()} ב${HMN[d.getMonth()]}</span></b>${hasCut() || upd || (!o.sentAt && S.order !== null) ? `<small>${!o.sentAt && S.order !== null && o.status !== "cancelled" ? "<span>עוד לא נשלחה.</span> " : ""}${hasCut() ? `<span>${c16(`ההזמנה נסגרת ב${DN[cutoffFor(S.day).getDay()]} ב-16:00`)}</span>` : ""}${upd ? `<span>${hasCut() ? upd : upd.replace(/^ · /, "")}</span>` : ""}</small>` : ""}</div><div class="pills">${syncPill()}${S.order === null ? "" : orderPill(o, forProd)}${extra}</div>${track}</div>`;
 }
 function pendingBanner() {
   if (!can.produce()) return "";
@@ -3740,7 +3894,7 @@ function viewOrder() {
     rows.forEach((it) => {
       const v = qtyOf(it.k);
       const inote = ((o.itemNotes || {})[it.k] || "").trim();
-      h += `<div class="row${v ? " on" : ""}" data-k="${it.k}" data-key="${it.k}"><div class="nm"><b>${esc(it.n)}</b>${inote ? `<small class="inote">✎ ${esc(inote)}</small>` : `<small>תוקף ${plN(it.d, "ימים")}</small>`}</div>
+      h += `<div class="row${v ? " on" : ""}" data-k="${it.k}" data-key="${it.k}" data-v="${v}"><div class="nm"><b>${esc(it.n)}</b>${inote ? `<small class="inote">✎ ${esc(inote)}</small>` : `<small>תוקף ${plN(it.d, "ימים")}</small>`}</div>
         <div class="step"><button data-dec="${it.k}" aria-label="פחות ${esc(it.n)}" ${can.order() && v ? "" : "disabled"}>−</button><output>${v || "0"}</output><button data-inc="${it.k}" aria-label="עוד ${esc(it.n)}" ${can.order() ? "" : "disabled"}>+</button></div></div>`;
     });
     h += `</div></section>`;
@@ -3787,8 +3941,11 @@ function viewProd() {
       + prodTools();
   }
   const list = items(true).filter((it) => prodQty(it.k) > 0);
-  const todo = list.filter((it) => !isDone(it.k)), done = list.filter((it) => isDone(it.k));
-  const pct = list.length ? done.length / list.length : 0, CIR = 2 * Math.PI * 52, allDone = list.length > 0 && !todo.length;
+  /* תנועה 1: הכנה שסומנה עכשיו נשארת במקומה עם ✓ (S.hold) עד 600ms בלי מגע, ואז עוברת ל"בוצעו" ב-FLIP (prodSettle) */
+  if (S.hold && S.hold.day !== S.day) S.hold = null;
+  const held = (k) => !!(S.hold && S.hold.keys.has(k) && isDone(k));
+  const todo = list.filter((it) => !isDone(it.k) || held(it.k)), done = list.filter((it) => isDone(it.k) && !held(it.k)), doneN = list.length - list.filter((it) => !isDone(it.k)).length;
+  const pct = list.length ? doneN / list.length : 0, CIR = 2 * Math.PI * 52, allDone = list.length > 0 && !todo.length;
   S.allDone = allDone;
   const endT = parse(S.day).getTime() + PROD_END_H * 3600000, now = Date.now(), isToday = S.day === todayKey();
   let line = "";
@@ -3799,9 +3956,9 @@ function viewProd() {
   else line = ""; /* היום כבר כתוב בראש הכרטיס */
   const dd = parse(S.day), stp = [["נשלחה", 2], ["אושרה", 2], ["בייצור", allDone ? 2 : 1], ["התקבלה", o.received ? 2 : allDone ? 1 : 0]];
   h += `<div class="card phero pcard ${allDone ? "all" : ""}"><div class="ph"><span>משלוח ${DN[dd.getDay()]}, <span>${dd.getDate()} ב${HMN[dd.getMonth()]}</span></span>${o.approvedAt ? `<span>אושרה <span dir="ltr">${hm(o.approvedAt)}</span>${o.approvedBy ? `, ${esc(whoN(o.approvedBy))}` : ""}</span>` : ""}</div>
-    <div class="pbig"><b dir="ltr" data-cnt="${done.length}">${done.length}</b><span>מתוך ${list.length} הכנות</span></div>
-    <div class="ptx"><b>${allDone ? (shortTot(S.prod) ? `מוכן למשלוח · <em class="shw">חסר ${num(shortTot(S.prod))}</em>` : "הכול מוכן למשלוח") : `${todo.length} ${todo.length === 1 ? "הכנה נשארה" : "הכנות נשארו"}`}</b>${line ? `<span>${line}</span>` : ""}</div>
-    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${list.length}" aria-valuenow="${done.length}" aria-label="${done.length} מתוך ${list.length} הכנות"><i style="--p:${Math.round(pct * 1000) / 1000}"></i></div>
+    <div class="pbig"><b dir="ltr" data-cnt="${doneN}">${doneN}</b><span>מתוך ${list.length} הכנות</span></div>
+    <div class="ptx"><b>${allDone ? (shortTot(S.prod) ? `מוכן למשלוח · <em class="shw">חסר ${num(shortTot(S.prod))}</em>` : "הכול מוכן למשלוח") : `${list.length - doneN} ${list.length - doneN === 1 ? "הכנה נשארה" : "הכנות נשארו"}`}</b>${line ? `<span>${line}</span>` : ""}</div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${list.length}" aria-valuenow="${doneN}" aria-label="${doneN} מתוך ${list.length} הכנות"><i style="--p:${Math.round(pct * 1000) / 1000}"></i></div>
     <ol class="ptrack">${stp.map(([l, st]) => `<li class="${st === 2 ? "done" : st === 1 ? "now" : ""}">${l}</li>`).join("")}</ol></div>`;
   if (o.note) h += `<div class="banner info">${I.note}<span><b>הערה מ${SN()}:</b> ${esc(o.note)}</span></div>`;
   const upDays = Object.keys(S.upcoming).sort();
@@ -3813,8 +3970,9 @@ function viewProd() {
       const extra = p.done && p.made != null ? `<em class="tag up">תוספת: עוד ${Math.max(0, v - (p.forQty || 0))}</em>` : ms ? `<em class="tag up">הוכנו ${ms}, נשאר ${left}</em>` : "";
       const upd = (ms || p.done) && p.by ? `<small class="upd"><span>עודכן ע״י</span> ${esc(whoN(p.by))}</small>` : "";
       const ahead = upDays.map((k) => { const n = +(qtySource(S.upcoming[k])[it.k] || 0); return n ? `${dayName(k)} ${n}` : ""; }).filter(Boolean);
-      h += `<div class="row prow">
-        <button class="check" data-done="${it.k}" aria-label="סמן ${esc(it.n)} כבוצע" ${can.produce() ? "" : "disabled"}><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></button>
+      const hd = held(it.k);
+      h += `<div class="row prow${hd ? " on" : ""}" data-key="p-${esc(it.k)}" data-v="${ms ? left : v}">
+        <button class="check" ${hd ? `data-undo="${it.k}" aria-label="בוצע: ${esc(it.n)}"` : `data-done="${it.k}" aria-label="סמן ${esc(it.n)} כבוצע"`} ${can.produce() ? "" : "disabled"}><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></button>
         <div class="nm"><b>${esc(it.n)}</b>${extra}${upd}${((o.itemNotes || {})[it.k] || "").trim() ? `<small class="inote">✎ ${esc(o.itemNotes[it.k].trim())}</small>` : ""}${ahead.length ? `<small class="ahead">גם ${ahead.join(", ")}</small>` : ""}</div>
         <div class="qty">${ms ? left : v}<small>${ms ? "נשאר" : "קופסאות"}</small></div></div>`;
     });
@@ -3824,7 +3982,7 @@ function viewProd() {
     h += `<button class="donebar" id="toggleDone" aria-expanded="${S.showDone}"><span>בוצעו</span> <b dir="ltr">${done.length}</b><span class="schev" aria-hidden="true"></span></button>`;
     if (S.showDone) {
       h += `<div class="list donelist">`;
-      done.forEach((it) => { const p = P[it.k] || {}, goal = !p.short && +(p.made ?? p.forQty ?? prodQty(it.k)) >= prodQty(it.k); h += `<button class="row drow${goal ? " goal" : ""}" data-undo="${it.k}" data-key="d-${esc(it.k)}"><span class="tick" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></span><div class="nm"><b>${esc(it.n)}</b>${p.short ? `<em class="tag bad">חסר ${num(p.short)}${p.shortNote ? " · " + esc(p.shortNote) : ""}</em>` : ""}<small>${plN(p.made ?? prodQty(it.k), "קופסאות")} · יוצר ${p.prodDate ? ddmm(parse(p.prodDate)) : ""} · תוקף עד ${p.prodDate ? ddmm(addDays(parse(p.prodDate), it.d - 1)) : ""}</small>${p.by ? `<small class="upd"><span>עודכן ע״י</span> ${esc(whoN(p.by))}</small>` : ""}</div></button>`; });
+      done.forEach((it) => { const p = P[it.k] || {}, goal = !p.short && +(p.made ?? p.forQty ?? prodQty(it.k)) >= prodQty(it.k); h += `<button class="row drow${goal ? " goal" : ""}" data-undo="${it.k}" data-key="p-${esc(it.k)}"><span class="tick" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></span><div class="nm"><b>${esc(it.n)}</b>${p.short ? `<em class="tag bad">חסר ${num(p.short)}${p.shortNote ? " · " + esc(p.shortNote) : ""}</em>` : ""}<small>${plN(p.made ?? prodQty(it.k), "קופסאות")} · יוצר ${p.prodDate ? ddmm(parse(p.prodDate)) : ""} · תוקף עד ${p.prodDate ? ddmm(addDays(parse(p.prodDate), it.d - 1)) : ""}</small>${p.by ? `<small class="upd"><span>עודכן ע״י</span> ${esc(whoN(p.by))}</small>` : ""}</div></button>`; });
       h += `</div>`;
     }
   }
@@ -3991,9 +4149,9 @@ const tgtOf = (st) => ({ f: tgtOk((st || {}).foodTarget) ? st.foodTarget : 30, p
 const canTargets = () => !IS_DEMO && (can.owner() || chiefAt(S.profile, S.site) || rawRole(S.profile, S.site) === "admin");
 async function editTargets() {
   if (!canTargets()) return;
-  const T = tgtOf(S.settings), ask = (q, d) => { const v = prompt(q, String(d)); if (v == null) return null; const n = Math.round(+String(v).replace(/[^0-9.]/g, "") * 10) / 10; return tgtOk(n) ? n : NaN; };
-  const f = ask(`יעד Food cost ל${SN()} (%)`, T.f); if (f == null) return; if (isNaN(f)) return toast("מספר בין 5 ל-95");
-  const p = ask(`יעד Prime cost ל${SN()} (%)`, T.p); if (p == null) return; if (isNaN(p)) return toast("מספר בין 5 ל-95");
+  const T = tgtOf(S.settings), num = (v) => { if (String(v).trim() === "") return NaN; const n = Math.round(+String(v).replace(/[^0-9.]/g, "") * 10) / 10; return tgtOk(n) ? n : NaN; };
+  const r = await ask({ t: "יעדי עלות", m: SN(), f: [{ l: "Food cost", v: T.f, type: "num", u: "%" }, { l: "Prime cost", v: T.p, type: "num", u: "%" }], ok: "שמירה", check: (a) => (a.some((x) => isNaN(num(x))) ? "מספר בין 5 ל-95" : "") });
+  if (!r) return; const f = num(r[0]), p = num(r[1]);
   try { await setDoc(doc(db, CP("settings"), "app"), { foodTarget: f, primeTarget: p }, { merge: true }); act("settings", `יעדי עלות · Food ${f}% · Prime ${p}%`); toast("נשמר ✓"); } catch (e) { toast("לא נשמר"); }
 }
 /* ---------- מאזן חומרי גלם: פחת ומלאי משוער, בלי ספירה של עובדים ----------
@@ -4391,7 +4549,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.5.0";
+const APP_VER = "2.5.1";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -4420,8 +4578,9 @@ function aiCap() { const st = S.settings || {}, u = st.aiUse, ym = todayKey().sl
 const aiWait = () => (aiCap().capped ? "ממתין — מכסת Claude החודשית" : "Claude קורא");
 async function editAiCap() {
   if (!can.owner()) return;
-  const v = prompt(`תקרת קריאות ל-Claude בחודש ל${SN()} (עכשיו ${aiCap().cap})`, String(aiCap().cap)); if (v == null) return;
-  const n = Math.round(+String(v).trim()); if (!(n >= 1 && n <= 100000)) { toast("מספר בין 1 ל-100,000"); return; }
+  const okN = (v) => { const n = Math.round(+String(v).replace(/[^0-9.]/g, "")); return String(v).trim() !== "" && n >= 1 && n <= 100000 ? n : null; };
+  const r = await ask({ t: "תקרת Claude", m: `קריאות בחודש ל${SN()}: ${aiCap().calls}/${aiCap().cap}`, f: [{ l: "תקרה", v: aiCap().cap, type: "num" }], ok: "שמירה", check: (a) => (okN(a[0]) == null ? "מספר בין 1 ל-100,000" : "") }); if (!r) return;
+  const n = okN(r[0]);
   try { await setDoc(doc(db, CP("settings"), "app"), { aiCap: n }, { merge: true }); toast("התקרה עודכנה"); act("settings", "תקרת Claude · " + n); } catch (e) { toast("לא נשמר"); }
 }
 function aiLine() {
@@ -4477,7 +4636,7 @@ function viewAbout() {
 function viewGuide() {
   const r = role(), cut = hasCut();
   const steps = {
-    rosie: ["לוחצים + על כל הכנה שצריך", cut ? "שולחים הזמנה עד 16:00" : "שולחים הזמנה", "המשלוח הגיע: מאשרים, או מסמנים מה חסר", "זרקתם משהו: ⋯ ← פחת"],
+    rosie: ["לוחצים + על כל הכנה שצריך", cut ? c16("שולחים הזמנה עד 16:00") : "שולחים הזמנה", "המשלוח הגיע: מאשרים, או מסמנים מה חסר", "זרקתם משהו: ⋯ ← פחת"],
     prod: ["הזמנה חדשה למעלה: מאשרים", "מכינים לפי הרשימה", "✓ על כל הכנה שמוכנה", "חסר: מסמנים כמה יצא"],
     admin: ["מאשרים ומתקנים הזמנות", "נתונים: חוסרים, פחת ועלויות", "הכנות: מוסיפים הכנה ומעדכנים תוקף"],
   }[r] || [];
@@ -4496,9 +4655,13 @@ async function changePassword() {
   catch (e) { sh.busy = false; sh.err = "לא הצלחתי לעדכן. נסה שוב"; render(); }
 }
 /* ---------- איפוס סיסמה ע"י מנהל: בעלים, מנהל ראשי או מנהל המטבח של המסעדה. השרת קובע סיסמה זמנית (10 תווים, תקפה שעתיים) ---------- */
-function openPwReset() { S.sheet = { type: "pwr" }; render(); setTimeout(() => { const i = $("pwrU"); if (i) i.focus(); }, 50); }
+/* העובדים שאפשר לאפס להם: עובדי המסעדה הזו בלבד (טבחים), לא מנהלים, לא בעלים ולא אני. מנהל מטבח לא רואה את רשימת המשתמשים → שדה טקסט */
+const pwrStaff = () => (S.staff || []).filter((u) => u.username && ["rosie", "prod"].includes(rawRole(u, S.site)) && !chiefAt(u, S.site) && !isOwnerP(u) && !(S.profile && u.username === S.profile.username))
+  .sort((a, b) => String(a.name || a.username).localeCompare(String(b.name || b.username), "he"));
+function openPwReset() { S.sheet = { type: "pwr", list: !!(S.staff && S.staff.length) }; render(); if (!S.sheet.list) setTimeout(() => { const i = $("pwrU"); if (i) i.focus(); }, 50); }
 async function sendPwReset() {
-  const sh = S.sheet, u = cleanUser((($("pwrU") || {}).value || "").trim());
+  const sh = S.sheet, u = cleanUser(((sh && sh.list ? sh.u : ($("pwrU") || {}).value) || "").trim());
+  if (sh && sh.list && !u) { sh.err = "בחרו עובד"; return render(); }
   if (!sh || sh.busy) return;
   if (!/^[a-z0-9._-]{2,30}$/.test(u)) { sh.err = "שם משתמש לא תקין"; return render(); }
   if (S.profile && u === S.profile.username) { sh.err = "את הסיסמה שלך משנים בהגדרות"; return render(); }
@@ -4520,11 +4683,13 @@ function pwrSheet(sh) {
   if (sh.code) return `<h3 class="sht">סיסמה זמנית</h3><p class="pwcode" dir="ltr">${esc(sh.code)}</p>
     <p class="gfoot">למסור ל-<b>${esc(sh.u)}</b>. תקף שעתיים. בכניסה הוא יבחר סיסמה חדשה. הקוד לא יוצג שוב.</p>
     <div class="sbtns one"><button class="btn" id="sClose">סיום</button></div>`;
+  const L = sh.list ? pwrStaff() : null;
   return `<h3 class="sht">איפוס סיסמה לעובד</h3>
-    <div class="fgrp"><input class="fin" id="pwrU" dir="ltr" autocapitalize="off" spellcheck="false" placeholder="שם המשתמש של העובד" aria-label="שם המשתמש של העובד" ${sh.busy ? "disabled" : ""} value="${esc(sh.u || "")}"></div>
-    <p class="gfoot">${sh.busy ? "ממתין לשרת · עד 5 דקות" : "העובד רואה את שם המשתמש שלו בהגדרות. רק עובדי המסעדה, לא מנהלים."}</p>
+    ${L ? (L.length ? `<div class="grp pwrl" role="radiogroup" aria-label="עובד">${L.map((u) => `<button type="button" class="srow" data-pwru="${esc(u.username)}" role="radio" aria-checked="${sh.u === u.username}" ${sh.busy ? "disabled" : ""}><span class="avatar sm" aria-hidden="true">${esc(initials(u.name || u.username))}</span><span class="st"><b>${esc(u.name || u.username)}</b><small dir="ltr">${esc(u.username)}</small></span><span class="pck" aria-hidden="true">${sh.u === u.username ? SVG(IC.check) : ""}</span></button>`).join("")}</div>` : `<p class="gfoot">אין עובדים במסעדה הזו</p>`)
+      : `<div class="fgrp"><input class="fin" id="pwrU" dir="ltr" autocapitalize="off" spellcheck="false" placeholder="שם המשתמש של העובד" aria-label="שם המשתמש של העובד" ${sh.busy ? "disabled" : ""} value="${esc(sh.u || "")}"></div>`}
+    ${sh.busy ? `<p class="gfoot">ממתין לשרת · עד 5 דקות</p>` : ""}
     <p class="err">${esc(sh.err || "")}</p>
-    <div class="sbtns"><button class="btn" id="pwrGo" ${sh.busy ? "disabled" : ""}>${sh.busy ? `<span class="spin"></span>` : "איפוס"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+    <div class="sbtns"><button class="btn" id="pwrGo" ${sh.busy || (L && !sh.u) ? "disabled" : ""}>${sh.busy ? `<span class="spin"></span>` : "איפוס"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* נכנס עם סיסמה זמנית → חייב לבחור סיסמה חדשה לפני שממשיך */
 /* הסימון נמחק רק ע"י השרת, אחרי שהוא רואה שהסיסמה באמת השתנתה (עד 5 דק׳). בינתיים הטלפון זוכר שכבר החליף */
@@ -4958,7 +5123,7 @@ function demoUrl() { return location.origin + location.pathname.replace(/[^/]*$/
 async function shareDemo() {
   const url = demoUrl(), text = "ככה נראית מסעדה אחרי חודש עם מיזו: הזמנות, ייצור, פחת ופוד קוסט. נכנסים בלי הרשמה";
   try { if (navigator.share) { await navigator.share({ title: "mizo · דמו", text, url }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
-  try { await navigator.clipboard.writeText(text + "\n" + url); toast("הקישור הועתק"); } catch (e) { prompt("הקישור לדמו:", url); }
+  try { await navigator.clipboard.writeText(text + "\n" + url); toast("הקישור הועתק"); } catch (e) { ask({ t: "הקישור לדמו", f: [{ l: "קישור", v: url, type: "url" }], ok: "סיום" }); }
 }
 /* "מחר" או שם היום (למשל "ראשון") להזמנה הבאה */
 const nextLbl = (k) => (!k ? "מחר" : k === dkey(addDays(new Date(), 1)) ? "מחר" : `יום ${DN[parse(k).getDay()]}`);
@@ -5007,7 +5172,7 @@ function viewControl() {
       ...(SITES.length > 1 ? [row({ data: 'data-ctl="access"', icon: ICB("#FF8A3D", IC.lock), t: "מי נכנס לאיזו מסעדה", chev: true })] : []),
       ...(IS_DEMO ? [] : [row({ id: "newSite", icon: ICB("#30B0C7", IC.plate), t: "מסעדה חדשה", s: "בלי קוד · נתונים נפרדים לגמרי", chev: true })]),
       row({ data: 'data-ctl="perm"', icon: ICB("#30D158", IC.lock), t: "מי רואה מה", chev: true }),
-    ]) + (IS_DEMO ? "" : onbLines()) + (IS_DEMO ? "" :  grp([row({ data: 'data-ctl="bcast"', icon: ICB("#FF453A", IC.bell), t: "הודעה לצוות", s: "התראה לטלפון", chev: true })]));
+    ]) + (IS_DEMO || !can.owner() ? "" : sitesGroup()) + (IS_DEMO ? "" : onbLines()) + (IS_DEMO ? "" :  grp([row({ data: 'data-ctl="bcast"', icon: ICB("#FF453A", IC.bell), t: "הודעה לצוות", s: "התראה לטלפון", chev: true })]));
   }
   if (A === "app" && perm("money") && !S.money) loadMoney();
   if (A === "app") return h + (IS_DEMO ? "" : grp([row({ id: "demoShare", icon: ICB("#3DDC97", IC.spark || IC.ai), t: "דמו ללקוחות", s: "קישור לשיתוף · מסעדה בדויה עם חודש נתונים", chev: true })], "מיזו")) + grp([
@@ -5030,6 +5195,63 @@ function viewControl() {
   if (C.ev.length) h += grp(C.ev.slice(0, 5).map(evRow), "אחרונות");
   return h;
 }
+/* ---------- מסעדות מהרשימה (רק הבעלים): מחיקה של מסעדה שלא בשימוש = ארכוב ל-30 יום, ושחזור ---------- */
+const archEnd = (a) => new Date((a.at || 0) + ARCH_DAYS * 86400000);
+function sitesGroup() {
+  const L = SITES.filter((x) => x.added), A = ARCH.filter((a) => Date.now() < archEnd(a).getTime());
+  if (!L.length && !A.length) return "";
+  return grp(L.map((x) => row({ data: `data-sitem="${x.k}"`, t: esc(x.f), chev: true }))
+    .concat(A.map((a) => row({ data: `data-sitem="${a.k}"`, t: esc(String(a.d.name || a.k)), s: `נמחקה. שחזור עד ${ddmm(archEnd(a))}`, chev: true }))), "מסעדות");
+}
+/* "לא בשימוש": לא בית לבנה ולא בית לבנה (מובנות), לא המסעדה הפעילה, בלי הזמנות ב-60 יום, בלי עובד פעיל שמשויך רק אליה. מחזיר משפט אחד או "" */
+const ACTIVE_R = (r) => !!r && !["none", "pending", "blocked"].includes(r);
+async function siteBusy(k) {
+  if (k === "rosie" || k === "jaco") return "זו מסעדה מובנית במערכת";
+  if (k === S.site) return "זו המסעדה הפעילה עכשיו. עברו למסעדה אחרת קודם";
+  const only = (S.staff || []).filter((u) => !isOwnerP(u) && (ACTIVE_R(rawRole(u, k)) || chiefAt(u, k))
+    && !SITES.some((x) => x.k !== k && (ACTIVE_R(rawRole(u, x.k)) || chiefAt(u, x.k)))).length;
+  if (only) return only === 1 ? "עובד אחד משויך רק אליה" : `${only} עובדים משויכים רק אליה`;
+  try {
+    const q = await getDocs(query(collection(db, "sites/" + k + "/orders"), where(documentId(), ">=", dkey(addDays(new Date(), -60)))));
+    if (q.docs.length) return "יש בה הזמנות ב-60 הימים האחרונים";
+  } catch (e) { return "לא הצלחתי לבדוק. נסו שוב"; }
+  return "";
+}
+function openSiteMan(k) {
+  const a = ARCH.find((x) => x.k === k), x = SITES.find((y) => y.k === k);
+  if (!a && !x) return;
+  S.sheet = { type: "sitem", k, arch: !!a, busy: a ? "" : null }; render();
+  if (!a) siteBusy(k).then((why) => { const sh = S.sheet; if (sh && sh.type === "sitem" && sh.k === k) { sh.busy = why; render(); } });
+}
+function siteManSheet(sh) {
+  const a = ARCH.find((x) => x.k === sh.k), x = SITES.find((y) => y.k === sh.k), name = a ? String(a.d.name || sh.k) : x ? x.f : sh.k;
+  if (a) return `<h3 class="sht">${esc(name)}</h3><p class="gfoot">נמחקה ב-${ddmm(new Date(a.at))}. תימחק לגמרי ב-${ddmm(archEnd(a))}. הגיבוי הלילי האחרון לפני המחיקה נשמר.</p>
+    <p class="err" role="alert">${esc(sh.err || "")}</p><div class="sbtns"><button class="btn" id="smRestore" ${sh.go ? "disabled" : ""}>שחזור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+  return `<h3 class="sht">${esc(name)}</h3>${x && x.added ? grp([row({ t: "נוספה", v: ddmm(new Date(x.added)) })]) : ""}
+    ${sh.busy === null ? `<p class="gfoot">בודק אם היא בשימוש…</p>` : sh.busy ? `<p class="gfoot smwhy">אי אפשר למחוק: ${esc(sh.busy)}.</p>` : `<div class="grp"><button class="srow center" id="smDel"><b class="danger">מחיקת מסעדה</b></button></div>`}
+    <p class="err" role="alert">${esc(sh.err || "")}</p>`;
+}
+async function archiveSite(k) {
+  const x = SITES.find((y) => y.k === k); if (!x || !can.owner()) return;
+  if (await siteBusy(k)) return openSiteMan(k);
+  const ok = await ask({ t: `מחיקת ${x.f}`, m: `הקלידו את שם המסעדה. אפשר לשחזר ${ARCH_DAYS} יום`, f: [{ l: "שם המסעדה", v: "" }], ok: "מחיקה", danger: true,
+    check: (v) => (v[0].trim() === x.f.trim() ? "" : "השם לא תואם") });
+  if (!ok) return;
+  const at = Date.now();
+  try { await setDoc(doc(db, "siteRegistry", k), { archived: true, archivedAt: serverTimestamp() }, { merge: true }); } /* החוקים: archivedAt = request.time */
+  catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נמחקה. נסו שוב"); return; }
+  SITES.splice(SITES.indexOf(x), 1);
+  ARCH.push({ k, at, d: { name: x.f, short: x.n, color: x.color || "#3E7CB1", noCut: !!x.noCut, cats: x.cats.slice(), at: x.added || at, archived: true, archivedAt: at } });
+  S.sheet = null; render(); act("settings", "מחיקת מסעדה · " + x.f); toast(`${x.f} נמחקה. אפשר לשחזר עד ${ddmm(new Date(at + ARCH_DAYS * 86400000))}`);
+}
+async function restoreSite(k) {
+  const sh = S.sheet, a = ARCH.find((x) => x.k === k); if (!a || !can.owner() || !sh) return;
+  sh.go = true; sh.err = ""; render();
+  try { await setDoc(doc(db, "siteRegistry", k), { archived: false, archivedAt: deleteField() }, { merge: true }); }
+  catch (e) { sh.go = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא שוחזרה. נסו שוב"; return render(); }
+  ARCH.splice(ARCH.indexOf(a), 1); addSite(k, Object.assign({}, a.d, { archived: false, archivedAt: null }));
+  S.sheet = null; render(); act("settings", "שחזור מסעדה · " + (a.d.name || k)); toast(`${a.d.name || k} שוחזרה`);
+}
 /* ---------- מסעדה חדשה (רק הבעלים): רשימת המסעדות + הגדרות + רשימת הכנות ריקה. השרת מתחיל לעבור עליה תוך 5 דקות ---------- */
 function newSiteSheet(sh) {
   if (sh.done) return `<h3 class="sht">${esc(sh.done.name)} נוספה ✓</h3>
@@ -5041,37 +5263,38 @@ function newSiteSheet(sh) {
     <p class="gfoot">אחרי שנרשמו: חדר בקרה ← אנשים ← "מי נכנס לאיזו מסעדה". ההתראות מתחילות תוך 5 דקות.</p>
     <div class="sbtns one"><button class="btn" id="sClose">סיום</button></div>`;
   return `<h3 class="sht">מסעדה חדשה</h3>
-    <div class="fgrp"><input class="fin" id="nsName" maxlength="40" placeholder="שם המסעדה" aria-label="שם המסעדה">
-    <input class="fin" id="nsKey" dir="ltr" maxlength="20" autocapitalize="off" spellcheck="false" placeholder="מפתח: אוטומטי" aria-label="מפתח באנגלית (לא חובה)"></div>
-    <label class="srow"><span class="st"><b>צבע</b></span><input type="color" id="nsColor" value="${esc(sh.color || NS_COLORS[SITES.length % NS_COLORS.length])}" aria-label="צבע"></label>
-    <label class="srow"><span class="st"><b>שעת סגירה להזמנה (16:00)</b><small>בלי — אפשר להזמין עד המשלוח</small></span><input type="checkbox" id="nsCut" ${sh.cut ? "checked" : ""}></label>
+    <div class="fgrp"><input class="fin" id="nsName" maxlength="40" placeholder="שם המסעדה" aria-label="שם המסעדה" value="${esc(sh.name || "")}"></div>
+    <h4 class="gh">צבע</h4><div class="grp nscols" role="radiogroup" aria-label="צבע">${NS_COLORS.map((c) => `<button type="button" class="nsc" data-nsc="${c}" role="radio" aria-checked="${c === sh.color}" aria-label="${c}" style="--c:${c}"><i></i></button>`).join("")}</div>
+    <div class="grp"><button type="button" class="srow" id="nsCut" role="switch" aria-checked="${!!sh.cut}"><span class="st"><b>שעת סגירה להזמנה</b><small>בלי — אפשר להזמין עד המשלוח</small></span><span class="sw ${sh.cut ? "on" : ""}" aria-hidden="true"></span></button>
+    <label class="srow" id="nsHRow" ${sh.cut ? "" : "hidden"}><span class="st"><b>שעה</b></span><span class="selw"><select id="nsH" class="nssel" dir="ltr" aria-label="שעה">${NS_HOURS.map((h) => `<option value="${h}" ${h === (sh.cutH || 16) ? "selected" : ""}>${String(h).padStart(2, "0")}:00</option>`).join("")}</select><span class="schev" aria-hidden="true"></span></span></label></div>
     <p class="err">${esc(sh.err || "")}</p>
     <div class="sbtns"><button class="btn" id="nsGo" ${sh.busy ? "disabled" : ""}>${sh.busy ? `<span class="spin"></span>` : "הוספה"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 async function createSite() {
   const sh = S.sheet; if (!sh || sh.busy || !can.owner()) return;
-  const name = (($("nsName") || {}).value || "").trim().slice(0, 40), color = ($("nsColor") || {}).value || NS_COLORS[0], cut = !!($("nsCut") || {}).checked;
-  let k = (($("nsKey") || {}).value || "").trim().toLowerCase();
-  if (!k) { const ascii = name.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 12); k = /^[a-z][a-z0-9]{1,}$/.test(ascii) && !SITES.some((x) => x.k === ascii) && !["rosie", "jaco", "sites"].includes(ascii) ? ascii : "r" + Math.random().toString(36).slice(2, 7).replace(/^[0-9]/, "k"); } /* מפתח אוטומטי: משם באנגלית, אחרת אקראי */
-  Object.assign(sh, { color, cut });
+  const name = (($("nsName") || {}).value || "").trim().slice(0, 40), color = sh.color || NS_COLORS[0], cut = !!sh.cut, cutH = Math.round(+(($("nsH") || {}).value || 16));
+  let k = "";
+  { const ascii = name.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 12); k = /^[a-z][a-z0-9]{1,}$/.test(ascii) && !keyTaken(ascii) ? ascii : ""; for (let i = 0; !k && i < 20; i++) { const r = "r" + Math.random().toString(36).slice(2, 7).replace(/^[0-9]/, "k"); if (!keyTaken(r)) k = r; } } /* מפתח אוטומטי: משם באנגלית, אחרת אקראי. אף פעם לא מפתח של מסעדה קיימת או בארכוב */ /* מפתח אוטומטי: משם באנגלית, אחרת אקראי */
+  Object.assign(sh, { name, color, cut, cutH });
   if (!name) { sh.err = "חסר שם"; return render(); }
   if (!/^[a-z][a-z0-9-]{1,19}$/.test(k)) { sh.err = "מפתח: אותיות אנגליות קטנות ומספרים, 2–20"; return render(); }
-  if (["rosie", "jaco", "sites"].includes(k) || SITES.some((x) => x.k === k)) { sh.err = "המפתח תפוס"; return render(); }
+  if (keyTaken(k)) { sh.err = "המפתח תפוס"; return render(); }
   if (!/^#[0-9a-f]{6}$/i.test(color)) { sh.err = "צבע לא תקין"; return render(); }
   sh.busy = true; sh.err = ""; render();
   const reg = { name, short: name.split(/\s+/)[0].slice(0, 20), color, noCut: !cut, cats: REG_CATS.slice(), at: Date.now() };
   try {
     /* בסדר הזה: קודם הרשימה (החוקים בודקים שהמסעדה קיימת), אחר כך ההגדרות וההכנות */
     await setDoc(doc(db, "siteRegistry", k), reg);
-    await setDoc(doc(db, "sites", k, "settings", "app"), { offDays: [5, 6], aiCap: 400 }); /* ברירות מחדל: שישי-שבת סגור, 400 קריאות Claude בחודש */
+    await setDoc(doc(db, "sites", k, "settings", "app"), Object.assign({ offDays: [5, 6], aiCap: 400 }, cut && NS_HOURS.includes(cutH) ? { cutH } : {})); /* ברירות מחדל: שישי-שבת סגור, 400 קריאות Claude בחודש */
     await setDoc(doc(db, "sites", k, "catalog", "items"), { items: {} });
-  } catch (e) { sh.busy = false; sh.err = "לא נשמר. בדוק חיבור ונסה שוב"; return render(); }
+  } catch (e) { sh.busy = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נשמר. בדוק חיבור ונסה שוב"; return render(); }
   addSite(k, reg); act("settings", "מסעדה חדשה · " + name);
   const link = location.origin + location.pathname + "?site=" + k;
   try { await navigator.clipboard.writeText(link); } catch (e) {}
   sh.busy = false; sh.done = { name, link, k }; render();
 }
-const NS_COLORS = ["#3E7CB1", "#8E6CC4", "#C77D4A", "#4E9A7A", "#B5577A", "#6B8E23"];
+const keyTaken = (k) => ["rosie", "jaco", "sites"].includes(k) || SITES.some((x) => x.k === k) || ARCH.some((x) => x.k === k);
+const NS_COLORS = ["#3E7CB1", "#5E5CE6", "#8E6CC4", "#B5577A", "#C0563A", "#C77D4A", "#4E9A7A", "#6B8E23"], NS_HOURS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 /* קישור חד-פעמי למנהל המטבח: הקוד נשאר רק בקישור; במסד נשמר רק ה-hash שלו, המסעדה ותוקף של 24 שעות */
 async function makeInvite() {
   const sh = S.sheet; if (!sh || !sh.done || sh.busy || !can.owner()) return;
@@ -5187,18 +5410,30 @@ const BC_R = [["", "כולם"], ["rosie", "טבחי הזמנות"], ["prod", "ט
 function viewBcast() {
   const B = S.bc = S.bc || { sites: [S.site], role: "" };
   if (!S.bcList) loadBcast();
-  let h = `<div class="field"><label>למי</label><div class="opts">${SITES.map((x) => `<button type="button" class="opt" data-bcs="${x.k}" aria-checked="${B.sites.includes(x.k)}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>
-    <div class="seg wide" role="group" aria-label="תפקיד">${BC_R.map(([k, l]) => `<button data-bcr="${k}" aria-pressed="${B.role === k}">${l}</button>`).join("")}</div>
-    <textarea class="ta idea" id="bcIn" rows="3" maxlength="300" placeholder="למשל: מחר המטבח נפתח ב-8:00" aria-label="ההודעה"></textarea>
-    <button class="btn full" id="bcSend" ${B.busy ? "disabled" : ""}>שליחה</button>`;
+  let h = `<div class="bcv">` + grp(SITES.map((x) => `<button type="button" class="srow" data-bcs="${x.k}" role="checkbox" aria-checked="${B.sites.includes(x.k)}"><span class="st"><b>${esc(x.f)}</b></span><span class="pck" aria-hidden="true">${B.sites.includes(x.k) ? SVG(IC.check) : ""}</span></button>`), "למי")
+    + `<div class="seg wide" role="group" aria-label="תפקיד">${BC_R.map(([k, l]) => `<button data-bcr="${k}" aria-pressed="${B.role === k}">${l}</button>`).join("")}</div>`
+    + `<h4 class="gh">הודעה</h4><div class="grp bcg"><textarea class="bcta" id="bcIn" rows="4" maxlength="300" placeholder="למשל: מחר המטבח נפתח ב-8:00" aria-label="ההודעה"></textarea></div>
+    <button class="btn full bcsend" id="bcSend" ${B.busy ? "disabled" : ""}>שליחה</button>`;
   const L = S.bcList || [];
-  if (L.length) h += grp(L.map((b) => { const sent = Object.values(b.sent || {}).reduce((a, n) => a + (+n || 0), 0); return `<div class="srow"><span class="st"><b>${esc(b.text)}</b><small>${ddmm(new Date(b.at))} ${hm(b.at)} · ${(b.sites || []).map((k) => esc(siteOf(k).n)).join(" + ")} · ${b.status === "done" ? `נשלחה ל-${sent} מכשירים` : "נשלחת…"}</small></span></div>`; }), "נשלחו");
-  return h;
+  if (L.length) h += grp(L.map((b) => { const sent = Object.values(b.sent || {}).reduce((a, n) => a + (+n || 0), 0); return `<div class="srow"><span class="st"><b>${esc(b.text)}</b><small>${ddmm(new Date(b.at))} ${hm(b.at)}, ${(b.sites || []).map((k) => esc(siteOf(k).n)).join(" + ")}, ${b.status === "done" ? `נשלחה ל-${sent} מכשירים` : "נשלחת…"}</small></span></div>`; }), "נשלחו")
+    + (can.owner() && L.some((b) => b.id && b.status === "done") ? `<div class="grp"><button class="srow center" id="bcClear"><b class="danger">מחיקת היסטוריה</b></button></div>` : "");
+  return h + `</div>`;
 }
 async function loadBcast() {
   S.bcList = [];
   try { const q = await getDocs(query(collection(db, "broadcasts"), orderBy("at", "desc"), limit(10))); S.bcList = q.docs.map((d) => Object.assign({ id: d.id }, d.data())); } catch (e) {}
   renderSoon();
+}
+/* מחיקת היסטוריה: רק הבעלים (החוקים: broadcasts delete = isOwner). הודעה שעוד נשלחת נשארת לשרת */
+async function clearBcast() {
+  if (!can.owner()) return;
+  if (!(await ask({ t: "למחוק את ההיסטוריה?", m: "ההודעות שנשלחו יימחקו מהרשימה", ok: "מחיקה", danger: true }))) return;
+  try {
+    const q = await getDocs(collection(db, "broadcasts")), del = q.docs.filter((d) => (d.data() || {}).status !== "pending");
+    await Promise.all(del.map((d) => deleteDoc(doc(db, "broadcasts", d.id))));
+    const gone = new Set(del.map((d) => d.id)); S.bcList = (S.bcList || []).filter((b) => !gone.has(b.id) && b.status === "pending");
+    render(); toast("ההיסטוריה נמחקה"); act("settings", "מחיקת היסטוריית הודעות");
+  } catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נמחק"); }
 }
 async function sendBcast() {
   const B = S.bc, i = $("bcIn"), t = ((i && i.value) || "").trim();
@@ -5206,7 +5441,8 @@ async function sendBcast() {
   if (!B.sites.length) { toast("בחרו מסעדה"); return; }
   B.busy = true; render();
   const x = { title: "הודעה מההנהלה", text: t.slice(0, 300), sites: B.sites.slice(), roles: B.role ? [B.role] : [], status: "pending", at: Date.now(), by: myName() };
-  try { await setDoc(doc(db, "broadcasts", "b" + Date.now().toString(36)), x); if (i) i.value = ""; S.bcList = [x].concat(S.bcList || []); toast("נשלחת · תוך כמה דקות בטלפונים"); }
+  const bid = "b" + Date.now().toString(36);
+  try { await setDoc(doc(db, "broadcasts", bid), x); if (i) i.value = ""; S.bcList = [Object.assign({ id: bid }, x)].concat(S.bcList || []); toast("נשלחת · תוך כמה דקות בטלפונים"); }
   catch (e) { toast("לא נשלח"); }
   B.busy = false; render();
 }
@@ -5574,6 +5810,10 @@ function viewSheet() {
       <div class="sbtns one"><button class="btn" id="sClose">סיום</button></div>`;
   } else if (sh.type === "repNow") {
     b = `<h3 class="sht">דוח עכשיו</h3>${grp([["yesterday", "אתמול"], ["7d", "7 הימים האחרונים"], ["mtd", "החודש עד היום"], ["prevMonth", "החודש הקודם"]].map(([k, l]) => row({ data: `data-repk="${k}"`, t: l, chev: true })))}<div class="sbtns"><button class="btn ghost" id="sClose">ביטול</button></div>`;
+  } else if (sh.type === "ask") {
+    b = askHtml(sh);
+  } else if (sh.type === "sitem") {
+    b = siteManSheet(sh);
   } else if (sh.type === "newsite") {
     b = newSiteSheet(sh);
   } else if (sh.type === "imp") {
@@ -5659,13 +5899,13 @@ function viewSheet() {
       <div class="field"><label for="cnote">סיבה (לא חובה)</label><input id="cnote" class="ta" placeholder="למשל: אירוע בוטל, הזמנה כפולה"></div>
       <div class="sbtns"><button class="btn badb" id="sCancelOk">לבטל הזמנה</button><button class="btn ghost" id="sClose">סגירה</button></div>`;
   } else if (sh.type === "reset") {
-    b = `<h3>איפוס כל הנתונים</h3>
+    b = `<h3 class="sht">איפוס כל הנתונים</h3>
       <p>יימחקו לצמיתות: <b>${sh.counts ? `${sh.counts.orders} הזמנות, ${sh.counts.production} ימי ייצור, ${sh.counts.waste} רישומי פחת` : "סופר…"}</b>.</p>
-      <p class="hint" style="text-align:right">רשימת ההכנות, העובדים וההגדרות נשארים. אי אפשר לשחזר אחרי המחיקה.</p>
-      <button class="mitem" id="backupBtn">להוריד גיבוי קודם</button>
-      <div class="field"><label for="rpw">סיסמת המנהל</label><input id="rpw" type="password" autocomplete="current-password" dir="ltr" class="ta"></div>
-      <div class="err">${esc(sh.err || "")}</div>
-      <div class="sbtns"><button class="btn badb" id="sResetOk" ${sh.busy || !sh.counts ? "disabled" : ""}>${sh.busy ? "מוחק…" : "מחק הכל"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+      <p class="gfoot">רשימת ההכנות, העובדים וההגדרות נשארים. אי אפשר לשחזר אחרי המחיקה.</p>
+      <div class="grp">${row({ id: "backupBtn", icon: ICB("", IC.doc), t: "להוריד גיבוי קודם", chev: true })}</div>
+      <div class="fgrp"><input class="fin" id="rpw" type="password" autocomplete="current-password" dir="ltr" placeholder="סיסמת המנהל" aria-label="סיסמת המנהל"></div>
+      <p class="err" role="alert">${esc(sh.err || "")}</p>
+      <div class="grp"><button class="srow center" id="sResetOk" ${sh.busy || !sh.counts ? "disabled" : ""}><b class="danger">${sh.busy ? "מוחק…" : "מחק הכל"}</b></button></div><div class="sbtns one"><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "ios") {
     b = `<h3>התראות באייפון</h3><p>באייפון אפשר לקבל התראות רק מהאפליקציה שעל מסך הבית:</p>
       <ol class="steps"><li>לוחצים על כפתור השיתוף בספארי (ריבוע עם חץ למעלה)</li><li>בוחרים ״הוסף למסך הבית״</li><li>פותחים את האפליקציה ממסך הבית, נכנסים, ומפעילים התראות מהתפריט</li></ol>
@@ -5710,7 +5950,9 @@ function barHtml() {
   else if (o.sentAt && !dirty) { label = o.status === "approved" ? "אושרה ✓" : "ממתינה לאישור"; dis = true; }
   const shN = o.sentAt && !dirty && hasApproved(o) ? shortTot(S.prod) : 0;
   /* ריק: בלי "0 קופסאות" (כרטיס המצב כבר אומר "עוד לא נשלחה") */
-  return `<div class="bar"><div class="barin"><div class="sum">${!b && !shN ? "" : `<b>${b}</b><span>${shN ? "הוזמנו" : "קופסאות"}</span>${shN ? `<small class="shw">${num(Math.max(0, b - shN))} יישלחו · חסר ${num(shN)}</small>` : `<small>${plN(n, "הכנות")}</small>`}`}</div><button class="btn big" id="send" ${dis ? "disabled" : ""}>${label}</button></div></div>`;
+  return `<div class="bar"><div class="barin"><div class="sum">${!b && !shN ? "" : `<b>${b}</b><span>${shN ? "הוזמנו" : "קופסאות"}</span>${shN ? `<small class="shw">${num(Math.max(0, b - shN))} יישלחו · חסר ${num(shN)}</small>` : `<small>${plN(n, "הכנות")}</small>`}`}</div>${S.sentFx && S.sentFx.day === S.day && o.sentAt && !dirty && Date.now() - S.sentFx.at < 2400
+    ? `<button class="btn big sendfx" id="send" disabled><span class="sl sl1">שלח הזמנה</span><span class="sl sl2"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg>נשלחה</span></button>`
+    : `<button class="btn big" id="send" ${dis ? "disabled" : ""}>${label}</button>`}</div></div>`;
 }
 function jumpHtml() {
   if (S.tab !== "order" || !S.catalog || S.order === null) return "";
@@ -5765,7 +6007,7 @@ function viewApp() {
   }[S.tab] || [SN(), ""];
   const backTo = (tabsFor().find((x) => x[0] === (S.prevTab && S.prevTab !== S.tab ? S.prevTab : "")) || tabsFor().find((x) => x[0] !== "room") || [])[1] || "חזרה";
   const back = ["dishes", "settings", "control"].includes(S.tab) ? `<button class="navback" id="navBack"><span aria-hidden="true">‹</span> ${S.tab === "control" ? (S.ctl === "report" && !S.repObj ? "דוחות" : S.ctl ? (can.owner() ? "חדר בקרה" : "חדר שליטה") : "הגדרות") : S.tab === "settings" && S.set ? "הגדרות" : S.tab === "settings" ? esc(backTo) : S.tab === "dishes" && S.lab === "book" && S.re ? "ביטול" : S.tab === "dishes" && S.lab === "book" && S.rv ? "מתכונים" : "חזרה"}</button>` : "";
-  const nav = tabs.length > 1 ? `<nav class="tabbar" role="tablist" data-n="${tabs.length}">${tabs.map(([k, l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${S.tab === k}">${TAB_ICONS[k]}<span>${l}</span>${k === "prod" && badge ? `<i class="badge">${badge}</i>` : ""}</button>`).join("")}</nav>` : "";
+  const nav = tabs.length > 1 ? `<nav class="tabbar" role="tablist" data-n="${tabs.length}"><i class="tlens" aria-hidden="true"></i>${tabs.map(([k, l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${S.tab === k}">${TAB_ICONS[k]}<span>${l}</span>${k === "prod" && badge ? `<i class="badge">${badge}</i>` : ""}</button>`).join("")}</nav>` : "";
   const navOn = !!nav && !["settings", "control", "dishes"].includes(S.tab), barH = S.tab === "order" ? barHtml() : S.tab === "prod" ? prodBar() : S.tab === "dishes" && S.lab === "book" && S.re ? `<div class="bar sbar"><button class="btn big full" id="reSave">שמור</button></div>` : "";
   document.body.classList.toggle("has-tabbar", navOn);
   document.body.classList.toggle("has-bar", !!barH);
@@ -5776,7 +6018,7 @@ function viewApp() {
   const sub2 = bk && S.rv ? `<button class="navedit" id="rvEdit">עריכה</button>` : bk && S.book && Object.keys(S.book).length ? `<button class="navedit" id="bNew">＋ חדש</button>` : S.tab === "settings" || S.tab === "control" || S.tab === "dishes" ? "" : `<span class="navend">${S.tab === "order" && S.order !== null ? `<button class="glassbtn dots" id="moreBtn" aria-label="עוד אפשרויות" aria-pressed="${S.onlyOrdered}">${DOTS}</button>` : S.tab === "prod" && labSegs().length ? `<button class="glassbtn dots" id="moreProd" aria-label="עוד">${DOTS}</button>` : ""}<button class="avatar" id="menu" aria-label="הגדרות">${esc(initials(myName()))}</button></span>`;
   return `<div class="glow ${glow}" aria-hidden="true"></div><header><div class="wrap"><div class="navbar">${back || rkSw || (mySites().length > 1 ? `<button class="glassbtn cap sitesw" id="siteSw" aria-label="החלפת מסעדה">${esc(siteOf(S.site).f)} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>` : "<span></span>")}<b class="navtitle">${esc(title)}</b>${sub2 || "<span></span>"}</div>
       ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
-      ${showDays ? `<div class="days" role="group" aria-label="יום משלוח">${days}</div>` : ""}</div></header>
+      ${showDays ? `<div class="days" role="group" aria-label="יום משלוח"><i class="dpill" aria-hidden="true"></i>${days}</div>` : ""}</div></header>
     <main class="wrap ${S.enter ? "enter" : ""}">${body}</main>${barH}${navOn ? nav : ""}${viewSheet()}`;
 }
 let rq = 0;
@@ -5787,6 +6029,7 @@ window.__perf = { n: 0, total: 0, max: 0 };
 function jumpTo(y) { const r = document.documentElement, b = r.style.scrollBehavior; r.style.scrollBehavior = "auto"; window.scrollTo(0, y); r.style.scrollBehavior = b; if (typeof onScroll === "function") onScroll(); }
 function render() {
   const t0 = performance.now();
+  if (askQ && S.sheet !== askQ.sh) { const q = askQ; askQ = null; setTimeout(() => q.res(null)); }
   renderInner();
   sheetTM();
   const dt = performance.now() - t0, P = window.__perf; P.n++; P.total += dt; P.max = Math.max(P.max, dt);
@@ -5846,11 +6089,20 @@ function renderInner() {
   const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "gAskQ", "wG", "ideaIn", "bcIn", "pwrU", "npA", "npB", "nsName", "nsKey", "impTxt"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
   const oSh = S.sheet ? null : document.querySelector("#app > .sheet"), oSc = oSh && $("scrim");
   const oPop = S.pop ? null : document.querySelector("#app .pop"), oPopP = oPop && oPop.parentNode;
-  morph($("app"), html);
+  /* תנועה 4 (עדכון חי) ו-3 (שורת הסטטוס): לפני ה-morph זוכרים ערכים, אחריו מדגישים מה שהשתנה אצל מישהו אחר */
+  const root = $("app"), lv = new Map(), xf = new Map();
+  root.querySelectorAll("[data-v]").forEach((e) => lv.set(e.dataset.lv || e.dataset.key, e.dataset.v));
+  root.querySelectorAll("[data-xf]").forEach((e) => xf.set(e.dataset.xf, e.textContent));
+  const live = !!S.user && Date.now() - (S.snapAt || 0) < 400 && Date.now() - Math.max(S.myAt || 0, S.touchAt || 0) > 1500 && !S.sheet && root.querySelector("main");
+  if (live) flip(root.querySelector("main"), () => morph(root, html)); else morph(root, html);
+  if (live && lv.size) root.querySelectorAll("[data-v]").forEach((e) => { const k = e.dataset.lv || e.dataset.key; if (lv.has(k) && lv.get(k) !== e.dataset.v) flash(e); });
+  root.querySelectorAll("[data-xf]").forEach((e) => { const k = e.dataset.xf; if ((xf.has(k) && xf.get(k) !== e.textContent) || (!xf.has(k) && xf.size)) xfadeIn(e); });
+  { const sb = root.querySelector("#send.sendfx:not(.go)"); if (sb) requestAnimationFrame(() => requestAnimationFrame(() => sb.classList.add("go"))); }
   if (oSh && !oSh.isConnected) sheetOut(oSh, oSc && !oSc.isConnected ? oSc : null);
   if (oPop && !oPop.isConnected && oPopP && oPopP.isConnected && !RM()) { oPop.querySelectorAll("button").forEach((x) => { x.removeAttribute("data-rk"); x.removeAttribute("data-theme"); x.removeAttribute("data-lang"); x.tabIndex = -1; }); oPop.setAttribute("aria-hidden", "true"); oPop.classList.add("out"); oPopP.appendChild(oPop); setTimeout(() => oPop.remove(), 160); }
   countUp($("app"));
-  if (S.bounce) { const k = S.bounce; S.bounce = null; const ic = document.querySelector(`.tab[data-tab="${k}"] svg`); if (ic && ic.animate && !RM()) ic.animate([{ transform: "scale(1)" }, { transform: "scale(1.08)" }, { transform: "scale(1)" }], { duration: 300, easing: "cubic-bezier(.32,.72,0,1)" }); }
+  if (S.bounce) { const k = S.bounce; S.bounce = null; const ic = document.querySelector(`.tab[data-tab="${k}"] svg`); if (ic && ic.animate && !RM()) ic.animate([{ transform: "scale(1)" }, { transform: "scale(1.08)" }, { transform: "scale(1)" }], { duration: 200, easing: "cubic-bezier(.32,.72,0,1)" }); }
+  placeLens();
   const grp = html.startsWith('<div class="auth grp"'); document.body.classList.toggle("grpb", grp);
   if (grp && !S.site) delete document.documentElement.dataset.site;
   if (S.enter) { S.enter = false; setTimeout(() => { const m = document.querySelector("main.enter"); if (m) m.classList.remove("enter"); }, 400); }
@@ -5973,7 +6225,107 @@ const swEnd = () => {
   setTimeout(() => { if (s.el.isConnected) { s.el.style.transition = ""; s.el.style.transform = ""; } if (s.sc && s.sc.isConnected) { s.sc.style.transition = ""; s.sc.style.opacity = ""; } }, 400);
 };
 document.addEventListener("touchend", swEnd, { passive: true }); document.addEventListener("touchcancel", swEnd, { passive: true });
-function closeSheet() { if (!S.sheet) return; S.sheet = null; render(); }
+/* ---------- עדשת זכוכית בסרגל הלשוניות: כמוסה אחת שגולשת ללשונית הנבחרת (FLIP על פני render), ועוקבת אחרי האצבע בגרירה אופקית.
+   בטעינה ובהחלפת משתמש במקומה בלי אנימציה. מונפש רק transform (ב-CSS: transition-property מפורש) */
+/* ---------- תנועה (mizo-docs/motion/MOTION-PLAN §5): עוזרים משותפים. רק transform ו-opacity, WAAPI, בלי ספריות ---------- */
+const MEASE = "cubic-bezier(.32,.72,0,1)";
+/* FLIP: קורא מיקומים לפני, משנה, ומנפיש רק transform. שורה חדשה נכנסת מ--8px, ישנה גולשת. מעל 40 שורות: בלי תנועה */
+function flip(root, mutate, d = 250) {
+  const keys = new Set(), pos = new Map();
+  if (root) root.querySelectorAll("[data-key]").forEach((e) => { keys.add(e.dataset.key); const r = e.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) pos.set(e.dataset.key, r.top); });
+  mutate();
+  if (!root) return; const els = [...root.querySelectorAll("[data-key]")]; if (els.length > 40 || !keys.size) return;
+  els.forEach((e) => {
+    const k = e.dataset.key;
+    if (!keys.has(k)) { e.animate([{ opacity: 0, transform: RM() ? "none" : "translateY(-8px)" }, { opacity: 1, transform: "none" }], { duration: RM() ? 150 : d, easing: MEASE }); return; }
+    if (!pos.has(k) || RM()) return;
+    const dy = pos.get(k) - e.getBoundingClientRect().top; if (Math.abs(dy) < 1) return;
+    e.getAnimations().forEach((a) => a.cancel());
+    e.animate([{ transform: `translateY(${dy}px)` }, { transform: "none" }], { duration: d, easing: MEASE });
+  });
+}
+/* טקסט שהתחלף: נכנס בהצלבה (150 בפחות תנועה, בלי תזוזה) */
+const xfadeIn = (el) => el && el.animate && el.animate([{ opacity: 0, transform: RM() ? "none" : "translateY(4px)" }, { opacity: 1, transform: "none" }], { duration: RM() ? 150 : 250, easing: MEASE });
+/* הדגשה של עדכון חי: שכבה ::after בגוון tint-soft שדועכת ב-1200 (נשארת גם בפחות תנועה — היא מידע) */
+function flash(el) {
+  if (!el) return; el.classList.remove("hl", "hl-out"); void el.offsetWidth; el.classList.add("hl");
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("hl-out")));
+  clearTimeout(el._hl); el._hl = setTimeout(() => el.classList.remove("hl", "hl-out"), 1300);
+}
+/* גלולה גולשת: עדשת הלשוניות ופס הימים. מיקום לפי offset (לא מושפע מכיווץ הלחיצה), גודל בלי מעבר, רק transform במעבר.
+   זוכר את המקום הקודם לכל מסילה, כך שהגלישה עובדת גם כשהרינדור מחליף את הכפתורים. בהחלפת משתמש: במקום, בלי אנימציה */
+const pillMem = new Map();
+function offIn(el, track) { let x = 0, y = 0; while (el && el !== track) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return el === track ? { x, y } : null; }
+function slidePill(id, track, pill, sel, key, fly) { /* fly: הגלולה נראית רק בזמן הגלישה; במנוחה הצבע שייך לכפתור עצמו */
+  if (!track || !pill || !track.getClientRects().length) return;
+  if (!sel) { pill.style.opacity = "0"; return; }
+  const o = offIn(sel, track); if (!o) return;
+  const uid = (S.user && S.user.uid) || "", prev = pillMem.get(id), to = `translate(${o.x}px,${o.y}px)`;
+  pillMem.set(id, { x: o.x, y: o.y, key, uid });
+  pill.style.width = sel.offsetWidth + "px"; pill.style.height = sel.offsetHeight + "px"; pill.style.opacity = "";
+  if (!prev || prev.key === key || prev.uid !== uid || RM()) { pill.style.transform = to; if (fly && !pill.classList.contains("fly")) pill.style.opacity = "0"; return; }
+  pill.classList.add("still"); pill.style.transform = `translate(${prev.x}px,${prev.y}px)`; void pill.offsetWidth; pill.classList.remove("still");
+  if (fly) { pill.classList.add("fly"); clearTimeout(pill._fly); pill._fly = setTimeout(() => { pill.classList.remove("fly"); pill.style.opacity = "0"; }, 260); }
+  requestAnimationFrame(() => { pill.style.transform = to; });
+}
+let lensSup = 0;
+function placeLens() {
+  const nb = document.querySelector(".tabbar"), t = nb && nb.querySelector('.tab[aria-selected="true"]');
+  slidePill("tabs", nb, nb && nb.querySelector(".tlens"), t, t && t.dataset.tab);
+  const ds = document.querySelector(".days"), sd = ds && ds.querySelector('.day[aria-pressed="true"]');
+  slidePill("days", ds, ds && ds.querySelector(".dpill"), sd && sd.querySelector("b"), sd && sd.dataset.day, true);
+}
+window.addEventListener("resize", placeLens, { passive: true }); /* סיבוב/שינוי גודל: העדשה והעיגול עוברים למקום החדש */
+app.addEventListener("pointerdown", (e) => { S.touchAt = Date.now(); if (S.hold && S.hold.t && e.target.closest && e.target.closest("main")) prodSettleSoon(); }, { passive: true });
+(() => { let g = null;
+  const lensOf = (nb) => nb && nb.querySelector(".tlens");
+  app.addEventListener("pointerdown", (e) => { const nb = e.target.closest && e.target.closest(".tabbar"); g = nb && e.isPrimary ? { nb, x0: e.clientX, id: e.pointerId, on: false, lx: 0 } : null; }, { passive: true });
+  app.addEventListener("pointermove", (e) => {
+    if (!g || e.pointerId !== g.id) return; const dx = e.clientX - g.x0; if (!g.on && Math.abs(dx) < 10) return;
+    const L = lensOf(g.nb); if (!L) return; g.on = true; L.classList.add("drag");
+    const r = g.nb.getBoundingClientRect(), w = L.offsetWidth, m = pillMem.get("tabs"); g.lx = Math.max(4, Math.min(r.width - w - 4, e.clientX - r.left - w / 2)); L.style.transform = `translate(${g.lx}px,${m ? m.y : 4}px)`;
+  }, { passive: true });
+  const end = (e, cancel) => {
+    if (!g || e.pointerId !== g.id) return; const G = g; g = null; if (!G.on) return;
+    const L = lensOf(G.nb); if (L) L.classList.remove("drag"); lensSup = Date.now(); { const m = pillMem.get("tabs"); if (m) pillMem.set("tabs", Object.assign({}, m, { x: G.lx, key: "" })); } /* נוחתת מהמקום של האצבע */
+    const c = G.lx + (L ? L.offsetWidth / 2 : 0); let best = null, bd = 1e9;
+    G.nb.querySelectorAll(".tab").forEach((t) => { const dd = Math.abs(t.offsetLeft + t.offsetWidth / 2 - c); if (dd < bd) { bd = dd; best = t; } });
+    if (!cancel && best && best.getAttribute("aria-selected") !== "true") { best.__lens = true; best.click(); best.__lens = false; }
+    else placeLens();
+  };
+  app.addEventListener("pointerup", (e) => end(e, false), { passive: true }); app.addEventListener("pointercancel", (e) => end(e, true), { passive: true });
+})();
+function closeSheet() { if (!S.sheet) return; if (S.sheet.type === "ask") return askDone(null); S.sheet = null; render(); }
+/* ---------- גיליון שאלה: מחליף prompt/confirm/alert של הדפדפן. ask({t, m, f:[{l, v, type}], ok, danger}) → Promise
+   אישור: מערך ערכי השדות (או true בלי שדות). ביטול/X/החלקה: null. הגיליון שהיה פתוח לפני כן חוזר אחרי התשובה */
+let askQ = null;
+function ask(o) {
+  return new Promise((res) => {
+    if (askQ) askDone(null);
+    const prev = S.sheet && S.sheet.type !== "ask" ? S.sheet : null, sh = { type: "ask", o, prev };
+    askQ = { sh, res }; S.sheet = sh; render();
+    setTimeout(() => { const i = $("askF0"); if (i) { i.focus(); try { i.select(); } catch (e) {} } }, 60);
+  });
+}
+function askDone(v) {
+  const q = askQ; if (!q) return; askQ = null;
+  if (S.sheet === q.sh) S.sheet = q.sh.prev || null;
+  render(); q.res(v);
+}
+function askOk() {
+  const q = askQ; if (!q) return; const f = q.sh.o.f || [];
+  const vals = f.map((x, i) => String(($("askF" + i) || {}).value ?? "").trim());
+  if (q.sh.o.check) { const e = q.sh.o.check(vals); if (e) { q.sh.err = e; render(); return; } }
+  askDone(f.length ? vals : true);
+}
+function askHtml(sh) {
+  const o = sh.o, f = o.f || [];
+  return `<h3 class="sht">${esc(o.t)}</h3>${o.m ? `<p class="askm">${esc(o.m)}</p>` : ""}
+    ${f.length ? `<div class="grp askg">${f.map((x, i) => `<label class="srow askrow"><span class="st"><b>${esc(x.l)}</b></span><input class="askin" id="askF${i}" ${x.type === "num" ? 'inputmode="decimal" dir="ltr"' : x.type === "url" ? 'dir="ltr" readonly' : ""} value="${esc(String(x.v ?? ""))}" aria-label="${esc(x.l)}">${x.u ? `<span class="sv">${esc(x.u)}</span>` : ""}</label>`).join("")}</div>` : ""}
+    <p class="err" role="alert">${esc(sh.err || "")}</p>
+    ${o.danger ? `<div class="grp"><button class="srow center" id="askOk"><b class="danger">${esc(o.ok || "מחיקה")}</b></button></div><div class="sbtns one"><button class="btn ghost" id="sClose">ביטול</button></div>`
+      : `<div class="sbtns"><button class="btn" id="askOk">${esc(o.ok || "אישור")}</button><button class="btn ghost" id="sClose">ביטול</button></div>`}`;
+}
 /* הגיליון שנסגר עובר לשכבה צדדית (בלי מזהים, בלי לחיצות) ויורד משם, כך שכל דרך סגירה מונפשת */
 function sheetOut(sh, sc) {
   let L = $("sheetOut"); if (!L) { L = document.createElement("div"); L.id = "sheetOut"; L.setAttribute("aria-hidden", "true"); L.inert = true; document.body.appendChild(L); }
@@ -6022,12 +6374,13 @@ app.addEventListener("click", (e) => {
     else { S.tab = S.prevTab && S.prevTab !== S.tab ? S.prevTab : (tabsFor().find((x) => x[0] !== "room") || tabsFor()[0])[0]; }
     S.enter = true; render(); jumpTo(0);
   }
+  else if (t.id === "askOk") askOk();
   else if (t.id === "sClose" || d.close != null) closeSheet();
   else if (t.id === "pushBtn") enablePush();
   else if (t.id === "themeBtn") { const th = document.documentElement.dataset.theme === "light" ? "dark" : "light"; document.documentElement.dataset.theme = th; store("rosie-theme", th); render(); }
   else if (d.jump) { const el = $(d.jump); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
   else if (d.day) { flush(); runAutoNow(); S.day = d.day; watchDay(); render(); }
-  else if (d.tab) { if (tabLP.fired && d.tab === "items" && Date.now() - tabLP.fired < 1500) { tabLP.fired = 0; return; } tabLP.fired = 0; if (d.tab === S.tab) { window.scrollTo({ top: 0, behavior: "smooth" }); return; } S.scrollMem = S.scrollMem || {}; S.scrollMem[S.tab] = window.scrollY; S.tab = d.tab; S.enter = true; S.bounce = d.tab; if (d.tab === "data" && !S.data) loadData(); render(); jumpTo(S.scrollMem[d.tab] || 0); onScroll(); }
+  else if (d.tab) { if (Date.now() - lensSup < 450 && !t.__lens) return; if (tabLP.fired && d.tab === "items" && Date.now() - tabLP.fired < 1500) { tabLP.fired = 0; return; } tabLP.fired = 0; if (d.tab === S.tab) { window.scrollTo({ top: 0, behavior: "smooth" }); return; } S.scrollMem = S.scrollMem || {}; S.scrollMem[S.tab] = window.scrollY; S.tab = d.tab; S.enter = true; S.bounce = d.tab; if (d.tab === "data" && !S.data) loadData(); render(); jumpTo(S.scrollMem[d.tab] || 0); onScroll(); }
   else if (d.goapprove) { flush(); runAutoNow(); S.tab = "prod"; if (S.day !== d.goapprove) { S.day = d.goapprove; watchDay(); } render(); jumpTo(0); }
   else if (d.inc) bump(d.inc, 1);
   else if (d.dec) bump(d.dec, -1);
@@ -6045,7 +6398,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "repRef") loadRoom();
   else if (d.repdel) { const [k, id] = d.repdel.split("|"); S.sheet = { type: "repdel", k, id }; render(); }
   else if (t.id === "repDelGo" && sh && sh.type === "repdel") delReport(sh.k, sh.id);
-  else if (t.id === "sUndoOk") { setProd(sh.k, { done: false }); S.sheet = null; render(); }
+  else if (t.id === "sUndoOk") { setProd(sh.k, { done: false }); if (S.hold) S.hold.keys.delete(sh.k); S.sheet = null; render(); }
   else if (t.id === "toggleDone") { S.showDone = !S.showDone; render(); }
   else if (d.mym) { S.moneyYm = d.mym; render(); }
   else if (d.ctl) { S.ctl = d.ctl; S.enter = true; if (d.ctl === "log" || d.ctl === "reports") loadCtl(); render(); jumpTo(0); }
@@ -6065,6 +6418,7 @@ app.addEventListener("click", (e) => {
   else if (d.bcs) { const B = S.bc; B.sites = B.sites.includes(d.bcs) ? B.sites.filter((k) => k !== d.bcs) : B.sites.concat(d.bcs); render(); }
   else if (d.bcr != null && S.bc) { S.bc.role = d.bcr; render(); }
   else if (t.id === "bcSend") sendBcast();
+  else if (t.id === "bcClear") clearBcast();
   else if (d.ideadel) { S.ideas = (S.ideas || []).filter((x) => x.id !== d.ideadel); render(); deleteDoc(doc(db, "feedback", d.ideadel)).catch(() => {}); }
   else if (t.id === "ideasGo") { S.ctl = "ideas"; S.enter = true; loadIdeas(); render(); jumpTo(0); }
   else if (t.id === "itemsGo") { S.tab = "items"; S.enter = true; render(); jumpTo(0); }
@@ -6080,7 +6434,12 @@ app.addEventListener("click", (e) => {
   else if (t.id === "pwrBtn") openPwReset();
   else if (t.id === "aiCapBtn") editAiCap();
   else if (t.id === "tgtBtn") editTargets();
-  else if (t.id === "newSite" && can.owner()) { S.sheet = { type: "newsite", cut: true }; render(); }
+  else if (d.sitem && can.owner()) openSiteMan(d.sitem);
+  else if (t.id === "smDel" && sh && sh.type === "sitem") archiveSite(sh.k);
+  else if (t.id === "smRestore" && sh && sh.type === "sitem") restoreSite(sh.k);
+  else if (t.id === "newSite" && can.owner()) { S.sheet = { type: "newsite", cut: true, cutH: 16, color: NS_COLORS[(SITES.length - 2 + NS_COLORS.length) % NS_COLORS.length] }; render(); }
+  else if (t.id === "nsCut" && sh && sh.type === "newsite") { sh.cut = !sh.cut; t.setAttribute("aria-checked", String(sh.cut)); const w = t.querySelector(".sw"); if (w) w.classList.toggle("on", sh.cut); const r = $("nsHRow"); if (r) r.hidden = !sh.cut; } /* מתג במקום (בלי רינדור — השם שהוקלד נשאר) */
+  else if (d.nsc && sh && sh.type === "newsite") { sh.color = d.nsc; document.querySelectorAll("[data-nsc]").forEach((x) => x.setAttribute("aria-checked", String(x.dataset.nsc === d.nsc))); }
   else if (t.id === "nsGo") createSite();
   else if (t.id === "invGo") makeInvite();
   else if (t.id === "impGo" && can.admin()) openImp();
@@ -6088,6 +6447,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "impOk") impApprove();
   else if (t.id === "invRevoke") revokeInvite();
   else if (t.id === "pwrGo") sendPwReset();
+  else if (d.pwru && sh && sh.type === "pwr" && !sh.busy) { sh.u = d.pwru; sh.err = ""; render(); }
   else if (t.id === "npOk") saveNewPw();
   else if (d.perm && d.prole && can.owner()) { const m = d.perm, r = d.prole, cur = permRoles(m).slice(), i = cur.indexOf(r); if (i >= 0) cur.splice(i, 1); else cur.push(r); S.settings = Object.assign({}, S.settings, { perm: Object.assign({}, S.settings.perm, { [m]: cur }) }); render(); setDoc(doc(db, CP("settings"), "app"), { perm: { [m]: cur } }, { merge: true }).then(() => act("perm", `${PERM_LBL[m]} · ${ROLE_SHORT[r]} ${i >= 0 ? "כובה" : "הודלק"}`)).catch(() => toast("לא נשמר")); }
   else if (d.wday != null) { const w = +d.wday, od = offDays().slice(), i = od.indexOf(w); if (i >= 0) od.splice(i, 1); else if (od.length < 6) od.push(w); else { toast("צריך לפחות יום עבודה אחד"); return; } setDoc(doc(db, CP("settings"), "app"), { offDays: od.sort() }, { merge: true }).then(() => { toast("ימי העבודה עודכנו"); act("settings", `ימי עבודה: ${DN[w]} ${i >= 0 ? "נפתח" : "נסגר"}`); }).catch(() => toast("לא נשמר")); }
@@ -6141,14 +6501,14 @@ app.addEventListener("click", (e) => {
   else if (t.id === "cAdd") { sh.d.comps.push({ n: "", q: "", u: "גרם" }); render(); const ins = document.querySelectorAll('[data-cf="n"]'); if (ins.length) ins[ins.length - 1].focus(); }
   else if (d.cdel) { sh.d.comps.splice(+d.cdel, 1); render(); }
   else if (t.id === "wAdd") addWeighing();
-  else if (d.wdel) { if (confirm("למחוק את השקילה?")) delWeighing(+d.wdel); }
+  else if (d.wdel) { const w = +d.wdel; ask({ t: "למחוק את השקילה?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) delWeighing(w); }); }
   else if (t.id === "dSave") saveDish();
-  else if (t.id === "dDel") { const id = sh.id; if (confirm(`למחוק את המנה "${(S.dishes[id] || {}).n}" עם כל השקילות?`)) deleteDoc(doc(db, CP("dishes"), id)).then(() => { delete S.dishes[id]; S.sheet = null; render(); toast("נמחקה"); }).catch(() => toast("לא נמחק")); }
+  else if (t.id === "dDel") { const id = sh.id; ask({ t: `למחוק את המנה "${(S.dishes[id] || {}).n}"?`, m: "עם כל השקילות", ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("dishes"), id)).then(() => { delete S.dishes[id]; S.sheet = null; render(); toast("נמחקה"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "showAll") { S.showAll = !S.showAll; render(); }
   else if (t.id === "moreBtn" || t.id === "moreProd") { S.sheet = { type: "more" }; render(); }
   else if (d.tool) { S.sheet = null; S.prevTab = S.tab; S.tab = "dishes"; S.lab = d.tool; S.rv = null; S.re = null; S.enter = true; render(); jumpTo(0);
     if (d.cam) { try { const i = document.createElement("input"); i.type = "file"; i.accept = "image/*"; i.setAttribute("capture", "environment"); i.onchange = () => { if (i.files && i.files.length) pickPhotos(i.files, "r"); }; i.click(); } catch (er) {} } }
-  else if (t.id === "send") { buzz(10); trySend(); }
+  else if (t.id === "send") trySend(); /* הרטט: כשהשרת אישר (sendOrderOnce → done) */
   else if (t.id === "dcSend") { S.sheet = null; render(); sendOrder(); }
   else if (t.id === "dcMove") moveOrderTo(sh.next);
   else if (t.id === "moveBtn") openMove();
@@ -6156,7 +6516,7 @@ app.addEventListener("click", (e) => {
   else if (d.range) { S.range = +d.range; S.histAll = false; loadData(); }
   else if (d.orow) { S.openRow = S.openRow === d.orow ? null : d.orow; render(); }
   else if (d.oday) { S.openDay = S.openDay === d.oday ? null : d.oday; render(); }
-  else if (d.delw) { if (confirm("למחוק את רישום הפחת?")) deleteDoc(doc(db, CP("waste"), d.delw)).then(() => { S.data.waste = S.data.waste.filter((w) => w.id !== d.delw); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }
+  else if (d.delw) { const wid = d.delw; ask({ t: "למחוק את רישום הפחת?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("waste"), wid)).then(() => { S.data.waste = S.data.waste.filter((w) => w.id !== wid); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "advBtn") { S.adv = !S.adv; render(); }
   else if (d.dsec) { S.dsec = S.dsec || {}; S.dsec[d.dsec] = !S.dsec[d.dsec]; render(); }
   else if (t.id === "histAll") { S.histAll = true; render(); }
@@ -6183,7 +6543,7 @@ app.addEventListener("click", (e) => {
   else if (d.recat && S.re) { S.re.r.cat = d.recat; render(); }
   else if (t.id === "reSave" && S.re) saveRecipe();
   else if (t.id === "reCancel" && S.re) { S.re = null; S.enter = true; render(); jumpTo(0); }
-  else if (t.id === "reDel" && S.re && S.re.id) { const id = S.re.id; if (confirm(`למחוק את "${(S.book[id] || {}).n}"?`)) deleteDoc(doc(db, CP("recipes"), id)).then(() => { delete S.book[id]; S.re = null; S.rv = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }
+  else if (t.id === "reDel" && S.re && S.re.id) { const id = S.re.id; ask({ t: `למחוק את "${(S.book[id] || {}).n}"?`, ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("recipes"), id)).then(() => { delete S.book[id]; S.re = null; S.rv = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (d.pflt) { S.pf = d.pflt; render(); }
   else if (t.id === "pMore") { S.pMore = true; render(); }
   else if (d.photo) openPhoto(d.photo);
@@ -6195,7 +6555,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "udOk" && sh && sh.type === "udel") deleteUser(sh.uid);
   else if (t.id === "pEdit" && canReview()) { sh.edit = true; render(); }
   else if (t.id === "pEditX") { sh.edit = false; render(); }
-  else if (t.id === "pDel") { const id = sh.id; if (confirm("למחוק את התמונה?")) Promise.all([deleteDoc(doc(db, CP("photos"), id)), deleteDoc(doc(db, CP("photoData"), id))]).then(() => { delete S.photos[id]; S.sheet = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }
+  else if (t.id === "pDel") { const id = sh.id; ask({ t: "למחוק את התמונה?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) Promise.all([deleteDoc(doc(db, CP("photos"), id)), deleteDoc(doc(db, CP("photoData"), id))]).then(() => { delete S.photos[id]; S.sheet = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "expOrders") exportCSV("orders");
   else if (t.id === "expWaste") exportCSV("waste");
 });

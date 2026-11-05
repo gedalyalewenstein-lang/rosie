@@ -7,7 +7,7 @@ try {
   const { default: admin } = await import("firebase-admin");
   admin.initializeApp({ credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
   const docs = (await admin.firestore().collection("siteRegistry").get()).docs;
-  for (const d of docs) if (/^[a-z][a-z0-9-]{1,19}$/.test(d.id) && !list.includes(d.id) && (d.data() || {}).active !== false) list.push(d.id);
+  for (const d of docs) if (/^[a-z][a-z0-9-]{1,19}$/.test(d.id) && !list.includes(d.id) && (d.data() || {}).active !== false && (d.data() || {}).archived !== true) list.push(d.id); // מסעדה שנמחקה: בלי שרת התראות
 } catch (e) { console.error("registry read failed, using", BASE.join(",")); }
 const out = "list=" + JSON.stringify(list.slice(0, 50));
 if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, out + "\n");
