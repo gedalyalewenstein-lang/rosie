@@ -59,6 +59,8 @@ let SENDFAIL = false; // ההתראה האחרונה לא יצאה בגלל תק
 // בסוף כל ריצה: meta/runs של המסעדה. תקלה שנמשכת מעל 30 דקות → התראה אחת לגדי (לא שוב עד שהתקלה נגמרת).
 // מסעדה שהשרת שלה לא סיים ריצה 30 דקות → התראה אחת (מי שתופס ראשון בטרנזקציה שולח, בלי כפילויות)
 const ALERT_MS = 30 * 60000;
+// "השרת לא רץ": ה-cron של GitHub רץ בפועל בערך פעם בשעה, לכן סף של 30 דק׳ נתן התראות שווא. 150 דק׳ = שתי ריצות שהוחמצו
+const STALE_MS = 150 * 60000;
 async function runSummary(crash) {
   const hm = (t) => new Intl.DateTimeFormat("he-IL", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date(t));
   const ref = C("meta").doc("runs"), prev = (await ref.get()).data() || {}, now = Date.now();
@@ -72,7 +74,7 @@ async function runSummary(crash) {
   if (crash || !globalThis.__usersReady) return;
   for (const k of Object.keys(SITES).filter((x) => x !== SITE)) {
     const oref = k === "rosie" ? db.collection("meta").doc("runs") : db.collection("sites").doc(k).collection("meta").doc("runs");
-    const claim = await db.runTransaction(async (tx) => { const o = (await tx.get(oref)).data(); if (!o || !o.at || now - o.at < ALERT_MS || o.staleAlertAt) return null; tx.set(oref, { staleAlertAt: now }, { merge: true }); return o; });
+    const claim = await db.runTransaction(async (tx) => { const o = (await tx.get(oref)).data(); if (!o || !o.at || now - o.at < STALE_MS || o.staleAlertAt) return null; tx.set(oref, { staleAlertAt: now }, { merge: true }); return o; });
     if (claim && !(await send(["owner"], `${SITES[k]} · השרת לא רץ`, `ריצה אחרונה ${hm(claim.at)}`, true))) await oref.set({ staleAlertAt: null }, { merge: true });
   }
 }
