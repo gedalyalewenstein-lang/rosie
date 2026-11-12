@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-eWt9s4vvhOO6dPzdyU77FY5qO5Gr9CY15LGfl55kRAs=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-/pmIATySHcYQj6TUqR3o1H0N86nx5NbGJIJIU12J7xg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -627,7 +627,7 @@ main.enter{animation:pgin .38s var(--spring)}
 output.bump{animation:bump .32s var(--spring)}
 @keyframes bump{40%{transform:scale(1.35)}}
 /* כפתורים */
-.btn,:root[data-theme="light"] .btn{background:var(--acc);color:#fff;box-shadow:none;border-radius:14px;font-weight:600;font-size:17px;padding:16px 20px;transition:transform .12s,opacity .2s}
+.btn,:root[data-theme="light"] .btn{background:var(--acc);color:#fff;box-shadow:none;font-weight:600;font-size:17px;padding:16px 20px;transition:transform .12s,opacity .2s}
 .btn:active{transform:scale(.97);box-shadow:none}
 .btn.ghost{background:var(--raise);color:var(--ink);box-shadow:none}
 .btn.okb{background:var(--ok);color:#fff;box-shadow:none}
@@ -637,7 +637,7 @@ output.bump{animation:bump .32s var(--spring)}
 .seg{flex-wrap:wrap;background:rgba(118,118,128,.24);border-radius:12px;padding:4px;box-shadow:none}
 .seg button{border-radius:8px;font-size:13px;font-weight:600;color:var(--ink);padding:8px 12px}
 .seg button[aria-pressed="true"]{background:#636366;color:#fff;box-shadow:0 3px 8px rgba(0,0,0,.18)}
-:root[data-theme="light"] .seg button[aria-pressed="true"]{background:#fff;color:#000}
+:root[data-theme="light"] .seg button[aria-pressed="true"]{background-color:#fff;color:#000}
 .seg.wide{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;width:100%;margin-bottom:20px}
 /* סרגל שליחה */
 .barin{max-width:736px;padding-inline-start:20px;pointer-events:auto;background:var(--acc);border:0;border-radius:16px;box-shadow:0 12px 30px -10px rgba(255,111,145,.55);color:#fff;padding:8px 8px 8px 16px}
@@ -944,7 +944,7 @@ header{top:env(safe-area-inset-top,0px);background:transparent;border-bottom:0;z
 .sitec .schev{color:var(--mute);font-size:22px}
 .sitec .lock svg{width:20px;height:20px;fill:none;stroke:var(--mute);stroke-width:1.8}
 .sitec:disabled{opacity:.5;cursor:default}
-.pill.chief{background:var(--info-soft);color:var(--info);margin-inline-end:8px}
+.pill.chief{background:none;color:var(--label2);padding:0;font-weight:600;margin-inline-end:8px}
 .chip.acc{min-width:40px;justify-content:center;margin-inline-end:8px;padding:8px 12px}
 .chip.acc svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
 
@@ -973,12 +973,12 @@ body.grpb .glow{display:none}
 .auth.grp .gt+.field,.auth.grp .gs+.field{margin-top:24px}
 .auth.grp .field{gap:8px;margin-bottom:16px}
 .auth.grp .field label{font-size:13px;font-weight:600;color:var(--mute)}
-.auth.grp .field input{height:52px;border-radius:12px;font-size:17px;border:1px solid var(--line);background:var(--raise)}
-.auth.grp .field input:focus{border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--ink) 12%,transparent)}
+.auth.grp .field input{height:52px;border-radius:12px;font-size:17px;border:0;background:var(--fill)}
+.auth.grp .field input:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--ink) 12%,transparent)}
 .auth.grp .btn.full:not(.ghost):not(.okb):not(.badb){background:var(--ink);color:var(--bg);box-shadow:none;height:54px;border-radius:14px;font-size:17px;font-weight:700;margin-top:4px}
 .auth.grp .err:empty{min-height:4px;margin:0}
 .auth.grp .center{margin-top:24px}
-.auth.grp .link{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.auth.grp .link{color:var(--tint);text-decoration:none;font-weight:600}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .opt{display:flex;align-items:center;justify-content:flex-start;gap:12px;height:56px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--raise);color:var(--ink);font:600 16px var(--ui);cursor:pointer;transition:border-color .15s,background .15s}
 .opt i{width:20px;height:20px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--ink) 35%,transparent);flex:none;transition:border .15s}
@@ -1641,20 +1641,21 @@ output,.qty,.kpi b,.mk b,.tile b,.cbig,.rbig,.pm-q,.badge{font-variant-numeric:t
 /* מסך ייצור: 48 tabular, הבא בתור גדול, התקדמות שקטה, שתי עמודות בטאבלט */
 .pmode{position:relative}
 .pm-h{flex-wrap:wrap;row-gap:12px;padding:8px 0 8px}
-.pm-ht b{font-size:32px;font-weight:800;letter-spacing:-.4px;line-height:1.1}
+.pm-ht b{font-size:34px;font-weight:700;letter-spacing:-.4px;line-height:1.1}
 .pm-ht small{font-size:17px;margin-top:4px}
 .pm-x{border:0;background:var(--raise);border-radius:999px}  /* קפסולה (LANGUAGE §7) */
 .pm-e .pm-go{display:block;margin:24px auto 0}  /* מצב ריק: משפט אחד ופעולה אחת (§10) */
-.pm-bar{flex:1 0 100%;height:4px;border-radius:999px;background:linear-gradient(to left,var(--ok) var(--p),var(--raise2) var(--p))}
+.pm-bar{flex:1 0 100%;height:4px;border-radius:999px;background:linear-gradient(to left,var(--tint) var(--p),var(--raise2) var(--p))}
 .pm-c{font-size:15px;margin:24px 0 8px;padding-inline:16px}
 .pm-l{background:var(--paper);border-radius:16px;break-inside:avoid}
-.pm-r{min-height:88px;padding:16px;gap:24px;border-top:.5px solid var(--line)}
+.pm-r{position:relative;min-height:88px;padding:16px;gap:24px;border-top:0}
+.pm-r:not(:first-child)::before{content:"";position:absolute;top:0;inset-inline:16px 0;height:.5px;background:var(--separator)}  /* מפריד מתחיל מהטקסט (LANGUAGE §5) */
 .pm-n b{font-size:22px;font-weight:600}
 .pm-n small{font-size:15px;margin-top:4px}
 .pm-n small em{font-style:normal;color:var(--warn)}
 .pm-q{font-size:48px;line-height:1;font-weight:700;min-width:64px}
 .pmode>div.pm-l:first-of-type>.pm-r:first-child:not(.done){min-height:132px;background:var(--raise)}
-.pmode>div.pm-l:first-of-type>.pm-r:first-child:not(.done) .pm-n b{font-size:32px;font-weight:800;letter-spacing:-.4px}
+.pmode>div.pm-l:first-of-type>.pm-r:first-child:not(.done) .pm-n b{font-size:34px;font-weight:700;letter-spacing:-.4px}
 .pmode>div.pm-l:first-of-type>.pm-r:first-child:not(.done) .pm-n::before{content:"הבא";display:block;font-size:15px;font-weight:600;color:var(--acc-ink);margin-bottom:4px}
 .pm-r.done{min-height:56px;padding-block:8px}
 .pm-r.done .pm-n b,.pm-r.done .pm-q,.pm-r.goal .pm-n b,.pm-r.goal .pm-q{color:var(--mute);font-size:17px;font-weight:600}
@@ -1692,7 +1693,7 @@ output,.qty,.kpi b,.mk b,.tile b,.cbig,.rbig,.pm-q,.badge{font-variant-numeric:t
 
 /* תיקוני סקירה סופית */
 .toast{text-overflow:ellipsis}
-[dir="ltr"] .pm-bar{background:linear-gradient(to right,var(--ok) var(--p),var(--raise2) var(--p))}
+[dir="ltr"] .pm-bar{background:linear-gradient(to right,var(--tint) var(--p),var(--raise2) var(--p))}
 .ovhero .say .nw{white-space:nowrap}
 
 /* =====================================================================
@@ -1840,9 +1841,10 @@ body.has-tabbar .bar,.bar{inset-inline:16px;bottom:calc(var(--tab-b) + 64px + 8p
 
 /* ---------- A9. הודעה קופצת: יורדת מלמעלה בקפיץ, נעלמת לבד, החלקה למעלה סוגרת ---------- */
 .toast,body.has-bar .toast{
-  top:calc(8px + env(safe-area-inset-top,0px));bottom:auto;left:50%;max-width:calc(100vw - 32px);
+  --toast-top:calc(68px + env(safe-area-inset-top,0px));  /* מתחת לכפתורי הסרגל העליון, לא עליהם */
+  top:var(--toast-top);bottom:auto;left:50%;width:max-content;max-width:calc(100vw - 32px);-webkit-line-clamp:unset;
   padding:12px 20px;border-radius:999px;touch-action:none;
-  transform:translate(-50%,calc(-100% - 24px));opacity:1;
+  transform:translate(-50%,calc(-100% - var(--toast-top)));opacity:1;
   transition-property:transform,opacity;transition-duration:var(--t-sheet);transition-timing-function:var(--ease);
 }
 .toast.show{transform:translate(-50%,0);pointer-events:auto}
@@ -2018,6 +2020,11 @@ body.has-tabbar .bar,.bar{inset-inline:16px;bottom:calc(var(--tab-b) + 64px + 8p
 .sfield .search,#q{width:100%;height:44px;border:0;border-radius:var(--r-field);background:var(--fill);color:var(--label);font:var(--f-body);font-size:17px;padding:0 12px;padding-inline-start:40px;box-shadow:none;outline-offset:0}
 #q::placeholder{color:var(--label2)}
 #q::-webkit-search-cancel-button{-webkit-appearance:none}
+/* ניקוי החיפוש: עיגול ✕ אפור בקצה, יעד 44 */
+.sclr{position:absolute;inset-inline-end:0;top:0;width:44px;height:44px;border:0;background:none;padding:0;display:grid;place-items:center;cursor:pointer}
+.sclr svg{position:static;pointer-events:none;width:20px;height:20px;padding:5px;box-sizing:border-box;border-radius:999px;background:var(--label3);stroke:var(--bg);stroke-width:2;fill:none;stroke-linecap:round}
+.sclr:active svg{opacity:.6}
+#q{padding-inline-end:44px}
 
 /* ---------- C4. צ'יפים: 36, מילוי, hit 44, בלי אייקונים, הנבחר tint-soft, קצה דוהה, scroll-snap ---------- */
 .jump{display:flex;gap:8px;margin:12px -16px 0;padding:4px 16px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding-inline:16px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
@@ -2283,6 +2290,7 @@ body:not(.scrolled) .navbar::before{-webkit-backdrop-filter:none;backdrop-filter
 /* קטן 7: סיכום הסרגל בשורה אחת: "24 קופסאות, 12 הכנות" */
 .bar .sum{flex-wrap:nowrap;white-space:nowrap;overflow:hidden}
 .bar .sum span:has(+ small:not(.shw))::after{content:","}
+.barin:has(#send:disabled) .sum span::after{content:none}  /* החלק השני מוסתר: בלי פסיק תלוי */
 .bar .sum small:not(.shw)::before{content:none}
 .bar .sum small:not(.shw){flex-basis:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font:var(--f-sub);color:var(--label2)}
 .bar .sum span{font:var(--f-sub);color:var(--label2)}
@@ -2339,6 +2347,11 @@ body:has(.days) main.wrap > :is(.status.card,.pcard,.banner,.rcvg,.zcard):first-
 .askrow{min-height:52px;cursor:text}
 .askin{flex:0 1 128px;min-width:0;height:44px;border:0;background:transparent;color:var(--label);font:var(--f-body);font-variant-numeric:tabular-nums;text-align:end;padding:0}
 .askin[readonly]{flex:1 1 auto;font:var(--f-sub);color:var(--label2);text-align:start}
+.asku{display:flex;align-items:baseline;justify-content:flex-start;flex:0 1 128px;min-width:0}  /* "30%": הערך לפני היחידה, ב-ltr */
+.asku .askin{flex:0 0 3.2ch;text-align:right}
+.asku .sv{flex:none}
+.pwrl .st small{display:block}
+[dir="rtl"] .pwrl .st small{text-align:right}  /* שם משתמש (ltr) מיושר לימין כמו השם */
 .askin:focus{outline:none}
 .askrow:focus-within{background:var(--fill)}
 .sheet .err:empty{min-height:0;margin:0}
@@ -2427,6 +2440,31 @@ body:has(.days) main.wrap > :is(.status.card,.pcard,.banner,.rcvg,.zcard):first-
 /* 2.5.1b: "נשלחה ✓" = מצב הצלחה, לא כפתור מושבת (LANGUAGE §7): מילוי משני, טקסט label, ✓ ירוק. id גובר על כל כללי .barin .btn:disabled */
 .barin #send.sendfx,.barin #send.sendfx:disabled{background:var(--fill);color:var(--label);opacity:1;cursor:default}
 .barin #send.sendfx .sl2 svg{stroke:var(--ok)}
+
+/* ---------- 2.5.2 (ui-ios17): ליקויים 3 ו-5-8 + צעדים 1, 2, 4 ---------- */
+/* 3. דעיכה לרקע מתחת לסרגלים: התוכן לא נקרא דרכם ולא מציץ ברווח שביניהם. בלי טשטוש נוסף */
+body.has-tabbar::after{content:"";position:fixed;inset-inline:0;bottom:0;height:calc(var(--tab-b) + 64px + 24px);z-index:5;pointer-events:none;background:linear-gradient(to top,var(--bg) 55%,transparent)}
+body.has-tabbar.has-bar::after{height:calc(var(--tab-b) + 64px + 8px + 58px + 24px)}
+/* 6. צוות: רווח כותרת-כרטיס כמו בהגדרות */
+.tmlist{margin-top:16px}
+/* צעד 1. פקדים לא נבחרים ולא מקפיצים תפריט "העתק" בלחיצה ארוכה. שדות וערכים נשארים ניתנים לבחירה */
+button,.btn,.tab,.tabbar,.chip,.seg,.day,.days,.step,.glassbtn,.navbar,.navback,.navedit,.sitesw,.burger,.pm-x,.tlink,.mitem,.sitec,.sheet .grab,h1.lt{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable],.pwcode{-webkit-user-select:text;user-select:text}
+/* צעד 2. אין סיכום: הקפסולה מחבקת את הכפתור, והכפתור נשאר בדיוק במקומו (בקצה הסוף) */
+@media (max-width:767px){
+  .barin:has(> .sum:empty){width:fit-content;margin-inline:auto 0;gap:0;padding-inline-start:4px}
+  .barin:has(> .sum:empty) > .sum{display:none}
+  .barin:has(> .sum:empty){background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+/* צעד 4. מצב ריק: אייקון קווי 48, כותרת, משפט, ממורכז בגובה הפנוי */
+.empty.ec{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:45svh}
+.empty.ec svg{width:48px;height:48px;margin-bottom:12px;fill:none;stroke:var(--label3);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.empty.ec b{margin-bottom:0}
+.tmlist ~ .empty.ec{min-height:0;padding-top:48px}  /* צוות: מיד מתחת לכרטיס */
+
+/* 2.5.3: במסך הייצור הגדול ההודעה בתחתית וברקע אטום (למעלה היא מכסה את שורת המשנה והפס). שאר המסכים לא משתנים */
+body:has(.pmode) .toast,body.has-bar:has(.pmode) .toast{top:auto;bottom:calc(24px + env(safe-area-inset-bottom,0px));background:var(--grp2);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 0 0 .5px var(--glass-edge),var(--glass-depth);transform:translate(-50%,calc(100% + 48px + env(safe-area-inset-bottom,0px)))}
+body:has(.pmode) .toast.show,body.has-bar:has(.pmode) .toast.show{transform:translate(-50%,0)}
 
 </style>
 </head>
@@ -3736,6 +3774,13 @@ I18N_PAT.en.push([new RegExp("^(.+) נמחקה\\. אפשר לשחזר עד (\\d+
 I18N_PAT.ar.push([new RegExp("^(.+) שוחזרה$"), "تمت استعادة $1"]);
 I18N_PAT.en.push([new RegExp("^(.+) שוחזרה$"), "$1 restored"]);
 
+/* תיקוני לוגיקה 10.11 */
+Object.assign(I18N.ar, {"ממתין לאישור ההנהלה. הדף ייפתח לבד אחרי האישור.": "بانتظار موافقة الإدارة. الصفحة ستُفتح تلقائيًا بعد الموافقة.", "בלי מע״מ": "دون ضريبة", "מהקבלות, בלי ״אחר״": "من الإيصالات، دون «آخر»", "קבלות לפי ספק, כולל מע״מ": "الإيصالات حسب المورّد، شامل الضريبة", "יום חדש. בדקו שוב את המשלוח": "يوم جديد. تحقّقوا من التوصيل مرة أخرى"});
+Object.assign(I18N.en, {"ממתין לאישור ההנהלה. הדף ייפתח לבד אחרי האישור.": "Waiting for management approval. The page opens by itself once approved.", "בלי מע״מ": "excl. VAT", "מהקבלות, בלי ״אחר״": "From receipts, without \"Other\"", "קבלות לפי ספק, כולל מע״מ": "Receipts by supplier, incl. VAT", "יום חדש. בדקו שוב את המשלוח": "New day. Check the delivery again"});
+/* תיקוני לוגיקה סבב 2 + ביטול קבלה */
+Object.assign(I18N.ar, {"המשלוח התקבל": "تم استلام التوصيل", "ביטול קבלה": "إلغاء الاستلام", "לבטל את אישור הקבלה?": "إلغاء تأكيد الاستلام؟", "ההזמנה תחזור למצב שלפני האישור": "ستعود الطلبية إلى حالتها قبل التأكيد", "הקבלה בוטלה": "تم إلغاء الاستلام", "ביטול אישור הקבלה": "إلغاء تأكيد الاستلام", "ההזמנה כבר התקבלה. השינוי לא נשמר": "تم استلام الطلبية بالفعل. التغيير لم يُحفظ", "מכירות החודש, בלי מע״מ": "مبيعات الشهر، دون ضريبة"});
+Object.assign(I18N.en, {"המשלוח התקבל": "Delivery received", "ביטול קבלה": "Undo receipt", "לבטל את אישור הקבלה?": "Undo the receipt confirmation?", "ההזמנה תחזור למצב שלפני האישור": "The order goes back to how it was before", "הקבלה בוטלה": "Receipt undone", "ביטול אישור הקבלה": "Receipt confirmation undone", "ההזמנה כבר התקבלה. השינוי לא נשמר": "The order was already received. The change wasn't saved", "מכירות החודש, בלי מע״מ": "Sales this month, excl. VAT"});
+
 
 startI18n();
 /* ---------- דיווח שגיאות מהטלפון (לגדי): שגיאת קוד, הבטחה שנכשלה, או כתיבה שנדחתה. עד 5 בכל פתיחה, בלי כפילויות, בלי מידע אישי מעבר למזהה המשתמש ---------- */
@@ -3935,7 +3980,8 @@ function sameMap(a, b) {
   return true;
 }
 const isDirty = () => !O().sentAt || !sameMap(curItems(), O().sent);
-const hasApproved = (o) => !!(o && o.status !== "cancelled" && o.approved && sum(o.approved) > 0);
+/* אישור שקדם לביטול לא חוזר בשליחה מחדש. אישור חדש ו"שחזור ההזמנה" מוחקים את cancelled — בלי השוואת שעונים בין טלפונים. שליחה אחרי ביטול תמיד isChange=false; מסמך ישן עם cancelled ובקשת שינוי (isChange) — האישור תקף */
+const hasApproved = (o) => !!(o && o.status !== "cancelled" && o.approved && sum(o.approved) > 0 && !(o.cancelled && o.status !== "approved" && !o.isChange));
 const hasOrd = (o) => !!(o && o.status !== "cancelled" && (o.sentAt || hasApproved(o)));  // נקודה בפס הימים
 const qtySource = (o) => (o && (hasApproved(o) ? o.approved : o.status === "rejected" || o.status === "cancelled" ? {} : o.sent)) || {};
 function hashStr(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return "t" + (h >>> 0).toString(36); }
@@ -4077,7 +4123,7 @@ function chooseSite(k) {
 function viewSites() {
   return `<div class="auth grp"><div class="card authcard sitepick">
     ${SIGN}<h1>שלום ${esc(myName())}</h1><p class="sub">לאיזו מסעדה נכנסים?</p>
-    <div class="sites">${SITES.map((x) => { const ok = ACTIVE.includes(siteRole(S.profile, x.k)); return `<button class="sitec s-${x.k}" data-site="${x.k}" ${ok ? "" : "disabled"}><i aria-hidden="true">${esc(x.n[0])}</i><span><b>${esc(x.f)}</b><small>${ok ? esc(roleLabel(S.profile, x.k)) : "אין גישה"}</small></span>${ok ? '<span class="schev">‹</span>' : `<span class="lock" aria-hidden="true">${SVG(IC.lock)}</span>`}</button>`; }).join("")}</div>
+    <div class="sites">${SITES.map((x) => { const ok = ACTIVE.includes(siteRole(S.profile, x.k)); return `<button class="sitec s-${esc(x.k)}" data-site="${esc(x.k)}" ${ok ? "" : "disabled"}><i aria-hidden="true">${esc(x.n[0])}</i><span><b>${esc(x.f)}</b><small>${ok ? esc(roleLabel(S.profile, x.k)) : "אין גישה"}</small></span>${ok ? '<span class="schev">‹</span>' : `<span class="lock" aria-hidden="true">${SVG(IC.lock)}</span>`}</button>`; }).join("")}</div>
     <button class="btn ghost full" id="logout">יציאה</button></div></div>`;
 }
 function startData() {
@@ -4086,7 +4132,8 @@ function startData() {
   if (needConsent()) { S.started = false; return; } /* בלי אישור פרטיות: לא נטען שום נתון, לא תזכורות ולא התראות */
   S.started = true;
   if (!S.site || !ACTIVE.includes(role())) return;
-  if (!S.day) S.day = nextDelivery();
+  if (!S.day) S.day = S.dayDef = nextDelivery();
+  S.todayK = todayKey();
   if (!S.tab && ovOn() && !sessionSafe("mz-land")) { sessionSafe("mz-land", "1"); S.tab = "room"; } /* נחיתה על "סקירה", פעם אחת בכניסה (החלטת גדי 4.11) */
   if (!S.tab) S.tab = IS_DEMO && can.admin() ? "data" : can.order() ? "order" : "prod"; /* דמו: שף נוחת על הנתונים (הכסף), לא על ההזמנה */
   if (S.tab === "data" && !S.data) setTimeout(loadData, 0);
@@ -4106,12 +4153,7 @@ function startData() {
   /* רשימת העובדים: הבעלים הראשי — כולם; בעלים של מסעדות — רק עובדים שהמסעדה שלהם (site) ברשימה שלו */
   if (can.owner()) unsub.staff = onSnapshot(collection(db, "users"), (qs) => { S.staff = qs.docs.map((d) => Object.assign({ uid: d.id }, d.data())); S.staffOk = true; ownerMigrate(); renderSoon(); });
   else if (can.chief()) { const per = {}; S.profile.chiefOf.slice(0, 10).forEach((k, i) => { unsub["staff" + i] = onSnapshot(query(collection(db, "users"), where("site", "==", k)), (qs) => { per[k] = qs.docs.map((d) => Object.assign({ uid: d.id }, d.data())); S.staff = [].concat(...Object.values(per)); S.staffOk = true; renderSoon(); }, () => {}); }); }
-  if (can.order()) unsub.today = onSnapshot(doc(db, CP("orders"), dkey(new Date())), (s) => { S.today = s.exists() ? s.data() : {}; renderSoon(); });
-  if (can.order()) unsub.todayProd = onSnapshot(doc(db, CP("production"), dkey(new Date())), (s) => {
-    const P = s.exists() ? s.data() : {}, now = shortsOf(P), key = JSON.stringify(now);
-    if (S.todayProd && key !== JSON.stringify(shortsOf(S.todayProd)) && Object.keys(now).length && !can.produce()) alertUser("חוסר צפוי במשלוח היום", Object.entries(now).map(([k, x]) => `${itemBy(k).n} ${x.n}`).join(", "));
-    S.todayProd = P; renderSoon();
-  });
+  if (can.order()) bindToday();
   if (can.produce()) {
     unsub.pendingList = onSnapshot(query(collection(db, CP("orders")), where("status", "==", "pending")), (qs) => {
       S.pendingList = qs.docs.map((d) => Object.assign({ day: d.id }, d.data())).filter((o) => o.day >= dkey(addDays(new Date(), -1)) && !(o.movedTo && !sum(o.sent) && !hasApproved(o))).sort((a, b) => (a.day < b.day ? -1 : 1));
@@ -4130,6 +4172,28 @@ function startData() {
   if (can.order()) remindTick();
   setupPushListener();
   watchDay();
+}
+/* "הזמנת היום" ו"ייצור היום" (כרטיס "הגיע המשלוח?", חוסר צפוי) — לפי התאריך של עכשיו */
+function bindToday() {
+  ["today", "todayProd"].forEach(stop);
+  const k = S.todayK = todayKey(); S.today = null; S.todayProd = null;
+  unsub.today = onSnapshot(doc(db, CP("orders"), k), (s) => { S.today = s.exists() ? s.data() : {}; renderSoon(); });
+  unsub.todayProd = onSnapshot(doc(db, CP("production"), k), (s) => {
+    const P = s.exists() ? s.data() : {}, now = shortsOf(P), key = JSON.stringify(now);
+    if (S.todayProd && key !== JSON.stringify(shortsOf(S.todayProd)) && Object.keys(now).length && !can.produce()) alertUser("חוסר צפוי במשלוח היום", Object.entries(now).map(([k, x]) => `${itemBy(k).n} ${x.n}`).join(", "));
+    S.todayProd = P; renderSoon();
+  });
+}
+/* אפליקציה שנשארה פתוחה אחרי חצות: מאזינים מחדש ליום החדש, ומי שעמד על היום של ברירת המחדל עובר ליום של ברירת המחדל החדש (כמו פתיחה מחדש) */
+function dayRoll() {
+  if (!S.started || !S.todayK || S.todayK === todayKey() || S.pmode) return;
+  const a = document.activeElement, typing = !!(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
+  if (S.sheet || Object.keys(pending).length || autoTimer || writing || noteTimer || sendingNow || prodBusy || typing) return; /* באמצע פעולה: בבדיקה הבאה */
+  if (can.order()) bindToday(); else S.todayK = todayKey();
+  const nd = nextDelivery();
+  /* בייצור היום הנבחר לא זז: טבח שעובד אחרי חצות נשאר על היום שהוא עליו */
+  if (S.tab !== "prod" && S.day !== nd && (S.day === S.dayDef || S.day < S.todayK)) { S.day = nd; watchDay(); }
+  S.dayDef = nd; render();
 }
 function watchDay() {
   ["order", "prod", "up0", "up1", "up2"].forEach(stop);
@@ -4174,8 +4238,10 @@ function diffOf(a, b) { const out = []; new Set(Object.keys(a || {}).concat(Obje
 const chg = (x) => (Array.isArray(x) ? { k: x[0], f: x[1], t: x[2] } : x);
 
 /* ---------- order writes ---------- */
+/* הזמנה שהתקבלה, או שנשלחה ליום שעבר: הכמויות נעולות (כמו "להעביר יום" וביטול) */
+const qtyLocked = () => { const o = O(); return !!o.received || (!!o.sentAt && S.day < todayKey()); };
 function bump(k, delta) {
-  if (!can.order()) return;
+  if (!can.order() || qtyLocked()) return;
   pending[k] = Math.max(0, Math.min(99, qtyOf(k) + delta));
   patchRow(k); clearTimeout(flushTimer); flushTimer = setTimeout(flush, 600);
   scheduleAuto();
@@ -4220,7 +4286,11 @@ async function flush() {
     try {
       await setDoc(doc(db, CP("orders"), S.day), { date: S.day, items: batch, updatedAt: Date.now(), updatedBy: myName() }, { merge: true });
       Object.keys(batch).forEach((k) => { if (pending[k] === batch[k]) delete pending[k]; });
-    } catch (e) { toast("לא נשמר — בדוק חיבור"); }
+    } catch (e) {
+      /* החוק דחה (ההזמנה התקבלה בינתיים): לא מנסים שוב בלולאה */
+      if (e && e.code === "permission-denied") { pending = {}; toast("ההזמנה כבר התקבלה. השינוי לא נשמר"); }
+      else toast("לא נשמר — בדוק חיבור");
+    }
   })();
   try { await flushing; } finally { flushing = null; writing = false; }
   render();
@@ -4284,7 +4354,7 @@ async function sendOrderOnce(auto, dayArg) {
     if (auto && (!o.sentAt || !(o.status === "pending" || o.status === "approved") || sameMap(cur, o.sent))) return null;
     /* כבר נשלח בדיוק אותו דבר וממתין לאישור — אין מה לשלוח שוב */
     if (!auto && o.sentAt && o.status === "pending" && sameMap(cur, o.sent)) return null;
-    const logEv = !o.sentAt || o.status === "rejected" ? ev(o.sentAt ? "resent" : "sent", { n: sum(cur) }) : change ? ev("change", { d: diffOf(o.approved, cur) }) : ev("update", { d: diffOf(o.sent, cur) });
+    const logEv = !o.sentAt || o.status === "rejected" || o.status === "cancelled" ? ev(o.sentAt ? "resent" : "sent", { n: sum(cur) }) : change ? ev("change", { d: diffOf(o.approved, cur) }) : ev("update", { d: diffOf(o.sent, cur) });
     rev = (o.rev || 0) + 1;
     return { change, body: {
       date: day, items: cur, sent: cur, status: "pending", rev, isChange: change,
@@ -4325,7 +4395,8 @@ async function sendOrderOnce(auto, dayArg) {
 }
 function saveNote(v) {
   clearTimeout(noteTimer);
-  noteTimer = setTimeout(() => setDoc(doc(db, CP("orders"), S.day), { date: S.day, note: v.trim(), noteBy: myName(), noteAt: Date.now() }, { merge: true }).catch(() => toast("ההערה לא נשמרה")), 700);
+  const day = S.day; /* ההערה נשמרת ליום שבו הוקלדה */
+  noteTimer = setTimeout(() => { noteTimer = null; setDoc(doc(db, CP("orders"), day), { date: day, note: v.trim(), noteBy: myName(), noteAt: Date.now() }, { merge: true }).catch(() => toast("ההערה לא נשמרה")); }, 700);
 }
 async function loadSuggestion(day) {
   if (S.sugg[day] !== undefined) return;
@@ -4393,7 +4464,7 @@ function approve() {
     const sent = o.sent || {}, keys = new Set(Object.keys(sent).concat(Object.keys(draft)).concat(Object.keys(o.approved || {})));
     const fin = {}, adjusted = [];
     keys.forEach((k) => { const v = k in draft ? draft[k] : (+sent[k] || 0); fin[k] = v; if (v !== (+sent[k] || 0)) adjusted.push({ k, f: +sent[k] || 0, t: v }); });
-    return { body: { approved: fin, items: keepDrafts(o, fin), sent: fin, status: "approved", approvedAt: Date.now(), approvedBy: myName(), approvedRev: o.rev || 1, adjusted, log: ev("approved", { d: adjusted, c: hasApproved(o) ? 1 : 0 }) }, msg: "ההזמנה אושרה ✓" };
+    return { body: { approved: fin, items: keepDrafts(o, fin), sent: fin, status: "approved", approvedAt: Date.now(), approvedBy: myName(), approvedRev: o.rev || 1, cancelled: null, adjusted, log: ev("approved", { d: adjusted, c: hasApproved(o) ? 1 : 0 }) }, msg: "ההזמנה אושרה ✓" };
   });
 }
 function rejectOrder(note) {
@@ -4407,8 +4478,10 @@ function rejectOrder(note) {
 }
 
 /* ---------- production ---------- */
+let prodBusy = 0; /* סימון "מוכן" בדרך לשרת */
 function setProd(k, patch) {
-  return setDoc(doc(db, CP("production"), S.day), { date: S.day, updatedAt: Date.now(), items: { [k]: patch } }, { merge: true }).catch(() => toast("לא נשמר"));
+  prodBusy++;
+  return setDoc(doc(db, CP("production"), S.day), { date: S.day, updatedAt: Date.now(), items: { [k]: patch } }, { merge: true }).catch(() => toast("לא נשמר")).finally(() => { prodBusy--; });
 }
 function prodQty(k) { return +(qtySource(O())[k]) || 0; }
 const pOf = (k, P) => (((P || S.prod || {}).items) || {})[k] || {};
@@ -4424,17 +4497,17 @@ function extraMiss(o, P) {
   const sh = shortsOf(P), out = {}; Object.keys(m).forEach((k) => { const v = (+m[k] || 0) - ((sh[k] && +sh[k].n) || 0); if (v > 0) out[k] = v; }); return out;
 }
 /* תיאור אירועי הזמנה (משותף ליומן ההזמנה וליומן הפעולות) */
-const logDl = (d) => (d || []).map(chg).map(({ k, f, t }) => `${esc(itemBy(k).n)} ${!+f ? `${num(t)} (חדש)` : !+t ? `הוסר (היה ${num(f)})` : `${num(t)} (היה ${num(f)})`}`).join(" · ");
+const logDl = (d) => (Array.isArray(d) ? d : []).filter((x) => x && typeof x === "object").map(chg).map(({ k, f, t }) => `${esc(itemBy(k).n)} ${!+f ? `${num(t)} (חדש)` : !+t ? `הוסר (היה ${num(f)})` : `${num(t)} (היה ${num(f)})`}`).join(" · ");
 const logText = (e) => ({
     sent: `שליחת הזמנה · ${num(e.n)} קופסאות`, resent: `שליחה מחדש · ${num(e.n)} קופסאות`,
     update: `עדכון לפני אישור: ${logDl(e.d) || "—"}`, change: `בקשת שינוי: ${logDl(e.d) || "—"}`,
     approved: `${e.c ? "אישור השינוי" : "אישור ההזמנה"}${e.d && e.d.length ? ` עם תיקון: ${logDl(e.d)}` : ""}`,
     rejected: `דחיית ההזמנה${e.note ? `: ${esc(e.note)}` : ""}`, "change-rejected": `דחיית בקשת השינוי${e.note ? `: ${esc(e.note)}` : ""}`,
     short: `דיווח חוסר: ${esc(itemBy(e.k).n)} ${num(e.n)}${e.note ? ` (${esc(e.note)})` : ""}`,
-    received: e.d && e.d.length ? `קבלה עם חוסר: ${e.d.map((x) => `${esc(itemBy(x.k).n)} ${num(x.n)}`).join(" · ")}` : "אישור קבלה: הכל התקבל",
-    cancelled: `ביטול ההזמנה${e.note ? `: ${esc(e.note)}` : ""}`, restored: "שחזור ההזמנה",
-  }[e.t] || e.t);
-const logCls = (t) => ({ approved: "ok", received: "ok", rejected: "bad", "change-rejected": "bad", cancelled: "bad", short: "warn", change: "warn" }[t] || "");
+    received: Array.isArray(e.d) && e.d.length ? `קבלה עם חוסר: ${e.d.filter((x) => x && typeof x === "object").map((x) => `${esc(itemBy(x.k).n)} ${num(x.n)}`).join(" · ")}` : "אישור קבלה: הכל התקבל",
+    cancelled: `ביטול ההזמנה${e.note ? `: ${esc(e.note)}` : ""}`, restored: "שחזור ההזמנה", unreceived: "ביטול אישור הקבלה",
+  }[e.t] || esc(e.t));
+const logCls = (t) => ({ approved: "ok", received: "ok", unreceived: "warn", rejected: "bad", "change-rejected": "bad", cancelled: "bad", short: "warn", change: "warn" }[t] || "");
 /* תנועה 1: ✓ נכתב במקום. רק אחרי 600ms בלי מגע ברשימה השורות שבוצעו דועכות יחד והשאר עולות (FLIP 250). מגע חדש דוחה */
 function prodHold(k) { if (!S.hold || S.hold.day !== S.day) S.hold = { day: S.day, keys: new Set(), t: 0 }; S.hold.keys.add(k); prodSettleSoon(); }
 function prodSettleSoon() { if (!S.hold) return; clearTimeout(S.hold.t); S.hold.t = setTimeout(prodSettle, 600); }
@@ -4462,18 +4535,25 @@ function confirmDone() {
   if (total >= v || sh.mode !== "later") prodHold(sh.k);
   S.sheet = null; render();
   act("prod", total >= v ? `הוכן: ${it.n} · ${total} קופסאות` : sh.mode === "later" ? `הוכן חלקית: ${it.n} · ${total} מתוך ${v}` : `חוסר: ${it.n} · ${v - total} קופסאות`);
-  if (total >= v) toast(`${it.n} · תוקף עד ${ddmm(addDays(parse(today), it.d - 1))}`);
+  if (total >= v) toast(`${it.n}, תוקף עד ${ddmm(addDays(parse(today), it.d - 1))}`);
   else if (sh.mode === "later") toast(`${it.n}: הוכנו ${total}, נשארו ${v - total} — נשאר ברשימה`);
   else toast(`${it.n}: נרשם חוסר של ${v - total}. ${SN()} יקבלו עדכון`);
 }
 
 /* ---------- receipt & waste ---------- */
 async function receiveAll(missing) {
-  const day = dkey(new Date());
+  if (S.todayK !== todayKey()) { S.sheet = null; dayRoll(); render(); return toast("יום חדש. בדקו שוב את המשלוח"); } /* הכרטיס והקבלה תמיד על אותו יום */
+  const day = S.todayK;
   const clean = {}; Object.keys(missing || {}).forEach((k) => { if (missing[k] > 0) clean[k] = missing[k]; });
   try { await setDoc(doc(db, CP("orders"), day), { received: { at: Date.now(), by: myName(), missing: clean, v: 2 }, log: ev("received", { d: Object.entries(clean).map(([k, n]) => ({ k, n })) }) }, { merge: true }); toast(count(clean) ? "נרשם. המטבח יראה מה חסר" : "המשלוח התקבל ✓"); }
   catch (e) { toast("לא נשמר"); }
   S.sheet = null; render();
+}
+/* ביטול קבלה: ההזמנה חוזרת למצב שלפני האישור. רק השדה received ושורת יומן (כך גם בחוקים) */
+async function undoReceive() {
+  const day = S.todayK; if (!day || day !== todayKey() || !(S.today && S.today.received)) return;
+  try { await setDoc(doc(db, CP("orders"), day), { received: deleteField(), log: ev("unreceived") }, { merge: true }); toast("הקבלה בוטלה"); act("order", `ביטול קבלה ${ddmm(parse(day))}`); }
+  catch (e) { toast("לא נשמר"); }
 }
 async function saveWaste() {
   const sh = S.sheet; if (!sh.k) return toast("בחר הכנה");
@@ -4502,6 +4582,24 @@ async function deleteUser(uid) {
     await deleteDoc(doc(db, "users", uid));
     S.staff = S.staff.filter((x) => x.uid !== uid); S.sheet = null; render(); act("role", `מחיקת משתמש: ${u.name || u.username}`); toast("המשתמש נמחק");
   } catch (e) { toast("לא נמחק"); if (b) { b.disabled = false; b.textContent = "מחק לגמרי"; } }
+}
+/* כפתור שמשנה נתונים פועל רק מהמקום שבו הוא מוצג באמת: במסך הראשי כשאין גיליון פתוח, או בתוך הגיליון הנכון,
+   ורק כשמותר (ok). אלמנט שהוזרק למקום אחר לא עושה כלום */
+function uiOk(t, sheet, ok) {
+  if (!ok || !t || !t.closest || !t.closest("#app")) return false;
+  const inSh = !!t.closest(".sheet");
+  return sheet ? inSh && !!S.sheet && S.sheet.type === sheet : !inSh && !S.sheet;
+}
+/* כפתור אישור בגיליון: רק הכפתור שהאפליקציה ציירה לגיליון הפתוח (מזהה אקראי לכל פתיחה). כפתור מוזרק עם אותו id לא עושה כלום */
+const sheetN = () => (S.sheet ? S.sheet.n || (S.sheet.n = Math.random().toString(36).slice(2, 12)) : "");
+const sheetBtnOk = (t, type) => uiOk(t, type, true) && !!S.sheet.n && t.dataset.n === S.sheet.n;
+const teamScr = () => S.tab === "staff" || (S.tab === "control" && S.ctl === "team");
+/* שינוי תפקיד רק מהבחירה האמיתית במסך הצוות, ורק כשמותר (כמו התנאי שמכבה את הבחירה במסך). אלמנט שהוזרק לא עושה כלום */
+function roleSelOk(t) {
+  if (!t || t.tagName !== "SELECT" || !can.admin() || !teamScr() || !uiOk(t, null, !!t.closest("#app .list"))) return false;
+  const uid = t.dataset.role, u = staffOfSite().find((x) => x.uid === uid), r = t.value;
+  if (!u || (S.user && uid === S.user.uid) || isOwnerP(u) || chiefAt(u, S.site) || !Object.keys(ROLES).includes(r)) return false;
+  return can.owner() || (!["admin", "fmgr"].includes(rawRole(u, S.site)) && !["admin", "fmgr"].includes(r));
 }
 function setRole(uid, r) { const u = (S.staff || []).find((x) => x.uid === uid) || {}; (S.site === "rosie" ? updateDoc(doc(db, "users", uid), { role: r }) : setDoc(doc(db, "users", uid), { sites: { [S.site]: r } }, { merge: true })).then(() => { toast("עודכן"); act("role", `תפקיד: ${u.name || u.username || ""} ← ${ROLES[r] || r}`); }).catch(() => toast("לא נשמר")); }
 
@@ -4600,7 +4698,7 @@ function stats() {
   days.forEach(({ k, q, o }) => {
     const w = parse(k).getDay(); wd[w] += sum(q); wdN[w]++;
     Object.keys(q).forEach((i) => {
-      const v = +q[i] || 0; if (!v) return;
+      const v = +q[i] || 0; if (!v || !okKey(i)) return;
       const p = perItem[i] = perItem[i] || { k: i, tot: 0, n: 0, wd: [0, 0, 0, 0, 0, 0, 0], waste: 0, missing: 0 };
       p.tot += v; p.n++; p.wd[w] += v;
     });
@@ -4625,7 +4723,7 @@ function stats() {
   const boxes = days.reduce((a, d) => a + sum(d.q), 0), wasteBoxes = waste.reduce((a, w) => a + (+w.qty || 0), 0);
   return {
     days, perItem: Object.values(perItem).sort((a, b) => b.tot - a.tot || b.waste - a.waste), wd, wdN, boxes, wasteBoxes, waste,
-    late: days.filter((d) => d.o.late).length, changes: days.reduce((a, d) => a + (d.o.changeCount || 0), 0),
+    late: days.filter((d) => d.o.late).length, changes: days.reduce((a, d) => a + (+d.o.changeCount || 0), 0),
     missing: days.filter((d) => d.o.received && count(extraMiss(d.o, (D.prod || {})[d.k]))).length,
     received: days.filter((d) => d.o.received).length, onTimeN, onTimeOk, shortDays
   };
@@ -4722,10 +4820,10 @@ function weekCard() {
   if (!a.days) return "";
   const d = (x, y, good) => { if (!p.days || Math.abs(x - y) < 0.05) return ""; const up = x > y, ok = good === "down" ? !up : up; return `<i class="${!good ? "nt" : ok ? "up" : "dn"}">${up ? "▲" : "▼"}</i>`; };
   return `<section class="card pad week"><h3>השבוע שעבר <small>${ddmm(start)}–${ddmm(end)}</small></h3><div class="wk">
-    <div><b>${a.boxes}${d(a.boxes, p.boxes)}</b><span>קופסאות</span></div>
+    <div><b>${num(a.boxes)}${d(a.boxes, p.boxes)}</b><span>קופסאות</span></div>
     <div><b>${fmt(a.wp)}%${d(a.wp, p.wp, "down")}</b><span>פחת${p.days ? ` · קודם ${fmt(p.wp)}%` : ""}</span></div>
-    <div><b>${a.short}${d(a.short, p.short, "down")}</b><span>חוסרים</span></div>
-    ${hasCut() ? `<div><b>${a.late}${d(a.late, p.late, "down")}</b><span>אחרי הסגירה</span></div>` : ""}</div></section>`;
+    <div><b>${num(a.short)}${d(a.short, p.short, "down")}</b><span>חוסרים</span></div>
+    ${hasCut() ? `<div><b>${num(a.late)}${d(a.late, p.late, "down")}</b><span>אחרי הסגירה</span></div>` : ""}</div></section>`;
 }
 function download(name, text, type) {
   const blob = new Blob([text], { type }); const a = document.createElement("a");
@@ -4764,12 +4862,12 @@ function exportText(inc) {
   if (DY.length) {
     const avg = {}; DY.forEach(([k, D]) => { if (D.covers > 0) { const w = parse(k).getDay(); (avg[w] = avg[w] || []).push(+D.covers); } });
     const flag = (k, c) => { const a = avg[parse(k).getDay()] || []; if (!(c > 0) || a.length < 3) return ""; const m = a.reduce((x, y) => x + y, 0) / a.length, d = Math.round(((c - m) / m) * 100); return Math.abs(d) >= 30 ? `חריג ${d > 0 ? "+" : ""}${d}%` : ""; };
-    t += `\nימי שירות (תאריך | חג | סועדים | חריגה מהממוצע ליום זה | מכירות ₪ | מזג אוויר | מכירות לפי מנה):\n`;
+    t += `\nימי שירות (תאריך | חג | סועדים | חריגה מהממוצע ליום זה | מכירות ₪ כולל מע״מ | מזג אוויר | מכירות לפי מנה):\n`;
     DY.forEach(([k, D]) => (t += `${k} ${DN[parse(k).getDay()]} | ${D.holiday || ""} | ${D.covers ?? ""} | ${flag(k, +D.covers)} | ${D.salesTotal ?? ""} | ${wxTxt(D.weather)} | ${(D.sales || []).map((x) => `${x.name}=${x.qty ?? ""}`).join(", ")}\n`));
   }
   const YI = items(true).filter((it) => kgOf(it.k) || it.ppk);
   if (YI.length) { t += `\nתפוקה ומחיר להכנות (הכנה | ק״ג בקופסה | ₪ לק״ג):\n`; YI.forEach((it) => (t += `${it.n} | ${kgOf(it.k) || ""} | ${it.ppk ?? ""}\n`)); }
-  if (S.money) { const now = new Date(); [ymOf(now), ymOf(new Date(now.getFullYear(), now.getMonth() - 1, 1))].forEach((ym) => { const x = moneyStats(ym); if (x.sales || x.food) t += `\nעלויות ${ym}${x.cur ? " (חלקי)" : ""}: מכירות ₪${Math.round(x.sales)} (${x.salesDays} ימים) · רכש מזון ₪${Math.round(x.food)} · אחר ₪${Math.round(x.other)} · עובדים ₪${Math.round(x.laborM)} · food cost ${x.fc != null ? x.fc.toFixed(1) + "%" : "—"} · prime cost ${x.pc != null ? x.pc.toFixed(1) + "%" : "—"}\n`; }); }
+  if (S.money) { const now = new Date(); [ymOf(now), ymOf(new Date(now.getFullYear(), now.getMonth() - 1, 1))].forEach((ym) => { const x = moneyStats(ym); if (x.sales || x.food) t += `\nעלויות ${ym}${x.cur ? " (חלקי)" : ""}, בלי מע״מ: מכירות ₪${Math.round(x.salesN)} (${x.salesDays} ימים) · רכש מזון ₪${Math.round(x.food)} · אחר ₪${Math.round(x.other)} · עובדים ₪${Math.round(x.laborM)} · food cost ${x.fc != null ? x.fc.toFixed(1) + "%" : "—"} · prime cost ${x.pc != null ? x.pc.toFixed(1) + "%" : "—"}\n`; }); }
   const CR = Object.values((inc.receipts && S.credits) || {});
   if (CR.length) { t += `\nזיכויים מספקים (תאריך | ספק | מה | סכום | סיבה | סטטוס):\n`; CR.sort((a, b) => a.at - b.at).forEach((c) => (t += `${c.day} | ${supN(c.sup)} | ${c.what || ""} | ${c.amt ?? ""} | ${c.reason || ""} | ${c.status === "done" ? "התקבל" : "פתוח"}${c.auto ? " (אוטומטי)" : ""}\n`)); }
   const DS = (inc.dishes && S.dishes) || {}, dk = Object.keys(DS).filter((id) => dishLevel(DS[id]));
@@ -4822,7 +4920,7 @@ function viewAuth() {
     ${SIGN}
     <h2 class="gt">${signup ? "הרשמה" : "כניסה"}</h2>${signup ? `<p class="gs">אחרי ההרשמה המנהל מאשר אותך</p>` : ""}
     ${signup ? `<div class="field"><label for="n">שם מלא</label><input id="n" autocomplete="name" maxlength="40" required></div>
-    <div class="field"><label>מסעדה</label><div class="opts" role="radiogroup" aria-label="מסעדה">${SITES.map((x) => `<button type="button" class="opt" role="radio" data-sus="${x.k}" aria-checked="${S.signSite === x.k}" aria-pressed="${S.signSite === x.k}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>` : ""}
+    <div class="field"><label>מסעדה</label><div class="opts" role="radiogroup" aria-label="מסעדה">${SITES.map((x) => `<button type="button" class="opt" role="radio" data-sus="${esc(x.k)}" aria-checked="${S.signSite === x.k}" aria-pressed="${S.signSite === x.k}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>` : ""}
     <div class="field"><label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="off" spellcheck="false" dir="ltr" required></div>
     <div class="field"><label for="p">סיסמה</label><input id="p" type="password" autocomplete="${signup ? "new-password" : "current-password"}" dir="ltr" required></div>
     <div class="err" role="alert">${esc(S.authErr)}</div>
@@ -4864,7 +4962,7 @@ function viewWaiting() {
   return `<div class="auth grp"><div class="card authcard">
     ${SIGN}
     <h1>שלום ${esc(myName())}</h1>
-    <p class="sub">${blocked ? "הגישה שלך הוסרה. פנה למנהל." : "ממתין לאישור המנהל. הדף ייפתח לבד אחרי האישור."}</p>
+    <p class="sub">${blocked ? "הגישה שלך הוסרה. פנה למנהל." : "ממתין לאישור ההנהלה. הדף ייפתח לבד אחרי האישור."}</p>
     ${(() => { const w = SITES.filter((x) => rawRole(S.profile, x.k) === "pending"); return !blocked && w.length ? `<p class="sub">${w.length === 1 ? "מסעדה" : "מסעדות"}: <b>${w.map((x) => esc(x.f)).join(", ")}</b></p>` : ""; })()}
     <button class="btn ghost full" id="logout">יציאה</button>
   </div></div>`;
@@ -4906,13 +5004,13 @@ function statusLine(forProd, slim) {
     track = `<ol class="track" data-xf="tr">${steps.map(([l, st]) => { let c = st === 2 ? "done" : st === 3 ? "done warn" : st === -1 ? "bad" : ""; if (!c && !cur && st >= 0) { c = "now"; cur = true; } return `<li class="${c}"><i></i><span>${l}</span></li>`; }).join("")}</ol>`;
   }
   if (slim) { const pl = `${syncPill()}${extra}`; return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}${pl ? `<div class="status slim"><div class="pills">${pl}</div></div>` : ""}`; } /* בייצור אחרי אישור: הכותרת והצעדים בכרטיס ההתקדמות */
-  return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}<div class="status card" data-lv="status" data-v="${esc(o.status || "")}-${o.rev || 0}-${o.approvedRev || 0}"><div class="when" data-xf="st"><b>משלוח ${DN[d.getDay()]}, <span>${d.getDate()} ב${HMN[d.getMonth()]}</span></b>${hasCut() || upd || (!o.sentAt && S.order !== null) ? `<small>${!o.sentAt && S.order !== null && o.status !== "cancelled" ? "<span>עוד לא נשלחה.</span> " : ""}${hasCut() ? `<span>${c16(`ההזמנה נסגרת ב${DN[cutoffFor(S.day).getDay()]} ב-16:00`)}</span>` : ""}${upd ? `<span>${hasCut() ? upd : upd.replace(/^ · /, "")}</span>` : ""}</small>` : ""}</div><div class="pills">${syncPill()}${S.order === null ? "" : orderPill(o, forProd)}${extra}</div>${track}</div>`;
+  return `${navigator.onLine === false ? `<div class="banner warn off"><span><b>אין חיבור לאינטרנט.</b> מה שמשנים נשמר בטלפון ויישלח כשהחיבור יחזור.</span></div>` : ""}<div class="status card" data-lv="status" data-v="${esc(o.status || "")}-${+o.rev || 0}-${+o.approvedRev || 0}"><div class="when" data-xf="st"><b>משלוח ${DN[d.getDay()]}, <span>${d.getDate()} ב${HMN[d.getMonth()]}</span></b>${hasCut() || upd || (!o.sentAt && S.order !== null) ? `<small>${!o.sentAt && S.order !== null && o.status !== "cancelled" ? "<span>עוד לא נשלחה.</span> " : ""}${hasCut() ? `<span>${c16(`ההזמנה נסגרת ב${DN[cutoffFor(S.day).getDay()]} ב-16:00`)}</span>` : ""}${upd ? `<span>${hasCut() ? upd : upd.replace(/^ · /, "")}</span>` : ""}</small>` : ""}</div><div class="pills">${syncPill()}${S.order === null ? "" : orderPill(o, forProd)}${extra}</div>${track}</div>`;
 }
 function pendingBanner() {
   if (!can.produce()) return "";
   const others = S.pendingList.filter((o) => o.day !== S.day || S.tab !== "prod");
   if (!others.length) return "";
-  return others.map((o) => `<button class="banner warn" data-goapprove="${o.day}">${I.bell}<span><b>${o.isChange ? "בקשת שינוי" : "הזמנה חדשה"} ממתינה לאישור</b> · משלוח ${dayName(o.day)} ${ddmm(parse(o.day))} · ${plN(sum(o.sent), "קופסאות")}</span><i>לאישור ←</i></button>`).join("");
+  return others.map((o) => `<button class="banner warn" data-goapprove="${esc(o.day)}">${I.bell}<span><b>${o.isChange ? "בקשת שינוי" : "הזמנה חדשה"} ממתינה לאישור</b> · משלוח ${dayName(o.day)} ${ddmm(parse(o.day))} · ${plN(sum(o.sent), "קופסאות")}</span><i>לאישור ←</i></button>`).join("");
 }
 function shortBanner(P, label) {
   const sh = shortsOf(P), ks = Object.keys(sh); if (!ks.length) return "";
@@ -4920,7 +5018,8 @@ function shortBanner(P, label) {
 }
 function receiptCard() {
   const t = S.today; if (!t || !hasApproved(t) || new Date().getHours() < 6) return "";
-  if (t.received) return "";
+  /* אחרי אישור: שורה אחת באותו מקום, עם "ביטול קבלה" (לחיצה בטעות לא נועלת את ההזמנה לכל היום) */
+  if (t.received) return `<div class="rcvg" role="group" aria-label="המשלוח התקבל"><div class="rcvh"><span class="ib" aria-hidden="true">${I.box}</span><span class="st"><b>המשלוח התקבל</b><small>${esc(whoN(t.received.by))} · ${hm(t.received.at)}</small></span><button class="tlink" id="recvUndo">ביטול קבלה</button></div></div>`;
   const shN = shortTot(S.todayProd), n = sum(t.approved) - shN;
   /* קבוצת רשימה ולא כרטיס: אריח, שאלה ו"הגיע הכול" כקישור טינט; "חסר משהו" שורה שנייה עם שברון */
   return `<div class="rcvg" role="group" aria-label="הגיע המשלוח?"><div class="rcvh"><span class="ib" aria-hidden="true">${I.box}</span><span class="st"><b>הגיע המשלוח?</b><small>${plN(n, "קופסאות")}${shN ? ` <span class="nw">(חוץ מ-${num(shN)} שחסרו)</span>` : ""}</small></span><button class="tlink" id="recvAll">הגיע הכול</button></div>
@@ -4945,12 +5044,12 @@ function viewOrder() {
   const sg = S.sugg[S.day];
   if (can.order() && !o.sentAt && !sum(curItems()) && sg && !S.suggOff[S.day]) {
     /* מילוי מהיר: שורה אחת של צ'יפים, ה-X בסוף השורה */
-    h += `<div class="qfill" role="group" aria-label="מילוי מהיר"><div class="qchips">${sg.last ? `<button class="chip" id="useLast">כמו ${DN[parse(S.day).getDay()]} שעבר, ${sum(sg.last)}</button>` : ""}<button class="chip" id="useSugg">ממוצע ${sg.weeks} שבועות${sg.cut && sg.cut.length ? " פחות פחת" : ""}, ${sum(sg.items)}</button></div><button class="qx" id="offSugg" aria-label="סגור מילוי מהיר"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>${sg.cut && sg.cut.length ? `<p class="qcut">מותאם לפחת: ${sg.cut.slice(0, 3).map(([k, a, b, r]) => `${esc(itemBy(k).n)} ${b} במקום ${a}`).join(", ")}</p>` : ""}`;
+    h += `<div class="qfill" role="group" aria-label="מילוי מהיר"><div class="qchips">${sg.last ? `<button class="chip" id="useLast">כמו ${DN[parse(S.day).getDay()]} שעבר, ${sum(sg.last)}</button>` : ""}<button class="chip" id="useSugg">ממוצע ${num(sg.weeks)} שבועות${sg.cut && sg.cut.length ? " פחות פחת" : ""}, ${sum(sg.items)}</button></div><button class="qx" id="offSugg" aria-label="סגור מילוי מהיר"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>${sg.cut && sg.cut.length ? `<p class="qcut">מותאם לפחת: ${sg.cut.slice(0, 3).map(([k, a, b, r]) => `${esc(itemBy(k).n)} ${num(b)} במקום ${num(a)}`).join(", ")}</p>` : ""}`;
   }
   const hasNote = !!(o.note && o.note.trim());
-  h += `<div class="tools srch"><label class="sfield"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input class="search" id="q" type="search" placeholder="איזו הכנה?" value="${esc(S.q)}" aria-label="חיפוש הכנה"></label></div>${S.onlyOrdered ? `<button class="chip onlyc" id="onlyChip" aria-pressed="true">רק מה שהוזמן</button>` : ""}${jumpHtml()}`;
+  h += `<div class="tools srch"><label class="sfield"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input class="search" id="q" type="search" placeholder="איזו הכנה?" value="${esc(S.q)}" aria-label="חיפוש הכנה">${S.q ? `<button type="button" class="sclr" id="qClr" aria-label="ניקוי החיפוש"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5l6 6M11 5l-6 6"/></svg></button>` : ""}</label></div>${S.onlyOrdered ? `<button class="chip onlyc" id="onlyChip" aria-pressed="true">רק מה שהוזמן</button>` : ""}${jumpHtml()}`;
   if (can.order() && (S.noteOpen || hasNote)) h += `<div class="notebox"><label for="note">הערה למטבח הייצור</label><textarea id="note" rows="2" placeholder="למשל: לחתוך דק יותר, להביא מוקדם">${esc(o.note || "")}</textarea></div>`;
-  const q = S.q.trim(); let any = false;
+  const q = S.q.trim(), lk = qtyLocked(); let any = false;
   /* אחרי שליחה רואים רק את מה שבהזמנה (כולל פריט שהורד ל-0, כדי שאפשר יהיה להחזיר אותו) */
   const autoOnly = !!o.sentAt && !S.showAll && !S.onlyOrdered && !q;
   const inOrder = (k) => qtyOf(k) > 0 || +((o.sent || {})[k]) > 0 || +((o.approved || {})[k]) > 0;
@@ -4958,12 +5057,12 @@ function viewOrder() {
     const rows = list.filter((it) => (!S.onlyOrdered || qtyOf(it.k)) && (!autoOnly || inOrder(it.k)) && (!q || it.n.includes(q)));
     if (!rows.length) return; any = true;
     const tot = rows.reduce((a, it) => a + qtyOf(it.k), 0);
-    h += `<section class="cat" id="cat-${CATS.indexOf(cat)}"><h2><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${tot ? tot + " קופסאות" : ""}</span></h2><div class="list">`;
+    h += `<section class="cat" id="cat-${CATS.indexOf(cat)}"><h2><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${tot ? num(tot) + " קופסאות" : ""}</span></h2><div class="list">`;
     rows.forEach((it) => {
       const v = qtyOf(it.k);
       const inote = ((o.itemNotes || {})[it.k] || "").trim();
-      h += `<div class="row${v ? " on" : ""}" data-k="${it.k}" data-key="${it.k}" data-v="${v}"><div class="nm"><b>${esc(it.n)}</b>${inote ? `<small class="inote">✎ ${esc(inote)}</small>` : `<small>תוקף ${plN(it.d, "ימים")}</small>`}</div>
-        <div class="step"><button data-dec="${it.k}" aria-label="פחות ${esc(it.n)}" ${can.order() && v ? "" : "disabled"}>−</button><output>${v || "0"}</output><button data-inc="${it.k}" aria-label="עוד ${esc(it.n)}" ${can.order() ? "" : "disabled"}>+</button></div></div>`;
+      h += `<div class="row${v ? " on" : ""}" data-k="${esc(it.k)}" data-key="${esc(it.k)}" data-v="${+v || 0}"><div class="nm"><b>${esc(it.n)}</b>${inote ? `<small class="inote">✎ ${esc(inote)}</small>` : `<small>תוקף ${plN(it.d, "ימים")}</small>`}</div>
+        <div class="step"><button data-dec="${esc(it.k)}" aria-label="פחות ${esc(it.n)}" ${can.order() && v && !lk ? "" : "disabled"}>−</button><output>${num(v)}</output><button data-inc="${esc(it.k)}" aria-label="עוד ${esc(it.n)}" ${can.order() && !lk ? "" : "disabled"}>+</button></div></div>`;
     });
     h += `</div></section>`;
   });
@@ -4974,7 +5073,7 @@ function viewOrder() {
 }
 function approvalCard() {
   const o = O(); if (o.status !== "pending" || !can.produce()) return "";
-  const sent = o.sent || {}, ap = o.approved || {}, change = hasApproved(o);
+  const change = hasApproved(o), sent = o.sent || {}, ap = change ? o.approved || {} : {};
   const keys = Object.keys(Object.assign({}, sent, change ? ap : {})).filter(okKey).filter((k) => (+sent[k] || 0) > 0 || (+ap[k] || 0) > 0 || (approveDraft[k] || 0) > 0)
     .filter((k) => !change || (+sent[k] || 0) !== (+ap[k] || 0) || k in approveDraft);
   keys.sort((a, b) => (itemBy(a).pos ?? 999) - (itemBy(b).pos ?? 999));
@@ -4985,11 +5084,11 @@ function approvalCard() {
   keys.forEach((k) => {
     const it = itemBy(k), s = +sent[k] || 0, a = +ap[k] || 0, v = approvalQty(k);
     let tag = "";
-    if (change) tag = !a ? `<em class="tag new">חדש</em>` : s > a ? `<em class="tag up">+${s - a} (היה ${a})</em>` : `<em class="tag down">−${a - s} (היה ${a})</em>`;
-    const pm = pOf(k); if (change && pm.made > 0) tag += ` <em class="tag ok">כבר הוכנו ${pm.made}</em>`;
+    if (change) tag = !a ? `<em class="tag new">חדש</em>` : s > a ? `<em class="tag up">+${num(s - a)} (היה ${num(a)})</em>` : `<em class="tag down">−${num(a - s)} (היה ${num(a)})</em>`;
+    const pm = pOf(k); if (change && pm.made > 0) tag += ` <em class="tag ok">כבר הוכנו ${num(pm.made)}</em>`;
     const an = ((o.itemNotes || {})[k] || "").trim();
     h += `<div class="arow"><div class="nm"><b>${esc(it.n)}</b>${tag}${an ? `<small class="inote">✎ ${esc(an)}</small>` : ""}</div>
-      <div class="step sm"><button data-adec="${k}" aria-label="פחות ${esc(it.n)}" ${v ? "" : "disabled"}>−</button><output${v !== s ? ' class="chg"' : ""}>${v}</output><button data-ainc="${k}" aria-label="עוד ${esc(it.n)}">+</button></div></div>`;
+      <div class="step sm"><button data-adec="${esc(k)}" aria-label="פחות ${esc(it.n)}" ${v ? "" : "disabled"}>−</button><output${v !== s ? ' class="chg"' : ""}>${num(v)}</output><button data-ainc="${esc(k)}" aria-label="עוד ${esc(it.n)}">+</button></div></div>`;
   });
   h += `</div><div class="abtns"><button class="btn okb" id="approve">✓ אישור${Object.keys(approveDraft).length ? " עם התיקונים" : ""}</button><button class="btn ghost badt" id="reject">✕ ${change ? "דחה שינוי" : "דחה הזמנה"}</button></div></div>`;
   return h;
@@ -5005,7 +5104,7 @@ function viewProd() {
   if (!S.catalog || S.order === null || S.prod === null) return h + SKEL;
   const o = O();
   if (!hasApproved(o)) {
-    return h + (o.status === "pending" ? "" : o.status === "cancelled" ? `<div class="empty"><b>ההזמנה בוטלה</b>${o.cancelled && o.cancelled.by ? `ע״י ${esc(whoN(o.cancelled.by))}` : ""}${o.cancelled && o.cancelled.note ? ` · ${esc(o.cancelled.note)}` : ""}. אין מה להכין.</div>` : o.status === "rejected" ? `<div class="empty"><b>ההזמנה נדחתה</b>${o.rejected && o.rejected.note ? esc(o.rejected.note) : ""}</div>` : (!o.sentAt && sum(o.items) > 0 ? `<div class="empty"><b>${SN()} מכינים הזמנה כרגע</b>טיוטה של ${plN(count(o.items), "הכנות")}${o.updatedBy ? `, עודכנה ע״י ${esc(whoN(o.updatedBy))} ב-${hm(o.updatedAt)}` : ""}. היא תגיע לאישור כשישלחו.</div>` : `<div class="empty"><b>${o.sentAt ? "ממתין לאישור" : "אין הזמנה מאושרת ליום הזה"}</b>${o.sentAt ? "" : `כש${SN()} ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.`}</div>`))
+    return h + (o.status === "pending" ? "" : o.status === "cancelled" ? `<div class="empty"><b>ההזמנה בוטלה</b>${o.cancelled && o.cancelled.by ? `ע״י ${esc(whoN(o.cancelled.by))}` : ""}${o.cancelled && o.cancelled.note ? ` · ${esc(o.cancelled.note)}` : ""}. אין מה להכין.</div>` : o.status === "rejected" ? `<div class="empty"><b>ההזמנה נדחתה</b>${o.rejected && o.rejected.note ? esc(o.rejected.note) : ""}</div>` : (!o.sentAt && sum(o.items) > 0 ? `<div class="empty"><b>${esc(SN())} מכינים הזמנה כרגע</b>טיוטה של ${plN(count(o.items), "הכנות")}${o.updatedBy ? `, עודכנה ע״י ${esc(whoN(o.updatedBy))} ב-${hm(o.updatedAt)}` : ""}. היא תגיע לאישור כשישלחו.</div>` : `<div class="empty ec">${TAB_ICONS.prod}<b>${o.sentAt ? "ממתין לאישור" : "אין הזמנה מאושרת ליום הזה"}</b>${o.sentAt ? "" : `<span>כש${esc(SN())} ישלחו הזמנה ותאושר, היא תופיע כאן לייצור.</span>`}</div>`))
       + prodTools();
   }
   const list = items(true).filter((it) => prodQty(it.k) > 0);
@@ -5019,8 +5118,8 @@ function viewProd() {
   let line = "";
   if (allDone) { const last = Math.max(...list.map((it) => ((S.prod.items || {})[it.k] || {}).at || 0)); const ahead = Math.round((endT - last) / 60000); line = last ? `סיימתם ב-${hm(last)}${ahead > 0 && hasCut() ? `, ${durTxt(ahead)} לפני הזמן` : ""}.` : "כל ההכנות מוכנות."; }
   else if (isToday && !hasCut()) line = "משלוח היום";
-  else if (isToday && endT > now) line = `עוד ${durTxt(Math.round((endT - now) / 60000))} עד 16:30`;
-  else if (isToday) line = "עבר 16:30";
+  else if (isToday && endT > now) line = `עוד ${durTxt(Math.round((endT - now) / 60000))} עד ${hm(endT)}`; /* השעה מאותו קבוע שמחשב את הזמן */
+  else if (isToday) line = `עבר ${hm(endT)}`;
   else line = ""; /* היום כבר כתוב בראש הכרטיס */
   const dd = parse(S.day), stp = [["נשלחה", 2], ["אושרה", 2], ["בייצור", allDone ? 2 : 1], ["התקבלה", o.received ? 2 : allDone ? 1 : 0]];
   h += `<div class="card phero pcard ${allDone ? "all" : ""}"><div class="ph"><span>משלוח ${DN[dd.getDay()]}, <span>${dd.getDate()} ב${HMN[dd.getMonth()]}</span></span>${o.approvedAt ? `<span>אושרה <span dir="ltr">${hm(o.approvedAt)}</span>${o.approvedBy ? `, ${esc(whoN(o.approvedBy))}` : ""}</span>` : ""}</div>
@@ -5028,7 +5127,7 @@ function viewProd() {
     <div class="ptx"><b>${allDone ? (shortTot(S.prod) ? `מוכן למשלוח · <em class="shw">חסר ${num(shortTot(S.prod))}</em>` : "הכול מוכן למשלוח") : `${list.length - doneN} ${list.length - doneN === 1 ? "הכנה נשארה" : "הכנות נשארו"}`}</b>${line ? `<span>${line}</span>` : ""}</div>
     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${list.length}" aria-valuenow="${doneN}" aria-label="${doneN} מתוך ${list.length} הכנות"><i style="--p:${Math.round(pct * 1000) / 1000}"></i></div>
     <ol class="ptrack">${stp.map(([l, st]) => `<li class="${st === 2 ? "done" : st === 1 ? "now" : ""}">${l}</li>`).join("")}</ol></div>`;
-  if (o.note) h += `<div class="banner info">${I.note}<span><b>הערה מ${SN()}:</b> ${esc(o.note)}</span></div>`;
+  if (o.note) h += `<div class="banner info">${I.note}<span><b>הערה מ${esc(SN())}:</b> ${esc(o.note)}</span></div>`;
   const upDays = Object.keys(S.upcoming).sort();
   const P = (S.prod && S.prod.items) || {};
   grouped(todo, PROD_SEQ).forEach(([cat, rows]) => {
@@ -5040,17 +5139,17 @@ function viewProd() {
       const ahead = upDays.map((k) => { const n = +(qtySource(S.upcoming[k])[it.k] || 0); return n ? `${dayName(k)} ${n}` : ""; }).filter(Boolean);
       const hd = held(it.k);
       h += `<div class="row prow${hd ? " on" : ""}" data-key="p-${esc(it.k)}" data-v="${ms ? left : v}">
-        <button class="check" ${hd ? `data-undo="${it.k}" aria-label="בוצע: ${esc(it.n)}"` : `data-done="${it.k}" aria-label="סמן ${esc(it.n)} כבוצע"`} ${can.produce() ? "" : "disabled"}><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></button>
+        <button class="check" ${hd ? `data-undo="${esc(it.k)}" aria-label="בוצע: ${esc(it.n)}"` : `data-done="${esc(it.k)}" aria-label="סמן ${esc(it.n)} כבוצע"`} ${can.produce() ? "" : "disabled"}><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></button>
         <div class="nm"><b>${esc(it.n)}</b>${extra}${upd}${((o.itemNotes || {})[it.k] || "").trim() ? `<small class="inote">✎ ${esc(o.itemNotes[it.k].trim())}</small>` : ""}${ahead.length ? `<small class="ahead">גם ${ahead.join(", ")}</small>` : ""}</div>
         <div class="qty">${ms ? left : v}<small>${ms ? "נשאר" : "קופסאות"}</small></div></div>`;
     });
     h += `</div></section>`;
   });
   if (done.length) {
-    h += `<button class="donebar" id="toggleDone" aria-expanded="${S.showDone}"><span>בוצעו</span> <b dir="ltr">${done.length}</b><span class="schev" aria-hidden="true"></span></button>`;
+    h += `<button class="donebar" id="toggleDone" aria-expanded="${!!S.showDone}"><span>בוצעו</span> <b dir="ltr">${done.length}</b><span class="schev" aria-hidden="true"></span></button>`;
     if (S.showDone) {
       h += `<div class="list donelist">`;
-      done.forEach((it) => { const p = P[it.k] || {}, goal = !p.short && +(p.made ?? p.forQty ?? prodQty(it.k)) >= prodQty(it.k); h += `<button class="row drow${goal ? " goal" : ""}" data-undo="${it.k}" data-key="p-${esc(it.k)}"><span class="tick" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></span><div class="nm"><b>${esc(it.n)}</b>${p.short ? `<em class="tag bad">חסר ${num(p.short)}${p.shortNote ? " · " + esc(p.shortNote) : ""}</em>` : ""}<small>${plN(p.made ?? prodQty(it.k), "קופסאות")} · יוצר ${p.prodDate ? ddmm(parse(p.prodDate)) : ""} · תוקף עד ${p.prodDate ? ddmm(addDays(parse(p.prodDate), it.d - 1)) : ""}</small>${p.by ? `<small class="upd"><span>עודכן ע״י</span> ${esc(whoN(p.by))}</small>` : ""}</div></button>`; });
+      done.forEach((it) => { const p = P[it.k] || {}, goal = !p.short && +(p.made ?? p.forQty ?? prodQty(it.k)) >= prodQty(it.k); h += `<button class="row drow${goal ? " goal" : ""}" data-undo="${esc(it.k)}" data-key="p-${esc(it.k)}"><span class="tick" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg></i></span><div class="nm"><b>${esc(it.n)}</b>${p.short ? `<em class="tag bad">חסר ${num(p.short)}${p.shortNote ? " · " + esc(p.shortNote) : ""}</em>` : ""}<small>${plN(p.made ?? prodQty(it.k), "קופסאות")} · יוצר ${p.prodDate ? ddmm(parse(p.prodDate)) : ""} · תוקף עד ${p.prodDate ? ddmm(addDays(parse(p.prodDate), it.d - 1)) : ""}</small>${p.by ? `<small class="upd"><span>עודכן ע״י</span> ${esc(whoN(p.by))}</small>` : ""}</div></button>`; });
       h += `</div>`;
     }
   }
@@ -5344,9 +5443,9 @@ function balanceView(b) {
   const os = Object.entries(b.order);
   if (os.length) h += `<h4 class="gh">להזמין מספקים · עד המשלוח הבא</h4><div class="grp">${os.map(([sup, l]) => `<div class="srow"><span class="st"><b>${esc(sup)}</b><small>${l.map((x) => `<bdi>${esc(x.n)}</bdi> <bdi>${num(x.q)} ${esc(x.u)}</bdi>`).join(" · ")}</small></span></div>`).join("")}</div>`;
   if (b.noKpb.length) h += `<p class="hint pad-x">חסר ק״ג חומר גלם לקופסה: ${b.noKpb.slice(0, 4).map(esc).join(", ")}</p>`;
-  if (b.skipped) h += `<p class="hint pad-x">${b.skipped === 1 ? "שורה אחת בקבלות" : b.skipped + " שורות בקבלות"} בלי יחידה מוכרת, לא נכנסו לחישוב</p>`;
-  if (b.noQty) h += `<p class="hint pad-x">${b.noQty === 1 ? "שורה אחת בקבלות" : b.noQty + " שורות בקבלות"} בלי כמות, לא נכנסו לחישוב</p>`;
-  return h + `<p class="hint pad-x">הערכה לפי הקבלות והייצור ב-${b.nDays === 1 ? "יום עבודה אחד" : b.nDays + " ימי עבודה"} האחרונים. בלי ספירה ובלי רישום של עובדים.</p>`;
+  if (b.skipped) h += `<p class="hint pad-x">${b.skipped === 1 ? "שורה אחת בקבלות" : num(b.skipped) + " שורות בקבלות"} בלי יחידה מוכרת, לא נכנסו לחישוב</p>`;
+  if (b.noQty) h += `<p class="hint pad-x">${b.noQty === 1 ? "שורה אחת בקבלות" : num(b.noQty) + " שורות בקבלות"} בלי כמות, לא נכנסו לחישוב</p>`;
+  return h + `<p class="hint pad-x">הערכה לפי הקבלות והייצור ב-${b.nDays === 1 ? "יום עבודה אחד" : num(b.nDays) + " ימי עבודה"} האחרונים. בלי ספירה ובלי רישום של עובדים.</p>`;
 }
 /* ---------- עלות מנה: רכיבים מכרטיס המנה × מחיר לק״ג מכרטיס ההכנה. בלי מחיר = חסר (בלי הערכה) ---------- */
 function dishCosts() {
@@ -5364,7 +5463,7 @@ function dishCosts() {
 }
 function dishCostView(L) {
   if (!L.length) return `<p class="hint pad-x">אין עדיין מנות עם רכיבים. מוסיפים רכיבים בגרמים בכרטיס המנה.</p>`;
-  return `<div class="grp">${L.map((x) => `<button class="srow" data-dish="${esc(x.id)}"><span class="st"><b>${esc(x.n)}</b><small>${!(x.cost > 0) ? "אין עלות" : `${x.miss ? "עלות חלקית" : "עלות"} ${ils(Math.round(x.cost * 10) / 10)}`}${x.price ? ` · מחיר ${ils(x.price)}` : " · חסר מחיר בתפריט"}${x.miss ? ` · ${x.miss === 1 ? "רכיב אחד" : x.miss + " רכיבים"} בלי מחיר` : ""}</small></span><span class="sv ${x.mult != null && x.mult < 3 ? "badv" : ""}">${x.mult != null ? `<bdi dir="ltr">×${fmt(x.mult)}</bdi>${x.margin != null ? `<small>רווח גולמי ${x.margin}%</small>` : ""}` : "—"}</span></button>`).join("")}</div><p class="hint pad-x">מכפיל = מחיר בתפריט בלי מע״מ, חלקי עלות חומרי הגלם בלי מע״מ. יעד: 3 ומעלה. העלות לפי המחיר לק״ג בכרטיס ההכנה. רכיב בלי מחיר = אין מכפיל עד שממלאים.</p>`;
+  return `<div class="grp">${L.map((x) => `<button class="srow" data-dish="${esc(x.id)}"><span class="st"><b>${esc(x.n)}</b><small>${!(x.cost > 0) ? "אין עלות" : `${x.miss ? "עלות חלקית" : "עלות"} ${ils(Math.round(x.cost * 10) / 10)}`}${x.price ? ` · מחיר ${ils(x.price)}` : " · חסר מחיר בתפריט"}${x.miss ? ` · ${x.miss === 1 ? "רכיב אחד" : num(x.miss) + " רכיבים"} בלי מחיר` : ""}</small></span><span class="sv ${x.mult != null && x.mult < 3 ? "badv" : ""}">${x.mult != null ? `<bdi dir="ltr">×${fmt(x.mult)}</bdi>${x.margin != null ? `<small>רווח גולמי ${num(x.margin)}%</small>` : ""}` : "—"}</span></button>`).join("")}</div><p class="hint pad-x">מכפיל = מחיר בתפריט בלי מע״מ, חלקי עלות חומרי הגלם בלי מע״מ. יעד: 3 ומעלה. העלות לפי המחיר לק״ג בכרטיס ההכנה. רכיב בלי מחיר = אין מכפיל עד שממלאים.</p>`;
 }
 function fcGauge(v, tg) { const mx = Math.max(tg / 0.75, v * 1.05), w = (Math.min(v, tg) / mx) * 100, o = v > tg ? ((v - tg) / mx) * 100 : 0, t = (tg / mx) * 100;
   return `<div class="gauge" role="img" aria-label="${fmt(Math.round(v * 10) / 10)}% מתוך יעד ${fmt(tg)}%"><i class="ok" style="width:${w.toFixed(2)}%"></i>${o ? `<i class="over" style="inset-inline-start:calc(${t.toFixed(2)}% + 2px);width:calc(${o.toFixed(2)}% - 2px)"></i>` : ""}</div><div class="gauge-k"><span style="inset-inline-start:${t.toFixed(2)}%">יעד <bdi dir="ltr">${fmt(tg)}%</bdi></span></div>`; }
@@ -5380,17 +5479,17 @@ function moneyCard(inSec) {
   h += `<div class="card metric mhero"><span class="lbl"><span>Food cost</span>${x.covers ? `<span><span dir="ltr">${num(x.covers)}</span> סועדים</span>` : ""}</span>${x.fc == null || !(x.food > 0) ? `<b class="big">—</b><span class="say">${x.fc == null ? "חסרות מכירות לחישוב" : "אין קבלות בחודש הזה"}</span>` : `<b class="big" dir="ltr"><span data-cnt="${r1(x.fc)}" data-dec="1">${fmt(r1(x.fc))}</span><small>%</small></b><span class="say"><span dir="ltr">${fmt(Math.abs(r1(x.fc - TG.f)))}</span> ${x.fc <= TG.f ? "נקודות מתחת ליעד של" : "נקודות מעל היעד של"} <span dir="ltr">${fmt(TG.f)}%</span></span>${fcGauge(x.fc, TG.f)}`}</div>`;
   const U = (S.money.up || {})[ym], tb = U && U.ai === "pending" ? `<span class="spin"></span>${aiWait()}` : U && U.ai === "error" ? `<span class="badt">לא נקרא · שוב</span>` : "";
   /* מכירות = הקובץ מטאביט (העלאה בלחיצה על השורה). המקור כתוב בשורה השנייה */
-  h += `<h4 class="gh">${mL}</h4><div class="grp mgrp">
+  h += `<h4 class="gh"><span>${mL}</span><span>בלי מע״מ</span></h4><div class="grp mgrp">
     <div class="srow tall"><span class="st"><b>Prime cost</b><small>יעד <span dir="ltr">${fmt(TG.p)}%</span></small></span><span class="sv ${{ good: "", warn: "warnt", bad: "badt" }[pctCls(x.pc, TG.p, TG.p + 5)] || ""}" dir="ltr">${x.laborM ? pv(x.pc) : "חסרה עלות עובדים"}</span></div>
-    <label class="srow tall" for="fileTabit"><span class="st"><b>מכירות</b><small>${tb || (x.src === "tabit" ? (x.T || x.LT ? `לפי טאביט, נקרא ${ddmm(new Date((x.T || x.LT).at || Date.now()))}` : "לפי טאביט") : x.salesDays ? `${x.salesDays} דוחות קופה${x.cur ? ` מתוך ${x.elapsed} ימים` : ""}` : "העלאה מטאביט")}</small></span><span class="sv lab" dir="ltr">${x.sales ? ils(x.sales) : "—"}</span><span class="schev"></span></label>
-    <div class="srow tall"><span class="st"><b>רכש מזון</b><small>מהקבלות</small></span><span class="sv" dir="ltr">${ils(x.food)}</span></div>
+    <label class="srow tall" for="fileTabit"><span class="st"><b>מכירות</b><small>${tb || (x.src === "tabit" ? (x.T || x.LT ? `לפי טאביט, נקרא ${ddmm(new Date((x.T || x.LT).at || Date.now()))}` : "לפי טאביט") : x.salesDays ? `${num(x.salesDays)} דוחות קופה${x.cur ? ` מתוך ${num(x.elapsed)} ימים` : ""}` : "העלאה מטאביט")}</small></span><span class="sv lab" dir="ltr">${x.sales ? ils(x.salesN) : "—"}</span><span class="schev"></span></label>
+    <div class="srow tall"><span class="st"><b>רכש מזון</b><small>מהקבלות, בלי ״אחר״</small></span><span class="sv" dir="ltr">${ils(x.food)}</span></div>
     <button class="srow tall" id="laborBtn"><span class="st"><b>עלות עובדים</b>${x.lsrc === "tabitL" ? `<small><span dir="ltr">${num(Math.round(x.LT.hours))}</span> שעות, לפי טאביט</small>` : x.lsrc === "tabit" ? "<small>לפי טאביט</small>" : ""}</span><span class="sv lab" dir="ltr">${x.laborM ? ils(x.laborM) : "＋ הוסף"}</span><span class="schev"></span></button>
   </div><input type="file" id="fileTabit" accept=".xlsx,.xls,.csv,.pdf,image/*,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv" hidden>`;
   /* קבלות לפי ספק: פס דק יחסי לסכום */
   const bySup = {}; let tot = 0, nR = 0;
   (S.money.rec || []).forEach((r) => { if (!(r.day || "").startsWith(ym) || !(+r.amt > 0)) return; const k = String(r.sup || "").trim() || "בלי ספק"; bySup[k] = (bySup[k] || 0) + +r.amt; tot += +r.amt; nR++; });
   const L = Object.entries(bySup).sort((a, b) => b[1] - a[1]).slice(0, 6), mx = L.length ? L[0][1] : 1;
-  if (L.length) h += `<h4 class="gh"><span>קבלות לפי ספק</span><span>${nR === 1 ? "קבלה אחת" : `<span dir="ltr">${num(nR)}</span> קבלות`}, <span dir="ltr">${ils(tot)}</span></span></h4><div class="grp supg">${L.map(([n, v]) => `<div class="srow sup"><span class="st"><b>${esc(n)}</b></span><span class="sv lab" dir="ltr">${ils(v)}</span><span class="sbar" style="--w:${Math.max(4, Math.round((v / mx) * 100))}%" aria-hidden="true"></span></div>`).join("")}</div>`;
+  if (L.length) h += `<h4 class="gh"><span>קבלות לפי ספק, כולל מע״מ</span><span>${nR === 1 ? "קבלה אחת" : `<span dir="ltr">${num(nR)}</span> קבלות`}, <span dir="ltr">${ils(tot)}</span></span></h4><div class="grp supg">${L.map(([n, v]) => `<div class="srow sup"><span class="st"><b>${esc(n)}</b></span><span class="sv lab" dir="ltr">${ils(v)}</span><span class="sbar" style="--w:${Math.max(4, Math.round((v / mx) * 100))}%" aria-hidden="true"></span></div>`).join("")}</div>`;
   return h + `</section>`;
 }
 function viewData() {
@@ -5407,7 +5506,7 @@ function viewData() {
   st.days.forEach(({ k, o }) => { const P = (D.prod || {})[k], sh = shortsOf(P), xm = o.received ? extraMiss(o, P) : {};
     Object.keys(sh).forEach((i) => { shortN++; shortD.add(k); shortI[i] = (shortI[i] || 0) + 1; });
     Object.keys(xm).filter((i) => +xm[i] > 0).forEach((i) => { shortN++; shortD.add(k); shortI[i] = (shortI[i] || 0) + 1; }); });
-  const K = [["הזמנות", st.days.length, (st.changes === 1 ? "שינוי אחד" : `${st.changes} שינויים`), ""], ["קופסאות", num(st.boxes), `${fmt(st.boxes / nd)} בהזמנה`, ""], ["חוסרים", shortN, shortN ? (shortD.size === 1 ? "ביום אחד" : `ב-${shortD.size} ימים`) : "אין", shortN ? "badt" : "okt"],
+  const K = [["הזמנות", st.days.length, (st.changes === 1 ? "שינוי אחד" : `${num(st.changes)} שינויים`), ""], ["קופסאות", num(st.boxes), `${fmt(st.boxes / nd)} בהזמנה`, ""], ["חוסרים", shortN, shortN ? (shortD.size === 1 ? "ביום אחד" : `ב-${shortD.size} ימים`) : "אין", shortN ? "badt" : "okt"],
     hasCut() ? ["בזמן", onT == null ? "—" : onT + "%", "עד 16:30", onT == null ? "" : onT >= 90 ? "okt" : onT >= 75 ? "warnt" : "badt"] : ["פחת", wpct + "%", `${fmt(st.wasteBoxes)} קופסאות`, wpct >= 8 ? "warnt" : ""]];
   h += `<div class="kpi4">${K.map(([l, v, sub, c]) => `<div class="kp"><small>${l}</small><b class="${c}">${v}</b><span>${sub}</span></div>`).join("")}</div>`;
   const all = []; for (let d = parse(D.from); dkey(d) <= D.today; d = addDays(d, 1)) if (!isOff(d)) all.push(dkey(d));
@@ -5426,7 +5525,7 @@ function viewData() {
   if (perm("money") && S.money) {
     const b = kitchenBalance();
     h += revRow();
-    const cnt = (n, w) => (n === 1 ? `שורה אחת בקבלות ${w}` : `${n} שורות בקבלות ${w}`);
+    const cnt = (n, w) => (n === 1 ? `שורה אחת בקבלות ${w}` : `${num(n)} שורות בקבלות ${w}`);
     if (!b || b.empty) h += dsec("bal", "פער ומלאי", "אין עדיין נתונים", () => `<p class="hint pad-x">אין עדיין קבלות שהותאמו להכנות. Claude מתאים אותן בלילה.</p>${b && b.credOnly ? `<p class="hint pad-x">יש רק זיכויים, בלי קנייה בתקופה. לא מחושב פחת.</p>` : ""}${b && b.noQty ? `<p class="hint pad-x">${cnt(b.noQty, "בלי כמות, לא נכנסו לחישוב")}</p>` : ""}${b && b.skipped ? `<p class="hint pad-x">${cnt(b.skipped, "בלי יחידה מוכרת, לא נכנסו לחישוב")}</p>` : ""}`);
     else h += dsec("bal", "פער ומלאי", `פער ${b.T.bought ? Math.round((b.T.waste / b.T.bought) * 100) : 0}% · ${ils(Math.round(b.T.wasteIls))}`, () => balanceView(b));
     if (feat("dishes") || S.dishes) { if (!S.dishes && !S.dLoading) { S.dLoading = true; loadDishes().finally(() => { S.dLoading = false; renderSoon(); }); }
@@ -5440,7 +5539,7 @@ function viewData() {
     h += `<p class="hint pad-x">פחת שנרשם = קופסאות שהליין סימן כזרוקות.</p>`;
     h += `<section class="card pad"><h3>פחת לפי יום</h3>${barChart(all.map((k) => wd[k] || 0), all.map((k) => ddmm(parse(k))), { title: "פחת לפי יום", maxLabels: 6 })}</section>`;
     if (st.waste.length) { h += `<div class="hist">`; st.waste.slice().sort((a, b) => b.at - a.at).slice(0, 15).forEach((w) => {
-      h += `<div class="hrow static"><span class="hd"><b>${esc(w.n || itemBy(w.k).n)}</b><small>${DN[parse(w.day).getDay()]} ${ddmm(parse(w.day))} · ${esc(w.reason)} · ${esc(whoN(w.by))}</small></span><span class="hq">${num(w.qty)}<small>קופסאות</small></span>${okKey(w.id) ? `<button class="x" data-delw="${w.id}" aria-label="מחק רישום">✕</button>` : ""}</div>`; }); h += `</div>`; }
+      h += `<div class="hrow static"><span class="hd"><b>${esc(w.n || itemBy(w.k).n)}</b><small>${DN[parse(w.day).getDay()]} ${ddmm(parse(w.day))} · ${esc(w.reason)} · ${esc(whoN(w.by))}</small></span><span class="hq">${num(w.qty)}<small>קופסאות</small></span>${okKey(w.id) ? `<button class="x" data-delw="${esc(w.id)}" aria-label="מחק רישום">✕</button>` : ""}</div>`; }); h += `</div>`; }
     return h; });
   h += dsec("wd", "לפי יום בשבוע", "ממוצע קופסאות", () => { const wds = [0, 1, 2, 3, 4, 5, 6].filter((w) => !offDays().includes(w) || st.wdN[w]), wdA = wds.map((w) => (st.wdN[w] ? st.wd[w] / st.wdN[w] : 0));
     return `<section class="card pad">${barChart(wdA, wds.map((w) => DN[w]), { title: "ממוצע לפי יום בשבוע", maxLabels: 7 })}</section>`; });
@@ -5449,8 +5548,8 @@ function viewData() {
       <div class="tr th" role="row"><span role="columnheader">הכנה</span><span role="columnheader">סה״כ</span><span role="columnheader">ממוצע</span><span role="columnheader">פחת</span></div>`;
     st.perItem.forEach((p) => {
       const it = itemBy(p.k), wp = p.tot ? Math.round((p.waste / p.tot) * 100) : 0, open = S.openRow === p.k;
-      h += `<button class="tr" role="row" data-orow="${p.k}" aria-expanded="${open}"><span role="cell"><b>${esc(it.n)}</b></span><span role="cell">${p.tot}</span><span role="cell">${fmt(p.tot / (p.n || 1))}</span><span role="cell" class="${p.waste ? "badv" : ""}">${p.waste ? p.waste + (p.tot ? ` · ${wp}%` : "") : "—"}</span></button>`;
-      if (open) h += `<div class="trx">${[0, 1, 2, 3, 4, 5].map((w) => `<span><small>${DS[w]}</small><b>${st.wdN[w] ? fmt(p.wd[w] / st.wdN[w]) : "—"}</b></span>`).join("")}<span class="wide">הוזמן ב-${plN(p.n, "ימים")} · תוקף ${it.d} ימים${p.short ? ` · חסר מהייצור ${p.short}` : ""}${p.missing ? ` · חסר בקבלה ${p.missing}` : ""}</span></div>`;
+      h += `<button class="tr" role="row" data-orow="${esc(p.k)}" aria-expanded="${!!open}"><span role="cell"><b>${esc(it.n)}</b></span><span role="cell">${num(p.tot)}</span><span role="cell">${fmt(p.tot / (p.n || 1))}</span><span role="cell" class="${p.waste ? "badv" : ""}">${p.waste ? num(p.waste) + (p.tot ? ` · ${wp}%` : "") : "—"}</span></button>`;
+      if (open) h += `<div class="trx">${[0, 1, 2, 3, 4, 5].map((w) => `<span><small>${DS[w]}</small><b>${st.wdN[w] ? fmt(p.wd[w] / st.wdN[w]) : "—"}</b></span>`).join("")}<span class="wide">הוזמן ב-${plN(p.n, "ימים")} · תוקף ${num(it.d)} ימים${p.short ? ` · חסר מהייצור ${num(p.short)}` : ""}${p.missing ? ` · חסר בקבלה ${num(p.missing)}` : ""}</span></div>`;
     });
     return h + `</div>`; });
   // history
@@ -5462,10 +5561,10 @@ function viewData() {
     const st2 = o.status === "cancelled" ? `<span class="pill bad">בוטלה</span>` : o.status === "approved" ? `<span class="pill ok">אושרה</span>` : o.status === "pending" ? `<span class="pill warn">ממתינה</span>` : `<span class="pill">טיוטה</span>`;
     const xm = o.received ? extraMiss(o, (S.data.prod || {})[k]) : {}, shK = shortsOf((S.data.prod || {})[k]);
     const rc = o.received ? (count(xm) ? `<span class="pill bad">חסר</span>` : Object.keys(shK).length ? `<span class="pill warn">חוסר מראש</span>` : `<span class="pill ok">התקבל</span>`) : "";
-    h += `<button class="hrow" data-oday="${k}" aria-expanded="${open}"><span class="hd"><b>${DN[parse(k).getDay()]} ${ddmm(parse(k))}</b><small>${o.sentBy ? esc(whoN(o.sentBy)) + " · " + hm(o.sentAt) : "לא נשלחה"}</small></span><span class="hq">${sum(q) || sum(o.items)}<small>קופסאות</small></span><span class="hp">${st2}${o.late ? `<span class="pill late">אחרי הסגירה</span>` : ""}${o.changeCount ? `<span class="pill">${o.changeCount === 1 ? "שינוי אחד" : `${o.changeCount} שינויים`}</span>` : ""}${rc}</span></button>`;
+    h += `<button class="hrow" data-oday="${esc(k)}" aria-expanded="${!!open}"><span class="hd"><b>${DN[parse(k).getDay()]} ${ddmm(parse(k))}</b><small>${o.sentBy ? esc(whoN(o.sentBy)) + " · " + hm(o.sentAt) : "לא נשלחה"}</small></span><span class="hq">${sum(q) || sum(o.items)}<small>קופסאות</small></span><span class="hp">${st2}${o.late ? `<span class="pill late">אחרי הסגירה</span>` : ""}${o.changeCount ? `<span class="pill">${o.changeCount === 1 ? "שינוי אחד" : `${num(o.changeCount)} שינויים`}</span>` : ""}${rc}</span></button>`;
     if (open) {
       const m = sum(q) ? q : o.items || {};
-      h += `<div class="hx">${Object.keys(m).filter((i) => okKey(i) && +m[i] > 0).map((i) => `<span>${esc(itemBy(i).n)} <b>${num(m[i])}</b></span>`).join("")}${o.note ? `<p class="anote">${I.note}<span>${esc(o.note)}</span></p>` : ""}${Object.keys(shK).length ? `<p class="warnv">חוסר מהייצור: ${Object.keys(shK).map((i) => esc(itemBy(i).n) + " " + num(shK[i].n)).join(", ")}</p>` : ""}${count(xm) ? `<p class="badv">חסר בקבלה: ${Object.keys(xm).map((i) => esc(itemBy(i).n) + " " + num(xm[i])).join(", ")}</p>` : ""}${o.approvedBy ? `<p class="hint">אושרה ע״י ${esc(whoN(o.approvedBy))} ${hm(o.approvedAt)}</p>` : ""}${o.cancelled ? `<p class="badv">בוטלה ע״י ${esc(whoN(o.cancelled.by))}${o.cancelled.note ? ": " + esc(o.cancelled.note) : ""}</p>` : ""}<p class="hrow-act"><button class="btn small ghost" data-log="${k}">יומן שינויים</button> ${o.status === "cancelled" ? `<button class="btn small ghost" data-uncancel="${k}">שחזר הזמנה</button>` : `<button class="btn small ghost badt" data-cancel="${k}">לבטל הזמנה</button>`}</p></div>`;
+      h += `<div class="hx">${Object.keys(m).filter((i) => okKey(i) && +m[i] > 0).map((i) => `<span>${esc(itemBy(i).n)} <b>${num(m[i])}</b></span>`).join("")}${o.note ? `<p class="anote">${I.note}<span>${esc(o.note)}</span></p>` : ""}${Object.keys(shK).length ? `<p class="warnv">חוסר מהייצור: ${Object.keys(shK).map((i) => esc(itemBy(i).n) + " " + num(shK[i].n)).join(", ")}</p>` : ""}${count(xm) ? `<p class="badv">חסר בקבלה: ${Object.keys(xm).map((i) => esc(itemBy(i).n) + " " + num(xm[i])).join(", ")}</p>` : ""}${o.approvedBy ? `<p class="hint">אושרה ע״י ${esc(whoN(o.approvedBy))} ${hm(o.approvedAt)}</p>` : ""}${o.cancelled ? `<p class="badv">בוטלה ע״י ${esc(whoN(o.cancelled.by))}${o.cancelled.note ? ": " + esc(o.cancelled.note) : ""}</p>` : ""}<p class="hrow-act"><button class="btn small ghost" data-log="${esc(k)}">יומן שינויים</button> ${o.status === "cancelled" ? `<button class="btn small ghost" data-uncancel="${esc(k)}">שחזר הזמנה</button>` : `<button class="btn small ghost badt" data-cancel="${esc(k)}">לבטל הזמנה</button>`}</p></div>`;
     }
   });
   if (hist.length > 10 && !S.histAll) h += `<button class="more" id="histAll">הצג את כל ${hist.length} ההזמנות</button>`;
@@ -5511,7 +5610,7 @@ function viewDishes() {
   h += `<div class="list">`;
   ids.forEach((id) => {
     const d = S.dishes[id], st = wStats(d), n = st ? st.n : 0, c = (d.comps || []).filter((x) => x.n).length, lv = dishLevel(d);
-    const meta = lv === 2 ? `✓ בממוצע ${st.avg} גר׳ למנה` : [c ? "✓ מתכון" : "חסר מתכון", `${Math.min(n, W_GOAL)}/${W_GOAL} שקילות`].join(" · ");
+    const meta = lv === 2 ? `✓ בממוצע ${num(st.avg)} גר׳ למנה` : [c ? "✓ מתכון" : "חסר מתכון", `${Math.min(n, W_GOAL)}/${W_GOAL} שקילות`].join(" · ");
     h += `<button class="row rrow" data-dish="${esc(id)}" data-key="${esc(id)}"><span class="rdot ${lv === 2 ? "on" : lv ? "half" : ""}"></span><div class="nm"><b>${esc(d.n)}</b><small>${esc(meta)}</small></div><span class="chev">‹</span></button>`;
   });
   return h + `</div>`;
@@ -5521,7 +5620,7 @@ function dishSheet(sh) {
   const ws = (live.weighings || []).map((w, i) => [w, i]).slice(-3).reverse();
   const diff = st && rg ? Math.round(((st.avg - rg) / rg) * 100) : null;
   const comps = (d.comps || []).map((x, i) => `<div class="ingr" data-key="${compKey(x)}"><input class="ta" list="prepList" data-ci="${i}" data-cf="n" placeholder="מה (למשל: אורז)" value="${esc(x.n || "")}"><input class="ta qn" data-ci="${i}" data-cf="q" inputmode="decimal" placeholder="גרם" value="${esc(x.q ?? "")}"><button class="x" data-cdel="${i}" aria-label="מחק">✕</button></div>`).join("");
-  const prog = n >= W_GOAL ? `<b>✓ בממוצע ${st.avg} גר׳ למנה</b> <small>(${n} שקילות)</small>` : `<b>${n} מתוך ${W_GOAL} שקילות</b>${st ? ` <small>· עד עכשיו ${st.avg} גר׳ בממוצע</small>` : ""}`;
+  const prog = n >= W_GOAL ? `<b>✓ בממוצע ${num(st.avg)} גר׳ למנה</b> <small>(${num(n)} שקילות)</small>` : `<b>${num(n)} מתוך ${W_GOAL} שקילות</b>${st ? ` <small>· עד עכשיו ${num(st.avg)} גר׳ בממוצע</small>` : ""}`;
   /* מנה קיימת (יש רכיבים): כרטיס מקופל — מכפיל גדול, שקילה, ושלוש שורות שנפתחות. מנה חדשה: הכול פתוח כמו תמיד */
   if ((live.comps || []).some((x) => x.n)) {
     const dc = perm("money") ? dishCosts().find((x) => x.id === sh.id) : null, op = sh.op || "";
@@ -5532,7 +5631,7 @@ function dishSheet(sh) {
     <div class="wadd"><input class="ta" id="wG" inputmode="numeric" placeholder="כמה גרם?" aria-label="משקל בגרם"><button class="btn" id="wAdd">שמור שקילה</button></div>
     <div class="wprog"><div>${prog}</div>
       ${ws.length ? `<div class="wlist">${ws.map(([w, i]) => `<span class="wchip">${num(w.g)} גר׳<small>${ddmm(new Date(w.at))}</small><button data-wdel="${i}" aria-label="מחק שקילה">✕</button></span>`).join("")}</div>` : ""}</div>
-    ${diff != null ? `<p class="wdiff ${Math.abs(diff) >= 10 ? "warn" : ""}">לפי המתכון ${rg} גר׳ · בפועל יוצא ${st.avg} גר׳ (${diff > 0 ? "+" : ""}${diff}%)</p>` : ""}
+    ${diff != null ? `<p class="wdiff ${Math.abs(diff) >= 10 ? "warn" : ""}">לפי המתכון ${rg} גר׳ · בפועל יוצא ${num(st.avg)} גר׳ (${diff > 0 ? "+" : ""}${diff}%)</p>` : ""}
     <div class="grp dfgrp">${fold("c", "מה בצלחת", `${num(nC)} רכיבים`, `${comps}<button class="addmore ghosty" id="cAdd">＋ עוד רכיב</button><datalist id="prepList">${items(true).map((it) => `<option value="${esc(it.n)}">`).join("")}</datalist>`)}
     ${perm("money") ? fold("p", "מחיר בתפריט", d.price ? `<span dir="ltr">₪${esc(d.price)}</span>` : "", `<label class="srow dprice"><span class="st"><small>כולל מע״מ · לחישוב עלות ומכפיל</small></span><span class="rin"><input class="fin" data-dk="price" inputmode="decimal" placeholder="₪" value="${esc(d.price ?? "")}" aria-label="מחיר בתפריט"></span></label>`) : ""}
     ${fold("n", "הערות הגשה", "", `<textarea class="ta dnotes" data-dk="notes" rows="2" aria-label="הערות הגשה">${esc(d.notes || "")}</textarea>`)}</div>
@@ -5547,7 +5646,7 @@ function dishSheet(sh) {
     <div class="dstep"><i>2</i>מה יש בצלחת? <small>(גרם)</small></div>
     ${comps}<button class="addmore ghosty" id="cAdd">＋ עוד רכיב</button>
     <datalist id="prepList">${items(true).map((it) => `<option value="${esc(it.n)}">`).join("")}</datalist>
-    ${diff != null ? `<p class="wdiff ${Math.abs(diff) >= 10 ? "warn" : ""}">לפי המתכון ${rg} גר׳ · בפועל יוצא ${st.avg} גר׳ (${diff > 0 ? "+" : ""}${diff}%)</p>` : ""}
+    ${diff != null ? `<p class="wdiff ${Math.abs(diff) >= 10 ? "warn" : ""}">לפי המתכון ${rg} גר׳ · בפועל יוצא ${num(st.avg)} גר׳ (${diff > 0 ? "+" : ""}${diff}%)</p>` : ""}
     ${perm("money") ? `<label class="srow dprice"><span class="st"><b>מחיר בתפריט</b><small>כולל מע״מ · לחישוב עלות ומכפיל</small></span><span class="rin"><input class="fin" data-dk="price" inputmode="decimal" placeholder="₪" value="${esc(d.price ?? "")}" aria-label="מחיר בתפריט"></span></label>` : ""}
     <div class="dstep"><i>3</i>הערות הגשה</div>
     <textarea class="ta dnotes" data-dk="notes" rows="2" aria-label="הערות הגשה">${esc(d.notes || "")}</textarea>
@@ -5610,14 +5709,14 @@ async function saveZ(file) {
 function icardSheet(sh) {
   const it = itemBy(sh.k), f = sh.f, kc = feat("itemCard");
   return `<h3 class="sht">${esc(it.n)}</h3><p class="cmeta">${esc(it.c || "")}</p>
-    <div class="grp"><div class="srow"><span class="st"><b>ימי תוקף</b></span><div class="step sm"><button data-icd="-1" aria-label="פחות" ${f.d > 1 ? "" : "disabled"}>−</button><output>${f.d}</output><button data-icd="1" aria-label="עוד">+</button></div></div>
+    <div class="grp"><div class="srow"><span class="st"><b>ימי תוקף</b></span><div class="step sm"><button data-icd="-1" aria-label="פחות" ${f.d > 1 ? "" : "disabled"}>−</button><output>${num(f.d)}</output><button data-icd="1" aria-label="עוד">+</button></div></div>
     ${kc ? `<label class="srow"><span class="st"><b>ק״ג נטו בקופסה</b></span><span class="rin"><input class="fin" id="icKg" inputmode="decimal" value="${esc(f.kg ?? "")}" placeholder="${kgOf(sh.k) ? num(kgOf(sh.k)) : "—"}"></span></label>
     <label class="srow"><span class="st"><b>מחיר לק״ג</b>${(f.kg || kgOf(sh.k)) && f.ppk ? `<small>קופסה ≈ ${ils((f.kg || kgOf(sh.k)) * f.ppk)}</small>` : ""}</span><span class="rin"><input class="fin" id="icPpk" inputmode="decimal" value="${esc(f.ppk ?? "")}" placeholder="₪"></span></label>` : ""}
     <button class="srow" id="icShow"><span class="st"><b>מופיע ברשימת ההזמנה</b></span><span class="sw ${f.on ? "on" : ""}"></span></button></div>
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.5.1";
+const APP_VER = "2.5.3";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -6005,16 +6104,34 @@ async function addPhotos(list, kind) {
   render(); toast(!ok ? "לא נשמר, נסו שוב" : ok < list.length ? `נשמרו ${ok} מתוך ${list.length}` : kind === "r" ? "נשמר ✓ Claude קורא את הקבלה" : "נשמר ✓");
 }
 async function savePhotos() {
-  const sh = S.sheet, f = sh.f, p = S.photos[sh.id] || {}, base = { day: /^\d{4}-\d{2}-\d{2}$/.test(f.day) ? f.day : p.day || todayKey() };
+  const sh = S.sheet, f = sh.f, p = S.photos[sh.id] || {}, oldDay = p.day, oldA = Object.assign({}, p.aiData || {}), base = { day: /^\d{4}-\d{2}-\d{2}$/.test(f.day) ? f.day : p.day || todayKey() };
   if (p.kind === "r") { base.sup = supN(f.sup).slice(0, 60); base.amt = toNum(f.amt); base.cat = RCATS.includes(f.cat) ? f.cat : ""; }
   if (p.kind === "z") { const c = Math.round(toNum(f.covers) ?? -1), t = toNum(f.amt); base.aiData = Object.assign({}, p.aiData || {}, c >= 0 ? { covers: c } : {}, t > 0 ? { total: t } : {}); }
   if (p.review && p.review.length && !p.reviewOk && canReview()) base.reviewOk = { by: myName(), at: Date.now() };
   try {
     await setDoc(doc(db, CP("photos"), sh.id), base, { merge: true }); Object.assign(S.photos[sh.id], base);
     if (base.reviewOk && S.money) (S.money.revs || []).forEach((x) => { if (x.id === sh.id) x.reviewOk = base.reviewOk; });
-    if (p.kind === "z") { const dp = {}; if (base.aiData.covers != null) dp.covers = base.aiData.covers; if (base.aiData.total > 0) dp.salesTotal = base.aiData.total; if (Object.keys(dp).length) await setDoc(doc(db, CP("days"), base.day), dp, { merge: true }); }
+    if (p.kind === "z") { const dp = {}; if (base.aiData.covers != null) dp.covers = base.aiData.covers; if (base.aiData.total > 0) dp.salesTotal = base.aiData.total; if (oldDay && oldDay !== base.day) Object.assign(dp, { date: base.day, z: arrayUnion(sh.id) }); /* date: בלי זה היום החדש לא נכנס לחישובים */ if (Object.keys(dp).length) await setDoc(doc(db, CP("days"), base.day), dp, { merge: true }); if (oldDay && oldDay !== base.day) await zClear(oldDay, sh.id, oldA); }
     sh.edit = false; render(); toast("נשמר");
   } catch (e) { toast("לא נשמר"); }
+}
+/* דו״ח קופה שעבר ליום אחר או נמחק: המכירות, הסועדים והסגירה יורדים מהיום הישן — רק כשזה הדו״ח היחיד שלו ובלי נתוני טאביט */
+/* A = מה שהדו״ח הזה קרא (לפני התיקון). יום עם עוד דו״ח: רק מוציאים את המזהה מהרשימה.
+   יום עם טאביט: מורידים סכום/סועדים רק אם הם בדיוק של הדו״ח הזה (טאביט לא דורס סכום קיים, אז הסכום הוא של מי שכתב ראשון) */
+async function zClear(day, id, A) {
+  const x = await getDoc(doc(db, CP("days"), day)); if (!x.exists()) return;
+  const D = x.data() || {}, zs = Array.isArray(D.z) ? D.z : [], others = zs.some((z) => z !== id), A0 = A || {}, p = {};
+  if (zs.includes(id)) p.z = zs.filter((z) => z !== id);
+  if (!others) {
+    const mine = (f, v) => !D.tabit || (v != null && +D[f] === +v);
+    if (D.salesTotal != null && mine("salesTotal", A0.total)) p.salesTotal = deleteField();
+    if (D.covers != null && mine("covers", A0.covers)) p.covers = deleteField();
+    if (D.closedAt != null) Object.assign(p, { closedAt: deleteField(), closedBy: deleteField() });
+  }
+  if (!Object.keys(p).length) return;
+  await setDoc(doc(db, CP("days"), day), p, { merge: true });
+  if (!others && S.dayDoc && S.dayKeySub === day) S.dayDoc = Object.assign({}, S.dayDoc, { closedAt: null });
+  if (S.money && S.money.days && S.money.days[day]) { if (p.salesTotal) delete S.money.days[day].salesTotal; if (p.covers) delete S.money.days[day].covers; }
 }
 async function openPhoto(id) {
   const p = S.photos[id]; if (!p) return;
@@ -6085,19 +6202,19 @@ async function runExport() {
 }
 function viewItems() {
   let h = "";
-  h += S.addOpen ? `<form class="card form" id="addF"><input id="nN" placeholder="שם ההכנה" aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${c}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>` : `<button class="btn ghost full addopen" id="addOpen">＋ הכנה חדשה</button>`;
+  h += S.addOpen ? `<form class="card form" id="addF"><input id="nN" placeholder="שם ההכנה" aria-label="שם ההכנה"><select id="nC" aria-label="קטגוריה">${CATS.map((c) => `<option>${esc(c)}</option>`).join("")}</select><input id="nD" type="number" min="1" max="365" value="4" aria-label="ימי תוקף"><button class="btn" type="submit">הוסף</button></form>` : `<button class="btn ghost full addopen" id="addOpen">＋ הכנה חדשה</button>`;
   if (can.admin() && !IS_DEMO) h += `<button class="btn ghost full addopen" id="impGo">ייבוא הכנות · תמונה / אקסל / הדבקה</button>`;
   if (!S.catalog) return h + SKEL;
   S.icat = S.icat || {};
   grouped(items(true)).forEach(([cat, list], ci) => {
     const open = S.icat[cat] ?? ci === 0;
-    h += `<section class="cat"><button class="cath" data-icat="${esc(cat)}" aria-expanded="${open}"><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${list.length} <i class="chev">${open ? "▴" : "▾"}</i></span></button>`;
+    h += `<section class="cat"><button class="cath" data-icat="${esc(cat)}" aria-expanded="${!!open}"><span>${catIcon(cat)}${esc(cat)}</span><span class="ct">${list.length} <i class="chev">${open ? "▴" : "▾"}</i></span></button>`;
     if (!open) { h += `</section>`; return; }
     h += `<div class="list">`;
     list.forEach((it) => {
       const off = it.active === false;
-      const meta = [`תוקף ${it.d} ימים`, feat("itemCard") && kgOf(it.k) ? `${num(kgOf(it.k))} ק״ג` : "", feat("itemCard") && it.ppk ? `₪${num(it.ppk)}/ק״ג` : ""].filter(Boolean).join(" · ");
-      h += `<button class="row irow${off ? " off" : ""}" data-icard="${it.k}" data-key="${it.k}"><span class="nm"><b>${esc(it.n)}</b><small>${esc(meta)}</small></span>${off ? `<span class="pill">מוסתר</span>` : ""}<span class="schev">‹</span></button>`;
+      const meta = [`תוקף ${num(it.d)} ימים`, feat("itemCard") && kgOf(it.k) ? `${num(kgOf(it.k))} ק״ג` : "", feat("itemCard") && it.ppk ? `₪${num(it.ppk)}/ק״ג` : ""].filter(Boolean).join(" · ");
+      h += `<button class="row irow${off ? " off" : ""}" data-icard="${esc(it.k)}" data-key="${esc(it.k)}"><span class="nm"><b>${esc(it.n)}</b><small>${esc(meta)}</small></span>${off ? `<span class="pill">מוסתר</span>` : ""}<span class="schev">‹</span></button>`;
     });
     h += `</div></section>`;
   });
@@ -6144,7 +6261,7 @@ function viewReport(r) {
   if ((A.actions || []).length) h += `<h4 class="gh">מה לעשות</h4><ol class="racts">${A.actions.map((x, i) => `<li><i>${i + 1}</i><div><b>${esc(x.title)}</b>${x.detail ? `<p>${esc(x.detail)}</p>` : ""}<span class="rchips">${x.saving ? `<span class="chip sv2">חיסכון ${esc(x.saving)}</span>` : ""}${x.who ? `<span class="chip who">${esc(x.who)}</span>` : ""}</span></div></li>`).join("")}</ol>`;
   if (A.forecast) h += `<h4 class="gh">תחזית</h4><div class="rnotes">${esc(A.forecast)}</div>`;
   if (A.check) h += `<h4 class="gh">לבדוק השבוע</h4><div class="rnotes">${esc(A.check)}</div>`;
-  h += `<p class="gfoot rfoot">Claude · ${ddmm(new Date(r.at))} ${hm(r.at)}${r.prevFrom ? ` · בהשוואה ל-${r.prevFrom.slice(8)}/${r.prevFrom.slice(5, 7)}–${r.prevTo.slice(8)}/${r.prevTo.slice(5, 7)}` : ""}</p>`;
+  h += `<p class="gfoot rfoot">Claude · ${ddmm(new Date(r.at))} ${hm(r.at)}${r.prevFrom ? ` · בהשוואה ל-${esc(r.prevFrom.slice(8))}/${esc(r.prevFrom.slice(5, 7))}–${esc(r.prevTo.slice(8))}/${esc(r.prevTo.slice(5, 7))}` : ""}</p>`;
   return h;
 }
 function mdLite(text) {
@@ -6217,7 +6334,7 @@ function viewControl() {
     const R = S.permRole || "rosie", daily = ["dishes", "book", "photos", "close", "yieldQ"], view = ["money", "credits", "itemCard", "exportPick"];
     const sw = (m) => { const on = permRoles(m).includes(R); return `<button class="srow" data-perm="${m}" data-prole="${R}" aria-pressed="${on}"><span class="st"><b>${PERM_LBL[m]}</b></span><span class="sw ${on ? "on" : ""}"></span></button>`; };
     return `<div class="seg wide" role="group">${["rosie", "prod", "admin"].map((r) => `<button data-prolesel="${r}" aria-pressed="${R === r}">${ROLE_SHORT[r]}</button>`).join("")}</div>` +
-      grp(daily.map(sw), "עבודה יומית") + grp(view.map(sw), "צפייה וניהול", `השינוי חל מיד אצל כל ${R === "admin" ? "המנהלים" : R === "prod" ? "צוות הייצור" : `עובדי ${SN()}`}. כיבוי לא מוחק נתונים.`);
+      grp(daily.map(sw), "עבודה יומית") + grp(view.map(sw), "צפייה וניהול", `השינוי חל מיד אצל כל ${R === "admin" ? "המנהלים" : R === "prod" ? "צוות הייצור" : `עובדי ${esc(SN())}`}. כיבוי לא מוחק נתונים.`);
   }
   if (S.ctl === "team") return viewStaff();
   if (S.ctl === "ideas") return viewIdeas();
@@ -6235,7 +6352,7 @@ function viewControl() {
   if (A === "people") {
     const pend = (S.staff || []).filter((u) => rawRole(u, S.site) === "pending").length;
     return h + grp([
-      row({ data: 'data-ctl="team"', icon: ICB("#FF9F0A", IC.users), t: `צוות ${SN()}`, v: pend ? `<span class="pill warn">${pend} ממתינים</span>` : `${staffOfSite().length}`, chev: true }),
+      row({ data: 'data-ctl="team"', icon: ICB("#FF9F0A", IC.users), t: `צוות ${esc(SN())}`, v: pend ? `<span class="pill warn">${pend} ממתינים</span>` : `${staffOfSite().length}`, chev: true }),
       ...(SITES.length > 1 ? [row({ data: 'data-ctl="access"', icon: ICB("#FF8A3D", IC.lock), t: "מי נכנס לאיזו מסעדה", chev: true })] : []),
       ...(IS_DEMO ? [] : [row({ id: "newSite", icon: ICB("#30B0C7", IC.plate), t: "מסעדה חדשה", s: "בלי קוד · נתונים נפרדים לגמרי", chev: true })]),
       row({ data: 'data-ctl="perm"', icon: ICB("#30D158", IC.lock), t: "מי רואה מה", chev: true }),
@@ -6251,14 +6368,14 @@ function viewControl() {
       row({ id: "itemsGo", icon: ICB("#64D2FF", IC.list), t: "הכנות", v: `${items(true).length}`, chev: true }),
       ...(IS_DEMO ? [] : [row({ id: "backupBtn", icon: ICB("#8E8E93", IC.doc), t: "ייצוא מלא", s: "כל הנתונים של המסעדה · JSON ו-CSV", chev: true }),
       row({ icon: ICB("#32D74B", IC.speed), t: "מהירות במכשיר הזה", s: speedLine() })]),
-    ], SN()) + (IS_DEMO ? "" : grp([row({ id: "resetBtn", icon: ICB("#FF453A", IC.reset), t: "איפוס נתונים", danger: true, chev: true })], "", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים."));
+    ], esc(SN())) + (IS_DEMO ? "" : grp([row({ id: "resetBtn", icon: ICB("#FF453A", IC.reset), t: "איפוס נתונים", danger: true, chev: true })], "", "מוחק הזמנות, ייצור ופחת. הכנות, עובדים והגדרות נשארים."));
   h += grp([
     row({ data: 'data-ctl="log"', icon: ICB("#0A84FF", IC.list), t: "יומן פעולות", v: `${evToday.length} היום`, chev: true }),
     ...(IS_DEMO ? [] : [row({ data: 'data-ctl="errors"', icon: ICB("#FF453A", IC.info), t: "שגיאות מהטלפונים", v: errLine(), chev: true }),
       row({ data: 'data-ctl="waitlist"', icon: ICB("#3DDC97", IC.users), t: "רשימת המתנה", s: "מדף הנחיתה", v: wlLine(), chev: true })]),
     row({ data: 'data-ctl="reports"', icon: ICB("#D97757", IC.ai), t: "Claude ודוחות", s: C.reps[0] ? esc(C.reps[0].headline || C.reps[0].title || "") : "", chev: true }),
     ...(IS_DEMO ? [] : [row({ id: "ideasGo", icon: ICB("#FFD60A", IC.idea), t: "הצעות לשיפור", s: "מכל המסעדות", chev: true })]),
-  ], SN());
+  ], esc(SN()));
   if (C.ev.length) h += grp(C.ev.slice(0, 5).map(evRow), "אחרונות");
   return h;
 }
@@ -6267,8 +6384,8 @@ const archEnd = (a) => new Date((a.at || 0) + ARCH_DAYS * 86400000);
 function sitesGroup() {
   const L = SITES.filter((x) => x.added), A = ARCH.filter((a) => Date.now() < archEnd(a).getTime());
   if (!L.length && !A.length) return "";
-  return grp(L.map((x) => row({ data: `data-sitem="${x.k}"`, t: esc(x.f), chev: true }))
-    .concat(A.map((a) => row({ data: `data-sitem="${a.k}"`, t: esc(String(a.d.name || a.k)), s: `נמחקה. שחזור עד ${ddmm(archEnd(a))}`, chev: true }))), "מסעדות");
+  return grp(L.map((x) => row({ data: `data-sitem="${esc(x.k)}"`, t: esc(x.f), chev: true }))
+    .concat(A.map((a) => row({ data: `data-sitem="${esc(a.k)}"`, t: esc(String(a.d.name || a.k)), s: `נמחקה. שחזור עד ${ddmm(archEnd(a))}`, chev: true }))), "מסעדות");
 }
 /* "לא בשימוש": לא רוזי ולא ג'קו (מובנות), לא המסעדה הפעילה, בלי הזמנות ב-60 יום, בלי עובד פעיל שמשויך רק אליה. מחזיר משפט אחד או "" */
 const ACTIVE_R = (r) => !!r && !["none", "pending", "blocked"].includes(r);
@@ -6477,12 +6594,12 @@ const BC_R = [["", "כולם"], ["rosie", "טבחי הזמנות"], ["prod", "ט
 function viewBcast() {
   const B = S.bc = S.bc || { sites: [S.site], role: "" };
   if (!S.bcList) loadBcast();
-  let h = `<div class="bcv">` + grp(SITES.map((x) => `<button type="button" class="srow" data-bcs="${x.k}" role="checkbox" aria-checked="${B.sites.includes(x.k)}"><span class="st"><b>${esc(x.f)}</b></span><span class="pck" aria-hidden="true">${B.sites.includes(x.k) ? SVG(IC.check) : ""}</span></button>`), "למי")
+  let h = `<div class="bcv">` + grp(SITES.map((x) => `<button type="button" class="srow" data-bcs="${esc(x.k)}" role="checkbox" aria-checked="${B.sites.includes(x.k)}"><span class="st"><b>${esc(x.f)}</b></span><span class="pck" aria-hidden="true">${B.sites.includes(x.k) ? SVG(IC.check) : ""}</span></button>`), "למי")
     + `<div class="seg wide" role="group" aria-label="תפקיד">${BC_R.map(([k, l]) => `<button data-bcr="${k}" aria-pressed="${B.role === k}">${l}</button>`).join("")}</div>`
     + `<h4 class="gh">הודעה</h4><div class="grp bcg"><textarea class="bcta" id="bcIn" rows="4" maxlength="300" placeholder="למשל: מחר המטבח נפתח ב-8:00" aria-label="ההודעה"></textarea></div>
     <button class="btn full bcsend" id="bcSend" ${B.busy ? "disabled" : ""}>שליחה</button>`;
   const L = S.bcList || [];
-  if (L.length) h += grp(L.map((b) => { const sent = Object.values(b.sent || {}).reduce((a, n) => a + (+n || 0), 0); return `<div class="srow"><span class="st"><b>${esc(b.text)}</b><small>${ddmm(new Date(b.at))} ${hm(b.at)}, ${(b.sites || []).map((k) => esc(siteOf(k).n)).join(" + ")}, ${b.status === "done" ? `נשלחה ל-${sent} מכשירים` : "נשלחת…"}</small></span></div>`; }), "נשלחו")
+  if (L.length) h += grp(L.map((b) => { const sent = Object.values(b.sent || {}).reduce((a, n) => a + (+n || 0), 0); return `<div class="srow"><span class="st"><b>${esc(b.text)}</b><small>${ddmm(new Date(b.at))} ${hm(b.at)}, ${(b.sites || []).map((k) => esc(siteOf(k).n)).join(" + ")}, ${b.status === "done" ? `נשלחה ל-${num(sent)} מכשירים` : "נשלחת…"}</small></span></div>`; }), "נשלחו")
     + (can.owner() && L.some((b) => b.id && b.status === "done") ? `<div class="grp"><button class="srow center" id="bcClear"><b class="danger">מחיקת היסטוריה</b></button></div>` : "");
   return h + `</div>`;
 }
@@ -6576,7 +6693,7 @@ function viewRoom() {
     if (s.err) { h += grp([row({ t: "לא נטען" })], esc(x.f)); return; }
     const c = [card("הזמנות", num(s.orders), s.orders ? `${num(s.boxes)} קופסאות יצאו ממטבח הייצור.` : "לא נשלחו הזמנות השבוע.")];
     c.push(card("פחת", `${fmt(s.wPct)}%`, s.wBoxes ? `נזרקו ${fmt(s.wBoxes)} קופסאות${s.topW[0] ? ` · הכי הרבה ${esc(s.topW[0].n)}` : ""}.` : "לא נרשם פחת השבוע.", s.wPct >= 8 ? "warnt" : ""));
-    c.push(card("חוסרים", num(s.shortN), s.shortN ? `חסר משהו ב-${s.shortDays === 1 ? "יום אחד" : s.shortDays + " ימים"}.` : "כל המשלוחים הגיעו מלאים.", s.shortN ? "badt" : ""));
+    c.push(card("חוסרים", num(s.shortN), s.shortN ? `חסר משהו ב-${s.shortDays === 1 ? "יום אחד" : num(s.shortDays) + " ימים"}.` : "כל המשלוחים הגיעו מלאים.", s.shortN ? "badt" : ""));
     const M = s.money, TG = tgtOf(M && M.set);
     if (M && M.fc != null) c.push(card("Food cost החודש", `${fmt(M.fc)}%`, M.fc <= TG.f ? `בתוך היעד של ${fmt(TG.f)}%.` : `${fmt(M.fc - TG.f)} נקודות מעל היעד של ${fmt(TG.f)}%.`, pctCls(M.fc, TG.f, TG.f + 5)));
     if (x.k === S.site && perm("money") && S.money) {
@@ -6618,14 +6735,14 @@ function viewOverview() {
   const gauge = (v, tg) => { const mx = Math.max(tg / 0.75, v * 1.05), a = (Math.min(v, tg) / mx) * 100, o = v > tg ? ((v - tg) / mx) * 100 : 0, t = (tg / mx) * 100;
     return `<div class="gauge" role="img" aria-label="${fmt(r1(v))}% מתוך יעד ${fmt(tg)}%"><i class="ok" style="width:${a.toFixed(2)}%"></i>${o ? `<i class="over" style="inset-inline-start:calc(${t.toFixed(2)}% + 2px);width:calc(${o.toFixed(2)}% - 2px)"></i>` : ""}</div><div class="gauge-k"><span style="inset-inline-start:${t.toFixed(2)}%">יעד <bdi dir="ltr">${fmt(tg)}%</bdi></span></div>`; };
   if (M && M.fc != null) {
-    const d = r1(M.fc - TG.f), pt = M.sales > 0 ? ils(Math.round(M.sales / 100)) : "";
+    const d = r1(M.fc - TG.f), pt = M.sales > 0 ? ils(Math.round((M.salesN || M.sales) / 100)) : ""; /* נקודת Food cost = 1% מהמכירות נטו */
     const say = !d ? "בדיוק ביעד." : `<span dir="ltr">${fmt(Math.abs(d))}</span> נקודות ${d > 0 ? "מעל היעד" : "מתחת ליעד"}.${pt ? ` כל נקודה היא בערך <span dir="ltr">${pt}</span> בחודש.` : ""}`;
     h += `<${here && can.admin() ? 'button class="card ovhero metric" data-go="data"' : 'div class="card ovhero metric"'}><span class="lbl"><span>Food cost החודש</span>${here && can.admin() ? CH : ""}</span><b class="big" dir="ltr"><span data-cnt="${r1(M.fc)}" data-dec="1">${fmt(r1(M.fc))}</span><small>%</small></b><span class="say">${say}</span>${gauge(M.fc, TG.f)}</${here && can.admin() ? "button" : "div"}>`;
-  } else h += `<div class="card ovhero metric"><span class="lbl"><span>פחת, 7 ימים</span></span><b class="big" dir="ltr"><span data-cnt="${s.wPct}" data-dec="1">${fmt(s.wPct)}</span><small>%</small></b><span class="say">${s.wBoxes ? `נזרקו ${fmt(s.wBoxes)} קופסאות.` : "לא נרשם פחת."}</span></div>`;
+  } else h += `<div class="card ovhero metric"><span class="lbl"><span>פחת, 7 ימים</span></span><b class="big" dir="ltr"><span data-cnt="${+s.wPct || 0}" data-dec="1">${fmt(s.wPct)}</span><small>%</small></b><span class="say">${s.wBoxes ? `נזרקו ${fmt(s.wBoxes)} קופסאות.` : "לא נרשם פחת."}</span></div>`;
   /* היום: הזמנה הבאה (tomSt), ייצור וקבלות, כל אחת עם שברון אל הלשונית שלה */
   const ln = (go, ic, t, v, cls) => { const b = here && go; return `<${b ? `button data-go="${go}"` : "div"} class="srow ic"><span class="ib">${ic}</span><span class="st"><b>${t}</b></span><span class="sv ${cls || ""}">${v}</span>${b ? CH : ""}</${b ? "button" : "div"}>`; };
   const today = [ln(can.order() ? "order" : "prod", TAB_ICONS.order, `הזמנה ל${nextLbl(s.tk)}`, esc(s.tomSt), s.tomSt === "ממתינה לאישור" ? "warnt" : ""),
-    ln("prod", TAB_ICONS.prod, "ייצור", `<span dir="ltr">${num(s.tomBoxes || 0)}</span> קופסאות`)];
+    ln("prod", TAB_ICONS.prod, "ייצור", `<span dir="ltr">${num(s.todBoxes || 0)}</span> קופסאות`)]; /* ייצור היום = המשלוח של היום (לא ההזמנה הבאה) */
   if (M && M.recN != null) today.push(ln(feat("money") || perm("money") ? "photos" : "", SVG(IC.doc), "קבלות", `<span dir="ltr">${num(M.recN)}</span> החודש`));
   h += `<h2 class="sh">היום</h2><div class="grp">${today.join("")}</div>`;
   /* קופסאות לפי יום (מהנתונים של המסעדה הפעילה), או רכש לפי שבוע למסעדה אחרת */
@@ -6674,8 +6791,8 @@ function grpSum(x, qo, qp, qw, cat, rep, money, from, today) {
   const msP = money ? moneyStats(pmy, { days: cut(money.days), rec: (money.rec || []).filter((r) => !(r.day || "").startsWith(pmy) || r.day.slice(8, 10) <= dom), months: {}, up: {} }) : null, wk = [];
   if (money) { const w0 = pm.getTime(), nW = Math.floor((now.getTime() - w0) / 6048e5) + 1; for (let i = 0; i < nW; i++) wk.push(0);
     (money.rec || []).forEach((r) => { if (!(+r.amt > 0) || !r.day) return; const i = Math.floor((parse(r.day).getTime() - w0) / 6048e5); if (i >= 0 && i < nW) wk[i] += +r.amt; }); }
-  return { k: x.k, n: x.f, noCut: !!x.noCut, tk, orders: n, boxes, late, shortN, shortDays, wBoxes, wPct: boxes ? Math.round((wBoxes / boxes) * 1000) / 10 : 0, topW, tomSt, tomBoxes: sum(qtySource(t)) || sum(t.items || {}),
-    money: ms && ms.sales > 0 ? { recN: (money.rec || []).filter((r) => (r.day || "").startsWith(ymOf(now)) && +r.amt > 0).length, sales: ms.sales, food: ms.food, fc: ms.fc, pc: ms.pc, set: money.set || null, fcPrev: msP && msP.sales > 0 && ms.src === "z" && msP.src === "z" ? msP.fc : null, /* רק דוחות קופה מול דוחות קופה, אותם ימים */ wk } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter(repLive) };
+  return { k: x.k, n: x.f, noCut: !!x.noCut, tk, orders: n, boxes, late, shortN, shortDays, wBoxes, wPct: boxes ? Math.round((wBoxes / boxes) * 1000) / 10 : 0, topW, tomSt, tomBoxes: sum(qtySource(t)) || sum(t.items || {}), todBoxes: sum(qtySource(orders[today])),
+    money: ms && ms.sales > 0 ? { recN: (money.rec || []).filter((r) => (r.day || "").startsWith(ymOf(now)) && +r.amt > 0).length, sales: ms.sales, salesN: ms.salesN, food: ms.food, fc: ms.fc, pc: ms.pc, set: money.set || null, fcPrev: msP && msP.sales > 0 && ms.src === "z" && msP.src === "z" ? msP.fc : null, /* רק דוחות קופה מול דוחות קופה, אותם ימים */ wk } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter(repLive) };
 }
 function grpAlerts(s) {
   const a = [], h = new Date().getHours();
@@ -6724,7 +6841,7 @@ function viewGroup() {
   h += `<section class="card brief"><div class="bhd">${ICB("#D97757", IC.ai)}<b>Claude</b>${br && br.status === "done" ? `<small>${ddmm(new Date(br.doneAt || br.at))} ${hm(br.doneAt || br.at)}</small>` : ""}</div>`;
   if (br && br.status === "done" && br.short) {
     h += `<ul class="b3"><li class="ok"><i></i><span>${bidiNum(br.short.good)}</span></li><li class="warn"><i></i><span>${bidiNum(br.short.watch)}</span></li><li class="todo"><i></i><span>${bidiNum(br.short.todo)}</span></li></ul>`;
-    if (br.long) h += `<button class="bmore" data-dsec="brief" aria-expanded="${open}">${open ? "סגור" : "הסבר מלא"} <span class="chev">${open ? "▴" : "▾"}</span></button>${open ? `<div class="blong report">${mdLite(br.long)}</div>` : ""}`;
+    if (br.long) h += `<button class="bmore" data-dsec="brief" aria-expanded="${!!open}">${open ? "סגור" : "הסבר מלא"} <span class="chev">${open ? "▴" : "▾"}</span></button>${open ? `<div class="blong report">${mdLite(br.long)}</div>` : ""}`;
   } else h += `<p class="bwait">${S.settings && S.settings.ai ? `<span class="spin"></span>Claude מסכם את השבוע` : "Claude לא מחובר"}</p>`;
   h += `</section>`;
   }
@@ -6732,9 +6849,9 @@ function viewGroup() {
     const s = G.sites[x.k]; if (!s) return;
     if (s.err) { h += `<section class="card scard"><div class="schd"><h3>${esc(x.f)}</h3></div><p class="sok">לא נטען</p></section>`; return; }
     const al = grpAlerts(s), M = s.money;
-    h += `<section class="card scard s-${x.k}"><div class="schd"><h3><i class="sdot"></i>${esc(x.f)}</h3><small>7 ימים</small></div>
-      <div class="sk"><div><b>${s.orders}</b><span>הזמנות</span></div><div><b>${num(s.boxes)}</b><span>קופסאות</span></div><div><b class="${s.shortN ? "badt" : ""}">${s.shortN}</b><span>חוסרים</span></div><div>${s.noCut ? `<b class="${s.wPct >= 8 ? "warnt" : ""}">${fmt(s.wPct)}%</b><span>פחת</span>` : `<b class="${s.late ? "warnt" : ""}">${s.late}</b><span>איחורים</span>`}</div></div>
-      ${M ? `<div class="sm"><div><small>מכירות החודש</small><b>${M.sales ? ils(M.sales) : "—"}</b></div><div><small>Food cost</small><b class="${pctCls(M.fc, tgtOf(M.set).f, tgtOf(M.set).f + 5)}">${M.fc == null ? "—" : fmt(M.fc) + "%"}</b><em>יעד ${fmt(tgtOf(M.set).f)}%</em></div><div><small>Prime cost</small><b class="${pctCls(M.pc, tgtOf(M.set).p, tgtOf(M.set).p + 5)}">${M.pc == null ? "—" : fmt(M.pc) + "%"}</b><em>יעד ${fmt(tgtOf(M.set).p)}%</em></div></div>` : ""}
+    h += `<section class="card scard s-${esc(x.k)}"><div class="schd"><h3><i class="sdot"></i>${esc(x.f)}</h3><small>7 ימים</small></div>
+      <div class="sk"><div><b>${num(s.orders)}</b><span>הזמנות</span></div><div><b>${num(s.boxes)}</b><span>קופסאות</span></div><div><b class="${s.shortN ? "badt" : ""}">${num(s.shortN)}</b><span>חוסרים</span></div><div>${s.noCut ? `<b class="${s.wPct >= 8 ? "warnt" : ""}">${fmt(s.wPct)}%</b><span>פחת</span>` : `<b class="${s.late ? "warnt" : ""}">${num(s.late)}</b><span>איחורים</span>`}</div></div>
+      ${M ? `<div class="sm"><div><small>מכירות החודש, בלי מע״מ</small><b>${M.sales ? ils(M.salesN != null ? M.salesN : netSales(M.sales)) : "—"}</b></div><div><small>Food cost</small><b class="${pctCls(M.fc, tgtOf(M.set).f, tgtOf(M.set).f + 5)}">${M.fc == null ? "—" : fmt(M.fc) + "%"}</b><em>יעד ${fmt(tgtOf(M.set).f)}%</em></div><div><small>Prime cost</small><b class="${pctCls(M.pc, tgtOf(M.set).p, tgtOf(M.set).p + 5)}">${M.pc == null ? "—" : fmt(M.pc) + "%"}</b><em>יעד ${fmt(tgtOf(M.set).p)}%</em></div></div>` : ""}
       <div class="stom"><span>הזמנה הבאה</span><b>${esc(s.tomSt)}</b>${s.tomBoxes ? `<small>${num(s.tomBoxes)} קופסאות</small>` : ""}</div>
       ${al.length ? `<ul class="sal">${al.map(([c, t]) => `<li class="${c}"><i></i>${esc(t)}</li>`).join("")}</ul>` : `<p class="sok">✓ הכול תקין</p>`}
       ${s.reps[0] ? `<button class="srow srep" data-grep="${esc(x.k)}|${esc(s.reps[0].id)}">${ICB((REP_K[s.reps[0].kind] || [, "#8E8E93"])[1], IC.doc)}<span class="st"><b>${esc(s.reps[0].title || "דוח")}</b><small>${esc(s.reps[0].headline || "")}</small></span><span class="schev">‹</span></button>` : ""}
@@ -6757,12 +6874,12 @@ function accessLine(u) {
 function viewAccess() {
   const list = (S.staff || []).filter((u) => !isOwnerP(u)).sort((a, b) => String(a.name || a.username).localeCompare(String(b.name || b.username), "he"));
   if (!list.length) return SKEL;
-  return grp(list.map((u) => row({ data: `data-access="${u.uid}"`, t: esc(u.name || u.username), s: esc(accessLine(u)), chev: true })), "", "רק אתה משנה גישה למסעדות. בעלים רואה ומנהל רק את המסעדות שסומנו לו.");
+  return grp(list.map((u) => row({ data: `data-access="${esc(u.uid)}"`, t: esc(u.name || u.username), s: esc(accessLine(u)), chev: true })), "", "רק אתה משנה גישה למסעדות. בעלים רואה ומנהל רק את המסעדות שסומנו לו.");
 }
 function accessSheet(sh) {
   const u = (S.staff || []).find((x) => x.uid === sh.uid) || {}, f = sh.f;
   return `<h3 class="sht">${esc(u.name || u.username || "")}</h3><p class="cmeta" dir="ltr">${esc(u.username || "")}</p>
-    <div class="grp">${SITES.map((x) => `<div class="srow"><span class="st"><b>${esc(x.f)}</b></span><select class="sel" data-acsite="${x.k}" aria-label="תפקיד ב${esc(x.f)}">${AROLES.map(([k, l]) => `<option value="${k}" ${(f.sites[x.k] || "none") === k ? "selected" : ""}>${l}</option>`).join("")}</select></div>`).join("")}
+    <div class="grp">${SITES.map((x) => `<div class="srow"><span class="st"><b>${esc(x.f)}</b></span><select class="sel" data-acsite="${esc(x.k)}" aria-label="תפקיד ב${esc(x.f)}">${AROLES.map(([k, l]) => `<option value="${k}" ${(f.sites[x.k] || "none") === k ? "selected" : ""}>${l}</option>`).join("")}</select></div>`).join("")}
     <button class="srow" id="acChief"><span class="st"><b>בעלים</b><small>מנהל במסעדות שסומנו למעלה</small></span><span class="sw ${f.chief ? "on" : ""}"></span></button></div>
     <div class="sbtns"><button class="btn" id="acSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
@@ -6792,8 +6909,8 @@ function viewSugg(C) {
   let h = "";
   days.forEach((k) => {
     const sg = C.sugg[k], act = qtySource(C.orders[k]), a = sum(act), pct = a ? suggCmp(sg.items, act) : null, open = S.sgDay === k;
-    h += grp([row({ data: `data-sgday="${k}"`, t: `${DN[parse(k).getDay()]} ${ddmm(parse(k))}`, s: `${a ? `Claude ${num(sum(sg.items))} · ${SN()} ${num(a)}` : `Claude מציע ${num(sum(sg.items))} קופסאות`}${sg.note ? ` · ${esc(sg.note)}` : ""}`, right: pct != null ? `<span class="aist ${pct >= 75 ? "ok" : pct >= 50 ? "warn" : "bad"}">${pct}%</span>` : "", chev: !open })]
-      .concat(open ? [`<div class="srow sgr sgh2"><span class="st"><b>הכנה</b></span><span class="sv"><em>Claude</em>${a ? ` · ${SN()}` : ""}</span></div>`] : [])
+    h += grp([row({ data: `data-sgday="${esc(k)}"`, t: `${DN[parse(k).getDay()]} ${ddmm(parse(k))}`, s: `${a ? `Claude ${num(sum(sg.items))} · ${esc(SN())} ${num(a)}` : `Claude מציע ${num(sum(sg.items))} קופסאות`}${sg.note ? ` · ${esc(sg.note)}` : ""}`, right: pct != null ? `<span class="aist ${pct >= 75 ? "ok" : pct >= 50 ? "warn" : "bad"}">${pct}%</span>` : "", chev: !open })]
+      .concat(open ? [`<div class="srow sgr sgh2"><span class="st"><b>הכנה</b></span><span class="sv"><em>Claude</em>${a ? ` · ${esc(SN())}` : ""}</span></div>`] : [])
       .concat(open ? [items(true).filter((it) => +(sg.items[it.k] || 0) > 0 || +(act[it.k] || 0) > 0).map((it) => { const x = +(sg.items[it.k] || 0), y = +(act[it.k] || 0); return `<div class="srow sgr"><span class="st"><b>${esc(it.n)}</b></span><span class="sv"><em>${num(x)}</em>${a ? ` · ${num(y)}` : ""}</span></div>`; }).join("")] : []));
   });
   return `<p class="gfoot sgh">מצב צל: רק לך. הצוות לא רואה את ההצעות.</p>` + h;
@@ -6808,15 +6925,16 @@ function viewStaff() {
   const raw = (u) => (S.site === "rosie" ? u.role || "none" : ((u.sites || {})[S.site] || "none"));
   const list = staffOfSite().map((u) => Object.assign({}, u, { role: chiefAt(u, S.site) || isOwnerP(u) ? (isOwnerP(u) ? "admin" : raw(u) === "none" ? "admin" : raw(u)) : raw(u), _lock: chiefAt(u, S.site) || (S.site !== "rosie" && isOwnerP(u)) })).sort((a, b) => (order[a.role] ?? 9) - (order[b.role] ?? 9));
   if (!list.length) return h + SKEL;
-  h += `<div class="list">`;
+  h += `<div class="list tmlist">`;
   list.forEach((u) => {
     const me = S.user && u.uid === S.user.uid, np = Object.keys(u.push || {}).length;
     h += `<div class="row${u.role === "pending" ? " on" : ""}"><div class="avatar sm" aria-hidden="true">${esc(initials(u.name || u.username))}</div><div class="nm"><b>${esc(u.name || u.username)}</b><small dir="ltr">${esc(u.username)}</small>${np ? `<small class="okt">התראות פעילות</small>` : ""}</div>
-      ${chiefAt(u, S.site) || isOwnerP(u) ? `<span class="pill chief">בעלים</span>` : ""}${can.owner() && !me ? `<button class="chip icon acc" data-access="${u.uid}" aria-label="מסעדות של ${esc(u.name || u.username)}">${SVG(IC.users)}</button>` : ""}${isOwnerP(u) || chiefAt(u, S.site) ? "" /* בעלים: תווית בלבד, בלי בחירת תפקיד נעולה */ : `<select class="sel" data-role="${u.uid}" aria-label="תפקיד ${esc(u.name)}" ${me || u._lock || (!can.owner() && ["admin", "fmgr"].includes(u.role)) ? "disabled" : ""}>${Object.keys(ROLES).filter((r) => can.owner() || !["admin", "fmgr"].includes(r) || u.role === r).map((r) => `<option value="${r}" ${u.role === r ? "selected" : ""}>${ROLES[r]}</option>`).join("")}</select>`}${can.owner() && !me ? `<button class="udel" data-udel="${u.uid}" aria-label="מחיקת ${esc(u.name || u.username)}">${SVG(IC.trash)}</button>` : ""}</div>`;
+      ${chiefAt(u, S.site) || isOwnerP(u) ? `<span class="pill chief">בעלים</span>` : ""}${can.owner() && !me ? `<button class="chip icon acc" data-access="${esc(u.uid)}" aria-label="מסעדות של ${esc(u.name || u.username)}">${SVG(IC.users)}</button>` : ""}${isOwnerP(u) || chiefAt(u, S.site) ? "" /* בעלים: תווית בלבד, בלי בחירת תפקיד נעולה */ : `<select class="sel" data-role="${esc(u.uid)}" aria-label="תפקיד ${esc(u.name)}" ${me || u._lock || (!can.owner() && ["admin", "fmgr"].includes(u.role)) ? "disabled" : ""}>${Object.keys(ROLES).filter((r) => can.owner() || !["admin", "fmgr"].includes(r) || u.role === r).map((r) => `<option value="${r}" ${u.role === r ? "selected" : ""}>${ROLES[r]}</option>`).join("")}</select>`}${can.owner() && !me ? `<button class="udel" data-udel="${esc(u.uid)}" aria-label="מחיקת ${esc(u.name || u.username)}">${SVG(IC.trash)}</button>` : ""}</div>`;
   });
   h += `</div>`;
+  if (!list.some((u) => !(S.user && u.uid === S.user.uid))) h += `<div class="empty ec">${SVG(IC.users)}<b>עוד אין עובדים</b><span>מי שנרשם ואושר יופיע כאן</span></div>`;
   const devices = S.staff.reduce((a, u) => a + Object.keys(u.push || {}).length, 0);
-  if (devices) h += `<p class="gfoot tfoot">${devices} מכשירים מקבלים התראות.</p>`; /* בלי הערה כשאין: בשורה של עובד כתוב "התראות פעילות" */
+  if (devices) h += `<p class="gfoot tfoot">${num(devices)} מכשירים מקבלים התראות.</p>`; /* בלי הערה כשאין: בשורה של עובד כתוב "התראות פעילות" */
   return h;
 }
 function viewSheet() {
@@ -6828,11 +6946,11 @@ function viewSheet() {
   } else if (sh.type === "done") {
     const it = itemBy(sh.k), today = dkey(new Date()), v = prodQty(sh.k), total = sh.prev + sh.made, lack = v - total;
     b = `<h3>כמה קופסאות יצאו?</h3><p class="big">${esc(it.n)}</p>
-      ${sh.prev ? `<p class="hint" style="text-align:right;margin:-8px 0 6px">כבר הוכנו קודם ${sh.prev} מתוך ${v}</p>` : ""}
-      <div class="step lg"><button data-smade="-1" aria-label="פחות" ${sh.made ? "" : "disabled"}>−</button><output>${sh.made}</output><button data-smade="1" aria-label="עוד">+</button></div>
+      ${sh.prev ? `<p class="hint" style="text-align:right;margin:-8px 0 6px">כבר הוכנו קודם ${num(sh.prev)} מתוך ${num(v)}</p>` : ""}
+      <div class="step lg"><button data-smade="-1" aria-label="פחות" ${sh.made ? "" : "disabled"}>−</button><output>${num(sh.made)}</output><button data-smade="1" aria-label="עוד">+</button></div>
       ${lack > 0 ? `<div class="lack"><b>חסרות ${lack} קופסאות. מה עושים?</b>
         <div class="seg"><button data-smode="later" aria-pressed="${sh.mode === "later"}">נכין עוד היום</button><button data-smode="short" aria-pressed="${sh.mode === "short"}">יחסר במשלוח</button></div>
-        ${sh.mode === "short" ? `<input id="shnote" class="ta" placeholder="הערה ל${SN()}, למשל: יגיע מחר" value="${esc(sh.note || "")}">` : ""}</div>`
+        ${sh.mode === "short" ? `<input id="shnote" maxlength="2000" class="ta" placeholder="הערה ל${esc(SN())}, למשל: יגיע מחר" value="${esc(sh.note || "")}">` : ""}</div>`
       : `<p class="hint">תוקף עד ${DN[addDays(parse(today), it.d - 1).getDay()]} ${ddmm(addDays(parse(today), it.d - 1))}</p>`}
       ${feat("yieldQ") && S.yields && !kgOf(sh.k) ? `<label class="ykg">כמה ק״ג נטו בקופסה? <small>שואלים רק פעם אחת</small><input class="ta" id="ykg" inputmode="decimal" placeholder="ק״ג"></label>` : ""}
       <div class="sbtns"><button class="btn okb" id="sDoneOk">${lack > 0 ? (sh.mode === "short" ? "לשמור ולעדכן" : "שמור") : "✓ כן, בוצע"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
@@ -6845,11 +6963,11 @@ function viewSheet() {
       <div class="sbtns"><button class="btn" id="sUndoOk">כן, להחזיר</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "reject") {
     b = `<h3>${sh.change ? "לדחות את בקשת השינוי?" : "לדחות את ההזמנה?"}</h3>
-      <p class="hint" style="text-align:right">${sh.change ? "ההזמנה המאושרת הקודמת נשארת בתוקף." : `${SN()} יראו שההזמנה נדחתה, ויוכלו לתקן ולשלוח שוב.`}</p>
-      <div class="field"><label for="rjnote">סיבה (${SN()} יראו אותה)</label><textarea id="rjnote" rows="2" class="ta" placeholder="למשל: אין מספיק חומר גלם, להזמין פחות"></textarea></div>
-      <div class="sbtns"><button class="btn badb" id="sRejectOk">✕ דחה</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+      <p class="hint" style="text-align:right">${sh.change ? "ההזמנה המאושרת הקודמת נשארת בתוקף." : `${esc(SN())} יראו שההזמנה נדחתה, ויוכלו לתקן ולשלוח שוב.`}</p>
+      <div class="field"><label for="rjnote">סיבה (${esc(SN())} יראו אותה)</label><textarea id="rjnote" maxlength="2000" rows="2" class="ta" placeholder="למשל: אין מספיק חומר גלם, להזמין פחות"></textarea></div>
+      <div class="sbtns"><button class="btn badb" id="sRejectOk" data-n="${esc(sheetN())}">✕ דחה</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "waste") {
-    const opts = grouped(items(true)).map(([c, l]) => `<optgroup label="${esc(c)}">${l.map((it) => `<option value="${it.k}" ${sh.k === it.k ? "selected" : ""}>${esc(it.n)}</option>`).join("")}</optgroup>`).join("");
+    const opts = grouped(items(true)).map(([c, l]) => `<optgroup label="${esc(c)}">${l.map((it) => `<option value="${esc(it.k)}" ${sh.k === it.k ? "selected" : ""}>${esc(it.n)}</option>`).join("")}</optgroup>`).join("");
     b = `<h3>רישום פחת</h3><p class="hint" style="text-align:right">הכנה שנזרקת שוב ושוב יורדת לבד בהצעת ההזמנה.</p>
       <div class="field"><label for="wk">הכנה</label><select id="wk" class="sel full"><option value="">בחר הכנה…</option>${opts}</select></div>
       <div class="field"><label>כמות (קופסאות)</label><div class="step lg"><button data-wq="-0.5" aria-label="פחות">−</button><output>${fmt(sh.qty)}</output><button data-wq="0.5" aria-label="עוד">+</button></div></div>
@@ -6859,7 +6977,7 @@ function viewSheet() {
     const ap = (S.today && S.today.approved) || {};
     b = `<h3>מה חסר במשלוח?</h3><div class="alist">`;
     const shs = shortsOf(S.todayProd);
-    items(true).filter((it) => +ap[it.k] > 0).forEach((it) => { const v = sh.missing[it.k] || 0, sk = shs[it.k] ? +shs[it.k].n || 0 : 0, mx = +ap[it.k] - sk; if (mx <= 0) return; b += `<div class="arow"><div class="nm"><b>${esc(it.n)}</b><small>${sk ? `נשלחו ${num(mx)} · <em class="shw">חסר ${num(sk)} מראש</em>` : `הוזמנו ${num(ap[it.k])}`}</small></div><div class="step sm"><button data-mdec="${it.k}" ${v ? "" : "disabled"} aria-label="פחות">−</button><output${v ? ' class="chg"' : ""}>${v}</output><button data-minc="${it.k}" ${v >= mx ? "disabled" : ""} aria-label="עוד">+</button></div></div>`; });
+    items(true).filter((it) => +ap[it.k] > 0).forEach((it) => { const v = sh.missing[it.k] || 0, sk = shs[it.k] ? +shs[it.k].n || 0 : 0, mx = +ap[it.k] - sk; if (mx <= 0) return; b += `<div class="arow"><div class="nm"><b>${esc(it.n)}</b><small>${sk ? `נשלחו ${num(mx)} · <em class="shw">חסר ${num(sk)} מראש</em>` : `הוזמנו ${num(ap[it.k])}`}</small></div><div class="step sm"><button data-mdec="${esc(it.k)}" ${v ? "" : "disabled"} aria-label="פחות">−</button><output${v ? ' class="chg"' : ""}>${num(v)}</output><button data-minc="${esc(it.k)}" ${v >= mx ? "disabled" : ""} aria-label="עוד">+</button></div></div>`; });
     b += `</div><div class="sbtns"><button class="btn" id="sMissOk">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "menu") {
     b = `<div class="me"><div class="avatar lg" aria-hidden="true">${esc(initials(myName()))}</div><div><b>${esc(myName())}</b><small>${roleLabel(S.profile, S.site)}</small></div></div>
@@ -6914,7 +7032,7 @@ function viewSheet() {
     const LA = MO.laborAI;
     if (LT && LA && LA.state === "pending") b += `<div class="aistate"><span class="spin"></span>Claude מנתח${S.settings && S.settings.ai ? "" : " ברגע שיחובר"}</div>`;
     if (LT && LA && LA.state === "done") b += `<div class="lai"><b>${esc(LA.headline || "")}</b>${(LA.points || []).length ? `<ul>${LA.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}${(LA.actions || []).map((a) => `<p class="lact">${esc(a.title || "")}${a.saving ? ` <em>${esc(a.saving)}</em>` : ""}</p>`).join("")}</div>`;
-    if (LT) b += `<div class="grp">${row({ t: "לפי טאביט", v: ils(LT.cost) })}${row({ t: "שעות", v: `${num(Math.round(LT.hours))} · ${LT.staff} עובדים` })}${LT.ot || LT.hol ? row({ t: "שעות נוספות", v: `${num(Math.round(LT.ot || 0))}${LT.hol ? ` · שבת/חג ${num(Math.round(LT.hol))}` : ""}` }) : ""}${(LT.byRole || []).slice(0, 8).map((r) => row({ t: esc(r.role), v: `${r.cost ? ils(r.cost) : "—"} · ${num(Math.round(r.hours))} ש׳` })).join("")}${LT.tips ? row({ t: "טיפים (לא בעלות)", v: ils(LT.tips) }) : ""}</div><p class="cmeta">סכום אחר, כולל הפרשות מעסיק:</p>`;
+    if (LT) b += `<div class="grp">${row({ t: "לפי טאביט", v: ils(LT.cost) })}${row({ t: "שעות", v: `${num(Math.round(LT.hours))} · ${num(LT.staff)} עובדים` })}${LT.ot || LT.hol ? row({ t: "שעות נוספות", v: `${num(Math.round(LT.ot || 0))}${LT.hol ? ` · שבת/חג ${num(Math.round(LT.hol))}` : ""}` }) : ""}${(LT.byRole || []).slice(0, 8).map((r) => row({ t: esc(r.role), v: `${r.cost ? ils(r.cost) : "—"} · ${num(Math.round(r.hours))} ש׳` })).join("")}${LT.tips ? row({ t: "טיפים (לא בעלות)", v: ils(LT.tips) }) : ""}</div><p class="cmeta">סכום אחר, כולל הפרשות מעסיק:</p>`;
     else b += `<p class="cmeta">כל החודש, כולל מעסיק (משכורות, נסיעות, הפרשות)</p>`;
     b += `<input class="ta cbig" id="labIn" inputmode="decimal" placeholder="₪" value="${esc(cur)}">
       <div class="sbtns"><button class="btn" id="labOk">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
@@ -6949,8 +7067,8 @@ function viewSheet() {
       <div class="grp">${S.tab === "order" && can.order() ? row({ id: "noteBtn", icon: ICB("", IC.note || IC.doc), t: "הערה למטבח", s: (O().note || "").trim() ? esc(O().note.trim().slice(0, 40)) : "", chev: true }) : ""}${S.tab === "order" ? row({ id: "only", icon: ICB("#8E8E93", IC.eye), t: "רק מה שהוזמן", right: `<span class="sw ${S.onlyOrdered ? "on" : ""}"></span>` }) : ""}${S.tab === "order" && can.order() && O().sentAt && !O().received && O().status !== "cancelled" && S.day >= dkey(new Date()) ? row({ id: "moveBtn", icon: ICB("#5E5CE6", IC.cal), t: "להעביר יום", chev: true }) : ""}${row({ id: "wasteBtn", icon: ICB("#FF453A", IC.trash), t: "רישום פחת", chev: true })}</div>
       ${tl.length ? `<div class="grp">${tl.map(([k, l, c, i]) => row({ data: `data-tool="${k}"${k === "photos" ? ' data-cam="1"' : ""}`, icon: ICB(c, i), t: l, chev: true })).join("")}</div>` : ""}
       ${(() => { const o = O(); if (!o.sentAt || o.received) return "";
-        if (o.status === "cancelled") return can.admin() ? `<div class="grp">${row({ data: `data-uncancel="${S.day}"`, icon: ICB("#30D158", IC.reset), t: "שחזור ההזמנה" })}</div>` : "";
-        return can.admin() || (can.order() && o.status === "pending") ? `<div class="grp">${row({ data: `data-cancel="${S.day}"`, icon: ICB("#FF453A", IC.trash || IC.reset), t: "ביטול ההזמנה", danger: true })}</div>` : ""; })()}
+        if (o.status === "cancelled") return can.admin() ? `<div class="grp">${row({ data: `data-uncancel="${esc(S.day)}"`, icon: ICB("#30D158", IC.reset), t: "שחזור ההזמנה" })}</div>` : "";
+        return can.admin() || (can.order() && o.status === "pending") ? `<div class="grp">${row({ data: `data-cancel="${esc(S.day)}"`, icon: ICB("#FF453A", IC.trash || IC.reset), t: "ביטול ההזמנה", danger: true })}</div>` : ""; })()}
       <div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
   } else if (sh.type === "log") {
     const o = (S.data && S.data.orders[sh.day]) || {};
@@ -6963,11 +7081,11 @@ function viewSheet() {
     const o = ordOf(sh.day);
     b = `<h3>לבטל את ההזמנה?</h3><p class="big">משלוח ${DN[parse(sh.day).getDay()]} ${ddmm(parse(sh.day))}</p>
       <p class="hint" style="text-align:right">${plN(sum(qtySource(o)), "קופסאות")}. לא תופיע בייצור ובנתונים. אפשר לשחזר.</p>
-      <div class="field"><label for="cnote">סיבה (לא חובה)</label><input id="cnote" class="ta" placeholder="למשל: אירוע בוטל, הזמנה כפולה"></div>
-      <div class="sbtns"><button class="btn badb" id="sCancelOk">לבטל הזמנה</button><button class="btn ghost" id="sClose">סגירה</button></div>`;
+      <div class="field"><label for="cnote">סיבה (לא חובה)</label><input id="cnote" maxlength="2000" class="ta" placeholder="למשל: אירוע בוטל, הזמנה כפולה"></div>
+      <div class="sbtns"><button class="btn badb" id="sCancelOk" data-n="${esc(sheetN())}">לבטל הזמנה</button><button class="btn ghost" id="sClose">סגירה</button></div>`;
   } else if (sh.type === "reset") {
     b = `<h3 class="sht">איפוס כל הנתונים</h3>
-      <p>יימחקו לצמיתות: <b>${sh.counts ? `${sh.counts.orders} הזמנות, ${sh.counts.production} ימי ייצור, ${sh.counts.waste} רישומי פחת` : "סופר…"}</b>.</p>
+      <p>יימחקו לצמיתות: <b>${sh.counts ? `${num(sh.counts.orders)} הזמנות, ${num(sh.counts.production)} ימי ייצור, ${num(sh.counts.waste)} רישומי פחת` : "סופר…"}</b>.</p>
       <p class="gfoot">רשימת ההכנות, העובדים וההגדרות נשארים. אי אפשר לשחזר אחרי המחיקה.</p>
       <div class="grp">${row({ id: "backupBtn", icon: ICB("", IC.doc), t: "להוריד גיבוי קודם", chev: true })}</div>
       <div class="fgrp"><input class="fin" id="rpw" type="password" autocomplete="current-password" dir="ltr" placeholder="סיסמת המנהל" aria-label="סיסמת המנהל"></div>
@@ -7013,6 +7131,7 @@ function barHtml() {
   const cur = curItems(), n = count(cur), b = sum(cur), o = O(), dirty = isDirty();
   let label = "שלח הזמנה", dis = !n;
   if (o.status === "rejected") label = "שלח שוב";
+  else if (o.status === "cancelled" && !dirty) { label = "בוטלה"; dis = true; }
   else if (o.sentAt && dirty && (o.status === "approved" || o.status === "pending")) { label = "שולח עדכון…"; dis = true; }
   else if (o.sentAt && !dirty) { label = o.status === "approved" ? "אושרה ✓" : "ממתינה לאישור"; dis = true; }
   const shN = o.sentAt && !dirty && hasApproved(o) ? shortTot(S.prod) : 0;
@@ -7028,7 +7147,7 @@ function jumpHtml() {
   else if (hasApproved(O())) items(true).forEach((it) => { if (prodQty(it.k) && !isDone(it.k)) q[it.c] = (q[it.c] || 0) + prodQty(it.k); });
   const cats = S.tab === "prod" ? PROD_SEQ.filter((c) => q[c]) : CATS;
   if (!cats.length) return "";
-  return `<nav class="jump" aria-label="קפיצה לקטגוריה">${cats.map((c) => `<button data-jump="cat-${CATS.indexOf(c)}" aria-current="${S.jumpOn === "cat-" + CATS.indexOf(c)}">${esc(c)}${q[c] ? `<i>${q[c]}</i>` : ""}</button>`).join("")}</nav>`;
+  return `<nav class="jump" aria-label="קפיצה לקטגוריה">${cats.map((c) => `<button data-jump="cat-${CATS.indexOf(c)}" aria-current="${S.jumpOn === "cat-" + CATS.indexOf(c)}">${esc(c)}${q[c] ? `<i>${num(q[c])}</i>` : ""}</button>`).join("")}</nav>`;
 }
 /* מסך ייצור: מסך מלא לטאבלט במטבח, קריאה בלבד, מתעדכן חי (אותם מאזינים של היום הנבחר), רק המסעדה הנוכחית */
 function viewPmode() {
@@ -7081,8 +7200,8 @@ function viewApp() {
   const glow = S.tab === "prod" && S.allDone ? "g" : S.tab === "control" || S.tab === "settings" ? "n" : "";
   const bk = S.tab === "dishes" && S.lab === "book" && perm("book") && !S.re;
   const RS = S.tab === "room" ? roomSites() : [], rk = RS.some((x) => x.k === S.rk) ? S.rk : (RS[0] || {}).k;
-  const rkSw = RS.length > 1 ? `<span class="popwrap"><button class="glassbtn cap" id="rkBtn" data-pop="rk" aria-haspopup="menu" aria-expanded="${S.pop === "rk"}">${esc((RS.find((x) => x.k === rk) || {}).f || "")} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>${S.pop === "rk" ? `<div class="pop" role="menu" aria-label="מסעדה">${RS.map((x) => `<button role="menuitemradio" data-rk="${x.k}" aria-pressed="${x.k === rk}">${esc(x.f)}</button>`).join("")}</div>` : ""}</span>` : "";
-  const sub2 = bk && S.rv ? `<button class="navedit" id="rvEdit">עריכה</button>` : bk && S.book && Object.keys(S.book).length ? `<button class="navedit" id="bNew">＋ חדש</button>` : S.tab === "settings" || S.tab === "control" || S.tab === "dishes" ? "" : `<span class="navend">${S.tab === "order" && S.order !== null ? `<button class="glassbtn dots" id="moreBtn" aria-label="עוד אפשרויות" aria-pressed="${S.onlyOrdered}">${DOTS}</button>` : S.tab === "prod" && labSegs().length ? `<button class="glassbtn dots" id="moreProd" aria-label="עוד">${DOTS}</button>` : ""}<button class="avatar" id="menu" aria-label="הגדרות">${esc(initials(myName()))}</button></span>`;
+  const rkSw = RS.length > 1 ? `<span class="popwrap"><button class="glassbtn cap" id="rkBtn" data-pop="rk" aria-haspopup="menu" aria-expanded="${S.pop === "rk"}">${esc((RS.find((x) => x.k === rk) || {}).f || "")} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>${S.pop === "rk" ? `<div class="pop" role="menu" aria-label="מסעדה">${RS.map((x) => `<button role="menuitemradio" data-rk="${esc(x.k)}" aria-pressed="${x.k === rk}">${esc(x.f)}</button>`).join("")}</div>` : ""}</span>` : "";
+  const sub2 = bk && S.rv ? `<button class="navedit" id="rvEdit">עריכה</button>` : bk && S.book && Object.keys(S.book).length ? `<button class="navedit" id="bNew">＋ חדש</button>` : S.tab === "settings" || S.tab === "control" || S.tab === "dishes" ? "" : `<span class="navend">${S.tab === "order" && S.order !== null ? `<button class="glassbtn dots" id="moreBtn" aria-label="עוד אפשרויות" aria-pressed="${!!S.onlyOrdered}">${DOTS}</button>` : S.tab === "prod" && labSegs().length ? `<button class="glassbtn dots" id="moreProd" aria-label="עוד">${DOTS}</button>` : ""}<button class="avatar" id="menu" aria-label="הגדרות">${esc(initials(myName()))}</button></span>`;
   return `<div class="glow ${glow}" aria-hidden="true"></div><header><div class="wrap"><div class="navbar">${back || rkSw || (mySites().length > 1 ? `<button class="glassbtn cap sitesw" id="siteSw" aria-label="החלפת מסעדה">${esc(siteOf(S.site).f)} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>` : "<span></span>")}<b class="navtitle">${esc(title)}</b>${sub2 || "<span></span>"}</div>
       ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
       ${showDays ? `<div class="days" role="group" aria-label="יום משלוח"><i class="dpill" aria-hidden="true"></i>${days}</div>` : ""}</div></header>
@@ -7388,10 +7507,10 @@ function askOk() {
 function askHtml(sh) {
   const o = sh.o, f = o.f || [];
   return `<h3 class="sht">${esc(o.t)}</h3>${o.m ? `<p class="askm">${esc(o.m)}</p>` : ""}
-    ${f.length ? `<div class="grp askg">${f.map((x, i) => `<label class="srow askrow"><span class="st"><b>${esc(x.l)}</b></span><input class="askin" id="askF${i}" ${x.type === "num" ? 'inputmode="decimal" dir="ltr"' : x.type === "url" ? 'dir="ltr" readonly' : ""} value="${esc(String(x.v ?? ""))}" aria-label="${esc(x.l)}">${x.u ? `<span class="sv">${esc(x.u)}</span>` : ""}</label>`).join("")}</div>` : ""}
+    ${f.length ? `<div class="grp askg">${f.map((x, i) => `<label class="srow askrow"><span class="st"><b>${esc(x.l)}</b></span>${x.u ? `<span class="asku" dir="ltr">` : ""}<input class="askin" id="askF${i}" ${x.type === "num" ? 'inputmode="decimal" dir="ltr"' : x.type === "url" ? 'dir="ltr" readonly' : ""} value="${esc(String(x.v ?? ""))}" aria-label="${esc(x.l)}">${x.u ? `<span class="sv">${esc(x.u)}</span></span>` : ""}</label>`).join("")}</div>` : ""}
     <p class="err" role="alert">${esc(sh.err || "")}</p>
-    ${o.danger ? `<div class="grp"><button class="srow center" id="askOk"><b class="danger">${esc(o.ok || "מחיקה")}</b></button></div><div class="sbtns one"><button class="btn ghost" id="sClose">ביטול</button></div>`
-      : `<div class="sbtns"><button class="btn" id="askOk">${esc(o.ok || "אישור")}</button><button class="btn ghost" id="sClose">ביטול</button></div>`}`;
+    ${o.danger ? `<div class="grp"><button class="srow center" id="askOk" data-n="${esc(sheetN())}"><b class="danger">${esc(o.ok || "מחיקה")}</b></button></div><div class="sbtns one"><button class="btn ghost" id="sClose">ביטול</button></div>`
+      : `<div class="sbtns"><button class="btn" id="askOk" data-n="${esc(sheetN())}">${esc(o.ok || "אישור")}</button><button class="btn ghost" id="sClose">ביטול</button></div>`}`;
 }
 /* הגיליון שנסגר עובר לשכבה צדדית (בלי מזהים, בלי לחיצות) ויורד משם, כך שכל דרך סגירה מונפשת */
 function sheetOut(sh, sc) {
@@ -7441,7 +7560,7 @@ app.addEventListener("click", (e) => {
     else { S.tab = S.prevTab && S.prevTab !== S.tab ? S.prevTab : (tabsFor().find((x) => x[0] !== "room") || tabsFor()[0])[0]; }
     S.enter = true; render(); jumpTo(0);
   }
-  else if (t.id === "askOk") askOk();
+  else if (t.id === "askOk") { if (sheetBtnOk(t, "ask")) askOk(); }
   else if (t.id === "sClose" || d.close != null) closeSheet();
   else if (t.id === "pushBtn") enablePush();
   else if (t.id === "themeBtn") { const th = document.documentElement.dataset.theme === "light" ? "dark" : "light"; document.documentElement.dataset.theme = th; store("rosie-theme", th); render(); }
@@ -7453,9 +7572,9 @@ app.addEventListener("click", (e) => {
   else if (d.dec) bump(d.dec, -1);
   else if (d.ainc) { approveDraft[d.ainc] = approvalQty(d.ainc) + 1; render(); }
   else if (d.adec) { approveDraft[d.adec] = Math.max(0, approvalQty(d.adec) - 1); render(); }
-  else if (t.id === "approve") { buzz(10); approve(); }
+  else if (t.id === "approve") { if (uiOk(t, null, can.produce() && S.tab === "prod" && !!t.closest(".approve"))) { buzz(10); approve(); } }
   else if (t.id === "reject") { S.sheet = { type: "reject", change: hasApproved(O()) }; render(); }
-  else if (t.id === "sRejectOk") rejectOrder(($("rjnote") || {}).value || "");
+  else if (t.id === "sRejectOk" && sheetBtnOk(t, "reject")) rejectOrder(($("rjnote") || {}).value || "");
   else if (d.done) { const prev = madeSoFar(d.done); S.sheet = { type: "done", k: d.done, prev, made: Math.max(0, prodQty(d.done) - prev), mode: "later" }; render(); }
   else if (d.smode) { const n = $("shnote"); if (n) sh.note = n.value; sh.mode = d.smode; render(); }
   else if (d.smade) { const n = $("shnote"); if (n) sh.note = n.value; sh.made = Math.max(0, sh.made + +d.smade); render(); }
@@ -7516,7 +7635,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "pwrGo") sendPwReset();
   else if (d.pwru && sh && sh.type === "pwr" && !sh.busy) { sh.u = d.pwru; sh.err = ""; render(); }
   else if (t.id === "npOk") saveNewPw();
-  else if (d.perm && d.prole && can.owner()) { const m = d.perm, r = d.prole, cur = permRoles(m).slice(), i = cur.indexOf(r); if (i >= 0) cur.splice(i, 1); else cur.push(r); S.settings = Object.assign({}, S.settings, { perm: Object.assign({}, S.settings.perm, { [m]: cur }) }); render(); setDoc(doc(db, CP("settings"), "app"), { perm: { [m]: cur } }, { merge: true }).then(() => act("perm", `${PERM_LBL[m]} · ${ROLE_SHORT[r]} ${i >= 0 ? "כובה" : "הודלק"}`)).catch(() => toast("לא נשמר")); }
+  else if (d.perm && d.prole && can.owner() && uiOk(t, null, S.tab === "control" && S.ctl === "perm")) { const m = d.perm, r = d.prole, cur = permRoles(m).slice(), i = cur.indexOf(r); if (i >= 0) cur.splice(i, 1); else cur.push(r); S.settings = Object.assign({}, S.settings, { perm: Object.assign({}, S.settings.perm, { [m]: cur }) }); render(); setDoc(doc(db, CP("settings"), "app"), { perm: { [m]: cur } }, { merge: true }).then(() => act("perm", `${PERM_LBL[m]} · ${ROLE_SHORT[r]} ${i >= 0 ? "כובה" : "הודלק"}`)).catch(() => toast("לא נשמר")); }
   else if (d.wday != null) { const w = +d.wday, od = offDays().slice(), i = od.indexOf(w); if (i >= 0) od.splice(i, 1); else if (od.length < 6) od.push(w); else { toast("צריך לפחות יום עבודה אחד"); return; } setDoc(doc(db, CP("settings"), "app"), { offDays: od.sort() }, { merge: true }).then(() => { toast("ימי העבודה עודכנו"); act("settings", `ימי עבודה: ${DN[w]} ${i >= 0 ? "נפתח" : "נסגר"}`); }).catch(() => toast("לא נשמר")); }
   else if (t.id === "crBtn") { S.sheet = { type: "credits" }; render(); }
   else if (t.id === "revGo") { S.sheet = { type: "rev" }; render(); }
@@ -7524,7 +7643,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "crFrom") { const p = S.photos[sh.id] || {}; S.sheet = { type: "creditNew", photo: sh.id, f: { sup: p.sup || "", reason: "חסר" } }; render(); }
   else if (d.crr) { sh.f.reason = d.crr; render(); }
   else if (t.id === "crSave") saveCredit();
-  else if (d.crdone) { const id = d.crdone; setDoc(doc(db, CP("credits"), id), { status: "done", doneAt: Date.now(), doneBy: myName() }, { merge: true }).then(() => { S.credits[id].status = "done"; render(); toast("סומן שהזיכוי התקבל ✓"); }).catch(() => toast("לא נשמר")); }
+  else if (d.crdone && uiOk(t, "credits", true)) { const id = d.crdone; setDoc(doc(db, CP("credits"), id), { status: "done", doneAt: Date.now(), doneBy: myName() }, { merge: true }).then(() => { S.credits[id].status = "done"; render(); toast("סומן שהזיכוי התקבל ✓"); }).catch(() => toast("לא נשמר")); }
   else if (t.id === "laborBtn") {
     const ym = S.moneyYm || ymOf(new Date()); S.sheet = { type: "labor", ym }; render();
     getDoc(doc(db, CP("months"), ym)).then((x) => { if (S.money && x.exists()) { S.money.months[ym] = x.data(); if (S.sheet && S.sheet.type === "labor") render(); } }).catch(() => {});
@@ -7549,6 +7668,7 @@ app.addEventListener("click", (e) => {
   else if (d.wr) { sh.reason = d.wr; render(); }
   else if (t.id === "sWasteOk") saveWaste();
   else if (t.id === "recvAll") receiveAll({});
+  else if (t.id === "recvUndo") { if (uiOk(t, null, can.order() && S.tab === "order")) ask({ t: "לבטל את אישור הקבלה?", m: "ההזמנה תחזור למצב שלפני האישור", ok: "ביטול קבלה", danger: true }).then((ok) => { if (ok) undoReceive(); }); }
   else if (t.id === "recvMiss") { S.sheet = { type: "missing", missing: {} }; render(); }
   else if (d.minc) { const sk = shortsOf(S.todayProd)[d.minc], mx = (+((S.today && S.today.approved) || {})[d.minc] || 0) - ((sk && +sk.n) || 0); sh.missing[d.minc] = Math.min(mx, (sh.missing[d.minc] || 0) + 1); render(); }
   else if (d.mdec) { sh.missing[d.mdec] = Math.max(0, (sh.missing[d.mdec] || 0) - 1); render(); }
@@ -7557,7 +7677,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "useLast") applySuggestion("last");
   else if (t.id === "offSugg") { S.suggOff[S.day] = true; render(); }
   else if (t.id === "noteBtn") { S.sheet = null; S.noteOpen = true; render(); const n = $("note"); if (n) { n.focus(); n.scrollIntoView({ block: "center" }); } } /* תמיד פוקוס בשדה, גם כשכבר יש הערה */
-  else if (d.toggle) { const it = items(true).find((x) => x.k === d.toggle); if (it) { catWrite(it.k, { active: it.active === false }); act("catalog", `${it.active === false ? "הוחזרה" : "הוסתרה"}: ${it.n}`); } }
+  else if (t.id === "qClr") { S.q = ""; render(); const n = $("q"); if (n) n.focus(); }
   else if (t.id === "only" || t.id === "onlyChip") { S.onlyOrdered = !S.onlyOrdered; S.sheet = null; render(); }
   else if (t.id === "sInoteOk" || t.id === "sInoteDel") {
     const txt = t.id === "sInoteDel" ? "" : (($("inoteIn") || {}).value || "").trim().slice(0, 80), k = sh.k, day = S.day;
@@ -7583,14 +7703,14 @@ app.addEventListener("click", (e) => {
   else if (d.range) { S.range = +d.range; S.histAll = false; loadData(); }
   else if (d.orow) { S.openRow = S.openRow === d.orow ? null : d.orow; render(); }
   else if (d.oday) { S.openDay = S.openDay === d.oday ? null : d.oday; render(); }
-  else if (d.delw) { const wid = d.delw; ask({ t: "למחוק את רישום הפחת?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("waste"), wid)).then(() => { S.data.waste = S.data.waste.filter((w) => w.id !== wid); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
+  else if (d.delw && uiOk(t, null, can.admin() && S.tab === "data")) { const wid = d.delw; ask({ t: "למחוק את רישום הפחת?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("waste"), wid)).then(() => { S.data.waste = S.data.waste.filter((w) => w.id !== wid); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "advBtn") { S.adv = !S.adv; render(); }
   else if (d.dsec) { S.dsec = S.dsec || {}; S.dsec[d.dsec] = !S.dsec[d.dsec]; render(); }
   else if (t.id === "histAll") { S.histAll = true; render(); }
   else if (d.log) { S.sheet = { type: "log", day: d.log }; render(); }
-  else if (d.cancel) { S.sheet = { type: "cancel", day: d.cancel }; render(); }
-  else if (t.id === "sCancelOk") cancelOrder(sh.day, (($("cnote") || {}).value || "").trim());
-  else if (d.uncancel) uncancelOrder(d.uncancel);
+  else if (d.cancel && (uiOk(t, null, can.admin() && S.tab === "data") || uiOk(t, "more", can.admin() || can.order()))) { S.sheet = { type: "cancel", day: d.cancel }; render(); }
+  else if (t.id === "sCancelOk" && sheetBtnOk(t, "cancel")) cancelOrder(sh.day, (($("cnote") || {}).value || "").trim());
+  else if (d.uncancel) { if (uiOk(t, null, can.admin() && S.tab === "data") || uiOk(t, "more", can.admin())) uncancelOrder(d.uncancel); }
   else if (t.id === "resetBtn" && can.owner()) openReset();
   else if (t.id === "backupBtn" || t.id === "expAll") backupAll();
   else if (t.id === "demoShare") shareDemo();
@@ -7614,15 +7734,15 @@ app.addEventListener("click", (e) => {
   else if (d.pflt) { S.pf = d.pflt; render(); }
   else if (t.id === "pMore") { S.pMore = true; render(); }
   else if (d.photo) openPhoto(d.photo);
-  else if (d.revok) revOk(d.revok);
+  else if (d.revok) { if (uiOk(t, "photo", true) || uiOk(t, "rev", true)) revOk(d.revok); }
   else if (d.dop && sh && sh.type === "dish") { sh.op = sh.op === d.dop ? "" : d.dop; render(); }
   else if (d.revfix) { const id = d.revfix; S.sheet = null; (S.photos ? Promise.resolve() : loadPhotos()).then(() => openPhoto(id)).then(() => { if (S.sheet && S.sheet.id === id) { S.sheet.edit = true; render(); } }).catch(() => toast("לא נפתח")); }
   else if (t.id === "pSave") savePhotos();
-  else if (d.udel && can.owner()) { S.sheet = { type: "udel", uid: d.udel }; render(); }
-  else if (t.id === "udOk" && sh && sh.type === "udel") deleteUser(sh.uid);
+  else if (d.udel && can.owner() && uiOk(t, null, teamScr() && !!t.closest(".list"))) { S.sheet = { type: "udel", uid: d.udel }; render(); }
+  else if (t.id === "udOk" && sh && sh.type === "udel" && uiOk(t, "udel", can.owner())) deleteUser(sh.uid);
   else if (t.id === "pEdit" && canReview()) { sh.edit = true; render(); }
   else if (t.id === "pEditX") { sh.edit = false; render(); }
-  else if (t.id === "pDel") { const id = sh.id; ask({ t: "למחוק את התמונה?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) Promise.all([deleteDoc(doc(db, CP("photos"), id)), deleteDoc(doc(db, CP("photoData"), id))]).then(() => { delete S.photos[id]; S.sheet = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
+  else if (t.id === "pDel") { const id = sh.id, p0 = S.photos[id] || {}; ask({ t: "למחוק את התמונה?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) Promise.all([deleteDoc(doc(db, CP("photos"), id)), deleteDoc(doc(db, CP("photoData"), id))]).then(() => (p0.kind === "z" && p0.day ? zClear(p0.day, id, p0.aiData) : null)).then(() => { delete S.photos[id]; S.sheet = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "expOrders") exportCSV("orders");
   else if (t.id === "expWaste") exportCSV("waste");
 });
@@ -7658,8 +7778,7 @@ app.addEventListener("change", (e) => {
   if (S.sheet && S.sheet.type === "photo" && t.dataset.pf) S.sheet.f[t.dataset.pf] = t.value;
   if (S.re && t.dataset.re) S.re.r[t.dataset.re] = t.value;
   if (S.sheet && S.sheet.type === "dish") { if (t.dataset.ci != null && t.dataset.cf) S.sheet.d.comps[+t.dataset.ci][t.dataset.cf] = t.value; if (t.dataset.dk) S.sheet.d[t.dataset.dk] = t.value; }
-  if (t.dataset.days) { const d = parseInt(t.value, 10); if (d > 0) catWrite(t.dataset.days, { d }); }
-  else if (t.dataset.role) setRole(t.dataset.role, t.value);
+  if (t.dataset.role) { if (roleSelOk(t)) setRole(t.dataset.role, t.value); }
   else if (t.dataset.acsite && S.sheet && S.sheet.type === "access") S.sheet.f.sites[t.dataset.acsite] = t.value;
   else if (t.id === "wk" && S.sheet) { S.sheet.k = t.value; }
 });
@@ -7700,14 +7819,14 @@ function jumpSpy() {
 function onScroll() { scrT = 0; jumpSpy(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
 window.addEventListener("scroll", () => { if (!scrT) scrT = requestAnimationFrame(onScroll); }, { passive: true });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet) closeSheet(); else if (e.key === "Enter" && e.target.id === "wG") { e.preventDefault(); addWeighing(); } });
-setInterval(() => { remindTick();
+setInterval(() => { remindTick(); dayRoll();
   /* מסך ייצור שנשאר פתוח אחרי חצות: עוברים ליום החדש */
   if (S.pmode && S.pmDay && todayKey() !== S.pmDay) { S.pmDay = todayKey(); if (S.day < S.pmDay) { S.day = S.pmDay; watchDay(); } }
   const a = document.activeElement; if (S.user && !S.sheet && !(a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA" || a.tagName === "SELECT"))) render(); }, 30000);
 window.addEventListener("online", () => render());
 window.addEventListener("offline", () => render());
 window.addEventListener("beforeunload", () => { if (Object.keys(pending).length) flush(); runAutoNow(); });
-document.addEventListener("visibilitychange", () => { if (document.hidden) { flush(); runAutoNow(); } else if ((S.tab === "dishes" && S.lab === "book" && S.rv && !S.re) || S.pmode) keepAwake(true); });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { flush(); runAutoNow(); return; } dayRoll(); if ((S.tab === "dishes" && S.lab === "book" && S.rv && !S.re) || S.pmode) keepAwake(true); });
 render();
 /* דמו: מספר ה-Food cost במסך הפתיחה מחושב באותה פונקציה כמו בעמוד הנתונים (בלי מספר קבוע שיכול לסתור) */
 if (IS_DEMO) fetchMoney("rosie").then((M) => { const x = moneyStats(ymOf(new Date()), M); window.__demoFc = x.fc; const el = document.getElementById("mzFc"); if (el && x.fc != null) el.textContent = fmt(x.fc) + "%"; }).catch(() => {});
