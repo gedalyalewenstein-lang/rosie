@@ -73,7 +73,7 @@ export function unpack(buf, pass) {
 }
 
 // עובד שייך למסעדה: רוזי = role פעיל, אחרת = sites.<מפתח>
-const ACTIVE = ["rosie", "prod", "admin", "fmgr", "pending"];
+const ACTIVE = ["rosie", "prod", "admin", "fmgr", "snap", "pending"];
 export const userOf = (d, site) => !!d && (site === "rosie" ? ACTIVE.includes(d.role) : !!(d.sites && d.sites[site]));
 // אילו מסמכים נכנסים לשחזור: הכול (כולל users, siteRegistry ו-settings/app של השורש), או מסעדה אחת.
 // מסעדה אחת = הנתונים שלה + העובדים שלה (users) + השורה שלה ב-siteRegistry. as = לתוך מסעדה אחרת (תרגיל) — אז בלי עובדים ובלי רשימה, כדי לא לדרוס חשבונות אמיתיים
