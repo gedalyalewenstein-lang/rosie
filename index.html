@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-f0q7Bwt9SAIFA4V8gGuXjCBhlHs1efOqg2lA7pYzmOw=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-je9pTXS6hLqKEUfwCAqCzagk7EK4A9EXbatJd6jXIjc=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -2586,20 +2586,21 @@ import { getFirestore, initializeFirestore, persistentLocalCache, persistentMult
 import { getMessaging, getToken, onMessage, isSupported }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 
+// הפרויקט החדש של מיזו (עוד לא פעיל, עד המעבר). בנייה: python3 build.py --project mizo
+// הגדרות לקוח ציבוריות של Firebase (לא סוד). בלי Analytics
 const firebaseConfig = {
-  apiKey: "AIzaSyBhNdlFbeHY_zFo18N4WvWSz_2xrWpevu0",
-  authDomain: "rosie-orders-b7ea5.firebaseapp.com",
-  projectId: "rosie-orders-b7ea5",
-  storageBucket: "rosie-orders-b7ea5.firebasestorage.app",
-  messagingSenderId: "486019026542",
-  appId: "1:486019026542:web:838283fe5f2f4a8e19e07f"
+  apiKey: "AIzaSyDM8wZL_V4WHfnAPjjxTLm1doLYH1vM3oQ",
+  authDomain: "mizo-db6f7.firebaseapp.com",
+  projectId: "mizo-db6f7",
+  storageBucket: "mizo-db6f7.firebasestorage.app",
+  messagingSenderId: "270805730938",
+  appId: "1:270805730938:web:d8fe69e8e3472091c01dc3"
 };
 const ADMIN_USERNAME = "gadi";
-/* הדומיין הפנימי של חשבונות הכניסה (שם משתמש + הדומיין = אימייל ב-Firebase). לא משתנה במעבר לפרויקט חדש — כך כולם ממשיכים להיכנס */
+/* אותו דומיין כניסה כמו היום — החשבונות עוברים כמו שהם, וכולם ממשיכים להיכנס עם אותו שם משתמש וסיסמה */
 const LOGIN_DOMAIN = "@rosie.kitchen";
-/* הכתובת שבה האתר מוגש (canonical, og:url, sitemap). עד המעבר — GitHub Pages של rosie */
-const SITE_URL = "https://gedalyalewenstein-lang.github.io/rosie/";
-/* הכתובת הקבועה של דף הנחיתה לגוגל (canonical): תמיד הדומיין של מיזו, גם לפני המעבר */
+/* הכתובת שבה האתר מוגש אחרי המעבר (canonical, og:url, sitemap, CNAME) */
+const SITE_URL = "https://mizoik.co.il/";
 const CANONICAL_URL = "https://mizoik.co.il/site/";
 /* App Check (הכנה, לא נאכף): מפתח אתר ציבורי של reCAPTCHA v3 (לא סוד). ריק = כבוי. גדי מוסיף לפי docs/app-check.md */
 const APP_CHECK_SITE_KEY = "";

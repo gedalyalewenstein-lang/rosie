@@ -28,7 +28,7 @@ jobs:
         run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund --silent  # גרסה מדויקת מ-package-lock.json
       - name: Backup (encrypted) + restore drill
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MIZO }}
           BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
         run: node backup.mjs "mizo-backup-$(date -u +%F).enc"
       - name: Save for 30 days

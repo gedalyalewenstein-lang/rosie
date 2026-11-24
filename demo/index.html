@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-n5RV97ma0r4y71wKEOos2TLn/HewziVKHGXjWLq6UmI=' 'sha256-bQCQu3J5cE8q9AwLqszoOlCF206/+uR0BpyEEJM7Hz4=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-n5RV97ma0r4y71wKEOos2TLn/HewziVKHGXjWLq6UmI=' 'sha256-b3ijPZmIaq9nLaR23jZgnt1D68neZnjHfDcD618qCv4=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -2644,13 +2644,14 @@ import { getFirestore, initializeFirestore, persistentLocalCache, persistentMult
 import { getMessaging, getToken, onMessage, isSupported }
   from "./fb-messaging.js";
 
+// הפרויקט החדש של מיזו (עוד לא פעיל, עד המעבר). בנייה: python3 build.py --project mizo
+// הגדרות לקוח ציבוריות של Firebase (לא סוד). בלי Analytics
 const firebaseConfig = { projectId: "mizo-demo" };
 const ADMIN_USERNAME = "chef";
-/* הדומיין הפנימי של חשבונות הכניסה (שם משתמש + הדומיין = אימייל ב-Firebase). לא משתנה במעבר לפרויקט חדש — כך כולם ממשיכים להיכנס */
+/* אותו דומיין כניסה כמו היום — החשבונות עוברים כמו שהם, וכולם ממשיכים להיכנס עם אותו שם משתמש וסיסמה */
 const LOGIN_DOMAIN = "@demo.mizo";
-/* הכתובת שבה האתר מוגש (canonical, og:url, sitemap). עד המעבר — GitHub Pages של rosie */
+/* הכתובת שבה האתר מוגש אחרי המעבר (canonical, og:url, sitemap, CNAME) */
 const SITE_URL = "https://mizoik.co.il/";
-/* הכתובת הקבועה של דף הנחיתה לגוגל (canonical): תמיד הדומיין של מיזו, גם לפני המעבר */
 const CANONICAL_URL = "https://mizoik.co.il/site/";
 /* App Check (הכנה, לא נאכף): מפתח אתר ציבורי של reCAPTCHA v3 (לא סוד). ריק = כבוי. נועם מוסיף לפי docs/app-check.md */
 const APP_CHECK_SITE_KEY = "";

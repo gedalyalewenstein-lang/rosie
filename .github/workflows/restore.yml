@@ -19,7 +19,7 @@ on:
         description: "לאיזה פרויקט"
         type: choice
         options: [FIREBASE_SERVICE_ACCOUNT, FIREBASE_SERVICE_ACCOUNT_MIZO]
-        default: FIREBASE_SERVICE_ACCOUNT
+        default: FIREBASE_SERVICE_ACCOUNT_MIZO
       apply:
         description: "לכתוב באמת? (בלי סימון = תוכנית בלבד)"
         type: boolean

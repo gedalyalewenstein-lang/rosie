@@ -30,7 +30,7 @@ jobs:
         run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund --silent  # גרסה מדויקת מ-package-lock.json
       - id: s
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MIZO }}
         run: node sites.mjs
   notify:
     needs: sites
@@ -58,7 +58,7 @@ jobs:
         run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund --silent  # גרסה מדויקת מ-package-lock.json
       - name: Send notifications
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MIZO }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
           SITE: ${{ matrix.site }}

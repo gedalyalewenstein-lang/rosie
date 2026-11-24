@@ -2,7 +2,7 @@
 import admin from "firebase-admin";
 import crypto from "node:crypto";
 
-const APP_URL = process.env.APP_URL || "https://gedalyalewenstein-lang.github.io/rosie/"; // מהגדרות הפרויקט (build.py), APP_URL בסביבה גובר
+const APP_URL = process.env.APP_URL || "https://mizoik.co.il/"; // מהגדרות הפרויקט (build.py), APP_URL בסביבה גובר
 const TZ = "Asia/Jerusalem", CUTOFF = 16, REMIND = 15;
 const DN = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 

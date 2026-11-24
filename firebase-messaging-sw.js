@@ -2,12 +2,12 @@
 importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
 firebase.initializeApp({
-  apiKey: "AIzaSyBhNdlFbeHY_zFo18N4WvWSz_2xrWpevu0",
-  authDomain: "rosie-orders-b7ea5.firebaseapp.com",
-  projectId: "rosie-orders-b7ea5",
-  storageBucket: "rosie-orders-b7ea5.firebasestorage.app",
-  messagingSenderId: "486019026542",
-  appId: "1:486019026542:web:838283fe5f2f4a8e19e07f"
+  apiKey: "AIzaSyDM8wZL_V4WHfnAPjjxTLm1doLYH1vM3oQ",
+  authDomain: "mizo-db6f7.firebaseapp.com",
+  projectId: "mizo-db6f7",
+  storageBucket: "mizo-db6f7.firebasestorage.app",
+  messagingSenderId: "270805730938",
+  appId: "1:270805730938:web:d8fe69e8e3472091c01dc3"
 });
 const messaging = firebase.messaging();
 self.addEventListener("install", () => self.skipWaiting());
