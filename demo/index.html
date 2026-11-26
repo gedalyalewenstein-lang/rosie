@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rVKO39gWVFSISSHAcdiqfMHfkLLjcOLi71hzmVS816Q=' 'sha256-C7LGeG1yN4AbmcAXnAjI6F+anBKUyXtS5srpOSMvTF8=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rVKO39gWVFSISSHAcdiqfMHfkLLjcOLi71hzmVS816Q=' 'sha256-3p00RR9azHZMcq7IgXUhlz4vOuHSQn+/lK8AhCSu1Os=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -897,7 +897,7 @@ button.srow:active{background:var(--raise)}
 body.scrolled .navbar::before{opacity:1}
 header::before{content:"";position:absolute;inset:0;-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);opacity:0;transition:opacity .25s;border-bottom:.5px solid var(--line);pointer-events:none;display:none}
 header .wrap{padding-top:64px}
-.lt,body.scrolled .lt{opacity:calc(1 - var(--sp,0));transform:translateY(calc(var(--sp,0) * -8px)) scale(calc(1 - var(--sp,0) * .06));transform-origin:100% 100%;transition:none;will-change:auto}
+.lt,body.scrolled .lt{opacity:calc(1 - var(--sp,0));transform:translateY(calc(var(--sp,0) * -8px)) scale(calc(1 - var(--sp,0) * .06 + var(--ov,0) * .05));transform-origin:100% 100%;transition:none;will-change:auto}
 .lsub{color:var(--mute);opacity:calc(1 - var(--sp,0) * 1.5)}
 .navtitle{opacity:0;transform:translateY(8px);transition:opacity .22s,transform .3s var(--spring);max-width:56vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 body.scrolled .navtitle{opacity:1;transform:none}
@@ -2188,6 +2188,17 @@ label.srow{cursor:pointer}
 [dir="ltr"] .seg:has(> button:nth-child(2):last-child):has(> button:nth-child(2)[aria-pressed="true"])::before{transform:translateX(calc(100% + 8px))}
 [dir="ltr"] .seg:has(> button:nth-child(3):last-child):has(> button:nth-child(2)[aria-pressed="true"])::before{transform:translateX(calc(100% + 8px))}
 [dir="ltr"] .seg:has(> button:nth-child(3):last-child):has(> button:nth-child(3)[aria-pressed="true"])::before{transform:translateX(calc(200% + 16px))}
+/* F1 ל-4 אפשרויות (כמה מכינים: חצי, x1, x2, x3) */
+:root .seg:has(> button:nth-child(4):last-child){position:relative;isolation:isolate}
+:root .seg:has(> button:nth-child(4):last-child) > button{background-color:transparent;filter:none;position:relative;z-index:1}
+:root .seg:has(> button:nth-child(4):last-child)::before{content:"";position:absolute;z-index:0;top:4px;bottom:4px;inset-inline-start:4px;width:calc(25% - 8px);border-radius:999px;background:var(--grp2);box-shadow:0 2px 6px rgba(0,0,0,.14),0 0 0 .5px rgba(0,0,0,.04);transition:transform 300ms var(--ease);transform:translateX(0)}
+[dir="rtl"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(2)[aria-pressed="true"])::before{transform:translateX(calc(-100% - 8px))}
+[dir="rtl"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(3)[aria-pressed="true"])::before{transform:translateX(calc(-200% - 16px))}
+[dir="rtl"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(4)[aria-pressed="true"])::before{transform:translateX(calc(-300% - 24px))}
+[dir="ltr"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(2)[aria-pressed="true"])::before{transform:translateX(calc(100% + 8px))}
+[dir="ltr"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(3)[aria-pressed="true"])::before{transform:translateX(calc(200% + 16px))}
+[dir="ltr"] .seg:has(> button:nth-child(4):last-child):has(> button:nth-child(4)[aria-pressed="true"])::before{transform:translateX(calc(300% + 24px))}
+@media (prefers-reduced-motion:reduce){:root .seg:has(> button:nth-child(4):last-child)::before{transition:none}}
 :root[data-theme="light"] .seg::before{background:#fff}
 /* תפריט נפתח שנסגר: דועך 150ms במקום להיעלם */
 .pop.out{animation:mzPopOut 150ms var(--ease-out) both;pointer-events:none}
@@ -2528,6 +2539,8 @@ html.kbo .sheet input,html.kbo .sheet textarea{scroll-margin-bottom:84px}
 
 /* 2.6 סבב 2: ההודעה לא בולעת מגע, בלי ריפוד זמני (אין קפיצת תוכן) */
 .toast,.toast.show{pointer-events:none!important}
+body:has(#app > .sheet) .toast,body.has-bar:has(#app > .sheet) .toast{top:calc(env(safe-area-inset-top,0px) + 12px);bottom:auto;transform:translate(-50%,calc(-100% - 24px))} /* גיליון פתוח: ההודעה למעלה ולא על השורות */
+body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{transform:translate(-50%,0)}
 .tlens{transform-origin:0 50%}
 /* 2.6 תנועה E: מונה ספרות בסקירה. הספרה האמיתית תופסת את המקום (שקופה), המסילה מוחזקת בתוך התא ב-clip-path (לא משנה גובה/בסיס) */
 .oc{display:inline-block;position:relative;clip-path:inset(0);font-variant-numeric:tabular-nums}
@@ -3454,7 +3467,9 @@ function patchRow(k) {
   row.querySelector("[data-dec]").disabled = !v;
   const sec = row.closest("section.cat");
   if (sec) { const t = [...sec.querySelectorAll(".row output")].reduce((a, o) => a + (+o.textContent || 0), 0); sec.querySelector(".ct").textContent = t ? t + " קופסאות" : ""; }
+  const ob = document.querySelector(".bar .sum b"), was = ob ? +ob.textContent : null;
   swapEl(document.querySelector(".bar"), barHtml()); swapEl(document.querySelector(".jump"), jumpHtml());
+  const nb = document.querySelector(".bar .sum b"); if (nb && was != null && +nb.textContent !== was) tick(nb, +nb.textContent - was); /* הסכום גולש יחד עם המספר בשורה */
 }
 /* שמירת כמויות. מי שמחכה ל-flush מחכה באמת עד שהכתיבה הקודמת הסתיימה */
 let flushing = null;
@@ -5424,7 +5439,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.7.1";
+const APP_VER = "2.7.2";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -5655,7 +5670,7 @@ function recipePage(id) {
   const r = S.book[id], k = S.rx || 1, sc = (q) => (q == null ? "" : fmtQ(q * k)), steps = stepsOf(r), ck = S.rck || {}, sd = S.rsd || {}, ings = r.ings || [];
   if (r.ai === "pending" || r.ai === "error") return `${r.ai === "pending" ? `<div class="aistate"><span class="spin"></span>${aiCap().capped ? aiWait() : "מיזו קורא את המתכון"}${S.settings && S.settings.ai || aiCap().capped ? "" : " ברגע שיחובר"}</div>` : `<div class="aistate bad">מיזו לא הצליח לקרוא. אפשר ללחוץ "עריכה" ולמלא</div>`}${imgSrc(r.photo) ? `<div class="pview"><img src="${imgSrc(r.photo)}" alt=""></div>` : ""}`;
   let h = !ings.some((x) => x.q != null) ? "" : `<h4 class="gh">כמה מכינים</h4><div class="seg wide rscale" role="group" aria-label="כמה מכינים">${RX.map((v) => `<button data-rx="${v}" aria-pressed="${k === v}">${r.yq ? `${fmtQ(r.yq * v)} ${esc(r.yu || "")}` : v === 0.5 ? "חצי" : v === 1 ? "רגיל" : "פי " + v}</button>`).join("")}</div>`;
-  if (ings.length) h += grp(ings.map((x, i) => `<button class="srow ring3 ${ck[i] ? "done" : ""}" data-rck="${i}" aria-pressed="${!!ck[i]}"><span class="st"><b>${esc(x.n)}</b></span><span class="sv rq">${x.q != null ? `<bdi>${sc(x.q)}</bdi> ${esc(x.u || "")}` : ""}</span></button>`), "רכיבים");
+  if (ings.length) h += grp(ings.map((x, i) => `<button class="srow ring3 ${ck[i] ? "done" : ""}" data-rck="${i}" aria-pressed="${!!ck[i]}"><span class="st"><b>${esc(x.n)}</b></span><span class="sv rq" data-xf="rq${i}">${x.q != null ? `<bdi>${sc(x.q)}</bdi> ${esc(x.u || "")}` : ""}</span></button>`), "רכיבים");
   if (steps.length) h += grp(steps.map((x, i) => `<button class="srow rst ${sd[i] ? "done" : ""}" data-rsd="${i}" aria-pressed="${!!sd[i]}"><i>${i + 1}</i><span class="st"><b>${esc(x)}</b></span></button>`), "הכנה");
   if (r.notes) h += grp([`<div class="rnotes">${esc(r.notes)}</div>`], "הערות");
   if (r.updatedBy) h += `<p class="gfoot rfoot">עודכן ע״י ${esc(whoN(r.updatedBy))} · ${ddmm(new Date(r.updatedAt))}</p>`;
@@ -6933,7 +6948,7 @@ function barHtml() {
   /* ריק: בלי "0 קופסאות" (כרטיס המצב כבר אומר "עוד לא נשלחה") */
   return `<div class="bar"><div class="barin"><div class="sum">${!b && !shN ? "" : `<b>${b}</b><span>${shN ? "הוזמנו" : "קופסאות"}</span>${shN ? `<small class="shw">${num(Math.max(0, b - shN))} יישלחו · חסר ${num(shN)}</small>` : `<small>${plN(n, "הכנות")}</small>`}`}</div>${S.sentFx && S.sentFx.day === S.day && o.sentAt && !dirty && Date.now() - S.sentFx.at < 2400
     ? `<button class="btn big sendfx" id="send" disabled><span class="sl sl1">שלח הזמנה</span><span class="sl sl2"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6.5 12.5l3.5 3.5 7.5-8"/></svg>נשלחה</span></button>`
-    : `<button class="btn big" id="send" ${dis ? "disabled" : ""}>${label}</button>`}</div></div>`;
+    : `<button class="btn big" id="send" ${dis ? "disabled" : ""}><span data-xf="sendl">${label}</span></button>`}</div></div>`;
 }
 function jumpHtml() {
   if (S.tab !== "order" || !S.catalog || S.order === null) return "";
@@ -7081,7 +7096,9 @@ function renderInner() {
   root.querySelectorAll("[data-v]").forEach((e) => lv.set(e.dataset.lv || e.dataset.key, e.dataset.v));
   root.querySelectorAll("[data-xf]").forEach((e) => xf.set(e.dataset.xf, e.textContent));
   const live = !!S.user && Date.now() - (S.snapAt || 0) < 400 && Date.now() - Math.max(S.myAt || 0, S.touchAt || 0) > 1500 && !S.sheet && root.querySelector("main");
+  const hadSk = !!root.querySelector("main .skel");
   if (live) flip(root.querySelector("main"), () => morph(root, html)); else morph(root, html);
+  if (hadSk && !root.querySelector("main .skel")) xfadeIn(root.querySelector("main")); /* שלד ← תוכן: הצלבה אחת ולא החלפה בבת אחת */
   if (live && lv.size) root.querySelectorAll("[data-v]").forEach((e) => { const k = e.dataset.lv || e.dataset.key; if (lv.has(k) && lv.get(k) !== e.dataset.v) flash(e); });
   root.querySelectorAll("[data-xf]").forEach((e) => { const k = e.dataset.xf; if ((xf.has(k) && xf.get(k) !== e.textContent) || (!xf.has(k) && xf.size)) xfadeIn(e); });
   { const sb = root.querySelector("#send.sendfx:not(.go)"); if (sb) requestAnimationFrame(() => requestAnimationFrame(() => sb.classList.add("go"))); }
@@ -7630,7 +7647,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "offSugg") { S.suggOff[S.day] = true; render(); }
   else if (t.id === "noteBtn") { S.sheet = null; S.noteOpen = true; render(); const n = $("note"); if (n) { n.focus(); n.scrollIntoView({ block: "center" }); } } /* תמיד פוקוס בשדה, גם כשכבר יש הערה */
   else if (t.id === "qClr") { S.q = ""; render(); const n = $("q"); if (n) n.focus(); }
-  else if (t.id === "only" || t.id === "onlyChip") { S.onlyOrdered = !S.onlyOrdered; S.sheet = null; render(); }
+  else if (t.id === "only" || t.id === "onlyChip") { S.onlyOrdered = !S.onlyOrdered; S.sheet = null; const m = document.querySelector("main"); if (m) flip(m, render); else render(); }
   else if (t.id === "sInoteOk" || t.id === "sInoteDel") {
     const txt = t.id === "sInoteDel" ? "" : (($("inoteIn") || {}).value || "").trim().slice(0, 80), k = sh.k, day = S.day;
     S.sheet = null; render();
@@ -7790,7 +7807,7 @@ function lpCine() {
   [".lp-cap", ".lp-sv", ".lp-rail i"].forEach((q) => c.querySelectorAll(q).forEach((x, n) => x.classList.toggle("on", n === i))); /* כל פריים: גם אחרי רינדור מחדש המצב נכון */
   const ph = c.querySelector(".lp-phone"); if (ph && !RM()) ph.style.transform = r.top < innerHeight && r.bottom > 0 ? `scale(${(0.96 + 0.04 * (1 - Math.abs(0.5 - p) * 2)).toFixed(3)}) rotateY(${((p - 0.5) * -7).toFixed(1)}deg)` : "";
 }
-function onScroll() { scrT = 0; jumpSpy(); lpCine(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
+function onScroll() { scrT = 0; jumpSpy(); lpCine(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.documentElement.style.setProperty("--ov", RM() ? "0" : Math.min(1, Math.max(0, -window.scrollY) / 80).toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
 window.addEventListener("scroll", () => { if (!scrT) scrT = requestAnimationFrame(onScroll); }, { passive: true });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet) closeSheet(); else if (e.key === "Enter" && e.target.id === "wG") { e.preventDefault(); addWeighing(); } });
 setInterval(() => { remindTick(); dayRoll();
