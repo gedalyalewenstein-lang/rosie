@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-je9pTXS6hLqKEUfwCAqCzagk7EK4A9EXbatJd6jXIjc=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-l1dwgh4Xw2ggl09ujbAC0iNpMUwrwxKQm9gDmLtxV0M=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -137,6 +137,8 @@ button.banner{cursor:pointer}
 .notebox{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:12px 16px;margin-bottom:16px;display:grid;gap:8px}
 .notebox label{font-size:13px;font-weight:700;color:var(--mute)}
 .notebox textarea{resize:vertical;min-height:54px}
+.notebox .notest{font-size:13px;color:var(--mute);margin-top:-4px}
+.notebox .notest:empty{display:none}
 .ta{resize:vertical}
 .seg{display:inline-flex;gap:4px}
 .seg button{border:0;background:none;cursor:pointer}
@@ -480,8 +482,7 @@ section.card.danger h3{color:var(--bad)}
 .dcbig{width:100%;margin:8px 0 4px;padding:16px}
 
 /* ---- ליטוש: נקי, יוקרתי, נעים. אותו מבנה ואותם כפתורים, רק תחושה ---- */
-body{background:radial-gradient(1100px 520px at 50% -180px,rgba(184,74,104,.16),transparent 70%) no-repeat,var(--bg)}
-:root[data-theme="light"] body{background:radial-gradient(1100px 520px at 50% -180px,rgba(200,50,90,.07),transparent 70%) no-repeat,var(--bg)}
+body{background:var(--bg)}  /* רקע שטוח (בלי הזוהר הוורוד של "גן הוורדים") */
 .card,.list{border-color:var(--line)}
 .row{border-top-color:var(--line)}
 .cat h2{margin-bottom:12px}
@@ -912,6 +913,7 @@ body.has-tabbar.has-bar main{padding-bottom:calc(140px + env(safe-area-inset-bot
 header{top:env(safe-area-inset-top,0px);background:transparent;border-bottom:0;z-index:4}
 .zcard{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:12px;padding:12px 16px;margin-bottom:12px;cursor:pointer}
 .zcard:active{background:var(--raise)}
+.zcard.busy{pointer-events:none;opacity:.7}
 .zcard .zic{flex:0 0 auto;width:36px;height:36px;border-radius:10px;background:#5E5CE6;display:grid;place-items:center}
 .zcard .zic svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .zcard .st{flex:1;display:grid}
@@ -919,17 +921,9 @@ header{top:env(safe-area-inset-top,0px);background:transparent;border-bottom:0;z
 .zcard .st small{color:var(--mute);font-size:13px}
 
 /* =====================================================================
-   מסעדות: ג'קו סטריט — אותו עיצוב, צבע כתום־זעפרן במקום ורוד
+   מסעדות: ג'קו סטריט — אותו עיצוב. מ-27.11 (החלטת גדי, אופציה A): ירוק מיזו הוא הטינט היחיד
+   בכל המסעדות. זהות המסעדה רק בנקודות הצבע (.sdot בחדר הבקרה, .sitec בבחירת מסעדה)
    ===================================================================== */
-:root[data-site="jaco"][data-theme="light"]{--acc:#D9631E; --acc-ink:#B8500F; --acc-soft:rgba(217,99,30,.11)}
-:root[data-site="jaco"] .btn:not(.ghost):not(.okb):not(.badb){background:linear-gradient(180deg,#FFAE70,var(--acc));box-shadow:0 8px 20px -8px rgba(255,138,61,.55),inset 0 1px 0 rgba(255,255,255,.35)}
-:root[data-site="jaco"][data-theme="light"] .btn:not(.ghost):not(.okb):not(.badb){background:linear-gradient(180deg,#E4772F,var(--acc));box-shadow:0 8px 18px -8px rgba(217,99,30,.5),inset 0 1px 0 rgba(255,255,255,.25)}
-:root[data-site="jaco"] .barin .btn:not(.ghost):not(.okb):not(.badb),:root[data-site="jaco"][data-theme="light"] .barin .btn:not(.ghost):not(.okb):not(.badb){background:#fff;color:#B8500F;box-shadow:none}
-:root[data-site="jaco"] .glow{background:radial-gradient(55% 55% at 72% 42%,rgba(255,138,61,.20),transparent 72%),radial-gradient(38% 40% at 18% 30%,rgba(255,210,10,.06),transparent 70%)}
-:root[data-site="jaco"] .glow.g{background:radial-gradient(55% 55% at 72% 42%,rgba(48,209,88,.20),transparent 72%)}
-:root[data-site="jaco"] .glow.n{background:radial-gradient(55% 55% at 72% 42%,rgba(10,132,255,.10),transparent 72%)}
-:root[data-site="jaco"] .barin,:root[data-site="jaco"] .sbar .btn{box-shadow:0 12px 30px -10px rgba(255,138,61,.55)}
-:root[data-site="jaco"] .pav{background:linear-gradient(135deg,#FFB27A,#D9631E)}
 /* מסך בחירת מסעדה */
 .sitepick h1{margin:0 0 4px}
 .sites{display:grid;gap:12px;margin:20px 0 16px}
@@ -1113,7 +1107,6 @@ body.has-bar .toast{bottom:calc(168px + env(safe-area-inset-bottom,0px))}
    כפתורים בלי קפיצות (מעבר רק על transform/צבע), ותנועה שקטה בכניסה ובלוגו */
 :root{--lift:0 12px 40px rgba(0,0,0,.45);--rose1:#B84A68;--rose2:#F49AB2;--rose3:#FFD3DE;--on-ok:#fff;--info:#0A84FF;--info-soft:rgba(10,132,255,.15);--disp:var(--ui);--edge:none;--soft:none;--shadow:none;--r-card:12px;--r-tile:12px;--spring:cubic-bezier(.32,.72,0,1);--bg:#0D0E10;--paper:#17181B;--raise:#202226;--raise2:#2A2C30;--line:rgba(255,255,255,.07);--ink:#F3F3F1;--mute:rgba(236,236,240,.6);--mute2:rgba(236,236,240,.32);--acc:#D98E9F;--acc-ink:#EBA9B8;--acc-soft:rgba(217,142,159,.14);--on-acc:#1C0F13;--ok:#5CC08A;--ok-soft:rgba(92,192,138,.13);--warn:#E0A84E;--warn-soft:rgba(224,168,78,.11);--bad:#E5705F;--bad-soft:rgba(229,112,95,.13);--mz:#7FCBA8;--ease:cubic-bezier(.32,.72,0,1)}
 :root[data-theme="light"]{--acc:#A84A62;--acc-ink:#9A4459;--acc-soft:rgba(180,87,109,.10);--on-acc:#fff}
-:root[data-site="jaco"]{--acc:#D9A15E;--acc-ink:#E8B87E;--acc-soft:rgba(217,161,94,.14);--on-acc:#1E1408}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body,:root[data-theme="light"] body{background:var(--bg)}
 .glow{pointer-events:none;z-index:0;opacity:.45;display:none}
@@ -1185,7 +1178,6 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
 
 /* ניגודיות AA במצב בהיר (בדיקה 3.11) */
 :root[data-theme="light"]{--on-ok:#FFFFFF;--info-soft:#E8F0FB;--shadow:0 1px 2px rgba(36,25,43,.05),0 4px 14px rgba(36,25,43,.05);--lift:0 12px 36px rgba(36,25,43,.16);--rose1:#E9A3B6;--rose2:#C8325A;--rose3:#7E1734;--edge:inset 0 1px 0 #fff;--soft:0 1px 2px rgba(36,25,43,.04),0 10px 28px -14px rgba(36,25,43,.18);--info:#007AFF;--bg:#F4F3F0;--paper:#FFFFFF;--raise:#EEEDEA;--raise2:#E3E2DE;--line:rgba(30,30,35,.09);--ink:#1B1B1E;--mute2:rgba(40,40,48,.32);--ok-soft:rgba(47,143,91,.10);--warn-soft:rgba(168,107,18,.09);--bad-soft:rgba(194,70,59,.09);--mz:#2E8A66;--mute:rgba(40,40,48,.74);--ok:#26794C;--warn:#8A560B;--bad:#B23A30}
-:root[data-theme="light"][data-site="jaco"]{--acc-soft:rgba(168,106,34,.10);--on-acc:#fff;--acc:#8E5718;--acc-ink:#774812}
 /* הלוגו מונפש פעם אחת בכניסה, לא בכל מעבר מסך */
 .mzseen .mzsign .mzw,.mzseen .mzabout .mzw,.mzseen .mzsign .mzi::after,.mzseen .mzabout .mzi::after{animation:none}
 .lgl{margin:12px 0 0;text-align:center;font-size:13px}.lgl a{color:var(--mute);text-decoration:underline;text-underline-offset:3px}
@@ -1199,9 +1191,6 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
 .success .sstat.warn{background:var(--warn-soft,rgba(168,107,18,.1));color:var(--warn)}
 :root[data-theme="light"] .success .sstat.ok{color:#1E6B43}
 :root[data-theme="light"] .success .sstat.warn{color:#7A4E0C}
-/* מסעדה שנוספה מחדר הבקרה: הצבע שנבחר לה */
-:root[data-sitec]{--acc:var(--site-c);--acc-ink:color-mix(in srgb,var(--site-c) 62%,#fff);--acc-soft:color-mix(in srgb,var(--site-c) 14%,transparent);--on-acc:#fff}
-:root[data-sitec][data-theme="light"]{--acc-ink:color-mix(in srgb,var(--site-c) 72%,#000)}
 /* סקירת עיצוב 4.11: כפתור אישור מושבת בהיר (לא אפור כבד), סרגל לשוניות אטום יותר, מטרות מגע ≥40px */
 #consentOk:disabled{background:var(--raise2);color:var(--mute);opacity:1}
 .tabbar{position:fixed;inset:auto 0 0;z-index:7;-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);background:color-mix(in srgb,var(--paper) 88%,transparent)}
@@ -1247,7 +1236,7 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
 .pthumb span small{display:block;white-space:nowrap;font-size:12px;font-variant-numeric:tabular-nums}
 /* יעדי מגע ≥44 בלי לשנות מראה */
 #noteBtn,#moreBtn,#moreProd,#navBack,#wasteBtn,#gAskGo,.bmore,.step button{position:relative}
-#noteBtn::before,#moreBtn::before,#moreProd::before,#navBack::before,#wasteBtn::before,#gAskGo::before,.bmore::before,.step button::before{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
+#noteBtn::before,#moreBtn::before,#moreProd::before,#navBack::before,#wasteBtn::before,#gAskGo::before,.bmore::before,.step button::before,.qa .qx::before{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
 /* רדיוסים: 7/10/18/22 → 8/12/16 */
 .approve{border-radius:16px}
 .step,.btn.small{border-radius:12px}
@@ -1300,13 +1289,13 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
 
 /* ---------- 1. צבע: 10 טוקנים בלבד. כהה = ברירת מחדל ---------- */
 :root{
-  --bg:#0B0A0D;                         /* systemGroupedBackground (כהה) */
+  --bg:#0A0B0D;                         /* systemGroupedBackground (כהה), שחור קריר כמו הנחיתה */
   --surface:#1C1C1E;                    /* secondarySystemGroupedBackground */
   --surface2:#2C2C2E;                   /* מילוי בתוך משטח: סטפר, סגמנט, שדה */
   --label:#F2F2F7;
   --label2:rgba(235,235,245,.6);        /* 5.3–6.3:1 על כל המשטחים */
   --separator:rgba(84,84,88,.6);
-  --tint:#D98E9F;                       /* רוזי. רק לחיץ/נבחר. 5.5–7.8:1 */
+  --tint:#38E0A0;                       /* ירוק מיזו, טינט יחיד בכל המסעדות. רק לחיץ/נבחר */
   --green:#30D158;
   --orange:#FF9F0A;
   --red:#FF453A;
@@ -1315,7 +1304,7 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
   --green-soft:color-mix(in srgb,var(--green) 14%,transparent);
   --orange-soft:color-mix(in srgb,var(--orange) 14%,transparent);
   --red-soft:color-mix(in srgb,var(--red) 14%,transparent);
-  --on-tint:#1C0F13;                    /* טקסט על כפתור טינט: 7.4:1 */
+  --on-tint:#04170E;                    /* טקסט על כפתור טינט ירוק (--on-mz של הנחיתה) */
   --on-solid:#000;                      /* טקסט על ירוק/אדום מלא בכהה (לבן על #30D158 = 2.0:1) */
   --scrim:rgba(0,0,0,.4);
   --fill:color-mix(in srgb,var(--label2) 45%,transparent); /* מסילת מתג כבוי (systemFill) */
@@ -1323,22 +1312,19 @@ main .mkpis .mk:nth-child(4){animation-delay:.15s}
 :root[data-theme="light"]{
   --bg:#F2F2F7;
   --surface:#FFFFFF;
-  --surface2:#EBEBF0;                   /* טינט #A84A62 עליו = 4.63:1; ה-+ בסטפר ב---acc-ink = 5.28:1 */
+  --surface2:#EBEBF0;                   /* טינט #0C7A52 עליו = 4.51:1; --acc-ink #0A6B48 = 5.51:1 */
   --label:#1C1C1E;
   --label2:rgba(60,60,67,.74);          /* .6 של אפל = 3.3:1 על #F2F2F7. ‎.74 = 4.7–5.0:1 */
   --separator:rgba(60,60,67,.29);
-  --tint:#A84A62;                       /* החלטת גדי 4.11: 4.93 על bg, 4.63 על surface2, 5.5 על לבן (היה #B4576D = 4.16) */
-  --green:#26794C;                      /* ניגודיות מוגברת, נבדק AA ב-3.11 */
+  --tint:#0C7A52;                       /* ירוק מיזו כהה: AA על bg, surface2 ולבן */
+  --green:#24753C;                      /* "הושלם": עשב, נפרד מטינט הירוק (#2E8B4E = 3.8:1, הוכהה ל-AA). תמיד עם ✓ ומילה */
   --orange:#8A560B;
   --red:#B23A30;
   --on-tint:#FFFFFF;
   --on-solid:#FFFFFF;
   --scrim:rgba(0,0,0,.3);
 }
-/* מסעדות: מחליפים רק את --tint */
-:root[data-site="jaco"]{--tint:#D9A15E;--on-tint:#1E1408}
-:root[data-site="jaco"][data-theme="light"]{--tint:#8E5718;--on-tint:#FFFFFF}
-:root[data-sitec]{--tint:var(--site-c);--on-tint:#FFFFFF}
+/* מסעדות: אותו טינט לכולן (אופציה A). זהות המסעדה רק בנקודת צבע ליד השם */
 
 /* ---------- 2. חומר: .glass, מקור אחד לסרגל לשוניות, סרגל שליחה, גיליון, הודעה ---------- */
 :root{
@@ -1710,7 +1696,7 @@ output,.qty,.kpi b,.mk b,.tile b,.cbig,.rbig,.pm-q,.badge{font-variant-numeric:t
   --fill:rgba(118,118,128,.24);--fill2:rgba(118,118,128,.36);
   --label:#FFFFFF;--label2:rgba(235,235,245,.64);--label3:rgba(235,235,245,.28);
   --separator:rgba(84,84,88,.6);--sep:var(--separator);
-  --tint:#E39AAB;--on-tint:#1C0F13;
+  --tint:#38E0A0;--on-tint:#04170E;--acc-ink:#46E3A8;   /* ירוק מיזו בכל המסעדות */
   --orange:#FF9F0A;--red:#FF6961;--green:#30D158;
   --bar:rgba(235,235,245,.22);
   --glass-bg:rgba(30,30,32,.70);--glass-edge:rgba(255,255,255,.10);--glass-hi:rgba(255,255,255,.06);
@@ -1723,15 +1709,12 @@ output,.qty,.kpi b,.mk b,.tile b,.cbig,.rbig,.pm-q,.badge{font-variant-numeric:t
   --fill:rgba(118,118,128,.12);--fill2:rgba(118,118,128,.20);
   --label:#000000;--label2:rgba(60,60,67,.80);--label3:rgba(60,60,67,.30);
   --separator:rgba(60,60,67,.24);
-  --tint:#9C3F57;--on-tint:#FFFFFF;
-  --orange:#B84E00;--red:#D70015;--green:#248A3D;
+  --tint:#0C7A52;--on-tint:#FFFFFF;--acc-ink:#0A6B48;
+  --orange:#B84E00;--red:#D70015;--green:#24753C;
   --bar:rgba(118,118,128,.28);
   --glass-bg:rgba(250,250,252,.74);--glass-edge:rgba(0,0,0,.06);--glass-hi:rgba(255,255,255,.9);
   --glass-depth:0 8px 24px rgba(0,0,0,.10);--sheet-grp:var(--grp2);--scrim:rgba(0,0,0,.24);
 }
-:root[data-site="jaco"]{--tint:#D9A15E;--on-tint:#1E1408}
-:root[data-site="jaco"][data-theme="light"]{--tint:#8E5718;--on-tint:#FFFFFF}
-:root[data-sitec]{--tint:var(--site-c);--on-tint:#FFFFFF}
 :root{--tint-soft:color-mix(in srgb,var(--tint) 16%,transparent)}
 :root[data-theme="light"]{--tint-soft:color-mix(in srgb,var(--tint) 10%,transparent)}
 body{background:var(--bg);color:var(--label)}
@@ -2339,8 +2322,8 @@ body:not(.scrolled) .navbar::before{-webkit-backdrop-filter:none;backdrop-filter
 body:has(.days) main.wrap > :is(.status.card,.pcard,.banner,.rcvg,.zcard):first-child{margin-top:0}
 /* ---------- 2.5.1 (בדיקת הטלפון של גדי) ----------
    כפתור ראשי = טינט של מיזו בכל המסעדות. צבע המסעדה (ג'קו כתום, מסעדה חדשה) לא נוגע בכפתורים הראשיים */
-:root{--btn:#E39AAB;--on-btn:#1C0F13}
-:root[data-theme="light"]{--btn:#9C3F57;--on-btn:#FFFFFF}
+:root{--btn:var(--tint);--on-btn:var(--on-tint)}
+:root[data-theme="light"]{--btn:var(--tint);--on-btn:var(--on-tint)}
 .btn:not(.ghost):not(.okb):not(.badb),
 :root[data-theme] .btn:not(.ghost):not(.okb):not(.badb),:root[data-site] .btn:not(.ghost):not(.okb):not(.badb),
 :root[data-site] .barin .btn:not(.ghost):not(.okb):not(.badb),:root[data-theme] .barin .btn:not(.ghost):not(.okb):not(.badb){background:var(--btn);color:var(--on-btn)}
@@ -2561,6 +2544,49 @@ html.kbo .sheet input,html.kbo .sheet textarea{scroll-margin-bottom:84px}
 .snapbtns .btn{display:flex;align-items:center;justify-content:center;gap:var(--s3);min-height:96px;font-size:20px;white-space:normal;cursor:pointer}
 .snapbtns .btn svg{width:28px;height:28px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .snapbtns.busy .btn{pointer-events:none;opacity:.7}
+
+/* ---------- מסך קדמי למבקר שלא מחובר (נחיתה בתוך האפליקציה). שכבת סטייל בלבד — טופס ההתחברות ללא שינוי ---------- */
+.lp{max-width:400px;margin:0 auto;padding:0 24px}
+.lp .mzsign{margin:0 auto 26px}
+.lp-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--mz);margin-bottom:12px}
+.lp-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mz);box-shadow:0 0 10px color-mix(in srgb,var(--mz) 70%,transparent)}
+.lp h1{font:800 clamp(29px,8.4vw,37px)/1.08 var(--ui);letter-spacing:-.03em;margin:0;color:var(--ink);text-align:start;text-wrap:balance}
+.lp-lead{color:var(--mute);font-size:17px;line-height:1.5;margin:16px 0 0;text-wrap:pretty}
+.lp-cta{display:grid;gap:10px;margin-top:26px}
+.lp-cta .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.lp-cta .btn svg{width:18px;height:18px;flex:0 0 auto}
+.lp-fine{color:var(--mute2);font-size:13px;margin-top:14px}
+.lp-card{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.lp-ctop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.lp-dot{display:inline-flex;align-items:center;gap:6px;min-width:0;position:static}
+.lp-ctop span{min-width:0}
+.lp-dot i{width:7px;height:7px;border-radius:50%;background:var(--mz);flex:0 0 auto;position:static;border:0}
+.lp-fig{margin:12px 0 2px}
+.lp-lbl{font-size:13px;color:var(--mute);margin-bottom:2px}
+.lp-num{font:800 46px/1 var(--disp);letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
+.lp-num small{font-size:.34em;color:var(--mute);margin-inline-start:4px;font-weight:700}
+.lp-conf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}
+.lp-chip{display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:color-mix(in srgb,var(--mz) 14%,transparent);color:var(--mz);font-variant-numeric:tabular-nums}
+.lp-rng{font-size:12.5px;color:var(--mute)}
+.lp-rec{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink);line-height:1.4}
+.lp-rec svg{width:19px;height:19px;color:var(--mz);flex:0 0 auto;fill:none;stroke:currentColor}
+.lp-sec{margin-top:40px}
+.lp-sec h2{font:800 23px/1.15 var(--ui);letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
+.lp-grid{display:grid;gap:10px}
+.lp-feat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
+.lp-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:var(--mz);background:color-mix(in srgb,var(--mz) 12%,transparent);margin-bottom:10px}
+.lp-ic svg{width:20px;height:20px;fill:none;stroke:currentColor}
+.lp-feat h3{font:700 16px/1.2 var(--ui);margin:0;color:var(--ink)}
+.lp-feat p{font-size:14px;color:var(--mute);margin:5px 0 0;line-height:1.45}
+.lp-role{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
+.lp-r{font-size:13px;font-weight:700;color:var(--mz)}
+.lp-role h3{font:800 18px/1.1 var(--ui);margin:3px 0 0;color:var(--ink)}
+.lp-role p{font-size:14px;color:var(--mute);margin:4px 0 0;line-height:1.45}
+.lp-foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);text-align:center;color:var(--mute);font-size:14px}
+.lp-foot .link{color:var(--mz);font-weight:700}
+.lp-foot .legal{margin-top:10px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.lp-foot .legal a{color:var(--mute);font-size:13px}
+@media(min-width:560px){.lp-grid.two{grid-template-columns:1fr 1fr}}
 
 </style>
 </head>
@@ -3923,6 +3949,14 @@ I18N_PAT.ar.push([new RegExp("^משלוח היום · (.+)$"), "توصيل ال�
 I18N_PAT.en.push([new RegExp("^משלוח היום · (.+)$"), "Today's delivery · $1"]);
 Object.assign(I18N.ar, {"צלם דוח Z": "صوّر تقرير Z", "צלם קבלה": "صوّر إيصالاً", "הועלה היום": "رُفع اليوم", "הועלה": "تم الرفع", "עוד לא הועלה כלום היום": "لم يُرفع شيء اليوم بعد", "דוח Z": "تقرير Z", "צילום": "التصوير", "מנהל מסעדה · צילום": "مدير مطعم · تصوير", "מנהל הכנות": "مدير التحضيرات", "שף המסעדה": "شيف المطعم", "מנהל קבוצה": "مدير المجموعة", "הועלה ✓": "تم الرفع ✓"});
 Object.assign(I18N.en, {"צלם דוח Z": "Photograph Z report", "צלם קבלה": "Photograph receipt", "הועלה היום": "Uploaded today", "הועלה": "Uploaded", "עוד לא הועלה כלום היום": "Nothing uploaded yet today", "דוח Z": "Z report", "צילום": "Photos", "מנהל מסעדה · צילום": "Floor manager · photos", "מנהל הכנות": "Prep manager", "שף המסעדה": "Restaurant chef", "מנהל קבוצה": "Group manager", "הועלה ✓": "Uploaded ✓"});
+/* נוחות 26.11 (גם ב-app/i18n/t8.tsv) */
+Object.assign(I18N.ar, {"שמור · חסרות {n}": "حفظ · ينقص {n}", "המשלוח התקבל. אי אפשר לשנות כמויות": "تم استلام الشحنة. لا يمكن تغيير الكميات", "יום שעבר. אי אפשר לשנות כמויות": "يوم مضى. لا يمكن تغيير الكميات", "כבר יש הכנה בשם הזה": "يوجد تحضير بهذا الاسم", "כבר יש הכנה בשם הזה (מוסתרת)": "يوجد تحضير بهذا الاسم (مخفي)"});
+Object.assign(I18N.en, {"שמור · חסרות {n}": "Save · {n} missing", "המשלוח התקבל. אי אפשר לשנות כמויות": "Delivery received. Quantities are locked", "יום שעבר. אי אפשר לשנות כמויות": "Past day. Quantities are locked", "כבר יש הכנה בשם הזה": "A prep with this name already exists", "כבר יש הכנה בשם הזה (מוסתרת)": "A prep with this name already exists (hidden)"});
+/* נוחות 26.11 סבב 2 (גם ב-app/i18n/t8.tsv ו-pat.tsv) */
+Object.assign(I18N.ar, {"בטלפון · יישלח": "في الهاتف · سيُرسل", "לצאת בלי לשמור?": "الخروج بدون حفظ؟", "חסימה": "حظر", "הגישה תוסר מיד": "سيُزال الوصول فورًا"});
+I18N_PAT.ar.push([new RegExp("^לחסום את (.+)\\?$"), "حظر $1؟"], [new RegExp("^(.+) חזר לרשימה$"), "$1 عاد إلى القائمة"], [new RegExp("^ההזמנה הועברה ל(\\S+) (.+)$"), "نُقلت الطلبية إلى $1 $2"], [new RegExp("^(.+): (ממתין לאישור|טבח · הזמנות|טבח הכנות|שף המסעדה|מנהל מסעדה · צילום|חסום|מנהל הכנות)$"), "$1: $2"]);
+Object.assign(I18N.en, {"בטלפון · יישלח": "On phone · will send", "לצאת בלי לשמור?": "Leave without saving?", "חסימה": "Block", "הגישה תוסר מיד": "Access is removed right away"});
+I18N_PAT.en.push([new RegExp("^לחסום את (.+)\\?$"), "Block $1?"], [new RegExp("^(.+) חזר לרשימה$"), "$1 is back on the list"], [new RegExp("^ההזמנה הועברה ל(\\S+) (.+)$"), "Order moved to $1 $2"], [new RegExp("^(.+): (ממתין לאישור|טבח · הזמנות|טבח הכנות|שף המסעדה|מנהל מסעדה · צילום|חסום|מנהל הכנות)$"), "$1: $2"]);
 
 
 startI18n();
@@ -4024,7 +4058,8 @@ const S = {
   user: null, profile: null, tab: null, day: null, q: "", onlyOrdered: false,
   catalog: null, order: null, prod: null, staff: [], settings: {}, today: null, pendingList: [], upcoming: {},
   authMode: "login", authErr: "", busy: false, sheet: null, sugg: {}, suggOff: {}, noteOpen: false,
-  range: 30, histAll: false, data: null, dataBusy: false, openRow: null, openDay: null, showDone: false, pushOn: false
+  range: 30, histAll: false, data: null, dataBusy: false, openRow: null, openDay: null, showDone: false, pushOn: false,
+  authReady: false, landing: !IS_DEMO && !store("mizo-entered") /* מבקר שלא מחובר: קודם נחיתה, ואז מסך הכניסה הקיים. מי שכבר נכנס פעם — ישר לכניסה */
 };
 let autoTimer = null, autoDay = null;
 let pending = {}, flushTimer = null, writing = false, noteTimer = null, approveDraft = {};
@@ -4231,6 +4266,8 @@ const signQ = () => { if (SIGN_Q && !S.user && SITES.some((x) => x.k === SIGN_Q)
 if (SIGN_Q && !IS_DEMO && !SITES.some((x) => x.k === SIGN_Q)) getDoc(doc(db, "siteRegistry", SIGN_Q)).then((d) => { if (d.exists() && addSite(SIGN_Q, d.data())) { signQ(); render(); } }).catch(() => {});
 onAuthStateChanged(auth, async (user) => {
   stopAll();
+  S.authReady = true; /* מצב ההתחברות ידוע: רק עכשיו מחליטים בין נחיתה, כניסה או כניסה ישירה */
+  if (user) { S.landing = false; if (!IS_DEMO) store("mizo-entered", "1"); } /* מחובר (גם משחזור Firebase) → נכנסים ישר, והטלפון זוכר שהוא של עובד: אחרי יציאה מסך הכניסה, לא הנחיתה */
   Object.assign(S, { onb: {}, site: null, user, authMode: "login", authErr: "", profile: null, catalog: null, order: null, prod: null, staff: [], today: null, todayProd: null, pendingList: [], upcoming: {}, sheet: null, data: null, tab: null, snapList: null, book: null, room: null, grp: null, pmode: false, set: null, staffOk: false });
   seenRev = null; seenApproved = {};
   if (!user) { sessionSafe("mz-land", ""); signQ(); render(); return; } /* יציאה/החלפת משתמש: הנחיתה על "סקירה" חוזרת בכניסה הבאה */
@@ -4497,6 +4534,7 @@ async function moveOrderTo(next) {
     await b.commit();
   } catch (e) { toast("ההעברה נכשלה"); render(); return; }
   S.day = next; S.dayMan = S.tab === "prod"; S.pAuto = false; watchDay(); render();
+  if (!wasSent) toast(`ההזמנה הועברה ל${DN[parse(next).getDay()]} ${ddmm(parse(next))}`); /* נשלחה: מסך ההצלחה של השליחה מספיק */
   if (wasSent) { await sendOrder(true, from); act("order", `העברת הזמנה ${ddmm(parse(from))} → ${ddmm(parse(next))}`); }
   setTimeout(() => sendOrder(false, next), 600);
 }
@@ -4567,9 +4605,14 @@ async function sendOrderOnce(auto, dayArg) {
 }
 function saveNote(v) {
   clearTimeout(noteTimer);
-  const day = S.day; /* ההערה נשמרת ליום שבו הוקלדה */
-  noteTimer = setTimeout(() => { noteTimer = null; setDoc(doc(db, CP("orders"), day), { date: day, note: v.trim(), noteBy: myName(), noteAt: Date.now() }, { merge: true }).catch(() => toast("ההערה לא נשמרה")); }, 700);
+  const day = S.day, st = { day, ok: false }; /* ההערה נשמרת ליום שבו הוקלדה */
+  S.noteSt = st; noteStUpd();
+  noteTimer = setTimeout(() => { noteTimer = null; setDoc(doc(db, CP("orders"), day), { date: day, note: v.trim(), noteBy: myName(), noteAt: Date.now() }, { merge: true })
+    .then(() => { if (S.noteSt === st) { st.ok = true; noteStUpd(); } }).catch(() => { if (S.noteSt === st) { S.noteSt = null; noteStUpd(); } toast("ההערה לא נשמרה"); }); }, 700);
 }
+/* שורת מצב קטנה מתחת להערה ("שומר…" / "נשמר ✓"): נכתבת ישר לשורה, בלי render באמצע הקלדה */
+const noteStTx = () => (S.noteSt && S.noteSt.day === S.day ? (S.noteSt.ok ? "נשמר ✓" : "שומר…") : "");
+function noteStUpd() { const el = document.querySelector(".notebox .notest"); if (el) el.textContent = noteStTx(); }
 async function loadSuggestion(day) {
   if (S.sugg[day] !== undefined) return;
   S.sugg[day] = null;
@@ -4694,6 +4737,7 @@ function prodSettle() {
 }
 function confirmDone() {
   const sh = S.sheet, it = itemBy(sh.k), today = dkey(new Date()), v = prodQty(sh.k), total = sh.prev + sh.made;
+  if (total < v && sh.mode !== "short" && !sh.made) return; /* 0 ב"נכין עוד היום" = אין מה לשמור */
   const base = { made: total, forQty: v, prodDate: today, by: myName(), at: Date.now() };
   const yk = toNum(($("ykg") || {}).value);
   if (yk > 0 && yk < 50) { setDoc(doc(db, CP("yields"), sh.k), { kg: yk, by: myName(), at: Date.now() }).catch(() => {}); S.yields[sh.k] = { kg: yk }; }
@@ -4856,7 +4900,7 @@ async function teamMgrAct(kind, uid) {
 function setRole(uid, pick) {
   const u = (S.staff || []).find((x) => x.uid === uid) || {}, [r, land] = ROLE_PICK[pick] || [pick, null];
   /* הנחיתה נשמרת למסעדה הזו בלבד (landings.<מסעדה>) */
-  (S.site === "rosie" && !land ? updateDoc(doc(db, "users", uid), { role: r }) : S.site === "rosie" ? setDoc(doc(db, "users", uid), { role: r, landings: { rosie: land } }, { merge: true }) : setDoc(doc(db, "users", uid), Object.assign({ sites: { [S.site]: r } }, land ? { landings: { [S.site]: land } } : {}), { merge: true })).then(() => { toast("עודכן"); act("role", `תפקיד: ${u.name || u.username || ""} ← ${roleName(pick)}`); }).catch(() => toast("לא נשמר"));
+  (S.site === "rosie" && !land ? updateDoc(doc(db, "users", uid), { role: r }) : S.site === "rosie" ? setDoc(doc(db, "users", uid), { role: r, landings: { rosie: land } }, { merge: true }) : setDoc(doc(db, "users", uid), Object.assign({ sites: { [S.site]: r } }, land ? { landings: { [S.site]: land } } : {}), { merge: true })).then(() => { toast(`${u.name || u.username || ""}: ${roleName(pick)}`); act("role", `תפקיד: ${u.name || u.username || ""} ← ${roleName(pick)}`); }).catch(() => toast("לא נשמר"));
 }
 
 /* ---------- notifications ---------- */
@@ -5174,18 +5218,85 @@ function viewAuth() {
   const intro = !!document.getElementById("intro"), signup = S.authMode === "signup", enter = !intro && (!S.authIn || Date.now() - S.authIn < 1000);
   if (intro && !S.authWait) { S.authWait = true; const w = () => { if (document.getElementById("intro")) return setTimeout(w, 120); if ($("authF")) render(); }; setTimeout(w, 120); }
   if (enter) { if (!S.authIn) S.authIn = Date.now(); setTimeout(() => { if ($("authF")) window.scrollTo(0, 0); }, 0); }
+  const sign = enter ? `<div class="mzsign">${MIZO_MAG}</div>` : SIGN;
+  /* הרשמה רק דרך קישור הצטרפות מהמנהל: בלי קישור תקין לא מציגים טופס ולא שום שם מסעדה למבקר. (בבדיקות mock2 הטופס נפתח דרך דגל mizo-open-signup שאינו נכתב בפרודקשן) */
+  const invSite = SIGN_Q ? SITES.find((x) => x.k === SIGN_Q) : null;
+  const openSignup = store("mizo-open-signup") === "1";
+  if (signup && !invSite && !openSignup) return `<div class="auth grp"><div class="card authcard${enter ? " aenter" : ""}">
+    ${sign}
+    <h2 class="gt">הרשמה</h2>
+    <p class="gs">ההרשמה רק דרך קישור הצטרפות מהמנהל.</p>
+    <p class="hint">בקשו מהמנהל את קישור ההצטרפות למסעדה. דרכו נרשמים בלי לבחור מסעדה ידנית.</p>
+    <div class="center">כבר רשום? <button class="link" type="button" id="swap">כניסה</button></div>
+  </div></div>`;
+  const signSites = invSite ? [invSite] : SITES; /* עם קישור — רק מסעדת הקישור; בלי קישור מגיעים לכאן רק בבדיקות (openSignup) */
   return `<div class="auth grp"><form class="card authcard${enter ? " aenter" : ""}" id="authF" novalidate>
-    ${enter ? `<div class="mzsign">${MIZO_MAG}</div>` : SIGN}
+    ${sign}
     <h2 class="gt">${signup ? "הרשמה" : "כניסה"}</h2>${signup ? `<p class="gs">אחרי ההרשמה המנהל מאשר אותך</p>` : ""}
     ${signup ? `<div class="field"><label for="n">שם מלא</label><input id="n" autocomplete="name" maxlength="40" required></div>
-    <div class="field"><label>מסעדה</label><div class="opts" role="radiogroup" aria-label="מסעדה">${(SIGN_Q && !["rosie", "jaco"].includes(SIGN_Q) && SITES.some((x) => x.k === SIGN_Q) ? SITES.filter((x) => x.k === SIGN_Q) : SITES).map((x) => `<button type="button" class="opt" role="radio" data-sus="${esc(x.k)}" aria-checked="${S.signSite === x.k}" aria-pressed="${S.signSite === x.k}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>` : ""}
-    <div class="field"><label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="off" spellcheck="false" dir="ltr" required></div>
+    <div class="field"><label>מסעדה</label><div class="opts" role="radiogroup" aria-label="מסעדה">${signSites.map((x) => `<button type="button" class="opt" role="radio" data-sus="${esc(x.k)}" aria-checked="${S.signSite === x.k}" aria-pressed="${S.signSite === x.k}"><i aria-hidden="true"></i><span>${esc(x.f)}</span></button>`).join("")}</div></div>` : ""}
+    <div class="field"><label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" dir="ltr" required></div>
     <div class="field"><label for="p">סיסמה</label><input id="p" type="password" autocomplete="${signup ? "new-password" : "current-password"}" dir="ltr" required></div>
     <div class="err" role="alert">${esc(S.authErr)}</div>
-    <button class="btn full" type="submit" ${S.busy ? "disabled" : ""}>${signup ? "הרשמה" : "כניסה"}</button>
+    <button class="btn full" type="submit" ${S.busy ? "disabled" : ""}>${S.busy ? (signup ? "נרשם…" : "נכנס…") : (signup ? "הרשמה" : "כניסה")}</button>
     ${signup ? `<p class="hint lgl">הפרטים נשמרים בשם המסעדה. <a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a> · <a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a></p>` : ""}
     <div class="center">${signup ? "כבר רשום? " : "עובד חדש? "}<button class="link" type="button" id="swap">${signup ? "כניסה" : "הרשמה"}</button></div>
   </form></div>`;
+}
+/* מסך קדמי למבקר שלא מחובר: שיווקי + "לראות דמו" (/demo) + "כניסה" שחושף את טופס ההתחברות הקיים. גנרי בלבד, בלי שם מסעדה אמיתי */
+const LP_ARR = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>`;
+function lpFeat(ic, h, p) { return `<div class="lp-feat"><div class="lp-ic">${ic}</div><h3>${h}</h3><p>${p}</p></div>`; }
+function viewLanding() {
+  const II = {
+    book: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2zM17 3v18"/></svg>`,
+    receipt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v18l-2.5-1.5L12 21l-2.5-1.5L7 21z"/><path d="M10 9h4M10 13h4"/></svg>`,
+    scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5 7h14l-2 6H7z"/><path d="M4 21h16M9 17h6"/></svg>`,
+    arrow: LP_ARR,
+  };
+  return `<div class="auth grp"><div class="lp">
+    <div class="mzsign">${MIZO}</div>
+    <span class="lp-eyebrow">ניהול המטבח מהטלפון. בלי אקסל.</span>
+    <h1>הטבחים עובדים פשוט. המספרים מסתדרים לבד.</h1>
+    <p class="lp-lead">מתכונים. הזמנות. קבלות שנקראות לבד. ועלות מדויקת לכל מנה. הכול בעברית ומהטלפון.</p>
+    <div class="lp-cta">
+      <button class="btn full" type="button" id="lpEnter">כניסה</button>
+      <a class="btn ghost full" href="${esc(demoUrl())}">לראות דמו${LP_ARR}</a>
+    </div>
+    <p class="lp-fine">דמו חי על מסעדה לדוגמה. היכנסו ותיגעו בכל כפתור.</p>
+
+    <div class="lp-card">
+      <div class="lp-ctop"><span class="lp-dot"><i></i>נתוני דמו</span><span>8 שבועות</span></div>
+      <div class="lp-fig"><div class="lp-lbl">פודקוסט מול יעד 30%</div><div class="lp-num">30.2<small>%</small></div></div>
+      <div class="lp-conf"><span class="lp-chip">⁦30–34.9⁩ טווח</span><span class="lp-rng">רמת ודאות בינונית</span></div>
+      <div class="lp-rec">${II.receipt}<span>173 קבלות נקראו מצילום. כמעט בלי עבודה ידנית.</span></div>
+    </div>
+
+    <div class="lp-sec">
+      <span class="lp-eyebrow">מה מיזו עושה</span>
+      <h2>המטבח כולו. במקום אחד.</h2>
+      <div class="lp-grid two">
+        ${lpFeat(II.book, "מתכון שמכפיל את עצמו", "בוחרים כמות והרכיבים זזים לבד. בלי מחשבון.")}
+        ${lpFeat(II.receipt, "קבלות ו‑Z שנקראות לבד", "מצלמים והמערכת מסדרת. כמעט בלי עבודה ידנית.")}
+        ${lpFeat(II.scale, "עלות מדויקת לכל מנה", "כל מנה נשקלת. מספר אמיתי ולא הערכה מהבטן.")}
+        ${lpFeat(II.arrow, "הזמנות בין שירות לייצור", "השירות מזמין והייצור מקבל. הכול מתועד.")}
+      </div>
+    </div>
+
+    <div class="lp-sec">
+      <span class="lp-eyebrow">למי זה מיועד</span>
+      <h2>מתחיל בטבח. מגיע עד הבעלים.</h2>
+      <div class="lp-grid">
+        <div class="lp-role"><span class="lp-r">הטבח</span><h3>פשוט ונוח.</h3><p>כל מה שהוא צריך בכמה נגיעות. מהטלפון.</p></div>
+        <div class="lp-role"><span class="lp-r">השף התפעולי</span><h3>סדר ושליטה.</h3><p>רשימות מסודרות ועלות שקופה לכל מנה.</p></div>
+        <div class="lp-role"><span class="lp-r">הבעלים</span><h3>המספרים שלו.</h3><p>פודקוסט מעודכן לכל מסעדה בנפרד בכל רגע.</p></div>
+      </div>
+    </div>
+
+    <div class="lp-foot">
+      כבר רשומים? <button class="link" type="button" id="lpEnter2">כניסה</button>
+      <div class="legal"><a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a></div>
+    </div>
+  </div></div>`;
 }
 /* אישור פרטיות ותנאי שימוש: חובה לכל משתמש, פעם אחת לכל גרסה. בלי אישור אין כניסה */
 const needConsent = () => !IS_DEMO && !!S.profile && !(S.profile.consent && S.profile.consent.v === LEGAL_V);
@@ -5227,7 +5338,9 @@ function viewWaiting() {
 }
 /* מנהל מסעדה · צילום (snap): מסך אחד בלבד, בלי לשוניות. שני כפתורים גדולים שמשתמשים באותה העלאה של הקבלות (fileR) והדו״ח (fileZ), ורשימת מה שהמשתמש הזה העלה היום (היומן snapLog לפי uid שלו — לא photos). בלי סכומים, הזמנות, ייצור, עלויות, צוות או הגדרות */
 const snapToday = () => (S.snapList || []).filter((x) => dkey(new Date(x.at)) === todayKey()).sort((a, b) => b.at - a.at);
-function snapAdd(id, kind, at) { S.snapList = (S.snapList || []).filter((x) => x.id !== id).concat([{ id, kind, at }]); render(); }
+function snapAdd(id, kind, at, q) { S.snapList = (S.snapList || []).filter((x) => x.id !== id).concat([{ id, kind, at, q: !!q }]); render(); }
+/* q = נשמר בטלפון בלי קליטה. כשהכתיבה מגיעה לשרת: "הועלה" */
+function snapSent(id) { const x = (S.snapList || []).find((y) => y.id === id); if (x && x.q) { x.q = false; render(); } }
 function startSnap() {
   const uid = S.user && S.user.uid; if (!uid) return;
   getDocs(query(collection(db, CP("snapLog")), where("uid", "==", uid), where("day", "==", todayKey()))).then((qs) => { const mine = qs.docs.map((d) => ({ id: d.id, kind: d.data().kind === "r" ? "r" : "z", at: +d.data().at || 0 })); /* 2.6: היומן הקל (snapLog), לא photos — snap לא רואה סכומים */ S.snapList = mine.concat((S.snapList || []).filter((x) => !mine.some((m) => m.id === x.id))); render(); })
@@ -5238,10 +5351,10 @@ function viewSnap() {
   const L = snapToday(), busy = S.upBusy > 0, TY = { z: "דוח Z", r: "קבלה" };
   const lang = `<div class="popwrap"><button class="srow" id="langRow" data-pop="lang" aria-haspopup="menu" aria-expanded="${S.pop === "lang"}">${ICB("", IC.globe)}<span class="st"><b>שפה</b></span><span class="sv">${(LANGS.find((x) => x[0] === LANG) || LANGS[0])[1]}</span><span class="schev"></span></button>${S.pop === "lang" ? `<div class="pop end" role="menu" aria-label="שפה">${LANGS.map(([k, l]) => `<button role="menuitemradio" data-lang="${k}" aria-pressed="${LANG === k}" lang="${k}">${l}</button>`).join("")}</div>` : ""}</div>`;
   return `<div class="glow" aria-hidden="true"></div><header><div class="wrap"><div class="navbar"><span></span><b class="navtitle">${esc(SN())}</b><span></span></div><h1 class="lt">צילום</h1><p class="lsub">${esc(myName())}</p></div></header>
-    <main class="wrap snapm"><div class="snapbtns${busy ? " busy" : ""}" id="snapBtns"><label class="btn big full" for="fileZ">${SVG(IC.camera)}<span>צלם דוח Z</span></label><label class="btn big full" for="fileR">${busy ? `<span class="spin"></span>` : SVG(IC.camera)}<span>${busy ? "שומר…" : "צלם קבלה"}</span></label>
+    <main class="wrap snapm"><div class="snapbtns${busy ? " busy" : ""}" id="snapBtns"><label class="btn big full" for="fileZ">${busy && S.zBusy ? `<span class="spin"></span>` : SVG(IC.camera)}<span>${busy && S.zBusy ? "שומר…" : "צלם דוח Z"}</span></label><label class="btn big full" for="fileR">${busy && !S.zBusy ? `<span class="spin"></span>` : SVG(IC.camera)}<span>${busy && !S.zBusy ? "שומר…" : "צלם קבלה"}</span></label>
     <input type="file" id="fileZ" accept="image/*" hidden><input type="file" id="fileR" accept="image/*" multiple hidden></div>
     <h4 class="gh">הועלה היום</h4>
-    ${S.snapList === null ? SKEL : L.length ? `<div class="list snaplist">${L.map((x) => `<div class="row" data-key="${esc(x.id)}"><div class="nm"><b>${TY[x.kind] || TY.z}</b><small class="upd">${hm(x.at)}</small></div><span class="pill">הועלה</span></div>`).join("")}</div>` : `<div class="empty"><b>עוד לא הועלה כלום היום</b></div>`}
+    ${S.snapList === null ? SKEL : L.length ? `<div class="list snaplist">${L.map((x) => `<div class="row" data-key="${esc(x.id)}"><div class="nm"><b>${TY[x.kind] || TY.z}</b><small class="upd">${hm(x.at)}</small></div>${x.q ? `<span class="pill warn">בטלפון · יישלח</span>` : `<span class="pill">הועלה</span>`}</div>`).join("")}</div>` : `<div class="empty"><b>עוד לא הועלה כלום היום</b></div>`}
     ${grp([...(mySites().length > 1 ? [row({ id: "siteSw", icon: ICB("var(--acc)", IC.users), t: "החלפת מסעדה", v: esc(siteOf(S.site).f), chev: true })] : []), lang])}
     <div class="grp"><button class="srow center" id="logout"><b class="danger">יציאה מהחשבון</b></button></div></main>`;
 }
@@ -5309,7 +5422,7 @@ function closeCard() {
   const k = serviceKey();
   if (S.dayKeySub !== k) { S.dayKeySub = k; S.dayDoc = null; if (unsub.dayDoc) unsub.dayDoc(); unsub.dayDoc = onSnapshot(doc(db, CP("days"), k), (x) => { S.dayDoc = x.exists() ? x.data() : {}; renderSoon(); }, () => {}); }
   if (!S.dayDoc || S.dayDoc.closedAt) return "";
-  return `<label class="zcard" for="fileZ"><span class="zic">${SVG(IC.camera)}</span><span class="st"><b>סגירת ערב</b><small>צלמו את דו״ח הקופה</small></span><span class="schev">‹</span></label><input type="file" id="fileZ" accept="image/*" hidden>`;
+  return `<label class="zcard${S.upBusy ? " busy" : ""}" for="fileZ"><span class="zic">${SVG(IC.camera)}</span><span class="st"><b>סגירת ערב</b><small>${S.zBusy ? "שומר…" : "צלמו את דו״ח הקופה"}</small></span><span class="schev">‹</span></label><input type="file" id="fileZ" accept="image/*" hidden>`;
 }
 /* "מתחילים": כרטיס קטן למנהל של מסעדה שעוד לא שלחה הזמנה. נעלם לבד אחרי ההזמנה הראשונה. בלי שדה חדש במסד: נבדק פעם אחת מההזמנות עצמן */
 function startCard() {
@@ -5348,8 +5461,9 @@ function viewOrder() {
   }
   const hasNote = !!(o.note && o.note.trim());
   h += `<div class="tools srch"><label class="sfield"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input class="search" id="q" type="search" placeholder="איזו הכנה?" value="${esc(S.q)}" aria-label="חיפוש הכנה">${S.q ? `<button type="button" class="sclr" id="qClr" aria-label="ניקוי החיפוש"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5l6 6M11 5l-6 6"/></svg></button>` : ""}</label></div>${S.onlyOrdered ? `<button class="chip onlyc" id="onlyChip" aria-pressed="true">רק מה שהוזמן</button>` : ""}${jumpHtml()}`;
-  if (can.order() && (S.noteOpen || hasNote)) h += `<div class="notebox"><label for="note">הערה למטבח הייצור</label><textarea id="note" rows="2" placeholder="למשל: לחתוך דק יותר, להביא מוקדם">${esc(o.note || "")}</textarea></div>`;
+  if (can.order() && (S.noteOpen || hasNote)) h += `<div class="notebox"><label for="note">הערה למטבח הייצור</label><textarea id="note" rows="2" placeholder="למשל: לחתוך דק יותר, להביא מוקדם">${esc(o.note || "")}</textarea><small class="notest" aria-live="polite">${esc(noteStTx())}</small></div>`;
   const q = S.q.trim(), lk = qtyLocked(); let any = false;
+  if (lk && can.order()) h += `<p class="hint lockh">${o.received ? "המשלוח התקבל. אי אפשר לשנות כמויות" : "יום שעבר. אי אפשר לשנות כמויות"}</p>`; /* בלי זה ± מושבתים בלי הסבר */
   /* אחרי שליחה רואים רק את מה שבהזמנה (כולל פריט שהורד ל-0, כדי שאפשר יהיה להחזיר אותו) */
   const autoOnly = !!o.sentAt && !S.showAll && !S.onlyOrdered && !q;
   const inOrder = (k) => qtyOf(k) > 0 || +((o.sent || {})[k]) > 0 || +((o.approved || {})[k]) > 0;
@@ -6236,8 +6350,10 @@ function dishSheet(sh) {
 function openDish(id) {
   const d = JSON.parse(JSON.stringify(S.dishes[id] || {}));
   if (!d.comps || !d.comps.length) d.comps = [{ n: "", q: "", u: "גרם" }, { n: "", q: "", u: "גרם" }];
-  S.sheet = { type: "dish", id, d }; render();
+  S.sheet = { type: "dish", id, d, o: dishSig(d) }; render();
 }
+/* חתימת עריכה של מנה: שורת רכיב ריקה (רק נוספה) לא נחשבת שינוי */
+const dishSig = (d) => JSON.stringify(Object.assign({}, d, { comps: (d.comps || []).filter((c) => String(c.n || "").trim() || String(c.q || "").trim()) }));
 async function addDish(name) {
   name = String(name || "").trim().slice(0, 60); if (!name) return;
   const id = "d" + Date.now().toString(36), d = { n: name, comps: [], notes: "", weighings: [], createdAt: Date.now(), updatedAt: Date.now(), updatedBy: myName() };
@@ -6274,18 +6390,26 @@ const closeTime = () => { const h = new Date().getHours(); return h >= 21 || h <
 async function loadDayDoc(k) { try { const d = await getDoc(doc(db, CP("days"), k)); return d.exists() ? d.data() : {}; } catch (e) { return {}; } }
 const wxTxt = (w) => (w && w.tmax != null ? `${Math.round(w.tmax)}°${w.tmin != null ? "/" + Math.round(w.tmin) + "°" : ""}${w.rain > 0.5 ? ` · גשם ${Math.round(w.rain)} מ״מ` : ""}${w.wind >= 30 ? ` · רוח ${Math.round(w.wind)} קמ״ש` : ""}` : "");
 async function saveZ(file) {
-  const k = serviceKey(), sn = isSnap(); toast("שומר…");
+  if (S.zBusy) return; /* נעילה: דוח Z כבר נשמר — בלי Z כפול בקליטה חלשה */
+  S.zBusy = true;
+  if (S.upBusy) { /* קבלות עדיין עולות: מחכים להן במקום לזרוק את צילום ה-Z */
+    render(); toast("שומר…");
+    for (let i = 0; i < 120 && S.upBusy; i++) await new Promise((r) => setTimeout(r, 500));
+    if (S.upBusy) { S.zBusy = false; render(); toast("לא נשמר. נסו שוב"); return; }
+  }
+  const k = serviceKey(), sn = isSnap(); S.upBusy = 1; render(); toast("שומר…");
   try {
     const [img, thumb] = await Promise.all([shrink(file, 1800, 850000), shrink(file, 220, 30000)]);
     const id = "z" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const patch = { date: k, closedBy: myName(), closedAt: Date.now(), z: arrayUnion(id) }, meta = { kind: "z", thumb, day: k, note: "", ai: "pending", at: Date.now(), by: myName() };
     /* מנהל מסעדה · צילום: רק התמונה (uid שלו, כדי שיראה את שלו). לא כותב ליום (days): השרת קורא את הדו״ח וממלא סועדים ומכירות */
-    const r = await settle(putPhoto(id, img, meta, sn).then(() => (sn ? 0 : setDoc(doc(db, CP("days"), k), patch, { merge: true }))));
-    if (sn) { snapAdd(id, "z", meta.at); toast(r === "queued" ? "אין קליטה טובה. נשמר בטלפון ויישלח לבד" : "הועלה ✓"); return; }
+    const pw = putPhoto(id, img, meta, sn).then(() => (sn ? 0 : setDoc(doc(db, CP("days"), k), patch, { merge: true }))), r = await settle(pw);
+    if (sn) { snapAdd(id, "z", meta.at, r === "queued"); if (r === "queued") pw.then(() => snapSent(id), () => {}); toast(r === "queued" ? "אין קליטה טובה. נשמר בטלפון ויישלח לבד" : "הועלה ✓"); return; }
     if (S.photos) S.photos[id] = { kind: "z", thumb, day: k, ai: "pending", at: Date.now(), by: myName() }; moneyDirty();
     if (r === "queued") { S.dayDoc = Object.assign({}, S.dayDoc, { closedAt: patch.closedAt }); render(); toast("אין קליטה טובה. נשמר בטלפון ויישלח לבד"); return; }
     S.dayDoc = Object.assign({}, S.dayDoc, { closedAt: patch.closedAt }); render(); act("photo", "דו״ח קופה"); toast("הערב נסגר ✓ Claude יקרא את הדו״ח");
   } catch (e) { toast("לא נשמר, נסו שוב"); }
+  finally { S.upBusy = 0; S.zBusy = false; render(); }
 }
 /* ---------- כרטיס הכנה: תפוקה ומחיר ---------- */
 function icardSheet(sh) {
@@ -6298,7 +6422,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.6.0";
+const APP_VER = "2.7.0";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -6553,9 +6677,12 @@ function openRecipeEdit(id) {
   const src = id ? JSON.parse(JSON.stringify(S.book[id])) : { n: "", cat: S.bcf && BCATS.includes(S.bcf) ? S.bcf : "רטבים", yu: "ק״ג", ings: [] };
   const r = Object.assign(src, { ingTx: (src.ings || []).map(ingLine).join("\n"), stepTx: stepsOf(src).join("\n") });
   delete r.ings; delete r.steps;
-  S.re = { id, r }; S.enter = true; render(); jumpTo(0);
+  S.re = { id, r, o: JSON.stringify(r) }; S.enter = true; render(); jumpTo(0);
   if (!id) { const n = document.querySelector('[data-re="n"]'); if (n) n.focus(); }
 }
+/* יציאה מעריכת מתכון: בלי שינוי יוצאים מיד, עם שינוי שואלים בתוך הדף */
+const reDirty = () => !!(S.re && S.re.o != null && JSON.stringify(S.re.r) !== S.re.o);
+function reLeave() { const re = S.re; ask({ t: "לצאת בלי לשמור?", ok: "יציאה", danger: true }).then((ok) => { if (ok && S.re === re) { S.re = null; S.enter = true; render(); jumpTo(0); } }); }
 function focusLast(sel) { const l = document.querySelectorAll(sel); if (l.length) l[l.length - 1].focus(); }
 async function saveRecipe() {
   const e = S.re, r = e.r, n = String(r.n || "").trim().slice(0, 60);
@@ -6692,7 +6819,7 @@ async function addPhotos(list, kind) {
   let ok = 0;
   for (const x of list) {
     const id = "ph" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), meta = Object.assign({ kind, thumb: x.thumb, at: Date.now(), by: myName(), day: todayKey(), note: "" }, kind === "r" ? { ai: "pending" } : {}), sn = isSnap();
-    try { const r = await settle(putPhoto(id, x.img, meta, sn)); if (r === "queued") S.upQueued = true; if (S.photos) S.photos[id] = meta; if (sn) S.snapList = (S.snapList || []).concat([{ id, kind, at: meta.at }]); ok++; moneyDirty(); } catch (e) {}
+    try { const pw = putPhoto(id, x.img, meta, sn), r = await settle(pw); if (r === "queued") S.upQueued = true; if (S.photos) S.photos[id] = meta; if (sn) { S.snapList = (S.snapList || []).concat([{ id, kind, at: meta.at, q: r === "queued" }]); if (r === "queued") pw.then(() => snapSent(id), () => {}); } ok++; moneyDirty(); } catch (e) {}
   }
   S.upBusy = 0; const q = S.upQueued; S.upQueued = false;
   if (q) { render(); toast("אין קליטה טובה. נשמר בטלפון ויישלח לבד"); if (ok) act("photo", kind === "r" ? "קבלה" : "תמונות מהתהליך"); return; }
@@ -6737,7 +6864,7 @@ async function openPhoto(id) {
 const ils = (n) => "₪" + Math.round(n).toLocaleString("he-IL");
 function viewPhotos() {
   if (!S.photos) { if (!S.pLoading) { S.pLoading = true; loadPhotos().finally(() => { S.pLoading = false; }); } return SKEL; }
-  let h = `<div class="pbtns${S.upBusy ? " busy" : ""}"><label class="btn" for="fileR">${S.upBusy ? `<span class="spin"></span> שומר…` : "קבלה מספק"}</label><label class="btn ghost" for="fileP">תמונה מהתהליך</label>
+  let h = `<div class="pbtns${S.upBusy ? " busy" : ""}"><label class="btn" for="fileR">${S.upBusy && !S.zBusy ? `<span class="spin"></span> שומר…` : "קבלה מספק"}</label><label class="btn ghost" for="fileP">תמונה מהתהליך</label>
     <input type="file" id="fileR" accept="image/*" multiple hidden><input type="file" id="fileP" accept="image/*" multiple hidden></div>` + creditBar();
   const all = Object.entries(S.photos).sort((a, b) => (b[1].day || "").localeCompare(a[1].day || "") || b[1].at - a[1].at);
   const mk = todayKey().slice(0, 7), rec = all.filter(([, p]) => p.kind === "r" && (p.day || "").startsWith(mk));
@@ -6901,7 +7028,7 @@ function evRow(e) {
 /* דמו מיזו: קישור קבוע ליד האפליקציה (תיקיית demo). נפתח בלי הרשמה ובלי נתונים אמיתיים */
 function demoUrl() { return location.origin + location.pathname.replace(/[^/]*$/, "") + "demo/"; }
 async function shareDemo() {
-  const url = demoUrl(), text = "ככה נראית מסעדה אחרי חודש עם מיזו: הזמנות, ייצור, פחת ופוד קוסט. נכנסים בלי הרשמה";
+  const url = demoUrl(), text = "ככה נראית מסעדה אחרי חודש עם מיזו: הזמנות, ייצור, פחת ו-Food cost. נכנסים בלי הרשמה";
   try { if (navigator.share) { await navigator.share({ title: "mizo · דמו", text, url }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
   try { await navigator.clipboard.writeText(text + "\n" + url); toast("הקישור הועתק"); } catch (e) { ask({ t: "הקישור לדמו", f: [{ l: "קישור", v: url, type: "url" }], ok: "סיום" }); }
 }
@@ -6913,7 +7040,7 @@ function evWhen(at) { const k = dkey(new Date(at)); return k === todayKey() ? hm
 function viewPerm() {
     const R = S.permRole || "rosie", daily = ["dishes", "book", "photos", "close", "yieldQ"], view = ["money", "credits", "itemCard", "exportPick"].filter((m) => !(permMgr() && (m === "money" || m === "credits")));
     const sw = (m) => { const on = permRoles(m).includes(R); return permMgr() && R === "admin" && ["dishes", "book", "photos", "close"].includes(m) && on ? `<button class="srow" disabled aria-pressed="${on}" style="opacity:.55"><span class="st"><b>${PERM_LBL[m]}</b></span><span class="sw ${on ? "on" : ""}"></span></button>` : `<button class="srow" data-perm="${m}" data-prole="${R}" aria-pressed="${on}"><span class="st"><b>${PERM_LBL[m]}</b></span><span class="sw ${on ? "on" : ""}"></span></button>`; };
-    return `<div class="seg wide" role="group">${["rosie", "prod", "admin"].map((r) => `<button data-prolesel="${r}" aria-pressed="${R === r}">${ROLE_SHORT[r]}</button>`).join("")}</div>` +
+    return `<div class="seg wide" role="group">${["rosie", "prod", "admin"].map((r) => `<button data-prolesel="${r}" aria-pressed="${R === r}">${esc(ROLE_SHORT[r])}</button>`).join("")}</div>` +
       grp(daily.map(sw), "עבודה יומית") + grp(view.map(sw), "צפייה וניהול", `השינוי חל מיד אצל כל ${R === "admin" ? "המנהלים" : R === "prod" ? "צוות הייצור" : `עובדי ${esc(SN())}`}. כיבוי לא מוחק נתונים.`);
 }
 function viewControl() {
@@ -7482,7 +7609,7 @@ async function groupAsk() {
   try { await setDoc(doc(db, "group", "a" + Date.now().toString(36)), { kind: "ask", status: "pending", q: q.slice(0, 500), at: Date.now(), by: myName(), lang: LANG, data: grpPayload() }); if (i) i.value = ""; }
   catch (e) { toast("לא נשלח"); }
 }
-const qaHtml = (a, del) => `<div class="qa"><button class="qx" ${del}="${esc(a.id)}" aria-label="סגור">×</button><b>${esc(a.q)}</b>${a.status === "done" ? `<p>${esc(a.a || "").replace(/\n/g, "<br>")}</p>` : a.status === "error" ? `<p class="badt">Claude לא הצליח לענות</p>` : `<p class="mute"><span class="spin"></span>Claude חושב…</p>`}</div>`;
+const qaHtml = (a, del) => `<div class="qa"><button class="qx" ${del}="${esc(a.id)}" aria-label="מחיקה">×</button><b>${esc(a.q)}</b>${a.status === "done" ? `<p>${esc(a.a || "").replace(/\n/g, "<br>")}</p>` : a.status === "error" ? `<p class="badt">Claude לא הצליח לענות</p>` : `<p class="mute"><span class="spin"></span>Claude חושב…</p>`}</div>`;
 function viewGroup() {
   if (!S.grp) { loadGroup(); return SKEL; }
   const G = S.grp, br = S.grpBrief, open = !!(S.dsec || {}).brief;
@@ -7607,7 +7734,7 @@ function viewSheet() {
         ${sh.mode === "short" ? `<input id="shnote" maxlength="2000" class="ta" placeholder="הערה ל${esc(SN())}, למשל: יגיע מחר" value="${esc(sh.note || "")}">` : ""}</div>`
       : `<p class="hint">תוקף עד ${DN[addDays(parse(today), it.d - 1).getDay()]} ${ddmm(addDays(parse(today), it.d - 1))}</p>`}
       ${feat("yieldQ") && S.yields && !kgOf(sh.k) ? `<label class="ykg">כמה ק״ג נטו בקופסה? <small>שואלים רק פעם אחת</small><input class="ta" id="ykg" inputmode="decimal" placeholder="ק״ג"></label>` : ""}
-      <div class="sbtns"><button class="btn okb" id="sDoneOk">${lack > 0 ? (sh.mode === "short" ? "לשמור ולעדכן" : "שמור") : "✓ כן, בוצע"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+      <div class="sbtns"><button class="btn okb" id="sDoneOk"${lack > 0 && sh.mode !== "short" && !sh.made ? " disabled" : ""}>${lack > 0 ? (sh.mode === "short" ? "לשמור ולעדכן" : "שמור") : "✓ כן, בוצע"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "repdel") {
     const rr = ((((S.room || {}).sites || {})[sh.k] || {}).reps || []).find((x) => x.id === sh.id) || {};
     b = `<h3>מחק דוח</h3><p class="ovdel">${esc(noNames(rr.title || "דוח"))}${rr.at ? `, <span dir="ltr">${ddmm(new Date(rr.at))}</span>` : ""}</p><p class="hint">הדוח יימחק לכל המשתמשים. אי אפשר לשחזר.</p>
@@ -7624,7 +7751,7 @@ function viewSheet() {
     const opts = grouped(items(true)).map(([c, l]) => `<optgroup label="${esc(c)}">${l.map((it) => `<option value="${esc(it.k)}" ${sh.k === it.k ? "selected" : ""}>${esc(it.n)}</option>`).join("")}</optgroup>`).join("");
     b = `<h3>רישום פחת</h3><p class="hint" style="text-align:right">הכנה שנזרקת שוב ושוב יורדת לבד בהצעת ההזמנה.</p>
       <div class="field"><label for="wk">הכנה</label><select id="wk" class="sel full"><option value="">בחר הכנה…</option>${opts}</select></div>
-      <div class="field"><label>כמות (קופסאות)</label><div class="step lg"><button data-wq="-0.5" aria-label="פחות">−</button><output>${fmt(sh.qty)}</output><button data-wq="0.5" aria-label="עוד">+</button></div></div>
+      <div class="field"><label>כמות (קופסאות)</label><div class="step lg"><button data-wq="-0.5" aria-label="פחות" ${sh.qty > 0.5 ? "" : "disabled"}>−</button><output>${fmt(sh.qty)}</output><button data-wq="0.5" aria-label="עוד">+</button></div></div>
       <div class="field"><label>סיבה</label><div class="seg">${REASONS.map((r) => `<button data-wr="${r}" aria-pressed="${sh.reason === r}">${r}</button>`).join("")}</div></div>
       <div class="sbtns"><button class="btn" id="sWasteOk">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "missing") {
@@ -7632,7 +7759,8 @@ function viewSheet() {
     b = `<h3>מה חסר במשלוח?</h3><div class="alist">`;
     const shs = shortsOf(S.todayProd);
     items(true).filter((it) => +ap[it.k] > 0).forEach((it) => { const v = sh.missing[it.k] || 0, sk = shs[it.k] ? +shs[it.k].n || 0 : 0, mx = +ap[it.k] - sk; if (mx <= 0) return; b += `<div class="arow"><div class="nm"><b>${esc(it.n)}</b><small>${sk ? `נשלחו ${num(mx)} · <em class="shw">חסר ${num(sk)} מראש</em>` : `הוזמנו ${num(ap[it.k])}`}</small></div><div class="step sm"><button data-mdec="${esc(it.k)}" ${v ? "" : "disabled"} aria-label="פחות">−</button><output${v ? ' class="chg"' : ""}>${num(v)}</output><button data-minc="${esc(it.k)}" ${v >= mx ? "disabled" : ""} aria-label="עוד">+</button></div></div>`; });
-    b += `</div><div class="sbtns"><button class="btn" id="sMissOk">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
+    const mN = Object.values(sh.missing || {}).reduce((a, x) => a + (+x || 0), 0);
+    b += `</div><div class="sbtns"><button class="btn" id="sMissOk">${mN ? `שמור · חסרות ${num(mN)}` : "הגיע הכול"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
   } else if (sh.type === "menu") {
     b = `<div class="me"><div class="avatar lg" aria-hidden="true">${esc(initials(myName()))}</div><div><b>${esc(myName())}</b><small>${roleLabel(S.profile, S.site)}</small></div></div>
       <button class="mitem" id="pushBtn">${I.bell}<span>${S.pushOn ? "התראות פעילות בטלפון הזה ✓" : "הפעלת התראות בטלפון הזה"}</span></button>
@@ -7934,7 +8062,7 @@ function renderInner() {
   try { sel = a && a.selectionStart; } catch (e) {}
   const sy = window.scrollY;
   let html;
-  if (!S.user) html = viewAuth();
+  if (!S.user) html = !S.authReady ? `<div class="auth grp"><div class="splash">${SIGN}</div></div>` : (S.landing && S.authMode !== "signup" ? viewLanding() : viewAuth());
   else if (!S.profile) html = `<div class="auth grp"><div class="splash">${SIGN}</div></div>`;
   else if (needConsent()) html = viewConsent();
   else if (needNewPw()) html = viewNewPw();
@@ -7982,7 +8110,7 @@ const app = $("app");
 app.addEventListener("submit", (e) => {
   if (e.target.id === "authF") return S.authMode === "signup" ? doSignup(e) : doLogin(e);
   e.preventDefault();
-  if (e.target.id === "addF") { const n = $("nN").value.trim(), c = $("nC").value, d = parseInt($("nD").value, 10) || 4; if (n) { S.lastCat = c; addItem(n, c, d); $("nN").value = ""; } else { toast("כתבו שם להכנה"); $("nN").focus(); } }
+  if (e.target.id === "addF") { const n = $("nN").value.trim(), c = $("nC").value, d = parseInt($("nD").value, 10) || 4; const dup = n && items(true).find((x) => String(x.n).trim() === n); if (dup) { toast(dup.active === false ? "כבר יש הכנה בשם הזה (מוסתרת)" : "כבר יש הכנה בשם הזה"); $("nN").focus(); } else if (n) { S.lastCat = c; addItem(n, c, d); $("nN").value = ""; } else { toast("כתבו שם להכנה"); $("nN").focus(); } }
   if (e.target.id === "dAddF") addDish($("dN").value);
   if (e.target.id === "askF") askClaude();
   if (e.target.id === "gAskF") groupAsk();
@@ -8076,7 +8204,7 @@ function swMove(e) {
 const swEnd = () => {
   if (!sw) return; const s = sw; swOff(); if (!s.on) return;
   const a = s.s[0], b = s.s[s.s.length - 1], v = b[1] - a[1] >= 16 ? (b[0] - a[0]) / (b[1] - a[1]) : 0; /* px/ms, רק מחלון של פריים לפחות */
-  if (s.dy > 0 && (s.dy > s.h * 0.3 || (v > 0.5 && s.dy > 24))) { closeSheet(); return; }
+  if (s.dy > 0 && (s.dy > s.h * 0.3 || (v > 0.5 && s.dy > 24))) { const was = S.sheet; closeSheet(); if (!(S.sheet && S.sheet.type === "ask" && S.sheet.prev === was && was && was.type === "dish")) return; } /* מנה ששואלים עליה: הגיליון חוזר למקום */
   s.el.style.transition = "transform 380ms cubic-bezier(.32,.72,0,1)"; s.el.style.transform = "translateY(0)";
   if (s.sc) { s.sc.style.transition = "opacity 380ms ease-out"; s.sc.style.opacity = "1"; }
   setTimeout(() => { if (s.el.isConnected) { s.el.style.transition = ""; s.el.style.transform = ""; } if (s.sc && s.sc.isConnected) { s.sc.style.transition = ""; s.sc.style.opacity = ""; } }, 400);
@@ -8289,7 +8417,12 @@ function navAnim(push, pt, y, tap) {
   const r = m.getBoundingClientRect(), o = pt ? `${Math.round(pt.x - r.left)}px ${Math.round(pt.y - r.top)}px` : "50% 120px";
   m.animate([{ transform: push ? "scale(.9)" : "scale(1.05)", transformOrigin: o, opacity: 0 }, { transform: "none", transformOrigin: o, opacity: 1 }], { duration: push ? 420 : 320, easing: MEASE });
 }
-function closeSheet() { if (!S.sheet) return; if (S.sheet.type === "ask") return askDone(null); S.sheet = null; render(); }
+function closeSheet() {
+  if (!S.sheet) return; if (S.sheet.type === "ask") return askDone(null);
+  /* מנה עם עריכה שלא נשמרה: שואלים בתוך הדף (רק לגיליון מנה) */
+  const sh = S.sheet; if (sh.type === "dish" && sh.o != null && dishSig(sh.d) !== sh.o) { ask({ t: "לצאת בלי לשמור?", ok: "יציאה", danger: true }).then((ok) => { if (ok && S.sheet === sh) { S.sheet = null; render(); } }); return; }
+  S.sheet = null; render();
+}
 /* ---------- גיליון שאלה: מחליף prompt/confirm/alert של הדפדפן. ask({t, m, f:[{l, v, type}], ok, danger}) → Promise
    אישור: מערך ערכי השדות (או true בלי שדות). ביטול/X/החלקה: null. הגיליון שהיה פתוח לפני כן חוזר אחרי התשובה */
 let askQ = null;
@@ -8341,12 +8474,13 @@ app.addEventListener("click", (e) => {
     S.scrollMem = S.scrollMem || {}; S.scrollMem[S.tab] = window.scrollY; S.tab = d.go; S.enter = true; S.bounce = d.go; if (d.go === "data" && !S.data) loadData(); render(); jumpTo(0); onScroll(); return; }
   if (d.sus) { S.signSite = d.sus; if (S.authErr === "בחרו מסעדה") S.authErr = ""; render(); return; }
   if (d.site && !S.site || (d.site && t.classList.contains("sitec"))) { chooseSite(d.site); return; }
-  if (d.askdel) { S.asks = (S.asks || []).filter((a) => a.id !== d.askdel); render(); deleteDoc(doc(db, CP("asks"), d.askdel)).catch(() => {}); return; }
+  if (d.askdel) { S.asks = (S.asks || []).filter((a) => a.id !== d.askdel); render(); deleteDoc(doc(db, CP("asks"), d.askdel)).catch(() => toast("לא נמחק")); return; }
   if (t.id === "consentOk") { saveConsent(); return; }
   if (t.id === "demoWa") { if (window.__DEMO_WA) window.open(window.__DEMO_WA, "_blank", "noopener"); return; }
   if (t.id === "legalGo") { window.open((IS_DEMO ? "../" : "") + "legal/privacy.html", "_blank", "noopener"); return; }
   if (t.id === "siteSw") { sessionSafe("rosie-site", ""); location.reload(); return; }
-  if (t.id === "swap") { S.authMode = S.authMode === "login" ? "signup" : "login"; S.authErr = ""; render(); }
+  if (t.id === "lpEnter" || t.id === "lpEnter2") { S.landing = false; store("mizo-entered", "1"); render(); } /* חושף את טופס ההתחברות הקיים, וזוכר שנכנסו */
+  else if (t.id === "swap") { S.authMode = S.authMode === "login" ? "signup" : "login"; S.authErr = ""; render(); }
   else if (t.id === "logout") { clearTimeout(flushTimer); S.sheet = null; render(); flush().then(runAutoNow).finally(() => signOut(auth)); }
   else if (t.id === "pmBtn" && can.admin()) { S.pmode = true; S.pmQ = false; S.pmDay = todayKey(); S.sheet = null; S.tab = "prod"; S.set = null; render(); jumpTo(0); keepAwake(true); }
   else if (t.id === "pmExit") { S.pmQ = true; render(); }
@@ -8359,7 +8493,7 @@ app.addEventListener("click", (e) => {
     else if (S.tab === "control" && S.ctl) S.ctl = null;
     else if (S.tab === "settings" && S.set) S.set = null;
     else if (S.tab === "control") { S.tab = "settings"; S.set = null; }
-    else if (S.tab === "dishes" && S.lab === "book" && S.re) { S.re = null; }
+    else if (S.tab === "dishes" && S.lab === "book" && S.re) { if (reDirty()) { reLeave(); return; } S.re = null; }
     else if (S.tab === "dishes" && S.lab === "book" && S.rv) { S.rv = null; keepAwake(false); }
     else { S.tab = S.prevTab && S.prevTab !== S.tab ? S.prevTab : (tabsFor().find((x) => x[0] !== "room") || tabsFor()[0])[0]; }
     S.enter = true; render(); jumpTo(0);
@@ -8388,7 +8522,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "repRef") loadRoom();
   else if (d.repdel) { const [k, id] = d.repdel.split("|"); S.sheet = { type: "repdel", k, id }; render(); }
   else if (t.id === "repDelGo" && sh && sh.type === "repdel") delReport(sh.k, sh.id);
-  else if (t.id === "sUndoOk") { setProd(sh.k, { done: false }); if (S.hold) S.hold.keys.delete(sh.k); S.sheet = null; render(); }
+  else if (t.id === "sUndoOk") { const un = itemBy(sh.k).n; setProd(sh.k, { done: false }).then((ok) => { if (ok) toast(`${un} חזר לרשימה`); }); if (S.hold) S.hold.keys.delete(sh.k); S.sheet = null; render(); }
   else if (t.id === "toggleDone") { S.showDone = !S.showDone; render(); }
   else if ("whydays" in d && sh && sh.type === "why") { sh.open = !sh.open; render(); }
   else if (d.closeday) setClosedDay(d.closeday, true);
@@ -8417,7 +8551,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "ideasGo") { S.ctl = "ideas"; S.enter = true; loadIdeas(); render(); jumpTo(0); }
   else if (t.id === "itemsGo") { S.tab = "items"; S.enter = true; render(); jumpTo(0); }
   else if (d.grep) { const [k, id] = d.grep.split("|"), r = ((((S.grp || {}).sites || {})[k] || {}).reps || []).find((x) => x.id === id); if (r) { S.repObj = r; S.ctl = "report"; S.enter = true; render(); jumpTo(0); } }
-  else if (d.gdel) { S.grpAsks = (S.grpAsks || []).filter((a) => a.id !== d.gdel); render(); deleteDoc(doc(db, "group", d.gdel)).catch(() => {}); }
+  else if (d.gdel) { S.grpAsks = (S.grpAsks || []).filter((a) => a.id !== d.gdel); render(); deleteDoc(doc(db, "group", d.gdel)).catch(() => toast("לא נמחק")); }
   else if (t.id === "gAskGo") { e.preventDefault(); groupAsk(); }
   else if (d.theme) { store("rosie-theme", d.theme); applyTheme(); render(); }
   else if (d.lang && t.closest(".seg,.pop")) { try { localStorage.setItem("mizo-lang", d.lang); } catch (er) {} location.reload(); }
@@ -8518,7 +8652,14 @@ app.addEventListener("click", (e) => {
   else if (d.range) { S.range = +d.range; S.histAll = false; loadData(); }
   else if (d.orow) { S.openRow = S.openRow === d.orow ? null : d.orow; render(); }
   else if (d.oday) { S.openDay = S.openDay === d.oday ? null : d.oday; render(); }
-  else if (d.delw && uiOk(t, null, can.admin() && S.tab === "data")) { const wid = d.delw; ask({ t: "למחוק את רישום הפחת?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("waste"), wid)).then(() => { S.data.waste = S.data.waste.filter((w) => w.id !== wid); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
+  else if (d.delw && uiOk(t, null, can.admin() && S.tab === "data")) { const wid = d.delw, w0 = (S.data.waste || []).find((w) => w.id === wid); ask({ t: "למחוק את רישום הפחת?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) runTransaction(db, async (tx) => {
+    /* גם המונה ביום (orders.waste) יורד, אחרת "פחות פחת" בהצעה ממשיך להוריד בגלל רישום שנמחק.
+       בטרנזקציה: רק אם הרישום עוד קיים — לחיצה כפולה או שני מנהלים לא מורידים את המונה פעמיים */
+    const wref = doc(db, CP("waste"), wid), ws = await tx.get(wref); if (!ws.exists()) return;
+    const w = ws.data(); tx.delete(wref);
+    if (w && w.k && +w.qty > 0 && /^\d{4}-\d{2}-\d{2}$/.test(w.day || "")) tx.set(doc(db, CP("orders"), w.day), { waste: { [w.k]: increment(-w.qty) } }, { merge: true });
+  }).then(() => {
+    S.sugg = {}; S.data.waste = S.data.waste.filter((w) => w.id !== wid); render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "advBtn") { S.adv = !S.adv; render(); }
   else if (d.dsec) { S.dsec = S.dsec || {}; S.dsec[d.dsec] = !S.dsec[d.dsec]; render(); }
   else if (t.id === "histAll") { S.histAll = true; render(); }
@@ -8544,7 +8685,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "rvEdit") openRecipeEdit(S.rv);
   else if (d.recat && S.re) { S.re.r.cat = d.recat; render(); }
   else if (t.id === "reSave" && S.re) saveRecipe();
-  else if (t.id === "reCancel" && S.re) { S.re = null; S.enter = true; render(); jumpTo(0); }
+  else if (t.id === "reCancel" && S.re) { if (reDirty()) reLeave(); else { S.re = null; S.enter = true; render(); jumpTo(0); } }
   else if (t.id === "reDel" && S.re && S.re.id) { const id = S.re.id; ask({ t: `למחוק את "${(S.book[id] || {}).n}"?`, ok: "מחיקה", danger: true }).then((ok) => { if (ok) deleteDoc(doc(db, CP("recipes"), id)).then(() => { delete S.book[id]; S.re = null; S.rv = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (d.pflt) { S.pf = d.pflt; render(); }
   else if (t.id === "pMore") { S.pMore = true; render(); }
@@ -8594,7 +8735,12 @@ app.addEventListener("change", (e) => {
   if (S.sheet && S.sheet.type === "photo" && t.dataset.pf) S.sheet.f[t.dataset.pf] = t.value;
   if (S.re && t.dataset.re) S.re.r[t.dataset.re] = t.value;
   if (S.sheet && S.sheet.type === "dish") { if (t.dataset.ci != null && t.dataset.cf) S.sheet.d.comps[+t.dataset.ci][t.dataset.cf] = t.value; if (t.dataset.dk) S.sheet.d[t.dataset.dk] = t.value; }
-  if (t.dataset.role) { if (roleSelOk(t)) setRole(t.dataset.role, t.value); }
+  if (t.dataset.role) { if (roleSelOk(t)) {
+    const uid = t.dataset.role, prev = ([...t.options].find((o) => o.defaultSelected) || {}).value;
+    if (t.value !== "blocked") setRole(uid, t.value);
+    else { const u = staffOfSite().find((x) => x.uid === uid) || {}; /* חסימה מורידה גישה מיד: קודם שואלים. ביטול מחזיר את הבורר */
+      ask({ t: `לחסום את ${u.name || u.username || ""}?`, m: "הגישה תוסר מיד", ok: "חסימה", danger: true }).then((ok) => { if (ok) setRole(uid, "blocked"); else { const sel = [...document.querySelectorAll("select[data-role]")].find((x) => x.dataset.role === uid); if (sel && prev != null) sel.value = prev; } }); }
+  } }
   else if (t.dataset.acsite && S.sheet && S.sheet.type === "access") S.sheet.f.sites[t.dataset.acsite] = t.value;
   else if (t.id === "wk" && S.sheet) { S.sheet.k = t.value; }
 });
