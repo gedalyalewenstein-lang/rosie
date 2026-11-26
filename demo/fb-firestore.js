@@ -26,7 +26,7 @@ export async function deleteDoc(ref){delete store[ref.path];setTimeout(emit,0)}
 export async function updateDoc(ref,data){ __validate(data,false,ref.path);store[ref.path]=Object.assign(store[ref.path]||{},JSON.parse(JSON.stringify(data)));setTimeout(emit,0)}
 export function initializeFirestore(){return {}}
 export function persistentLocalCache(){return {}}
-export function persistentMultipleTabManager(){return {}}
+export function persistentMultipleTabManager(){return {}} export async function waitForPendingWrites() {}
 export async function runTransaction(db,fn){const w=[];const tx={get:async r=>snapDoc(r.path),set:(r,d,o)=>{__validate(d,false,r.path);w.push([r,d,o]);return tx}};const res=await fn(tx);for(const [r,d,o] of w) await setDoc(r,d,o);return res}
 export function writeBatch(){const ops=[];return {delete:(r)=>ops.push(()=>{delete store[r.path]}),set:(r,d,o)=>ops.push(()=>setDoc(r,d,o)),update:(r,d)=>ops.push(()=>updateDoc(r,d)),commit:async()=>{for(const f of ops) await f();setTimeout(emit,0)}}}
 

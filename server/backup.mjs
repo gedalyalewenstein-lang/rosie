@@ -1,4 +1,4 @@
-// גיבוי לילי: כל המסד (רוזי, כל המסעדות, משתמשים והגדרות) לקובץ אחד מוצפן. רץ ב-GitHub Actions (backup.yml)
+// גיבוי לילי: כל המסד (rosie, כל המסעדות, משתמשים והגדרות) לקובץ אחד מוצפן. רץ ב-GitHub Actions (backup.yml)
 // המאגר החי ציבורי — לכן הקובץ תמיד מוצפן ב-BACKUP_KEY, ובלי המפתח אי אפשר לקרוא אותו
 import fs from "node:fs";
 import { exportAll, pack, needKey, countsOf, unpack, drill } from "./backup-lib.mjs";
@@ -18,5 +18,8 @@ fs.writeFileSync(OUT, buf);
 const back = unpack(fs.readFileSync(OUT), KEY), d = await drill(back);
 console.log("backup", dump.n, "docs,", dump.auth.length, "accounts,", Math.round(buf.length / 1024), "KB");
 console.log(JSON.stringify(countsOf(dump.docs)));
-if (!d.ok) { console.error("✗ תרגיל שחזור נכשל", JSON.stringify(d)); process.exit(1); }
+// סימון לשרת ההתראות (meta/backup): at = הגיבוי התקין האחרון. גיבוי שנכשל לא מזיז את at — אחרי 36 שעות בלי גיבוי תקין גדי מקבל התראה אחת
+const mref = admin.firestore().collection("meta").doc("backup");
+if (!d.ok) { console.error("✗ תרגיל שחזור נכשל", JSON.stringify(d)); await mref.set({ ok: false, failAt: Date.now() }, { merge: true }).catch(() => {}); process.exit(1); }
+await mref.set({ at: Date.now(), n: dump.n, kb: Math.round(buf.length / 1024), ok: true }).catch((e) => console.error("meta/backup לא נכתב:", String(e.message).slice(0, 80))); /* הקובץ כבר נשמר: לא מכשילים את הגיבוי */
 console.log("DRILL OK", d.n);

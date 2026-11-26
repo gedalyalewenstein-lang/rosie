@@ -30,11 +30,11 @@ window.__DEMO_FC8={"rosie": {"t": "30.2% ⁦(30–34.9)⁩ · ביטחון בי�
 
   /* ---------- אנשים ---------- */
   const U = {
-    chef: { username: "chef", name: "שף נועם", role: "admin", chiefOf: ["rosie", "jaco"] },
-    cook: { username: "maya", name: "מאיה", role: "rosie" },
-    prod: { username: "eli", name: "אלי", role: "prod" },
-    cook2: { username: "omer", name: "עומר", role: "rosie" },
-    prod2: { username: "samir", name: "סמיר", role: "prod" },
+    chef: { username: "chef", name: "שף איתן", role: "admin", chiefOf: ["rosie", "jaco"] },
+    cook: { username: "noa", name: "נועה", role: "rosie" },
+    prod: { username: "yossi", name: "יוסי", role: "prod" },
+    cook2: { username: "roni", name: "רוני", role: "rosie" },
+    prod2: { username: "avi", name: "אבי", role: "prod" },
   };
   Object.entries(U).forEach(([k, u]) => (store["users/u_" + k] = Object.assign({ createdAt: at(addD(TODAY, -45), 10), lang: "he", site: "rosie" }, u)));
   store["settings/app"] = { offDays: OFFD, ai: true, aiStat: { ok: true, at: NOW.getTime() - 20 * 60000 } };
@@ -335,7 +335,7 @@ window.__DEMO_FC8={"rosie": {"t": "30.2% ⁦(30–34.9)⁩ · ביטחון בי�
     const keep = store; seed = 20261177; store = {}; const A2 = gen("בית לבנה נמל", 1);
     Object.entries(A2.store).forEach(([k, v]) => { if (/^(users|group|asks)\//.test(k)) return; keep["sites/jaco/" + k] = v; });
     store = keep; window.__DEMO_STATS = stats1;
-    store["users/u_group"] = { username: "dana", name: "דנה", role: "admin", chiefOf: ["rosie", "jaco"], createdAt: Date.now() - 45 * 864e5, lang: "he" };
+    store["users/u_group"] = { username: "michal", name: "מיכל", role: "admin", chiefOf: ["rosie", "jaco"], createdAt: Date.now() - 45 * 864e5, lang: "he" };
     const b = store["group/b1"]; if (b) { const f2 = A2.STATS.fc8; b.short = { good: `${DNAME}: ${stats1.fc8}`, watch: `הנמל: ${f2}`, todo: "להשוות רכש וכמויות בין המסעדות" }; b.long = (b.long || "") + (A2.store["group/b1"] ? "\n\n" + A2.store["group/b1"].long : ""); }
   }
   window.__DEMO_SEED = store;

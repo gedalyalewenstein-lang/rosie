@@ -1,5 +1,5 @@
-// רשימת המסעדות לשרת ההתראות (notify.yml): רוזי וג'קו תמיד, ועוד כל מסעדה מ-siteRegistry.
-// כותב list=[...] ל-GITHUB_OUTPUT. בכל תקלה — חוזר לרשימה הקבועה, כדי שההתראות של רוזי וג'קו לא ייעצרו
+// רשימת המסעדות לשרת ההתראות (notify.yml): rosie ו-jaco תמיד, ועוד כל מסעדה מ-siteRegistry.
+// כותב list=[...] ל-GITHUB_OUTPUT. בכל תקלה — חוזר לרשימה הקבועה, כדי שההתראות של rosie ו-jaco לא ייעצרו
 import fs from "node:fs";
 const BASE = ["rosie", "jaco"];
 let list = BASE.slice();

@@ -2,7 +2,7 @@
 import zlib from "node:zlib";
 import crypto from "node:crypto";
 
-// אוספים כלליים (לא של מסעדה אחת). רוזי = כל השאר בשורש, מסעדה אחרת = sites/<מפתח>/...
+// אוספים כלליים (לא של מסעדה אחת). rosie = כל השאר בשורש, מסעדה אחרת = sites/<מפתח>/...
 export const GLOBAL = ["users", "deletions", "group", "broadcasts", "feedback", "errors", "waitlist", "siteRegistry", "pwReset"];
 
 // סוגי Firestore שלא עוברים JSON כמו שהם: תאריך שרת, נקודה, הפניה, בייטים
@@ -72,7 +72,7 @@ export function unpack(buf, pass) {
   return JSON.parse(zlib.gunzipSync(raw).toString("utf8"));
 }
 
-// עובד שייך למסעדה: רוזי = role פעיל, אחרת = sites.<מפתח>
+// עובד שייך למסעדה: rosie = role פעיל, אחרת = sites.<מפתח>
 const ACTIVE = ["rosie", "prod", "admin", "fmgr", "snap", "pending"];
 export const userOf = (d, site) => !!d && (site === "rosie" ? ACTIVE.includes(d.role) : !!(d.sites && d.sites[site]));
 // אילו מסמכים נכנסים לשחזור: הכול (כולל users, siteRegistry ו-settings/app של השורש), או מסעדה אחת.

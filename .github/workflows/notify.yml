@@ -1,4 +1,4 @@
-name: התראות רוזי
+name: התראות מיזו
 on:
   schedule:
     - cron: "*/5 * * * *"
@@ -8,7 +8,7 @@ concurrency:
   group: notify
   cancel-in-progress: false
 jobs:
-  # רשימת המסעדות: רוזי וג'קו + כל מסעדה שנוספה מחדר הבקרה (siteRegistry). תקלה → רוזי וג'קו בלבד
+  # רשימת המסעדות: rosie ו-jaco + כל מסעדה שנוספה מחדר הבקרה (siteRegistry). תקלה → rosie ו-jaco בלבד
   sites:
     permissions:
       contents: read

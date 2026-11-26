@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'  https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>חישוב עלות מנה: דוגמה מלאה עם פחת ומע&quot;מ | מיזו</title>
+<meta name="description" content="איך מחשבים עלות מנה במסעדה שורה אחר שורה. כולל פחת בניקוי, רטבים שמכינים במנות גדולות, מחיר בלי מע&quot;מ ומחיר רצפה לפי יעד Food cost.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://mizoik.co.il/guides/dish-cost.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="מיזו">
+<meta property="og:title" content="חישוב עלות מנה: דוגמה מלאה עם פחת ומע&quot;מ | מיזו">
+<meta property="og:description" content="איך מחשבים עלות מנה במסעדה שורה אחר שורה. כולל פחת בניקוי, רטבים שמכינים במנות גדולות, מחיר בלי מע&quot;מ ומחיר רצפה לפי יעד Food cost.">
+<meta property="og:url" content="https://mizoik.co.il/guides/dish-cost.html">
+<meta property="og:image" content="https://mizoik.co.il/site/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F5F7">
+<link rel="icon" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="stylesheet" href="guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "חישוב עלות מנה עם דוגמה", "description": "איך מחשבים עלות מנה במסעדה שורה אחר שורה. כולל פחת בניקוי, רטבים שמכינים במנות גדולות, מחיר בלי מע\"מ ומחיר רצפה לפי יעד Food cost.", "inLanguage": "he", "url": "https://mizoik.co.il/guides/dish-cost.html", "mainEntityOfPage": "https://mizoik.co.il/guides/dish-cost.html", "datePublished": "2026-11-26", "dateModified": "2026-11-26", "image": "https://mizoik.co.il/site/og.png", "author": {"@id": "https://mizoik.co.il/#org"}, "publisher": {"@id": "https://mizoik.co.il/#org"}}, {"@type": "Organization", "@id": "https://mizoik.co.il/#org", "name": "מיזו", "alternateName": "mizo", "url": "https://mizoik.co.il/", "logo": "https://mizoik.co.il/icon-512.png"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "מיזו", "item": "https://mizoik.co.il/"}, {"@type": "ListItem", "position": 2, "name": "מדריכים", "item": "https://mizoik.co.il/guides/"}, {"@type": "ListItem", "position": 3, "name": "חישוב עלות מנה עם דוגמה", "item": "https://mizoik.co.il/guides/dish-cost.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="mzw" href="../" aria-label="מיזו, לדף הבית">m<span class="i">ı</span>zo</a><nav aria-label="ראשי"><a href="./">מדריכים</a><a class="demo" href="../demo/">דמו</a></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="מיקום"><a href="../">מיזו</a> › <a href="./">מדריכים</a></nav>
+<article>
+<h1>חישוב עלות מנה עם דוגמה</h1>
+<p class="meta">עודכן ב-26 בנובמבר 2026 · 4 דקות קריאה</p>
+<p class="lead">עלות מנה היא כמה כסף בחומרי גלם יוצא על צלחת אחת. בלי המספר הזה אי אפשר לתמחר נכון. אי אפשר גם לדעת אם Food cost גבוה בגלל מנה מסוימת או בגלל בזבוז. כאן נבנה גיליון מנה מלא על מנה לדוגמה.</p>
+
+<h2>מה צריך לפני שמתחילים</h2>
+<ul>
+<li><b>מתכון במשקל.</b> גרמים ומיליליטרים. "חופן" ו"כף" לא עובדים בחישוב.</li>
+<li><b>מחיר קנייה עדכני</b> לכל רכיב לפי יחידה (לק"ג או לליטר) בלי מע"מ.</li>
+<li><b>אחוז ניצולת</b> לכל רכיב שמנקים קולפים או מפרקים. כמה מהקילו שקניתם מגיע בפועל לצלחת.</li>
+</ul>
+
+<h2>ניצולת: הצעד שרוב החישובים מפספסים</h2>
+<p>אם המנה צריכה 180 גרם חזה עוף נקי ובניקוי הולכים 10% מהמשקל, צריך לקנות יותר מ-180 גרם. הנוסחה:</p>
+<div class="formula"><p><b>כמות לקנייה</b> = כמות נטו במנה ÷ אחוז ניצולת</p></div>
+<p>180 ÷ 0.9 = 200 גרם. את המחיר מחשבים על 200 גרם ולא על 180. מי שמחשב על הכמות הנקייה מקבל עלות נמוכה מהאמת בכל מנה.</p>
+<p>את אחוז הניצולת כדאי למדוד ולא לנחש. שוקלים קילו כמו שהגיע מהספק. מנקים. שוקלים שוב. עושים את זה שלוש פעמים ולוקחים ממוצע.</p>
+
+<h2>דוגמה: גיליון מנה מלא</h2>
+<p>מנה לדוגמה: חזה עוף צלוי עם תפוחי אדמה ורוטב. כל המחירים בלי מע"מ.</p>
+<div class="tbl"><table>
+<tr><th>רכיב</th><th>חישוב</th><th>עלות</th></tr>
+<tr><td>חזה עוף 180 גרם נקי (ניצולת 90%)</td><td>0.2 ק"ג × 38 ₪</td><td>7.60 ₪</td></tr>
+<tr><td>תפוחי אדמה 150 גרם קלופים (ניצולת 80%)</td><td>0.1875 ק"ג × 5 ₪</td><td>0.94 ₪</td></tr>
+<tr><td>שמן 30 מ"ל</td><td>0.03 ליטר × 12 ₪</td><td>0.36 ₪</td></tr>
+<tr><td>מלח ותבלינים</td><td>הערכה לפי באץ'</td><td>0.20 ₪</td></tr>
+<tr><td>רוטב 60 מ"ל</td><td>באץ' של 2 ליטר עולה 24 ₪</td><td>0.72 ₪</td></tr>
+<tr><td>ירק לקישוט</td><td></td><td>0.40 ₪</td></tr>
+<tr><td><b>סה"כ עלות מנה</b></td><td></td><td><b>10.22 ₪</b></td></tr>
+</table></div>
+
+<h3>איך מחשבים רוטב שמכינים בבאץ'</h3>
+<p>רטבים ובסיסים מכינים בכמות גדולה. קודם מחשבים את עלות הבאץ' כולו כמו מנה רגילה. אחר כך מחלקים בתפוקה. בדוגמה באץ' של 2 ליטר עולה 24 ₪. כלומר 24 ÷ 2,000 = 1.2 אגורות למיליליטר. מנה של 60 מ"ל עולה 0.72 ₪. כדאי לבנות כל הכנה כזו כ"תת מתכון" ולהשתמש בו בכל המנות שצריכות אותו. כשמחיר של רכיב בהכנה משתנה הוא משתנה בכל המנות יחד.</p>
+
+<h3>מרווח ביטחון</h3>
+<p>יש מטבחים שמוסיפים 3% עד 5% על עלות המנה בשביל דברים קטנים שלא נשקלים: נייר אפייה טיפת שמן במחבת וטעימות. עם 3% העלות בדוגמה עולה ל-10.22 × 1.03 = 10.53 ₪. זה לא חובה. העיקר להחליט פעם אחת ולעבוד ככה בכל המנות.</p>
+
+<h2>מעלות מנה לאחוז ולמחיר</h2>
+<h3>Food cost של המנה</h3>
+<p>המחיר בתפריט כולל מע"מ. העלות לא. לכן קודם מורידים מע"מ מהמחיר. בשיעור מע"מ של 18%: מחיר של 72 ₪ בתפריט הוא 72 ÷ 1.18 = 61.02 ₪ בלי מע"מ.</p>
+<div class="formula"><p><b>Food cost של המנה</b> = עלות מנה ÷ מחיר בלי מע"מ × 100</p></div>
+<p>10.22 ÷ 61.02 = 16.7%. מנה כזו נמצאת הרבה מתחת לממוצע של רוב התפריטים וזה בסדר. מנות עם אחוז נמוך מממנות מנות יקרות יותר כמו דגים ובשר.</p>
+
+<h3>מחיר רצפה לפי יעד</h3>
+<p>אפשר גם הפוך: לקבוע יעד Food cost למנה ולגזור ממנו את המחיר המינימלי.</p>
+<div class="formula"><p><b>מחיר בלי מע"מ</b> = עלות מנה ÷ יעד Food cost</p></div>
+<p>עם יעד של 28%: 10.22 ÷ 0.28 = 36.50 ₪ בלי מע"מ. עם מע"מ: 36.50 × 1.18 = 43.07 ₪. זה מחיר הרצפה. מתחתיו המנה לא עומדת ביעד. המחיר האמיתי נקבע גם לפי השוק לפי המיקום ולפי מה שהמנה שווה לסועד.</p>
+
+<h2>טעויות נפוצות</h2>
+<ul>
+<li><b>מחירים ישנים.</b> גיליון מנה שנבנה לפני שנה ולא עודכן מטעה. בודקים לפחות כשמחיר מספק משתנה.</li>
+<li><b>בלי ניצולת.</b> בעיקר בבשר דגים וירקות שקולפים.</li>
+<li><b>לשכוח את הקטנים.</b> לחם ליד המנה מנת רוטב נוספת ואריזה לטייק אוויי.</li>
+<li><b>מנה שמוגשת אחרת מהמתכון.</b> גיליון מנה עובד רק אם הצלחת באמת יוצאת ככה. שקילה אקראית פעם בשבוע עונה על זה.</li>
+</ul>
+
+<h2>שאלות נפוצות</h2>
+<h3>מחשבים עלות מנה עם מע"מ או בלי?</h3>
+<p>בלי. מסעדה שמדווחת מע"מ מקבלת אותו בחזרה על הקניות. לכן העלות האמיתית שלה היא בלי מע"מ. גם המחיר שמולו משווים צריך להיות בלי מע"מ.</p>
+<h3>כל כמה זמן לעדכן גיליון מנה?</h3>
+<p>כשמשתנה מחיר של רכיב יקר או כשמשתנה המתכון. מעבר לזה בדיקה פעם ברבעון לכל התפריט מספיקה לרוב המטבחים.</p>
+<h3>מה עם מנות שנמכרות בכמה גדלים?</h3>
+<p>כל גודל הוא גיליון נפרד. חצי מנה היא לא תמיד חצי עלות. התוספות והרוטב נשארים לפעמים באותה כמות.</p>
+
+<h2>מה עושים עם המספרים</h2>
+<p>כשיש עלות לכל מנה אפשר לחשב Food cost תיאורטי לכל התפריט ולהשוות למה שיצא בפועל. ההסבר המלא נמצא במדריך <a href="food-cost.html">איך מחשבים Food cost</a>. אפשר גם לראות אילו מנות הכי רווחיות בשקלים ולא רק באחוזים. מנה עם 35% שנמכרת הרבה יכולה להרוויח יותר ממנה עם 20% שאף אחד לא מזמין.</p>
+<p>ב<a href="../">מיזו</a> בונים כרטיס מנה מהרכיבים והעלות מחושבת לפי המחיר לק"ג של כל הכנה. רכיב שאין לו מחיר מסומן כחסר ולא מנוחש. כך רואים מיד איזה מספר עוד לא שלם. אפשר לנסות את זה על מסעדה לדוגמה ב<a href="../demo/">דמו</a>.</p>
+</article>
+<aside class="cta" aria-label="מיזו"><h2>רוצים לראות את זה על המטבח שלכם?</h2><p>מיזו מחברת מתכונים הזמנות קבלות ועלויות במקום אחד בטלפון. שתי דקות בוואטסאפ ותראו איך זה נראה אצלכם.</p><div class="btns"><a class="btn" href="https://wa.me/972585100411?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%9E%D7%95%20%D7%A9%D7%9C%20%D7%9E%D7%99%D7%96%D7%95" rel="noopener">סיור 2 דקות בוואטסאפ</a><a class="btn ghost" href="../demo/">לראות דמו חי</a></div></aside>
+<section class="more"><h2>עוד מדריכים</h2><ul class="cards"><li><a href="food-cost.html"><b>איך מחשבים Food cost במסעדה</b><span>הנוסחה עם מלאי פתיחה וסגירה ודוגמה של חודש אחד</span></a></li><li><a href="prime-cost.html"><b>Prime cost במסעדה</b><span>חומרי גלם ועבודה ביחד, עם דוגמה של חודש</span></a></li><li><a href="inventory-count.html"><b>ספירת מלאי במסעדה</b><span>סדר קבוע, תמחור הכנות ומציאת פער בצריכה</span></a></li><li><a href="central-kitchen.html"><b>מטבח מרכזי והזמנות בין סניפים</b><span>רמת מלאי קבועה, שעת סגירה ומחיר העברה לכל סניף</span></a></li><li><a href="recipe-scaling.html"><b>הכפלת מתכון לכמויות של מטבח</b><span>מקדם הכפלה, מלח ותבלינים וחלוקה לבאצ'ים</span></a></li><li><a href="kitchen-app.html"><b>אפליקציה לניהול מטבח: מה לבדוק</b><span>רשימת בדיקה לפני שמתחייבים למערכת</span></a></li><li><a href="smart-kitchen.html"><b>מטבח חכם למסעדה</b><span>מה זה באמת ואיך מתחילים בתהליך אחד</span></a></li></ul></section>
+</main>
+<footer><div class="wrap"><a href="../">מיזו</a><a href="./">מדריכים</a><a href="../demo/">דמו</a><a href="../legal/privacy.html">פרטיות</a><a href="../legal/terms.html">תנאי שימוש</a><a href="../legal/accessibility.html">נגישות</a></div></footer>
+</body>
+</html>

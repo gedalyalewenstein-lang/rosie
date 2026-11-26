@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mizoik.co.il/site/</loc></url>
+  <url><loc>https://mizoik.co.il/</loc></url>
+  <url><loc>https://mizoik.co.il/guides/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/food-cost.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/dish-cost.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/prime-cost.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/inventory-count.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/central-kitchen.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/recipe-scaling.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/kitchen-app.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://mizoik.co.il/guides/smart-kitchen.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://mizoik.co.il/legal/privacy.html</loc></url>
   <url><loc>https://mizoik.co.il/legal/terms.html</loc></url>
   <url><loc>https://mizoik.co.il/legal/accessibility.html</loc></url>
