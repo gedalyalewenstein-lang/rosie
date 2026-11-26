@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-7pL0abUNSooEuJkalTyWqVdFCQJL9iJvQdeQYX6ctaw=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-NOOfAkjXVf3G24qvIeky7DzJTVfJDyZ0zMoKvMFPo6o=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -1935,6 +1935,7 @@ body.has-tabbar .bar,.bar{inset-inline:16px;bottom:calc(var(--tab-b) + 64px + 8p
 [dir="rtl"] .metric .big{text-align:right}
 .metric .big small{font:var(--f-title);color:var(--label2);letter-spacing:0;margin-inline-start:4px}
 .metric .say{display:block;margin-top:4px;font:var(--f-body);text-wrap:pretty}
+.metric .say.munok{font:var(--f-foot)}
 .gauge{position:relative;height:8px;margin-top:16px;border-radius:999px;background:var(--fill2);overflow:hidden}
 .gauge i{position:absolute;top:0;bottom:0;transform-origin:right;animation:mzGrow 500ms var(--ease) both}
 [dir="ltr"] .gauge i{transform-origin:left}
@@ -4081,6 +4082,9 @@ Object.assign(I18N.ar, {"מסעדה {n}": "مطعم {n}", "הקישור לא ת�
 Object.assign(I18N.en, {"מסעדה {n}": "Restaurant {n}", "הקישור לא תקף. בקשו קישור חדש מהמנהל": "This link isn't valid. Ask your manager for a new one", "בודקים את הקישור…": "Checking the link…", "הרשמה כמנהל המטבח": "Sign up as kitchen manager", "קישור הצטרפות חדש": "New join link", "הקישור הקודם מפסיק לעבוד": "The previous link stops working", "לא נוצר. בדוק חיבור": "Not created. Check connection", "הקישור הועתק · הקודם בוטל": "Link copied · previous one cancelled", "קישור הצטרפות": "Join link", "קישור הצטרפות לעובדים (הועתק):": "Join link for staff (copied):", "לא נוצר. אפשר ליצור מהצוות של המסעדה": "Not created. You can create it from the restaurant's staff screen", "שמות המסעדות": "Restaurant names", "חסר שם · נשמר במסד": "Name missing · saved in the database", "מופיע לצוות אחרי כניסה": "Staff see it after signing in", "שם קצר": "Short name", "חסר שם": "Name missing", "ההרשמה רק דרך קישור הצטרפות מהמנהל.": "Sign-up is only through a join link from your manager.", "בקשו מהמנהל את קישור ההצטרפות למסעדה. דרכו נרשמים בלי לבחור מסעדה ידנית.": "Ask your manager for the restaurant's join link. With it you sign up without picking a restaurant."});
 I18N_PAT.ar.push([new RegExp("^צוות (.+)$"), "فريق $1"], [new RegExp("^התקבל ב(.+)$"), "استُلم في $1"], [new RegExp("^השינוי חל מיד אצל כל עובדי (.+)\\. כיבוי לא מוחק נתונים\\.$"), "التغيير يسري فورًا على كل عمال $1. الإيقاف لا يحذف بيانات."], [new RegExp("^כש(.+) ישלחו הזמנה ותאושר, היא תופיע כאן לייצור\\.$"), "عندما ترسل $1 طلبية وتتم الموافقة عليها، ستظهر هنا للإنتاج."]);
 I18N_PAT.en.push([new RegExp("^צוות (.+)$"), "$1 staff"], [new RegExp("^התקבל ב(.+)$"), "Received at $1"], [new RegExp("^השינוי חל מיד אצל כל עובדי (.+)\\. כיבוי לא מוחק נתונים\\.$"), "Applies right away to all $1 staff. Turning off deletes no data."], [new RegExp("^כש(.+) ישלחו הזמנה ותאושר, היא תופיע כאן לייצור\\.$"), "When $1 sends an order and it's approved, it shows up here for production."]);
+/* 2.9 (א) אישורים: כסף שClaude קרא */
+Object.assign(I18N.ar, {"נקרא ע״י Claude": "قرأه Claude", "לאשר הכול ({n})": "الموافقة على الكل ({n})", "כולל ₪{n} שלא אושרו": "يشمل ₪{n} غير معتمدة", "מכירות ₪{n} שלא אושרו": "مبيعات ₪{n} غير معتمدة", "אושרו {n} ✓": "تمت الموافقة على {n} ✓"});
+Object.assign(I18N.en, {"נקרא ע״י Claude": "Read by Claude", "לאשר הכול ({n})": "Approve all ({n})", "כולל ₪{n} שלא אושרו": "Includes ₪{n} not approved", "מכירות ₪{n} שלא אושרו": "Sales ₪{n} not approved", "אושרו {n} ✓": "{n} approved ✓"});
 
 
 startI18n();
@@ -6379,12 +6383,17 @@ function moneyCard(inSec) {
   let h = `<section class="money mcard"><div class="seg mseg" role="group" aria-label="תקופה"><button data-mym="8w" aria-pressed="${w8}">8 שבועות</button>${yms.map((k) => `<button data-mym="${k}" aria-pressed="${k === per}">${MN[+k.slice(5) - 1]}</button>`).join("")}</div>`;
   /* מספר אחד גדול: Food cost (הערכה זהירה), טווח וביטחון, משפט מול היעד, ומה חסר. לחיצה על המספר: "למה הטווח הזה" */
   const pcV = R.prime ? R.prime.best : null, pImp = R.prime && R.prime.implausible, bh = !!R.capture && R.capture.pct < 60 && R.reasons.some((r) => r.k === "bookhi"), wd = !!(F && F.wide), pwd = !!(R.prime && R.prime.wide);
+  /* 2.9 (א): מה שעוד לא אושר נספר כרגיל; רק שורה קטנה. קבלות = מה שנכנס ל-Food cost (מזון, בלי מע״מ). מכירות בנפרד */
+  const unOk = (p) => Array.isArray(p.review) && p.review.length && !p.reviewOk;
+  const unR = (S.money.rec || []).filter((r) => inPer(r.day) && +r.amt > 0 && r.cat !== "אחר" && unOk(r)).reduce((a, r) => a + netAmt(r.amt, r.cat, r.aiData && r.aiData.vat), 0);
+  const unZ = (S.money.revs || []).filter((p) => p.kind === "z" && inPer(p.day) && unOk(p) && p.aiData && +p.aiData.total > 0).reduce((a, p) => a + netSales(p.aiData.total), 0);
+  const unL = Math.round(unR) > 0 ? `<span class="say warnt munok">כולל ${ils(unR)} שלא אושרו</span>` : "", unS = Math.round(unZ) > 0 ? `<span class="say warnt munok">מכירות ${ils(unZ)} שלא אושרו</span>` : "";
   const gaps = (bh ? `<li>${whyLine(withCap({ k: "bookhi" }, R))}</li>` : R.capture ? `<li class="mcap">צולמו <span dir="ltr">${num(R.capture.pct)}%</span> מהרכש</li>` : "") + R.reasons.filter((r) => ["wait", "noamt", "failed", "sup", "supw", "capx", "days", "unk", "hol", "clo", "noanchor", "booklo", "bookhi", "credit"].includes(r.k) && !(bh && r.k === "bookhi")).map((r) => `<li>${whyLine(r)}</li>`).join(""), imp = R.reasons.find((r) => r.k === "implausible");
-  h += `<div class="card metric mhero"><span class="lbl"><span>Food cost</span>${!w8 && x.covers ? `<span><span dir="ltr">${num(x.covers)}</span> סועדים</span>` : ""}</span>${F == null || !(R.buy > 0 || R.est > 0) ? `<b class="big">—</b><span class="say">${F == null ? "חסרות מכירות לחישוב" : w8 ? "אין קבלות ב-8 השבועות" : "אין קבלות בחודש הזה"}</span>` : `${imp ? `<span class="say badt mimp">${whyLine(imp)}</span>` : ""}<button class="mfig" id="fcWhy" aria-label="למה הטווח הזה"><b class="big${imp || wd ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(F.best)}" data-dec="1">${fmt(r1(F.best))}</span><small>%</small></b>${!imp && rngTxt(F) ? `<span class="mrng" dir="ltr">(${rngTxt(F)})</span>` : ""}${F.exact ? "" : wd ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[F.conf]}">${CONFW[F.conf]}</span>`}</button>${R.young ? `<span class="say warnt myoung">עוד לא אמין — פחות מ-4 שבועות נתונים</span>` : ""}${imp ? "" : tgtSay(F, TG.f)}${imp ? "" : fcGauge(F.best, TG.f, !praiseOf(F, TG.f))}`}${gaps ? `<ul class="mgap">${gaps}</ul>` : ""}</div>`;
+  h += `<div class="card metric mhero"><span class="lbl"><span>Food cost</span>${!w8 && x.covers ? `<span><span dir="ltr">${num(x.covers)}</span> סועדים</span>` : ""}</span>${F == null || !(R.buy > 0 || R.est > 0) ? `<b class="big">—</b><span class="say">${F == null ? "חסרות מכירות לחישוב" : w8 ? "אין קבלות ב-8 השבועות" : "אין קבלות בחודש הזה"}</span>` : `${imp ? `<span class="say badt mimp">${whyLine(imp)}</span>` : ""}<button class="mfig" id="fcWhy" aria-label="למה הטווח הזה"><b class="big${imp || wd ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(F.best)}" data-dec="1">${fmt(r1(F.best))}</span><small>%</small></b>${!imp && rngTxt(F) ? `<span class="mrng" dir="ltr">(${rngTxt(F)})</span>` : ""}${F.exact ? "" : wd ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[F.conf]}">${CONFW[F.conf]}</span>`}</button>${R.young ? `<span class="say warnt myoung">עוד לא אמין — פחות מ-4 שבועות נתונים</span>` : ""}${imp ? "" : tgtSay(F, TG.f)}${imp ? "" : fcGauge(F.best, TG.f, !praiseOf(F, TG.f))}`}${unL}${unS}${gaps ? `<ul class="mgap">${gaps}</ul>` : ""}</div>`;
   const U = (S.money.up || {})[ym], tb = U && U.ai === "pending" ? `<span class="spin"></span>${aiWait()}` : U && U.ai === "error" ? `<span class="badt">לא נקרא · שוב</span>` : "";
   /* מכירות = הקובץ מטאביט (העלאה בלחיצה על השורה). המקור כתוב בשורה השנייה */
   h += `<h4 class="gh"><span>${mL}</span><span>בלי מע״מ</span></h4><div class="grp mgrp">
-    <div class="srow tall"><span class="st"><b>Prime cost</b>${pImp ? `<small class="badt mimp">${whyLine({ k: "implausible", dir: pImp, m: "food" })}</small>` : `<small>יעד <span dir="ltr">${fmt(TG.p)}%</span></small>`}${R.prime && !R.prime.exact ? (pwd ? `<small class="mconf mwide">${WIDE_TXT}</small>` : `<small class="mconf ${CONFC[R.prime.conf]}">${CONFW[R.prime.conf]}</small>`) : ""}</span><span class="sv ${pImp || pwd ? "pdim" : ""} ${{ good: "", warn: "warnt", bad: "badt" }[pctCls(pcV, TG.p, TG.p + 5)] || ""}" dir="ltr">${(w8 ? R.labor : x.laborM) ? (R.prime ? `${pv(R.prime.best)}${!pImp && rngTxt(R.prime) ? ` <small>(${rngTxt(R.prime)})</small>` : ""}` : "—") : "חסרה עלות עובדים"}</span></div>
+    <div class="srow tall"><span class="st"><b>Prime cost</b>${pImp ? `<small class="badt mimp">${whyLine({ k: "implausible", dir: pImp, m: "food" })}</small>` : `<small>יעד <span dir="ltr">${fmt(TG.p)}%</span></small>`}${unL && R.prime ? `<small class="warnt munok">כולל ${ils(unR)} שלא אושרו</small>` : ""}${R.prime && !R.prime.exact ? (pwd ? `<small class="mconf mwide">${WIDE_TXT}</small>` : `<small class="mconf ${CONFC[R.prime.conf]}">${CONFW[R.prime.conf]}</small>`) : ""}</span><span class="sv ${pImp || pwd ? "pdim" : ""} ${{ good: "", warn: "warnt", bad: "badt" }[pctCls(pcV, TG.p, TG.p + 5)] || ""}" dir="ltr">${(w8 ? R.labor : x.laborM) ? (R.prime ? `${pv(R.prime.best)}${!pImp && rngTxt(R.prime) ? ` <small>(${rngTxt(R.prime)})</small>` : ""}` : "—") : "חסרה עלות עובדים"}</span></div>
     <label class="srow tall" for="fileTabit"><span class="st"><b>מכירות</b><small>${tb || (!w8 && x.src === "tabit" ? `מקובץ מכירות${x.T && x.T.at ? `, נקרא ${ddmm(new Date(x.T.at))}` : ""}` : R.zDays ? `${R.zTab === R.zDays ? "מקובץ מכירות" : R.zTab ? "מדוחות קופה ומקובץ מכירות" : "מדוחות קופה"} · <span dir="ltr">${num(R.zDays)}</span> מתוך <span dir="ltr">${num(R.openDays)}</span> ימים` : "העלאת קובץ מכירות")}</small></span><span class="sv lab" dir="ltr">${(w8 ? R.sales : x.sales) ? ils(w8 ? R.sales : x.salesN) : "—"}</span><span class="schev"></span></label>
     <div class="srow tall"><span class="st"><b>רכש מזון</b><small>מהקבלות, בלי ״אחר״</small></span><span class="sv" dir="ltr">${ils(w8 ? R.buy : x.food)}</span></div>
     <button class="srow tall" id="laborBtn"><span class="st"><b>עלות עובדים</b>${x.lsrc === "tabitL" ? `<small><span dir="ltr">${num(Math.round(x.LT.hours))}</span> שעות, לפי טאביט</small>` : x.lsrc === "tabit" ? "<small>לפי טאביט</small>" : ""}</span><span class="sv lab" dir="ltr">${(w8 ? R.labor : x.laborM) ? ils(w8 ? R.labor : x.laborM) : "＋ הוסף"}</span><span class="schev"></span></button>
@@ -6633,7 +6642,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.8.0";
+const APP_VER = "2.9.0";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -6919,11 +6928,25 @@ function creditBar() {
 /* ---------- אישורים נדרשים: מה שClaude קרא ולא אמור להחליט לבד. נכנס לחישובים עם סימון "לבדיקה" עד שמנהל המטבח (או גדי) מאשר ---------- */
 const canReview = () => can.owner() || rawRole(S.profile, S.site) === "admin";
 const revList = () => ((S.money && S.money.revs) || []).filter((p) => !p.reviewOk);
+/* 2.9 (א): "נקרא ע״י Claude" = הסיבה היחידה → אפשר לאשר יחד. חשוד, זיכוי (סכום שלילי) או snap — רק אחד-אחד */
+const AI_RV = "נקרא ע״י Claude";
+const revAiOnly = (p) => !!p && !p.reviewOk && Array.isArray(p.review) && p.review.length === 1 && p.review[0] === AI_RV && !(+p.amt < 0);
+const revAllIds = () => { const m = {}; ((S.money && S.money.revs) || []).concat(Object.entries(S.photos || {}).map(([id, p]) => Object.assign({ id }, p))).forEach((p) => { if (p.id && revAiOnly(p)) m[p.id] = 1; }); return Object.keys(m).slice(0, 400); };
+const revAllBtn = () => { const n = canReview() ? revAllIds().length : 0; return n ? `<button class="btn small" id="revAll">לאשר הכול (${num(n)})</button>` : ""; };
+async function revAll() {
+  if (!canReview()) return;
+  const ids = revAllIds(); if (!ids.length) return;
+  const ok = { by: myName(), at: Date.now() }, b = writeBatch(db), bt = $("revAll"); if (bt) bt.disabled = true;
+  ids.forEach((id) => b.set(doc(db, CP("photos"), id), { reviewOk: ok }, { merge: true }));
+  try { await b.commit(); ids.forEach((id) => { if (S.photos && S.photos[id]) S.photos[id].reviewOk = ok; }); moneyDirty();
+    act("review", `אושרו ${ids.length}: נתונים שClaude קרא`); toast(`אושרו ${num(ids.length)} ✓`); render(); }
+  catch (e) { toast("לא נשמר"); if (bt) bt.disabled = false; }
+}
 function revRow() { const L = revList(); return L.length && canReview() ? grp([row({ id: "revGo", icon: ICB("#FF9F0A", IC.bell), t: "אישורים נדרשים", s: "צריך עין של שף", v: `<span class="pill warn">${L.length}</span>`, chev: true })]) : ""; }
 function revSheet() {
   const L = revList();
   return `<h3>אישורים נדרשים</h3><p class="hint">נכנס כבר לחישובים, מסומן "לבדיקה" עד שמאשרים.</p>
-    ${L.length ? `<div class="crlist">${L.map((p) => `<div class="cr"><div><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}${p.kind === "z" ? (p.aiData && p.aiData.total > 0 ? ` · ${ils(p.aiData.total)}` : "") : p.amt != null && perm("money") ? ` · ${ils(p.amt)}` : ""}</b><small><span>${p.day ? ddmm(parse(p.day)) : ""}</span>${(p.review || []).map((x) => `<span class="rvr">${esc(x)}</span>`).join("")}</small></div><div class="crb"><button class="tlink" data-revfix="${esc(p.id)}">לתקן</button><button class="btn small" data-revok="${esc(p.id)}">מאשר</button></div></div>`).join("")}</div>` : `<p class="hint">אין מה לאשר ✓</p>`}
+    ${L.length ? revAllBtn() : ""}${L.length ? `<div class="crlist">${L.map((p) => `<div class="cr"><div><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}${p.kind === "z" ? (p.aiData && p.aiData.total > 0 ? ` · ${ils(p.aiData.total)}` : "") : p.amt != null && perm("money") ? ` · ${ils(p.amt)}` : ""}</b><small><span>${p.day ? ddmm(parse(p.day)) : ""}</span>${(p.review || []).map((x) => `<span class="rvr">${esc(x)}</span>`).join("")}</small></div><div class="crb"><button class="tlink" data-revfix="${esc(p.id)}">לתקן</button><button class="btn small" data-revok="${esc(p.id)}">מאשר</button></div></div>`).join("")}</div>` : `<p class="hint">אין מה לאשר ✓</p>`}
     <div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
 }
 async function revOk(id) {
@@ -7088,7 +7111,7 @@ function viewPhotos() {
     h += `<div class="progress-card">${ringHtml(Object.entries(bc).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ k, v, n: bn[k] })), ils(tot), `${plN(nR, "קבלות")} החודש`) || `<div><b>${ils(tot)}</b> קבלות החודש · ${nR}</div>`}<div class="suplist">${Object.entries(by).sort((a, b) => b[1] - a[1]).map(([n, v]) => `<span>${esc(n)} <b>${ils(v)}</b></span>`).join("")}</div></div>`;
   }
   const rv = all.filter(([, p]) => p.review && p.review.length && !p.reviewOk);
-  if (rv.length) h += grp(rv.map(([id, p]) => `<button class="srow" data-photo="${esc(id)}"><span class="st"><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}</b><small>${esc(p.review[0])}</small></span>${+p.amt > 0 && perm("money") ? `<span class="sv">${ils(p.amt)}</span>` : ""}<span class="schev">‹</span></button>`), "לבדיקה");
+  if (rv.length) h += revAllBtn() + grp(rv.map(([id, p]) => `<button class="srow" data-photo="${esc(id)}"><span class="st"><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}</b><small>${esc(p.review[0])}</small></span>${+p.amt > 0 && perm("money") ? `<span class="sv">${ils(p.amt)}</span>` : ""}<span class="schev">‹</span></button>`), "לבדיקה");
   const flt = S.pf || "all", shown = all.filter(([, p]) => flt === "all" || p.kind === flt);
   if (all.length) h += `<div class="tools"><div class="seg" role="group">${[["all", "הכל"], ["r", "קבלות"], ["z", "קופה"], ["p", "תהליך"]].map(([k, l]) => `<button data-pflt="${k}" aria-pressed="${flt === k}">${l}</button>`).join("")}</div></div>`;
   if (!shown.length) return h;
@@ -8836,6 +8859,7 @@ app.addEventListener("click", (e) => {
   else if (d.wday != null) { const w = +d.wday, od = offDays().slice(), i = od.indexOf(w); if (i >= 0) od.splice(i, 1); else if (od.length < 6) od.push(w); else { toast("צריך לפחות יום עבודה אחד"); return; } setDoc(doc(db, CP("settings"), "app"), { offDays: od.sort() }, { merge: true }).then(() => { toast("ימי העבודה עודכנו"); act("settings", `ימי עבודה: ${DN[w]} ${i >= 0 ? "נפתח" : "נסגר"}`); }).catch(() => toast("לא נשמר")); }
   else if (t.id === "crBtn") { S.sheet = { type: "credits" }; render(); }
   else if (t.id === "revGo") { S.sheet = { type: "rev" }; render(); }
+  else if (t.id === "revAll") revAll();
   else if (t.id === "crNew") { S.sheet = { type: "creditNew", f: { reason: "חסר" } }; render(); }
   else if (t.id === "crFrom") { const p = S.photos[sh.id] || {}; S.sheet = { type: "creditNew", photo: sh.id, f: { sup: p.sup || "", reason: "חסר" } }; render(); }
   else if (d.crr) { sh.f.reason = d.crr; render(); }
