@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-l1dwgh4Xw2ggl09ujbAC0iNpMUwrwxKQm9gDmLtxV0M=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-4LCmaZdQXk0Kw8QlwvsvuLKQ2XYBrH0/XnAGJkGyCnM=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -1882,10 +1882,12 @@ body.has-tabbar .bar,.bar{inset-inline:16px;bottom:calc(var(--tab-b) + 64px + 8p
   box-shadow:inset 0 0 0 .5px var(--glass-edge),inset 0 1px 0 var(--glass-hi),var(--glass-depth);color:var(--label);font:var(--f-head);border:0}
 .eyebrow{margin:12px 0 0;font:var(--f-sub);color:var(--label2)}
 .eyebrow + h1.lt{margin-top:0}
+.eyebrow.dsite{color:var(--label);font:var(--f-head)} /* דמו: שם המסעדה */
 .demo-pill{display:none!important}
 /* דמו: כניסה קטנה וקבועה ליצירת קשר, במרכז השורה העליונה, בין הכפתורים שבצדדים */
 .demo-wa{position:fixed;z-index:60;top:calc(18px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);min-height:36px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;font:600 13px/1 -apple-system,system-ui,sans-serif;text-decoration:none;color:var(--ink,#F2F5F3);background:color-mix(in srgb,var(--paper,#1C1C1E) 86%,transparent);box-shadow:0 0 0 .5px var(--line,rgba(255,255,255,.2));-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .demo-wa::before{content:"";position:absolute;inset:-4px -2px}
+.demo-wa{transition:opacity 250ms cubic-bezier(.32,.72,0,1)}body.scrolled .demo-wa{opacity:0;pointer-events:none} /* בגלילה הכותרת הקטנה מקבלת את המקום */
 /* תפריט נפתח (מסעדה, מראה, שפה): קפסולה צפה, נפתחת בקפיץ מהכפתור */
 .popwrap{position:relative}
 .pop{position:absolute;z-index:12;top:calc(100% + 8px);inset-inline-start:0;min-width:200px;padding:4px 0;border-radius:var(--r-group);
@@ -2587,6 +2589,39 @@ html.kbo .sheet input,html.kbo .sheet textarea{scroll-margin-bottom:84px}
 .lp-foot .legal{margin-top:10px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
 .lp-foot .legal a{color:var(--mute);font-size:13px}
 @media(min-width:560px){.lp-grid.two{grid-template-columns:1fr 1fr}}
+/* נחיתה: גלילה קולנועית (3 שלבים, sticky). תנועה רק transform ו-opacity */
+.auth.grp:has(.lp){overflow:visible;overflow-x:clip} /* clip ולא hidden: אחרת sticky לא נדבק */
+.lp-cine{position:relative;margin:40px -24px 0}
+.lp-track{height:300vh}
+.lp-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:calc(24px + env(safe-area-inset-top,0px)) 24px max(24px,env(safe-area-inset-bottom,0px))}
+.lp-caps{position:relative;width:100%;max-width:30ch;min-height:120px;text-align:center}
+.lp-cap{position:absolute;inset:0;opacity:0;transform:translateY(8px);transition-property:opacity,transform;transition-duration:250ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.lp-cap.on{opacity:1;transform:none;position:relative}
+.lp-cap h3{font:800 clamp(26px,7vw,34px)/1.1 var(--ui);letter-spacing:-.02em;margin:6px 0 0;color:var(--ink);text-wrap:balance}
+.lp-cap p{font-size:15px;line-height:1.45;color:var(--mute);margin:8px 0 0}
+.lp-rail{display:flex;gap:8px;justify-content:center}
+.lp-rail i{position:relative;width:32px;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
+.lp-rail i b{position:absolute;inset:0;background:var(--mz);transform:scaleX(0);transform-origin:right;transition:transform 250ms cubic-bezier(.32,.72,0,1)}
+.lp-rail i.on b{transform:scaleX(1)}
+.lp-phone{width:min(232px,58vw);aspect-ratio:232/470;border-radius:40px;padding:10px;background:linear-gradient(#171A1F,#0D1013);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -40px rgba(0,0,0,.85);transform-origin:center;color:#F2F5F3}
+.lp-scr{position:relative;width:100%;height:100%;border-radius:30px;overflow:hidden;background:#0B0D10;border:1px solid rgba(255,255,255,.05)}
+.lp-sv{position:absolute;inset:0;padding:16px 14px;opacity:0;transform:translateY(12px) scale(.98);transition-property:opacity,transform;transition-duration:300ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.lp-sv.on{opacity:1;transform:none}
+.lp-sv .lpx-sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.lp-sv .lpx-sh b{font-size:15px;font-weight:700}.lp-sv .lpx-sh span{font-size:12px;color:rgba(242,245,243,.55)}
+.lp-sv .lpx-li{display:flex;align-items:center;gap:8px;padding:12px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13px}
+.lp-sv .lpx-li:first-of-type{border-top:0}
+.lp-sv .lpx-ico{width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;color:#38E0A0;flex:none}
+.lp-sv .lpx-ico svg{width:14px;height:14px}
+.lp-sv .lpx-gr{flex:1;min-width:0}
+.lp-sv .lpx-q{font-variant-numeric:tabular-nums;color:#38E0A0;font-weight:700}
+.lp-sv .lpx-warn{color:#FF9F0A}
+.lp-sv .lpx-big2{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.lp-sv .lpx-big2 small{font-size:.32em;color:rgba(242,245,243,.6);margin-inline-start:2px}
+.lp-sv .lpx-mini{font-size:12px;color:rgba(242,245,243,.55);margin-top:4px}
+.lp-sv .lpx-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.08);margin:12px 0 4px;overflow:hidden}
+.lp-sv .lpx-bar i{display:block;height:100%;background:#38E0A0;border-radius:999px}
+@media (prefers-reduced-motion:reduce){.lp-cap,.lp-sv{transform:none!important;transition-property:opacity}.lp-rail i b{transition:none}}
 
 </style>
 </head>
@@ -5271,6 +5306,34 @@ function viewLanding() {
       <div class="lp-rec">${II.receipt}<span>173 קבלות נקראו מצילום. כמעט בלי עבודה ידנית.</span></div>
     </div>
 
+    <section class="lp-cine" aria-label="איך נראה יום עבודה במיזו"><div class="lp-track"><div class="lp-stage">
+      <div class="lp-caps">
+        <div class="lp-cap on"><span class="lp-r">הטבח</span><h3>הכול ביד.</h3><p>מתכונים. הכנות למחר. הזמנה לייצור. הכול בכמה נגיעות.</p></div>
+        <div class="lp-cap"><span class="lp-r">קבלות</span><h3>נקראות לבד.</h3><p>מצלמים חשבונית או דוח Z. מיזו קוראת ומסדרת.</p></div>
+        <div class="lp-cap"><span class="lp-r">הבעלים</span><h3>מספר מדויק לכל מסעדה.</h3><p>Food cost ועלות למנה. עם טווח ודאות על כל מספר.</p></div>
+      </div>
+      <div class="lp-rail" aria-hidden="true"><i class="on"><b></b></i><i><b></b></i><i><b></b></i></div>
+      <div class="lp-phone" aria-hidden="true"><div class="lp-scr">
+        <div class="lp-sv on"><div class="lpx-sh"><b>המטבח שלי</b><span>היום</span></div>
+          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2zM17 3v18"/></svg></span><span class="lpx-gr">מתכונים</span><span class="lpx-q">48</span></div>
+          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lpx-gr">הכנות למחר</span><span class="lpx-q">12</span></div>
+          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></span><span class="lpx-gr">הזמנה לייצור</span><span class="lpx-q">6</span></div>
+          <div class="lpx-bar"><i style="width:100%"></i></div><div class="lpx-mini">הכול במסך אחד</div></div>
+        <div class="lp-sv"><div class="lpx-sh"><b>חשבונית ספק</b><span>נקראה עכשיו</span></div>
+          <div class="lpx-li"><span class="lpx-gr">עגבניות שרי</span><span class="lpx-q">29&#8362;</span></div>
+          <div class="lpx-li"><span class="lpx-gr">מלפפון</span><span class="lpx-q lpx-warn">7.3&#8362;</span></div>
+          <div class="lpx-li"><span class="lpx-gr">פטריות</span><span class="lpx-q">18&#8362;</span></div>
+          <div class="lpx-mini lpx-warn">מלפפון עלה 12% מהממוצע</div>
+          <div class="lpx-bar"><i style="width:84%"></i></div><div class="lpx-mini">12 שורות סודרו לבד</div></div>
+        <div class="lp-sv"><div class="lpx-sh"><b>נתונים</b><span>8 שבועות</span></div>
+          <div class="lpx-big2"><span>30.2</span><small>%</small></div>
+          <div class="lpx-mini">Food cost. טווח 30 עד 34.9</div>
+          <div class="lpx-bar"><i style="width:60%"></i></div>
+          <div class="lpx-li"><span class="lpx-gr">רמת ודאות</span><span class="lpx-q">בינונית</span></div>
+          <div class="lpx-li"><span class="lpx-gr">מכפיל למנה</span><span class="lpx-q">×3.4</span></div></div>
+      </div></div>
+    </div></div></section>
+
     <div class="lp-sec">
       <span class="lp-eyebrow">מה מיזו עושה</span>
       <h2>המטבח כולו. במקום אחד.</h2>
@@ -6422,7 +6485,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.7.0";
+const APP_VER = "2.7.1";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -7996,7 +8059,7 @@ function viewApp() {
   const rkSw = RS.length > 1 ? `<span class="popwrap"><button class="glassbtn cap" id="rkBtn" data-pop="rk" aria-haspopup="menu" aria-expanded="${S.pop === "rk"}">${esc((RS.find((x) => x.k === rk) || {}).f || "")} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>${S.pop === "rk" ? `<div class="pop" role="menu" aria-label="מסעדה">${RS.map((x) => `<button role="menuitemradio" data-rk="${esc(x.k)}" aria-pressed="${x.k === rk}">${esc(x.f)}</button>`).join("")}</div>` : ""}</span>` : "";
   const sub2 = bk && S.rv ? `<button class="navedit" id="rvEdit">עריכה</button>` : bk && S.book && Object.keys(S.book).length ? `<button class="navedit" id="bNew">＋ חדש</button>` : S.tab === "settings" || S.tab === "control" || S.tab === "dishes" ? "" : `<span class="navend">${S.tab === "order" && S.order !== null ? `<button class="glassbtn dots" id="moreBtn" aria-label="עוד אפשרויות" aria-pressed="${!!S.onlyOrdered}">${DOTS}</button>` : S.tab === "prod" && labSegs().length ? `<button class="glassbtn dots" id="moreProd" aria-label="עוד">${DOTS}</button>` : ""}<button class="avatar" id="menu" aria-label="הגדרות">${esc(initials(myName()))}</button></span>`;
   return `<div class="glow ${glow}" aria-hidden="true"></div><header><div class="wrap"><div class="navbar">${back || rkSw || (mySites().length > 1 ? `<button class="glassbtn cap sitesw" id="siteSw" aria-label="החלפת מסעדה">${esc(siteOf(S.site).f)} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>` : "<span></span>")}<b class="navtitle">${esc(title)}</b>${sub2 || "<span></span>"}</div>
-      ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
+      ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : IS_DEMO && !rkSw && mySites().length <= 1 && !back ? `<p class="eyebrow dsite">${esc(siteOf(S.site).f)}</p>` /* דמו: שם המסעדה שהמבקר בחר, מעל הכותרת */ : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
       ${showDays ? `<div class="days" role="group" aria-label="יום משלוח"><i class="dpill" aria-hidden="true"></i>${days}</div>` : ""}</div></header>
     <main class="wrap ${S.enter ? "enter" : ""}">${body}</main>${barH}${navOn ? nav : ""}${viewSheet()}`;
 }
@@ -8011,6 +8074,7 @@ function render() {
   if (askQ && S.sheet !== askQ.sh) { const q = askQ; askQ = null; setTimeout(() => q.res(null)); }
   prodDayInit();
   renderInner();
+  if (!S.user) lpCine();
   sheetTM();
   navWatch();
   ovWatch();
@@ -8062,7 +8126,7 @@ function renderInner() {
   try { sel = a && a.selectionStart; } catch (e) {}
   const sy = window.scrollY;
   let html;
-  if (!S.user) html = !S.authReady ? `<div class="auth grp"><div class="splash">${SIGN}</div></div>` : (S.landing && S.authMode !== "signup" ? viewLanding() : viewAuth());
+  if (!S.user) html = !S.authReady || IS_DEMO /* דמו: אין טופס כניסה בכלל. מתחת למסך הפתיחה רק הלוגו */ ? `<div class="auth grp"><div class="splash">${SIGN}</div></div>` : (S.landing && S.authMode !== "signup" ? viewLanding() : viewAuth());
   else if (!S.profile) html = `<div class="auth grp"><div class="splash">${SIGN}</div></div>`;
   else if (needConsent()) html = viewConsent();
   else if (needNewPw()) html = viewNewPw();
@@ -8778,7 +8842,16 @@ function jumpSpy() {
   if (S.jumpOn === cur) return; S.jumpOn = cur;
   J.querySelectorAll("[data-jump]").forEach((b) => { const on = b.dataset.jump === cur; b.setAttribute("aria-current", String(on)); if (on) { const jr = J.getBoundingClientRect(), br = b.getBoundingClientRect(); J.scrollBy({ left: br.left + br.width / 2 - (jr.left + jr.width / 2), behavior: RM() ? "auto" : "smooth" }); } });
 }
-function onScroll() { scrT = 0; jumpSpy(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
+/* נחיתה: גלילה קולנועית. שלושה שלבים, רטט קצר במעבר שלב, הטלפון נוטה קלות */
+let lpStep = -1;
+function lpCine() {
+  const c = document.querySelector(".lp-cine"); if (!c) { lpStep = -1; return; }
+  const r = c.getBoundingClientRect(), span = r.height - innerHeight, p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0, i = Math.min(2, Math.floor(p * 2.999));
+  if (i !== lpStep) { if (lpStep >= 0 && !RM()) buzz(7); lpStep = i; }
+  [".lp-cap", ".lp-sv", ".lp-rail i"].forEach((q) => c.querySelectorAll(q).forEach((x, n) => x.classList.toggle("on", n === i))); /* כל פריים: גם אחרי רינדור מחדש המצב נכון */
+  const ph = c.querySelector(".lp-phone"); if (ph && !RM()) ph.style.transform = r.top < innerHeight && r.bottom > 0 ? `scale(${(0.96 + 0.04 * (1 - Math.abs(0.5 - p) * 2)).toFixed(3)}) rotateY(${((p - 0.5) * -7).toFixed(1)}deg)` : "";
+}
+function onScroll() { scrT = 0; jumpSpy(); lpCine(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
 window.addEventListener("scroll", () => { if (!scrT) scrT = requestAnimationFrame(onScroll); }, { passive: true });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet) closeSheet(); else if (e.key === "Enter" && e.target.id === "wG") { e.preventDefault(); addWeighing(); } });
 setInterval(() => { remindTick(); dayRoll();
