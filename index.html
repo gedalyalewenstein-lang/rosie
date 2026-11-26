@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-NOOfAkjXVf3G24qvIeky7DzJTVfJDyZ0zMoKvMFPo6o=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-WWX6asG/h0ES9vskWLqFjFDWVg5fht2nh3HNsaLmgHQ=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -46,6 +46,7 @@
    - סימני − / + בסטפר (19 / 23 / 28): גליף, לא טקסט
    - הלוגו הכתוב .mzw (30 / 52) וסמל המסך .tcard .tph (30)
    - שברונים: .schev 20 (גליף), .chev 0 (מוסתר, SVG במקומו)
+   - דף הבית (נחיתה): .lp-huge, ספרת התצוגה של "למה זה שונה" (92–200), היא הרעיון של הסעיף. שאר הנחיתה בסולם (כותרות עד 48)
    רדיוסים: 0 · 8 · 12 · 14 · 16 · 32 (ראש גיליון, design2) · 999. חריגים מכוונים: סרגל השליחה .barin 22 (גלולה צפה מעל התוכן, מכוון), .alogo 22 (אייקון אפליקציה)
    ריווח (padding/margin/gap): כפולות של 4 */
 :root{color-scheme:dark}
@@ -2581,81 +2582,187 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .snapbtns .btn svg{width:28px;height:28px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .snapbtns.busy .btn{pointer-events:none;opacity:.7}
 
-/* ---------- מסך קדמי למבקר שלא מחובר (נחיתה בתוך האפליקציה). שכבת סטייל בלבד — טופס ההתחברות ללא שינוי ---------- */
-.lp{max-width:400px;margin:0 auto;padding:0 24px}
-.lp .mzsign{margin:0 auto 26px}
-.lp-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--mz);margin-bottom:12px}
-.lp-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mz);box-shadow:0 0 10px color-mix(in srgb,var(--mz) 70%,transparent)}
-.lp h1{font:800 clamp(29px,8.4vw,37px)/1.08 var(--ui);letter-spacing:-.03em;margin:0;color:var(--ink);text-align:start;text-wrap:balance}
-.lp-lead{color:var(--mute);font-size:17px;line-height:1.5;margin:16px 0 0;text-wrap:pretty}
-.lp-cta{display:grid;gap:10px;margin-top:26px}
-.lp-cta .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
-.lp-cta .btn svg{width:18px;height:18px;flex:0 0 auto}
-.lp-fine{color:var(--mute2);font-size:13px;margin-top:14px}
-.lp-card{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.lp-ctop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
-.lp-dot{display:inline-flex;align-items:center;gap:6px;min-width:0;position:static}
-.lp-ctop span{min-width:0}
-.lp-dot i{width:7px;height:7px;border-radius:50%;background:var(--mz);flex:0 0 auto;position:static;border:0}
-.lp-fig{margin:12px 0 2px}
-.lp-lbl{font-size:13px;color:var(--mute);margin-bottom:2px}
-.lp-num{font:800 46px/1 var(--disp);letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
-.lp-num small{font-size:.34em;color:var(--mute);margin-inline-start:4px;font-weight:700}
-.lp-conf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}
-.lp-chip{display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:color-mix(in srgb,var(--mz) 14%,transparent);color:var(--mz);font-variant-numeric:tabular-nums}
-.lp-rng{font-size:12.5px;color:var(--mute)}
-.lp-rec{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink);line-height:1.4}
-.lp-rec svg{width:19px;height:19px;color:var(--mz);flex:0 0 auto;fill:none;stroke:currentColor}
-.lp-sec{margin-top:40px}
-.lp-sec h2{font:800 23px/1.15 var(--ui);letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
-.lp-grid{display:grid;gap:10px}
-.lp-feat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
-.lp-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:var(--mz);background:color-mix(in srgb,var(--mz) 12%,transparent);margin-bottom:10px}
-.lp-ic svg{width:20px;height:20px;fill:none;stroke:currentColor}
-.lp-feat h3{font:700 16px/1.2 var(--ui);margin:0;color:var(--ink)}
-.lp-feat p{font-size:14px;color:var(--mute);margin:5px 0 0;line-height:1.45}
-.lp-role{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
-.lp-r{font-size:13px;font-weight:700;color:var(--mz)}
-.lp-role h3{font:800 18px/1.1 var(--ui);margin:3px 0 0;color:var(--ink)}
-.lp-role p{font-size:14px;color:var(--mute);margin:4px 0 0;line-height:1.45}
-.lp-foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);text-align:center;color:var(--mute);font-size:14px}
-.lp-foot .link{color:var(--mz);font-weight:700}
-.lp-foot .legal{margin-top:10px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-.lp-foot .legal a{color:var(--mute);font-size:13px}
-@media(min-width:560px){.lp-grid.two{grid-template-columns:1fr 1fr}}
-/* נחיתה: גלילה קולנועית (3 שלבים, sticky). תנועה רק transform ו-opacity */
-.auth.grp:has(.lp){overflow:visible;overflow-x:clip} /* clip ולא hidden: אחרת sticky לא נדבק */
-.lp-cine{position:relative;margin:40px -24px 0}
+/* ---------- דף הבית של מיזו (נחיתה בתוך האפליקציה, לפי mizo.html v11). שכבת סטייל בלבד: טופס ההתחברות ללא שינוי ----------
+   טוקנים של design2 (--tint/--label/--separator...), כהה ובהיר. ריווח בכפולות 4, יעדי מגע 44.
+   חריג גופן אחד (מתועד בראש הקובץ): .lp-huge, הספרה הגדולה של "למה זה שונה" */
+.auth.grp:has(.lp){padding:0;overflow:visible;overflow-x:clip} /* clip ולא hidden: אחרת sticky לא נדבק */
+.lp{position:relative;width:100%;color:var(--label);text-align:start;font-size:17px;line-height:1.55}
+.lp>*:not(.lp-fx):not(.lp-prog){position:relative;z-index:1}
+.lp :where(a){color:inherit;text-decoration:none}
+.lp :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.lp h1,.lp h2,.lp h3{font-family:var(--ui);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0;color:var(--label);text-wrap:balance}
+.lp :where(p){margin:0}
+.lp :focus-visible{outline:2px solid var(--tint);outline-offset:4px;border-radius:12px}
+.lp-wrap{max-width:1120px;margin-inline:auto;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
+[id^="lp-"]{scroll-margin-top:84px}
+/* רקע חי: הילות צבע וגרעין, קבועים מאחורי התוכן */
+.lp-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(120% 86% at 80% -6%,color-mix(in srgb,var(--tint) 12%,transparent),transparent 46%),radial-gradient(110% 80% at 8% 10%,rgba(70,110,180,.1),transparent 44%)}
+.lp-au{position:absolute;border-radius:50%;filter:blur(86px)}
+.lp-au.a1{width:70vw;height:70vw;max-width:620px;max-height:620px;top:-12vh;inset-inline-end:-18vw;opacity:.5;background:radial-gradient(circle,color-mix(in srgb,var(--tint) 55%,transparent),transparent 66%)}
+.lp-au.a2{width:64vw;height:64vw;max-width:540px;max-height:540px;top:60vh;inset-inline-start:-20vw;opacity:.4;background:radial-gradient(circle,rgba(70,150,230,.42),transparent 66%)}
+.lp-au.a3{width:50vw;height:50vw;max-width:420px;max-height:420px;top:40vh;inset-inline-end:-10vw;opacity:.3;background:radial-gradient(circle,color-mix(in srgb,var(--tint) 40%,transparent),transparent 68%)}
+.lp-au.a4{width:48vw;height:48vw;max-width:400px;max-height:400px;top:80vh;inset-inline-end:20vw;opacity:.28;background:radial-gradient(circle,rgba(242,162,75,.5),transparent 66%)}
+.lp-au.a5{width:40vw;height:40vw;max-width:340px;max-height:340px;top:4vh;inset-inline-start:-6vw;opacity:.2;background:radial-gradient(circle,rgba(242,162,75,.42),transparent 68%)}
+.lp-grain{position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.84' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-theme="light"] .lp-au{opacity:.16}:root[data-theme="light"] .lp-grain{display:none}
+.lp-prog{position:fixed;top:0;inset-inline:0;height:2px;z-index:60;background:var(--tint);transform:scaleX(0);transform-origin:right}
+.lp-glass{background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-edge);border-radius:16px}
+.lp-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--tint)}
+.lp-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor}
+.lp-eyebrow.warm{color:var(--orange)}
+.lp-lead{color:var(--label2);font-size:17px;line-height:1.5;max-width:44ch;text-wrap:pretty}
+.lp-fine{margin-top:12px;font-size:13px;color:var(--label2)}
+/* כפתורים */
+.lp-btns{display:flex;flex-wrap:wrap;gap:12px}
+.lp-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding-inline:24px;border-radius:14px;font-weight:600;font-size:16px;white-space:nowrap;transition-property:transform,background-color,border-color;transition-duration:.15s;transition-timing-function:var(--ease)}
+.lp-btn:active{transform:scale(.97)}
+.lp-btn svg{width:18px;height:18px;flex:0 0 auto}
+.lp .lp-btn.pri{background:var(--tint);color:var(--on-tint);box-shadow:0 12px 32px -12px color-mix(in srgb,var(--tint) 60%,transparent)}
+.lp .lp-btn.ghost{border:1px solid var(--separator);background:color-mix(in srgb,var(--label) 3%,transparent);color:var(--label)}
+.lp-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding-inline:4px;font-weight:700;color:var(--tint)}
+.lp-have{font-size:15px;color:var(--label2)}
+/* ניווט */
+.lp-nav{position:sticky;top:0;z-index:40!important;padding-top:max(12px,env(safe-area-inset-top,0px))}
+.lp-navin{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-edge);border-radius:16px;padding-inline:16px 8px}
+.lp-logo{display:inline-flex;align-items:center;color:var(--label)}.lp-logo .mzw{font-size:30px;line-height:1}
+.lp-links{display:none;gap:24px;font-size:15px;color:var(--label2)}
+.lp-links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}.lp-links a:hover{color:var(--label)}
+.lp-navr{display:flex;align-items:center;gap:8px}
+.lp-enter,.lp-cta{height:44px;padding-inline:16px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;white-space:nowrap}
+.lp .lp-enter{border:1px solid var(--separator);color:var(--label)}
+.lp .lp-cta{background:var(--tint);color:var(--on-tint)}
+@media(min-width:820px){.lp-links{display:flex}}
+/* Hero */
+.lp-hero{padding-top:36px;padding-bottom:44px}
+.lp-hin{display:grid;gap:36px;align-items:center}
+.lp-hero .lp-eyebrow{margin-top:8px}
+.auth.grp .lp-hero h1{font:800 clamp(40px,8.4vw,48px)/1.06 var(--ui);letter-spacing:-.032em;margin:20px 0 0}
+.lp-hero .lp-lead{margin-top:20px}
+.lp-hero .lp-btns{margin-top:28px}
+.lp-have{margin-top:4px}
+.lp-card{width:100%;max-width:440px;justify-self:center}
+.lp-ctop{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 20px 0;font-size:13px;color:var(--label2)}
+.lp-dot{display:inline-flex;align-items:center;gap:8px}
+.lp-dot i{width:8px;height:8px;border-radius:50%;background:var(--tint);box-shadow:0 0 10px var(--tint)}
+.lp-fig{padding:4px 20px 0}
+.lp-lbl{font-size:13px;color:var(--label2)}
+.lp-num{font:800 48px/1 var(--ui);letter-spacing:-.045em;font-variant-numeric:tabular-nums;margin-top:4px}
+.lp-num small{font-size:22px;color:var(--label2);font-weight:700;margin-inline-start:4px}
+.lp-conf{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px 20px}
+.lp-chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding-inline:12px;border-radius:999px;font-size:13px;font-weight:500;background:color-mix(in srgb,var(--tint) 12%,transparent);border:1px solid color-mix(in srgb,var(--tint) 32%,transparent);color:var(--label)}
+.lp-chip b{font-weight:700;font-variant-numeric:tabular-nums}
+.lp-rng{font-size:13px;color:var(--label2)}
+.lp-rec{display:flex;align-items:center;gap:12px;padding:16px 20px;border-top:1px solid var(--separator)}
+.lp-ric{width:36px;height:36px;border-radius:8px;background:var(--fill);display:grid;place-items:center;color:var(--label2);flex:none}
+.lp-ric svg{width:20px;height:20px}
+.lp-rec b{display:block;font-weight:500;font-size:15px}.lp-rec em{display:block;font-style:normal;font-size:13px;color:var(--label2)}
+@media(min-width:920px){.lp-hero{padding-top:64px;padding-bottom:72px}.lp-hin{grid-template-columns:1.08fr .92fr;gap:56px}.lp-hero .lp-lead{font-size:22px}}
+/* רצועה */
+.lp-strip{border-block:1px solid var(--separator);background:color-mix(in srgb,var(--label) 2%,transparent)}
+.lp-stin{display:grid;gap:12px;padding-block:20px}
+.lp-sc{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--label2)}
+.lp-sc svg{width:20px;height:20px;color:var(--tint);flex:none}.lp-sc b{color:var(--label);font-weight:600}
+@media(min-width:720px){.lp-stin{grid-template-columns:repeat(3,1fr);gap:28px}}
+/* גלילה קולנועית (3 שלבים, sticky). תנועה רק transform ו-opacity */
+.lp-cine{position:relative}
 .lp-track{height:300vh}
-.lp-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:calc(24px + env(safe-area-inset-top,0px)) 24px max(24px,env(safe-area-inset-bottom,0px))}
-.lp-caps{position:relative;width:100%;max-width:30ch;min-height:120px;text-align:center}
-.lp-cap{position:absolute;inset:0;opacity:0;transform:translateY(8px);transition-property:opacity,transform;transition-duration:250ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.lp-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding-top:calc(80px + env(safe-area-inset-top,0px));padding-bottom:max(32px,env(safe-area-inset-bottom,0px))}
+.lp-ctext{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+.lp-caps{position:relative;width:100%;max-width:30ch;min-height:116px;text-align:center}
+.lp-cap{position:absolute;inset:0;opacity:0;transform:translateY(8px);transition-property:opacity,transform;transition-duration:400ms;transition-timing-function:var(--ease)}
 .lp-cap.on{opacity:1;transform:none;position:relative}
-.lp-cap h3{font:800 clamp(26px,7vw,34px)/1.1 var(--ui);letter-spacing:-.02em;margin:6px 0 0;color:var(--ink);text-wrap:balance}
-.lp-cap p{font-size:15px;line-height:1.45;color:var(--mute);margin:8px 0 0}
+.lp-r{display:block;font-size:13px;font-weight:600;color:var(--tint)}
+.lp-cap h3{font-size:clamp(34px,6.2vw,36px);margin-top:8px}
+.lp-cap p{font-size:15px;color:var(--label2);margin-top:12px}
 .lp-rail{display:flex;gap:8px;justify-content:center}
-.lp-rail i{position:relative;width:32px;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
-.lp-rail i b{position:absolute;inset:0;background:var(--mz);transform:scaleX(0);transform-origin:right;transition:transform 250ms cubic-bezier(.32,.72,0,1)}
+.lp-rail i{position:relative;width:32px;height:4px;border-radius:999px;background:var(--fill2);overflow:hidden}
+.lp-rail i b{position:absolute;inset:0;background:var(--tint);transform:scaleX(0);transform-origin:right;transition:transform 350ms var(--ease)}
 .lp-rail i.on b{transform:scaleX(1)}
-.lp-phone{width:min(232px,58vw);aspect-ratio:232/470;border-radius:40px;padding:10px;background:linear-gradient(#171A1F,#0D1013);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -40px rgba(0,0,0,.85);transform-origin:center;color:#F2F5F3}
-.lp-scr{position:relative;width:100%;height:100%;border-radius:30px;overflow:hidden;background:#0B0D10;border:1px solid rgba(255,255,255,.05)}
-.lp-sv{position:absolute;inset:0;padding:16px 14px;opacity:0;transform:translateY(12px) scale(.98);transition-property:opacity,transform;transition-duration:300ms;transition-timing-function:cubic-bezier(.32,.72,0,1)}
+.lp-phone{position:relative;width:min(244px,58vw);aspect-ratio:244/500;border-radius:32px;padding:12px;background:linear-gradient(#171A1F,#0D1013);border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 100px -40px rgba(0,0,0,.88),0 0 0 1px rgba(0,0,0,.5);transform-origin:center;color:#F4F5F3;flex:none}
+.lp-scr{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#0B0D10;border:1px solid rgba(255,255,255,.05)}
+.lp-sv{position:absolute;inset:0;padding:20px 16px;opacity:0;transform:translateY(12px) scale(.98);transition-property:opacity,transform;transition-duration:500ms;transition-timing-function:var(--ease)}
 .lp-sv.on{opacity:1;transform:none}
 .lp-sv .lpx-sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.lp-sv .lpx-sh b{font-size:15px;font-weight:700}.lp-sv .lpx-sh span{font-size:12px;color:rgba(242,245,243,.55)}
-.lp-sv .lpx-li{display:flex;align-items:center;gap:8px;padding:12px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13px}
+.lp-sv .lpx-sh b{font-size:16px;font-weight:700}.lp-sv .lpx-sh span{font-size:12px;color:rgba(216,221,218,.7)}
+.lp-sv .lpx-li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-top:1px solid rgba(255,255,255,.06);font-size:13px}
 .lp-sv .lpx-li:first-of-type{border-top:0}
-.lp-sv .lpx-ico{width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;color:#38E0A0;flex:none}
-.lp-sv .lpx-ico svg{width:14px;height:14px}
+.lp-sv .lpx-ico{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:#38E0A0;flex:none}
+.lp-sv .lpx-ico svg{width:16px;height:16px}
 .lp-sv .lpx-gr{flex:1;min-width:0}
 .lp-sv .lpx-q{font-variant-numeric:tabular-nums;color:#38E0A0;font-weight:700}
-.lp-sv .lpx-warn{color:#FF9F0A}
-.lp-sv .lpx-big2{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;margin:4px 0 2px;font-variant-numeric:tabular-nums}
-.lp-sv .lpx-big2 small{font-size:.32em;color:rgba(242,245,243,.6);margin-inline-start:2px}
-.lp-sv .lpx-mini{font-size:12px;color:rgba(242,245,243,.55);margin-top:4px}
-.lp-sv .lpx-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.08);margin:12px 0 4px;overflow:hidden}
+.lp-sv .lpx-warn{color:#F0B65E}
+.lp-sv .lpx-big2{font-size:46px;font-weight:800;letter-spacing:-.045em;line-height:1;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+.lp-sv .lpx-big2 small{font-size:13px;color:rgba(216,221,218,.7);font-weight:700}
+.lp-sv .lpx-mini{font-size:12px;color:rgba(216,221,218,.7);margin-top:4px}
+.lp-sv .lpx-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.08);margin:16px 0 8px;overflow:hidden}
 .lp-sv .lpx-bar i{display:block;height:100%;background:#38E0A0;border-radius:999px}
-@media (prefers-reduced-motion:reduce){.lp-cap,.lp-sv{transform:none!important;transition-property:opacity}.lp-rail i b{transition:none}}
+@media(min-width:900px){
+  .lp-stage{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;justify-items:start}
+  .lp-ctext{align-items:flex-start}.lp-caps{text-align:start}.lp-rail{justify-content:flex-start}
+  .lp-phone{width:min(296px,30vw);justify-self:center}
+}
+/* סעיפים */
+.lp-sec{padding-block:60px}
+.lp-stop{max-width:40ch}
+.lp-sec h2{font-size:32px;margin-top:12px}
+.lp-grid{display:grid;gap:12px;margin-top:32px}
+.lp-feat{padding:20px;border-radius:16px;background:color-mix(in srgb,var(--label) 2%,transparent);border:1px solid var(--separator)}
+.lp-ic{width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--tint) 10%,transparent);border:1px solid color-mix(in srgb,var(--tint) 24%,transparent);display:grid;place-items:center;color:var(--tint);flex:none}
+.lp-ic svg{width:20px;height:20px}
+.lp-feat .lp-ic{margin-bottom:16px}
+.lp-feat h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.lp-feat p{color:var(--label2);font-size:15px;margin-top:8px}
+@media(min-width:620px){.lp-grid.two{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.lp-grid.three{grid-template-columns:repeat(3,1fr)}}
+/* המספר הגדול */
+.lp-figure{display:grid;gap:28px}
+.lp-huge{font:900 clamp(92px,25vw,200px)/.82 var(--ui);letter-spacing:-.055em;margin-top:12px;font-variant-numeric:tabular-nums}
+.lp-huge small{font-size:clamp(34px,6.5vw,48px);color:var(--label2);font-weight:800}
+.lp-figure h2{font-size:32px;margin-top:0}
+.lp-figure .lp-lead{margin-top:16px}
+.lp-under{margin-top:20px;max-width:520px}
+.lp-urow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:12px;border-top:1px solid var(--separator)}
+.lp-urow:last-child{border-bottom:1px solid var(--separator)}
+.lp-urow b{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.lp-urow span{color:var(--label2);font-size:15px}.lp-urow .ok{color:var(--tint)}
+@media(min-width:900px){.lp-figure{grid-template-columns:1.05fr .95fr;align-items:center;gap:56px}}
+/* למי */
+.lp-role{padding:24px 20px;display:flex;flex-direction:column;gap:8px}
+.lp-role h3{font-size:22px}.lp-role p{color:var(--label2);font-size:15px}
+/* התאמה + אמון */
+.lp-band{display:grid;gap:28px;align-items:center}
+.lp-setup h2{margin-top:12px}
+.lp-setup p{color:var(--label2);margin-top:16px;max-width:42ch}
+.lp-setup .lp-btns{margin-top:20px}
+.lp-tlist{display:grid;gap:8px}
+.lp-tr{display:flex;gap:12px;padding:16px;border-radius:14px;background:color-mix(in srgb,var(--label) 2%,transparent);border:1px solid var(--separator)}
+.lp-tr .lp-ic{width:36px;height:36px;border-radius:8px}
+.lp-tr .lp-ic svg{width:18px;height:18px}
+.lp-tr.warm .lp-ic{background:color-mix(in srgb,var(--orange) 10%,transparent);border-color:color-mix(in srgb,var(--orange) 26%,transparent);color:var(--orange)}
+.lp-tr b{display:block;font-weight:600;font-size:15px}.lp-tr span{color:var(--label2);font-size:13px}
+@media(min-width:900px){.lp-band{grid-template-columns:1fr 1fr;gap:48px}}
+/* שאלות */
+.lp-acc{margin-top:28px;border-top:1px solid var(--separator)}
+.lp-it{border-bottom:1px solid var(--separator)}
+.lp-it summary{display:flex;align-items:center;gap:16px;min-height:44px;padding-block:16px;cursor:pointer;list-style:none}
+.lp-it summary::-webkit-details-marker{display:none}
+.lp-it summary b{flex:1;font-size:17px;font-weight:600}
+.lp-cx{color:var(--label2);flex:none;display:grid;transition:transform .3s var(--ease)}
+.lp-cx svg{width:16px;height:16px}
+.lp-it[open] .lp-cx{transform:rotate(180deg);color:var(--tint)}
+.lp-it p{color:var(--label2);font-size:15px;padding-bottom:20px;max-width:64ch}
+/* סגירה + פוטר */
+.lp-close{text-align:center;padding-block:44px}
+.lp-close h2{font-size:clamp(34px,5.6vw,48px);max-width:17ch;margin-inline:auto}
+.lp-close p{color:var(--label2);margin:16px auto 0;max-width:42ch}
+.lp-close .lp-btns{justify-content:center;margin-top:24px}
+.lp-foot{border-top:1px solid var(--separator);padding-top:32px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+.lp-ftop{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+.lp-lk{display:flex;flex-wrap:wrap;column-gap:20px;font-size:15px;color:var(--label2)}
+.lp-lk a,.lp-legal a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}.lp-lk a:hover{color:var(--label)}
+.lp-legal{margin-top:16px;padding-top:4px;border-top:1px solid var(--separator);display:flex;flex-wrap:wrap;align-items:center;column-gap:20px;font-size:13px;color:var(--label2)}
+@media(min-width:900px){.lp-sec{padding-block:104px}.lp-sec h2,.lp-figure h2{font-size:46px}.lp-close{padding-block:88px}}
+@media (prefers-reduced-motion:reduce){.lp-cap,.lp-sv{transform:none!important;transition-property:opacity}.lp-rail i b,.lp-cx,.lp-btn{transition:none}.lp-au{display:none}}
 /* כפתור השליחה אחרי שליחה: סטטוס שקט (לא כפתור מושבת). אושרה = צ'ק מצויר פעם אחת, ממתינה = נקודה */
 .barin #send.sstat,.barin #send.sstat:disabled{background:transparent;box-shadow:none;opacity:1;color:var(--label2);font:var(--f-head);padding-inline:12px;cursor:default}
 .barin #send.sstat > span{display:inline-flex;align-items:center;gap:8px}
@@ -4085,6 +4192,9 @@ I18N_PAT.en.push([new RegExp("^צוות (.+)$"), "$1 staff"], [new RegExp("^הת
 /* 2.9 (א) אישורים: כסף שClaude קרא */
 Object.assign(I18N.ar, {"נקרא ע״י Claude": "قرأه Claude", "לאשר הכול ({n})": "الموافقة على الكل ({n})", "כולל ₪{n} שלא אושרו": "يشمل ₪{n} غير معتمدة", "מכירות ₪{n} שלא אושרו": "مبيعات ₪{n} غير معتمدة", "אושרו {n} ✓": "تمت الموافقة على {n} ✓"});
 Object.assign(I18N.en, {"נקרא ע״י Claude": "Read by Claude", "לאשר הכול ({n})": "Approve all ({n})", "כולל ₪{n} שלא אושרו": "Includes ₪{n} not approved", "מכירות ₪{n} שלא אושרו": "Sales ₪{n} not approved", "אושרו {n} ✓": "{n} approved ✓"});
+/* דף הבית מההגדרות */
+Object.assign(I18N.ar, {"על מיזו": "عن ميزو", "מה מיזו עושה ולמי": "ماذا يفعل ميزو ولمن", "חזרה לאפליקציה": "العودة إلى التطبيق"});
+Object.assign(I18N.en, {"על מיזו": "About mizo", "מה מיזו עושה ולמי": "What mizo does and for whom", "חזרה לאפליקציה": "Back to the app"});
 
 
 startI18n();
@@ -5409,87 +5519,170 @@ function viewAuth() {
     <div class="center">${signup ? "כבר רשום? " : "עובד חדש? "}<button class="link" type="button" id="swap">${signup ? "כניסה" : "הרשמה"}</button></div>
   </form></div>`;
 }
-/* מסך קדמי למבקר שלא מחובר: שיווקי + "לראות דמו" (/demo) + "כניסה" שחושף את טופס ההתחברות הקיים. גנרי בלבד, בלי שם מסעדה אמיתי */
+/* דף הבית של מיזו (mizoik.co.il): מבקר שלא מחובר רואה אותו, ומשתמש מחובר מגיע אליו מ"על מיזו" בהגדרות. גנרי בלבד, בלי שם מסעדה אמיתי, מספרים = נתוני דמו
+   "כניסה" (lpEnter*) חושף את טופס ההתחברות הקיים. "חזרה לאפליקציה" (lpBack) למשתמש מחובר. הגלילה הקולנועית: lpCine */
 const LP_ARR = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>`;
-function lpFeat(ic, h, p) { return `<div class="lp-feat"><div class="lp-ic">${ic}</div><h3>${h}</h3><p>${p}</p></div>`; }
+/* הוואטסאפ של מיזו: אותו קישור שבתוכן הסטטי (section#seo, מגיע מ-demo/welcome.html בבנייה). נקרא פעם אחת לפני שהאפליקציה מחליפה את התוכן */
+const LP_WA = (() => { try { const a = document.querySelector('#seo a[href^="https://wa.me/"]'), h = (a && a.getAttribute("href")) || window.__DEMO_WA || ""; return /^https:\/\/wa\.me\/\d{8,15}(\?[\w%=&.-]*)?$/.test(h) ? h : ""; } catch (e) { return ""; } })();
+const LPI = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const LPIC = {
+  book: LPI('<path d="M4 19V5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2zM17 3v18"/>'),
+  receipt: LPI('<path d="M7 3h10v18l-2.5-1.5L12 21l-2.5-1.5L7 21z"/><path d="M10 9h4M10 13h4"/>'),
+  scale: LPI('<path d="M12 3v3M5 7h14l-2 6H7z"/><path d="M4 21h16M9 17h6"/>'),
+  arrow: LPI('<path d="M20 12H5M11 6l-6 6 6 6"/>'),
+  check: LPI('<path d="M20 6 9 17l-5-5"/>'),
+  phone: LPI('<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>'),
+  home: LPI('<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>'),
+  lock: LPI('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'),
+  up: LPI('<path d="M12 3v18M5 10l7-7 7 7"/>'),
+  chev: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
+};
+const LP_FAQ = [
+  ["מה מיזו עושה בעצם?", "האפליקציה של המטבח. הטבחים מקבלים בה מתכונים הכנות והזמנות. קבלות ו-Z נקראים מצילום. ומכל זה נולד מספר מדויק של Food cost ועלות למנה לבעלים."],
+  ["מה הטבח מרוויח מזה?", "זמן ושקט. מתכון בלחיצה בכמות שצריך. הכנות והזמנות בכמה נגיעות. פחות שאלות לשף ופחות בלגן."],
+  ["כמה זמן לוקח להקים מטבח?", "מהר. מצלמים את ספר המתכונים והמטבח נכנס למערכת. משם אפשר להתחיל כמעט מיד."],
+  ["איך נקראות קבלות ו-Z?", "מצלמים את המסמך. ה-AI מזהה שורות כמויות וסכומים ומסדר לבד. אתה עובר ומאשר. שום נתון לא משתנה בלי אישור שלך."],
+  ["למה מוצג טווח ולא מספר אחד?", "כנות עדיפה על דיוק מדומה. הטווח ורמת הוודאות אומרים כמה הנתון מבוסס. ככל שהזנת יותר נתונים הטווח מצטמצם."],
+  ["זה עובד לבעלים של כמה מסעדות?", "כן. מסעדה אחת וגם כמה מסעדות. כל אחת נפרדת לגמרי בנתונים ויש מבט אחד שמרכז את כולן."],
+  ["צריך חומרה מיוחדת?", "לא. מיזו עובדת מהטלפון. אין צורך בחומרה ייעודית כדי להתחיל."],
+  ["איך מתחילים?", "כותבים לנו בוואטסאפ. מראים לך איך מיזו עובדת על מטבח אמיתי ומקימים אותה איתך לפי דרך העבודה שלך."],
+];
 function viewLanding() {
-  const II = {
-    book: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2zM17 3v18"/></svg>`,
-    receipt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v18l-2.5-1.5L12 21l-2.5-1.5L7 21z"/><path d="M10 9h4M10 13h4"/></svg>`,
-    scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5 7h14l-2 6H7z"/><path d="M4 21h16M9 17h6"/></svg>`,
-    arrow: LP_ARR,
-  };
-  return `<div class="auth grp"><div class="lp">
-    <div class="mzsign">${MIZO}</div>
-    <span class="lp-eyebrow">ניהול המטבח מהטלפון. בלי אקסל.</span>
-    <h1>הטבחים עובדים פשוט. המספרים מסתדרים לבד.</h1>
-    <p class="lp-lead">מתכונים. הזמנות. קבלות שנקראות לבד. ועלות מדויקת לכל מנה. הכול בעברית ומהטלפון.</p>
-    <div class="lp-cta">
-      <button class="btn full" type="button" id="lpEnter">כניסה</button>
-      <a class="btn ghost full" href="${esc(demoUrl())}">לראות דמו${LP_ARR}</a>
-    </div>
-    <p class="lp-fine">דמו חי על מסעדה לדוגמה. היכנסו ותיגעו בכל כפתור.</p>
+  const me = !!S.user, wa = LP_WA ? esc(LP_WA) : "", demo = esc(demoUrl()), I = LPIC;
+  const waA = (cls, t, arr) => wa ? `<a class="${cls}" href="${wa}" target="_blank" rel="noopener">${t}${arr ? LP_ARR : ""}</a>` : "";
+  const enter = me ? `<button class="lp-enter" type="button" id="lpBack">חזרה לאפליקציה</button>` : `<button class="lp-enter" type="button" id="lpEnter">כניסה</button>`;
+  const li = (ic, t, q, cls) => `<div class="lpx-li">${ic ? `<span class="lpx-ico">${ic}</span>` : ""}<span class="lpx-gr">${t}</span><span class="lpx-q${cls ? " " + cls : ""}">${q}</span></div>`;
+  const feat = (ic, h, p) => `<div class="lp-feat"><div class="lp-ic">${ic}</div><h3>${h}</h3><p>${p}</p></div>`;
+  const tr = (ic, b, s, warm) => `<div class="lp-tr${warm ? " warm" : ""}"><span class="lp-ic">${ic}</span><div><b>${b}</b><span>${s}</span></div></div>`;
+  return `<div class="auth grp"><div class="lp${me ? " lp-me" : ""}">
+  <div class="lp-fx" aria-hidden="true"><i class="lp-au a1"></i><i class="lp-au a2"></i><i class="lp-au a3"></i><i class="lp-au a4"></i><i class="lp-au a5"></i><i class="lp-grain"></i></div>
+  <div class="lp-prog" aria-hidden="true"></div>
+  <nav class="lp-nav" aria-label="מיזו"><div class="lp-wrap"><div class="lp-navin">
+    <span class="lp-logo">${MIZO}</span>
+    <div class="lp-links"><a href="#lp-does">מה זה עושה</a><a href="#lp-who">למי זה</a><a href="#lp-faq">שאלות</a></div>
+    <div class="lp-navr">${enter}${waA("lp-cta", "וואטסאפ")}</div>
+  </div></div></nav>
 
-    <div class="lp-card">
-      <div class="lp-ctop"><span class="lp-dot"><i></i>נתוני דמו</span><span>8 שבועות</span></div>
-      <div class="lp-fig"><div class="lp-lbl">פודקוסט מול יעד 30%</div><div class="lp-num">30.2<small>%</small></div></div>
-      <div class="lp-conf"><span class="lp-chip">⁦30–34.9⁩ טווח</span><span class="lp-rng">רמת ודאות בינונית</span></div>
-      <div class="lp-rec">${II.receipt}<span>173 קבלות נקראו מצילום. כמעט בלי עבודה ידנית.</span></div>
+  <header class="lp-hero lp-wrap"><div class="lp-hin">
+    <div>
+      <span class="lp-eyebrow">ניהול המטבח מהטלפון. בלי אקסל.</span>
+      <h1>הטבחים עובדים פשוט. המספרים מסתדרים לבד.</h1>
+      <p class="lp-lead">מתכונים. הזמנות. קבלות שנקראות לבד. ועלות מדויקת לכל מנה. הכול בעברית ומהטלפון.</p>
+      <div class="lp-btns">
+        <a class="lp-btn pri" href="${demo}">לראות דמו חי${LP_ARR}</a>
+        ${waA("lp-btn ghost", "סיור 2 דקות בוואטסאפ")}
+      </div>
+      <p class="lp-fine">זה המוצר האמיתי על מסעדה לדוגמה. היכנסו ותיגעו בכל כפתור. בלי התחייבות.</p>
+      ${me ? "" : `<p class="lp-have">כבר רשומים? <button class="lp-link" type="button" id="lpEnter2">כניסה</button></p>`}
     </div>
+    <div class="lp-card lp-glass">
+      <div class="lp-ctop"><span class="lp-dot"><i></i>בית לבנה · נתוני דמו</span><span>8 שבועות</span></div>
+      <div class="lp-fig"><div class="lp-lbl">Food cost מול יעד 30%</div><div class="lp-num"><span dir="ltr">30.2</span><small>%</small></div></div>
+      <div class="lp-conf"><span class="lp-chip">טווח <b>30 עד 34.9</b></span><span class="lp-rng">רמת ודאות בינונית</span></div>
+      <div class="lp-rec"><span class="lp-ric">${I.receipt}</span><span><b>173 קבלות נקראו מצילום</b><em>כמעט בלי עבודה ידנית</em></span></div>
+    </div>
+  </div></header>
 
-    <section class="lp-cine" aria-label="איך נראה יום עבודה במיזו"><div class="lp-track"><div class="lp-stage">
+  <section class="lp-strip" aria-label="בקצרה"><div class="lp-wrap lp-stin">
+    <div class="lp-sc">${I.check}<span><b>פעיל</b> במטבחי מסעדות בישראל</span></div>
+    <div class="lp-sc">${I.phone}<span>עובד מהטלפון <b>בעברית מלאה</b></span></div>
+    <div class="lp-sc">${I.home}<span>למטבח ייצור או מטבח הכנות</span></div>
+  </div></section>
+
+  <section class="lp-cine" aria-label="איך נראה יום עבודה במיזו"><div class="lp-track"><div class="lp-stage lp-wrap">
+    <div class="lp-ctext">
       <div class="lp-caps">
         <div class="lp-cap on"><span class="lp-r">הטבח</span><h3>הכול ביד.</h3><p>מתכונים. הכנות למחר. הזמנה לייצור. הכול בכמה נגיעות.</p></div>
         <div class="lp-cap"><span class="lp-r">קבלות</span><h3>נקראות לבד.</h3><p>מצלמים חשבונית או דוח Z. מיזו קוראת ומסדרת.</p></div>
         <div class="lp-cap"><span class="lp-r">הבעלים</span><h3>מספר מדויק לכל מסעדה.</h3><p>Food cost ועלות למנה. עם טווח ודאות על כל מספר.</p></div>
       </div>
       <div class="lp-rail" aria-hidden="true"><i class="on"><b></b></i><i><b></b></i><i><b></b></i></div>
-      <div class="lp-phone" aria-hidden="true"><div class="lp-scr">
-        <div class="lp-sv on"><div class="lpx-sh"><b>המטבח שלי</b><span>היום</span></div>
-          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2zM17 3v18"/></svg></span><span class="lpx-gr">מתכונים</span><span class="lpx-q">48</span></div>
-          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lpx-gr">הכנות למחר</span><span class="lpx-q">12</span></div>
-          <div class="lpx-li"><span class="lpx-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></span><span class="lpx-gr">הזמנה לייצור</span><span class="lpx-q">6</span></div>
-          <div class="lpx-bar"><i style="width:100%"></i></div><div class="lpx-mini">הכול במסך אחד</div></div>
-        <div class="lp-sv"><div class="lpx-sh"><b>חשבונית ספק</b><span>נקראה עכשיו</span></div>
-          <div class="lpx-li"><span class="lpx-gr">עגבניות שרי</span><span class="lpx-q">29&#8362;</span></div>
-          <div class="lpx-li"><span class="lpx-gr">מלפפון</span><span class="lpx-q lpx-warn">7.3&#8362;</span></div>
-          <div class="lpx-li"><span class="lpx-gr">פטריות</span><span class="lpx-q">18&#8362;</span></div>
-          <div class="lpx-mini lpx-warn">מלפפון עלה 12% מהממוצע</div>
-          <div class="lpx-bar"><i style="width:84%"></i></div><div class="lpx-mini">12 שורות סודרו לבד</div></div>
-        <div class="lp-sv"><div class="lpx-sh"><b>נתונים</b><span>8 שבועות</span></div>
-          <div class="lpx-big2"><span>30.2</span><small>%</small></div>
-          <div class="lpx-mini">Food cost. טווח 30 עד 34.9</div>
-          <div class="lpx-bar"><i style="width:60%"></i></div>
-          <div class="lpx-li"><span class="lpx-gr">רמת ודאות</span><span class="lpx-q">בינונית</span></div>
-          <div class="lpx-li"><span class="lpx-gr">מכפיל למנה</span><span class="lpx-q">×3.4</span></div></div>
-      </div></div>
-    </div></div></section>
+    </div>
+    <div class="lp-phone" aria-hidden="true"><div class="lp-scr">
+      <div class="lp-sv on"><div class="lpx-sh"><b>המטבח שלי</b><span>היום</span></div>
+        ${li(I.book, "מתכונים", "48")}${li(I.check, "הכנות למחר", "12")}${li(I.arrow, "הזמנה לייצור", "6")}
+        <div class="lpx-bar"><i style="width:100%"></i></div><div class="lpx-mini">הכול במסך אחד</div></div>
+      <div class="lp-sv"><div class="lpx-sh"><b>חשבונית ספק</b><span>נקראה עכשיו</span></div>
+        ${li("", "עגבניות שרי", "29&#8362;")}${li("", "מלפפון", "7.3&#8362;", "lpx-warn")}${li("", "פטריות", "18&#8362;")}
+        <div class="lpx-mini lpx-warn">מלפפון עלה 12% מהממוצע</div>
+        <div class="lpx-bar"><i style="width:84%"></i></div><div class="lpx-mini">12 שורות סודרו לבד</div></div>
+      <div class="lp-sv"><div class="lpx-sh"><b>נתונים</b><span>8 שבועות</span></div>
+        <div class="lpx-big2"><span dir="ltr">30.2</span><small>%</small></div>
+        <div class="lpx-mini">Food cost · טווח 30 עד 34.9</div>
+        <div class="lpx-bar"><i style="width:60%"></i></div>
+        ${li("", "רמת ודאות", "בינונית")}${li("", "עלות למנה", "×3.4")}</div>
+    </div></div>
+  </div></div></section>
 
-    <div class="lp-sec">
-      <span class="lp-eyebrow">מה מיזו עושה</span>
-      <h2>המטבח כולו. במקום אחד.</h2>
-      <div class="lp-grid two">
-        ${lpFeat(II.book, "מתכון שמכפיל את עצמו", "בוחרים כמות והרכיבים זזים לבד. בלי מחשבון.")}
-        ${lpFeat(II.receipt, "קבלות ו‑Z שנקראות לבד", "מצלמים והמערכת מסדרת. כמעט בלי עבודה ידנית.")}
-        ${lpFeat(II.scale, "עלות מדויקת לכל מנה", "כל מנה נשקלת. מספר אמיתי ולא הערכה מהבטן.")}
-        ${lpFeat(II.arrow, "הזמנות בין שירות לייצור", "השירות מזמין והייצור מקבל. הכול מתועד.")}
+  <section class="lp-sec lp-wrap" id="lp-does">
+    <div class="lp-stop"><span class="lp-eyebrow">מה מיזו עושה</span><h2>המטבח כולו. במקום אחד.</h2></div>
+    <div class="lp-grid two">
+      ${feat(I.book, "מתכון שמכפיל את עצמו", "בוחרים כמות והרכיבים זזים לבד. בלי מחשבון ובלי לשאול.")}
+      ${feat(I.receipt, "קבלות ו-Z שנקראות לבד", "מצלמים והמערכת מסדרת. כמעט בלי עבודה ידנית.")}
+      ${feat(I.scale, "עלות מדויקת לכל מנה", "כל מנה נשקלת. מספר אמיתי ולא הערכה מהבטן.")}
+      ${feat(I.arrow, "הזמנות בין שירות לייצור", "השירות מזמין והייצור מקבל. הכול מתועד במקום אחד.")}
+    </div>
+  </section>
+
+  <section class="lp-sec lp-wrap" aria-label="למה זה שונה"><div class="lp-figure">
+    <div>
+      <span class="lp-eyebrow">למה זה שונה</span>
+      <div class="lp-huge"><span dir="ltr">30.2</span><small>%</small></div>
+      <p class="lp-fine">Food cost של מסעדת הדמו. מתעדכן לבד מכל קבלה שמצלמים.</p>
+    </div>
+    <div>
+      <h2>לא רק מספר. גם כמה אפשר לסמוך עליו.</h2>
+      <p class="lp-lead">לכל נתון מיזו מצרפת טווח ורמת ודאות. ככל שהנתונים מלאים יותר הטווח צר יותר. אתה מחליט על בסיס מה שידוע באמת.</p>
+      <div class="lp-under">
+        <div class="lp-urow"><span><bdi>Food cost</bdi> · 8 שבועות</span><b dir="ltr">30.2%</b></div>
+        <div class="lp-urow"><span>הטווח האפשרי</span><b>30 עד 34.9</b></div>
+        <div class="lp-urow"><span>רמת ודאות</span><b class="ok">בינונית</b></div>
       </div>
     </div>
+  </div></section>
 
-    <div class="lp-sec">
-      <span class="lp-eyebrow">למי זה מיועד</span>
-      <h2>מתחיל בטבח. מגיע עד הבעלים.</h2>
-      <div class="lp-grid">
-        <div class="lp-role"><span class="lp-r">הטבח</span><h3>פשוט ונוח.</h3><p>כל מה שהוא צריך בכמה נגיעות. מהטלפון.</p></div>
-        <div class="lp-role"><span class="lp-r">השף התפעולי</span><h3>סדר ושליטה.</h3><p>רשימות מסודרות ועלות שקופה לכל מנה.</p></div>
-        <div class="lp-role"><span class="lp-r">הבעלים</span><h3>המספרים שלו.</h3><p>פודקוסט מעודכן לכל מסעדה בנפרד בכל רגע.</p></div>
-      </div>
+  <section class="lp-sec lp-wrap" id="lp-who">
+    <div class="lp-stop"><span class="lp-eyebrow">למי זה מיועד</span><h2>מתחיל בטבח. מגיע עד הבעלים.</h2></div>
+    <div class="lp-grid three">
+      <div class="lp-role lp-glass"><span class="lp-r">הטבח</span><h3>פשוט ונוח.</h3><p>כל מה שהוא צריך בכמה נגיעות. מהטלפון.</p></div>
+      <div class="lp-role lp-glass"><span class="lp-r">השף התפעולי</span><h3>סדר ושליטה.</h3><p>רשימות מסודרות ועלות שקופה לכל מנה.</p></div>
+      <div class="lp-role lp-glass"><span class="lp-r">הבעלים</span><h3>המספרים שלו.</h3><p>Food cost מעודכן לכל מסעדה בנפרד בכל רגע.</p></div>
     </div>
+  </section>
 
-    <div class="lp-foot">
-      כבר רשומים? <button class="link" type="button" id="lpEnter2">כניסה</button>
-      <div class="legal"><a href="guides/">מדריכים</a><a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a></div>
+  <section class="lp-sec lp-wrap" aria-label="ההתאמה"><div class="lp-band">
+    <div class="lp-setup">
+      <span class="lp-eyebrow warm">ההתאמה</span>
+      <h2>לא תבנית. מותאם למטבח שלך.</h2>
+      <p>מיזו לא קופסה סגורה. מקימים אותה איתך ומכוונים לדרך העבודה של המטבח. מתחילים ממה שהכי חשוב לך היום.</p>
+      ${wa ? `<div class="lp-btns">${waA("lp-btn pri", "נבנה את זה יחד", true)}</div>` : ""}
     </div>
+    <div class="lp-tlist">
+      ${tr(I.lock, "נתונים מופרדים לכל מסעדה", "מי שמשויך למסעדה רואה רק אותה")}
+      ${tr(I.check, "אישור לפני כל שינוי", "ה-AI מציע ואתה מאשר")}
+      ${tr(I.up, "גדל עם המטבח", "מתחברים לחיישנים מנבאים ומזמינים לבד בהמשך", true)}
+    </div>
+  </div></section>
+
+  <section class="lp-sec lp-wrap" id="lp-faq">
+    <div class="lp-stop"><span class="lp-eyebrow">שאלות ותשובות</span><h2>קצר וברור.</h2></div>
+    <div class="lp-acc">${LP_FAQ.map(([q, a]) => `<details class="lp-it"><summary><b>${q}</b><span class="lp-cx">${I.chev}</span></summary><p>${a}</p></details>`).join("")}</div>
+  </section>
+
+  <section class="lp-close lp-wrap" aria-label="מתחילים">
+    <h2>רוצה לראות את המספרים של המטבח שלך?</h2>
+    <p>כתוב לנו בוואטסאפ ונראה לך איך מיזו עובדת על מטבח אמיתי. בלי התחייבות. בעברית.</p>
+    <div class="lp-btns">${waA("lp-btn pri", "סיור 2 דקות בוואטסאפ", true)}<a class="lp-btn ${wa ? "ghost" : "pri"}" href="${demo}">לראות דמו חי</a></div>
+  </section>
+
+  <footer class="lp-foot lp-wrap">
+    <div class="lp-ftop">
+      <span class="lp-logo">${MIZO}</span>
+      <div class="lp-lk"><a href="#lp-does">מה זה עושה</a><a href="#lp-faq">שאלות</a>${waA("", "וואטסאפ")}<a href="https://instagram.com/mizo.il" target="_blank" rel="noopener">אינסטגרם</a><a href="guides/">מדריכים</a></div>
+      ${me ? `<button class="lp-link" type="button" id="lpBack2">חזרה לאפליקציה</button>` : `<span class="lp-have">כבר רשומים? <button class="lp-link" type="button" id="lpEnter3">כניסה</button></span>`}
+    </div>
+    <div class="lp-legal"><a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a><a href="legal/accessibility.html" target="_blank" rel="noopener">נגישות</a><span>מיזו · האפליקציה של המטבח</span></div>
+  </footer>
   </div></div>`;
 }
 /* אישור פרטיות ותנאי שימוש: חובה לכל משתמש, פעם אחת לכל גרסה. בלי אישור אין כניסה */
@@ -6642,7 +6835,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.9.0";
+const APP_VER = "2.9.1";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -6721,6 +6914,7 @@ function viewSettings() {
     row({ data: 'data-setp="guide"', icon: ICB("#30D158", IC.help), t: "מדריך קצר", chev: true }),
     ...(IS_DEMO ? [] : [row({ id: "ideaBtn", icon: ICB("#FFD60A", IC.idea), t: "הצעה לשיפור", chev: true })]),
     row({ id: "legalGo", icon: ICB("#8E8E93", IC.lock), t: "פרטיות ותנאי שימוש", chev: true }),
+    ...(IS_DEMO ? [] : [row({ id: "aboutMizo", icon: ICB("#30D158", IC.info), t: "על מיזו", s: "מה מיזו עושה ולמי", chev: true })]),
     ...(IS_DEMO ? [] : [row({ data: 'data-setp="about"', icon: ICB("#FF6F91", IC.info), t: "אודות", v: `mizo ${APP_VER}`, chev: true })]),
     ...(IS_DEMO ? [row({ id: "demoWa", icon: ICB("#3DDC97", IC.spark || IC.ai), t: "רוצים את זה במסעדה שלכם?", s: "דברו איתנו בוואטסאפ", chev: true })] : []),
   ]);
@@ -8279,7 +8473,7 @@ function render() {
   if (askQ && S.sheet !== askQ.sh) { const q = askQ; askQ = null; setTimeout(() => q.res(null)); }
   prodDayInit();
   renderInner();
-  if (!S.user) lpCine();
+  if (!S.user || S.landing) lpCine();
   sheetTM();
   navWatch();
   ovWatch();
@@ -8332,6 +8526,7 @@ function renderInner() {
   const sy = window.scrollY;
   let html;
   if (!S.user) html = !S.authReady || IS_DEMO /* דמו: אין טופס כניסה בכלל. מתחת למסך הפתיחה רק הלוגו */ ? `<div class="auth grp"><div class="splash">${SIGN}</div></div>` : (S.landing && S.authMode !== "signup" ? viewLanding() : viewAuth());
+  else if (S.landing && !IS_DEMO) html = viewLanding(); /* "על מיזו" מההגדרות: דף הבית, עם חזרה לאפליקציה */
   else if (!S.profile) html = `<div class="auth grp"><div class="splash">${SIGN}</div></div>`;
   else if (needConsent()) html = viewConsent();
   else if (needNewPw()) html = viewNewPw();
@@ -8750,7 +8945,9 @@ app.addEventListener("click", (e) => {
   if (t.id === "demoWa") { if (window.__DEMO_WA) window.open(window.__DEMO_WA, "_blank", "noopener"); return; }
   if (t.id === "legalGo") { window.open((IS_DEMO ? "../" : "") + "legal/privacy.html", "_blank", "noopener"); return; }
   if (t.id === "siteSw") { sessionSafe("rosie-site", ""); location.reload(); return; }
-  if (t.id === "lpEnter" || t.id === "lpEnter2") { S.landing = false; store("mizo-entered", "1"); render(); } /* חושף את טופס ההתחברות הקיים, וזוכר שנכנסו */
+  if (t.id === "lpBack" || t.id === "lpBack2") { S.landing = false; render(); jumpTo(0); return; }
+  if (t.id === "aboutMizo") { S.sheet = null; S.set = null; S.landing = true; render(); jumpTo(0); return; }
+  if (/^lpEnter\d?$/.test(t.id)) { S.landing = false; store("mizo-entered", "1"); render(); } /* חושף את טופס ההתחברות הקיים, וזוכר שנכנסו */
   else if (t.id === "swap") { S.authMode = S.authMode === "login" ? "signup" : "login"; S.authErr = ""; render(); }
   else if (t.id === "logout") { clearTimeout(flushTimer); S.sheet = null; render(); flush().then(runAutoNow).finally(() => signOut(auth)); }
   else if (t.id === "pmBtn" && can.admin()) { S.pmode = true; S.pmQ = false; S.pmDay = todayKey(); S.sheet = null; S.tab = "prod"; S.set = null; render(); jumpTo(0); keepAwake(true); }
@@ -9055,6 +9252,7 @@ function jumpSpy() {
 let lpStep = -1;
 function lpCine() {
   const c = document.querySelector(".lp-cine"); if (!c) { lpStep = -1; return; }
+  const pr = document.querySelector(".lp-prog"), mx = document.documentElement.scrollHeight - innerHeight; if (pr) pr.style.transform = `scaleX(${mx > 0 ? Math.min(1, Math.max(0, scrollY / mx)).toFixed(4) : 0})`;
   const r = c.getBoundingClientRect(), span = r.height - innerHeight, p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0, i = Math.min(2, Math.floor(p * 2.999));
   if (i !== lpStep) { if (lpStep >= 0 && !RM()) buzz(7); lpStep = i; }
   [".lp-cap", ".lp-sv", ".lp-rail i"].forEach((q) => c.querySelectorAll(q).forEach((x, n) => x.classList.toggle("on", n === i))); /* כל פריים: גם אחרי רינדור מחדש המצב נכון */
