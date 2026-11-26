@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-WWX6asG/h0ES9vskWLqFjFDWVg5fht2nh3HNsaLmgHQ=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-4nfTIy+TIg8gSF187OadXn3XVF3qkh3qLm6dA2zIluo=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -5505,6 +5505,7 @@ function viewAuth() {
     <p class="gs">${wait ? "בודקים את הקישור…" : bad ? "הקישור לא תקף. בקשו קישור חדש מהמנהל" : "ההרשמה רק דרך קישור הצטרפות מהמנהל."}</p>
     ${wait || bad ? "" : `<p class="hint">בקשו מהמנהל את קישור ההצטרפות למסעדה. דרכו נרשמים בלי לבחור מסעדה ידנית.</p>`}
     <div class="center">כבר רשום? <button class="link" type="button" id="swap">כניסה</button></div>
+    ${IS_DEMO ? "" : `<div class="center"><button class="link" type="button" id="toSite">חזרה לאתר</button></div>`}
   </div></div>`; }
   return `<div class="auth grp"><form class="card authcard${enter ? " aenter" : ""}" id="authF" novalidate>
     ${sign}
@@ -5517,6 +5518,7 @@ function viewAuth() {
     <button class="btn full" type="submit" ${S.busy ? "disabled" : ""}>${S.busy ? (signup ? "נרשם…" : "נכנס…") : (signup ? "הרשמה" : "כניסה")}</button>
     ${signup ? `<p class="hint lgl">הפרטים נשמרים בשם המסעדה. <a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a> · <a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a></p>` : ""}
     <div class="center">${signup ? "כבר רשום? " : "עובד חדש? "}<button class="link" type="button" id="swap">${signup ? "כניסה" : "הרשמה"}</button></div>
+    ${IS_DEMO ? "" : `<div class="center"><button class="link" type="button" id="toSite">חזרה לאתר</button></div>`}
   </form></div>`;
 }
 /* דף הבית של מיזו (mizoik.co.il): מבקר שלא מחובר רואה אותו, ומשתמש מחובר מגיע אליו מ"על מיזו" בהגדרות. גנרי בלבד, בלי שם מסעדה אמיתי, מספרים = נתוני דמו
@@ -5549,11 +5551,11 @@ const LP_FAQ = [
 ];
 function viewLanding() {
   const me = !!S.user, wa = LP_WA ? esc(LP_WA) : "", demo = esc(demoUrl()), I = LPIC;
-  const waA = (cls, t, arr) => wa ? `<a class="${cls}" href="${wa}" target="_blank" rel="noopener">${t}${arr ? LP_ARR : ""}</a>` : "";
+  const waA = (cls, t, arr) => wa ? `<a class="${cls}" href="${wa}" target="_blank" rel="noopener">${esc(t)}${arr ? LP_ARR : ""}</a>` : "";
   const enter = me ? `<button class="lp-enter" type="button" id="lpBack">חזרה לאפליקציה</button>` : `<button class="lp-enter" type="button" id="lpEnter">כניסה</button>`;
   const li = (ic, t, q, cls) => `<div class="lpx-li">${ic ? `<span class="lpx-ico">${ic}</span>` : ""}<span class="lpx-gr">${t}</span><span class="lpx-q${cls ? " " + cls : ""}">${q}</span></div>`;
   const feat = (ic, h, p) => `<div class="lp-feat"><div class="lp-ic">${ic}</div><h3>${h}</h3><p>${p}</p></div>`;
-  const tr = (ic, b, s, warm) => `<div class="lp-tr${warm ? " warm" : ""}"><span class="lp-ic">${ic}</span><div><b>${b}</b><span>${s}</span></div></div>`;
+  const tr = (ic, b, s, warm) => `<div class="lp-tr${warm ? " warm" : ""}"><span class="lp-ic">${ic}</span><div><b>${esc(b)}</b><span>${esc(s)}</span></div></div>`;
   return `<div class="auth grp"><div class="lp${me ? " lp-me" : ""}">
   <div class="lp-fx" aria-hidden="true"><i class="lp-au a1"></i><i class="lp-au a2"></i><i class="lp-au a3"></i><i class="lp-au a4"></i><i class="lp-au a5"></i><i class="lp-grain"></i></div>
   <div class="lp-prog" aria-hidden="true"></div>
@@ -6835,7 +6837,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.9.1";
+const APP_VER = "2.9.2";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -8945,9 +8947,10 @@ app.addEventListener("click", (e) => {
   if (t.id === "demoWa") { if (window.__DEMO_WA) window.open(window.__DEMO_WA, "_blank", "noopener"); return; }
   if (t.id === "legalGo") { window.open((IS_DEMO ? "../" : "") + "legal/privacy.html", "_blank", "noopener"); return; }
   if (t.id === "siteSw") { sessionSafe("rosie-site", ""); location.reload(); return; }
-  if (t.id === "lpBack" || t.id === "lpBack2") { S.landing = false; render(); jumpTo(0); return; }
-  if (t.id === "aboutMizo") { S.sheet = null; S.set = null; S.landing = true; render(); jumpTo(0); return; }
-  if (/^lpEnter\d?$/.test(t.id)) { S.landing = false; store("mizo-entered", "1"); render(); } /* חושף את טופס ההתחברות הקיים, וזוכר שנכנסו */
+  if (t.id === "lpBack" || t.id === "lpBack2") { if (history.state && history.state.mzLp) { history.back(); return; } S.landing = false; render(); jumpTo(0); return; }
+  if (t.id === "aboutMizo") { S.sheet = null; S.set = null; S.landing = true; try { history.pushState({ mzLp: 1 }, ""); } catch {} render(); jumpTo(0); return; } /* כפתור "אחורה" של הטלפון חוזר לאפליקציה */
+  if (t.id === "toSite") { if (history.state && history.state.mzIn) { history.back(); return; } S.landing = true; render(); jumpTo(0); return; } /* מטופס הכניסה חזרה לדף הבית */
+  if (/^lpEnter\d?$/.test(t.id)) { S.landing = false; store("mizo-entered", "1"); try { history.pushState({ mzIn: 1 }, ""); } catch {} render(); jumpTo(0); } /* כפתור "אחורה" חוזר לדף הבית ולא יוצא מהאתר */ /* חושף את טופס ההתחברות הקיים, וזוכר שנכנסו */
   else if (t.id === "swap") { S.authMode = S.authMode === "login" ? "signup" : "login"; S.authErr = ""; render(); }
   else if (t.id === "logout") { clearTimeout(flushTimer); S.sheet = null; render(); flush().then(runAutoNow).finally(() => signOut(auth)); }
   else if (t.id === "pmBtn" && can.admin()) { S.pmode = true; S.pmQ = false; S.pmDay = todayKey(); S.sheet = null; S.tab = "prod"; S.set = null; render(); jumpTo(0); keepAwake(true); }
@@ -9258,6 +9261,13 @@ function lpCine() {
   [".lp-cap", ".lp-sv", ".lp-rail i"].forEach((q) => c.querySelectorAll(q).forEach((x, n) => x.classList.toggle("on", n === i))); /* כל פריים: גם אחרי רינדור מחדש המצב נכון */
   const ph = c.querySelector(".lp-phone"); if (ph && !RM()) ph.style.transform = r.top < innerHeight && r.bottom > 0 ? `scale(${(0.96 + 0.04 * (1 - Math.abs(0.5 - p) * 2)).toFixed(3)}) rotateY(${((p - 0.5) * -7).toFixed(1)}deg)` : "";
 }
+/* כפתור "אחורה" של הטלפון: בין דף הבית לטופס הכניסה ובין "על מיזו" לאפליקציה, בלי לצאת מהאתר */
+addEventListener("popstate", () => {
+  if (IS_DEMO) return;
+  if (!S.user && !S.landing) { S.landing = true; render(); jumpTo(0); }
+  else if (S.user && S.landing) { S.landing = false; render(); jumpTo(0); }
+  else if (!S.user && S.landing && history.state && history.state.mzIn) { S.landing = false; render(); jumpTo(0); }
+});
 function onScroll() { scrT = 0; jumpSpy(); lpCine(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.documentElement.style.setProperty("--ov", RM() ? "0" : Math.min(1, Math.max(0, -window.scrollY) / 80).toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
 window.addEventListener("scroll", () => { if (!scrT) scrT = requestAnimationFrame(onScroll); }, { passive: true });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet) closeSheet(); else if (e.key === "Enter" && e.target.id === "wG") { e.preventDefault(); addWeighing(); } });
