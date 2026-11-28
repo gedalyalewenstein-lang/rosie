@@ -51,7 +51,7 @@ function colDocs(ref){const f=ref.wheres.filter(w=>w&&w.f!==undefined),ob=ref.wh
 const S_=()=>window.__DEMO_STATS||{}, ils=(v)=>"₪"+Math.round(v).toLocaleString("en-US");
 function later(path, patch, ms){ setTimeout(()=>{ if(!store[path]) return; store[path]=merge(store[path],patch); emit(); }, ms||1800); }
 function answer(q){ const s=S_(), t=String(q||"");
-  if(/מחיר|התייקר|יקר|ספק/.test(t)) return `עגבניות שרי עלו מ-₪24 ל-₪29 אצל ירקות הגליל. עברתם לפרי השדה ב-₪23.\n- חיסכון: ${ils(s.save.tomato)} בחודש.\n- מלפפון עלה ב-8%, לעקוב.`;
+  if(/מחיר|התייקר|יקר|ספק/.test(t)) return `עגבניות שרי עלו מ-₪24 ל-₪29 אצל ירקות הגליל. עברתם לשדות לדוגמה ב-₪23.\n- חיסכון: ${ils(s.save.tomato)} בחודש.\n- מלפפון עלה ב-8%, לעקוב.`;
   if(/(פחת|זבל).*(עלה|עלייה|גדל)|למה.*פחת/.test(t)) return `בשבוע שעבר נרשמו ${s.wk.waste === 0.5 ? "חצי קופסה" : s.wk.waste + " קופסאות"} פחת, ${s.wk.wastePct}% מ-${s.wk.boxes} קופסאות. זה לא עלייה, זה נמוך.${s.wk.top ? `\n- הכי הרבה: ${s.wk.top}.` : ""}\n- להמשיך להזמין לפי הצעת הכמויות.`;
   if(/מלאי|להזמין/.test(t)) return `המלאי המשוער והצעת ההזמנה ליומיים מחושבים מהקבלות ומהייצור.\n- נמצא בנתונים ← פער ומלאי, לפי ספק.\n- אף אחד לא סופר: מה שנקנה פחות מה שיצא.`;
   if(/עובד|שכר|משמרת|שעות/.test(t)) return `עלות העובדים 29% מהמכירות, נקודה מעל היעד.\n- 96 שעות נוספות, רובן בחמישי.\n- להקדים משמרת טבח שנייה בחמישי בשעה: ${ils(s.save.labor)} בחודש.`;
@@ -67,7 +67,7 @@ function fakeServer(path){
   if(/^reportReq\//.test(path) && d.status==="pending") { const rk=Object.keys(store).find(k=>k.startsWith("reports/monthly")); later(path,{status:"done",report:rk?rk.split("/")[1]:"",doneAt:Date.now()},2600); }
   if(/^photos\//.test(path) && d.ai==="pending"){
     if(d.kind==="z") later(path,{ai:"done",aiAt:Date.now(),aiData:{date:d.day,covers:96,total:15840,items:[]}},2600);
-    else later(path,{ai:"done",aiAt:Date.now(),sup:d.sup||"פרי השדה",amt:d.amt||742,cat:d.cat||"ירקות",aiData:{supplier:"פרי השדה",date:d.day,total:742,category:"ירקות",items:[{name:"עגבניות שרי",qty:18,unit:"ק״ג",unitPrice:23,total:414},{name:"עשבי תיבול מעורב",qty:4,unit:"ק״ג",unitPrice:38,total:152},{name:"לימון",qty:22,unit:"ק״ג",unitPrice:8,total:176}]}},2800);
+    else later(path,{ai:"done",aiAt:Date.now(),sup:d.sup||"שדות לדוגמה",amt:d.amt||742,cat:d.cat||"ירקות",aiData:{supplier:"שדות לדוגמה",date:d.day,total:742,category:"ירקות",items:[{name:"עגבניות שרי",qty:18,unit:"ק״ג",unitPrice:23,total:414},{name:"עשבי תיבול מעורב",qty:4,unit:"ק״ג",unitPrice:38,total:152},{name:"לימון",qty:22,unit:"ק״ג",unitPrice:8,total:176}]}},2800);
   }
   if(/^uploads\//.test(path) && d.ai==="pending") later(path,{ai:"done"},2600);
 }

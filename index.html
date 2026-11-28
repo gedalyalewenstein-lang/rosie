@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-4nfTIy+TIg8gSF187OadXn3XVF3qkh3qLm6dA2zIluo=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-87C15ai+Ga4DjUt/rHifJjE7MmZ3Wj7rvJFb2zrN7us=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -2587,7 +2587,7 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
    חריג גופן אחד (מתועד בראש הקובץ): .lp-huge, הספרה הגדולה של "למה זה שונה" */
 .auth.grp:has(.lp){padding:0;overflow:visible;overflow-x:clip} /* clip ולא hidden: אחרת sticky לא נדבק */
 .lp{position:relative;width:100%;color:var(--label);text-align:start;font-size:17px;line-height:1.55}
-.lp>*:not(.lp-fx):not(.lp-prog){position:relative;z-index:1}
+.lp>*:not(.lp-fx):not(.lp-prog):not(.lpn-nav){position:relative;z-index:1}
 .lp :where(a){color:inherit;text-decoration:none}
 .lp :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 .lp h1,.lp h2,.lp h3{font-family:var(--ui);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0;color:var(--label);text-wrap:balance}
@@ -2622,16 +2622,9 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .lp-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding-inline:4px;font-weight:700;color:var(--tint)}
 .lp-have{font-size:15px;color:var(--label2)}
 /* ניווט */
-.lp-nav{position:sticky;top:0;z-index:40!important;padding-top:max(12px,env(safe-area-inset-top,0px))}
-.lp-navin{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-edge);border-radius:16px;padding-inline:16px 8px}
 .lp-logo{display:inline-flex;align-items:center;color:var(--label)}.lp-logo .mzw{font-size:30px;line-height:1}
-.lp-links{display:none;gap:24px;font-size:15px;color:var(--label2)}
-.lp-links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}.lp-links a:hover{color:var(--label)}
-.lp-navr{display:flex;align-items:center;gap:8px}
-.lp-enter,.lp-cta{height:44px;padding-inline:16px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;white-space:nowrap}
+.lp-enter{height:44px;padding-inline:16px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;white-space:nowrap}
 .lp .lp-enter{border:1px solid var(--separator);color:var(--label)}
-.lp .lp-cta{background:var(--tint);color:var(--on-tint)}
-@media(min-width:820px){.lp-links{display:flex}}
 /* Hero */
 .lp-hero{padding-top:36px;padding-bottom:44px}
 .lp-hin{display:grid;gap:36px;align-items:center}
@@ -2658,11 +2651,6 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .lp-rec b{display:block;font-weight:500;font-size:15px}.lp-rec em{display:block;font-style:normal;font-size:13px;color:var(--label2)}
 @media(min-width:920px){.lp-hero{padding-top:64px;padding-bottom:72px}.lp-hin{grid-template-columns:1.08fr .92fr;gap:56px}.lp-hero .lp-lead{font-size:22px}}
 /* רצועה */
-.lp-strip{border-block:1px solid var(--separator);background:color-mix(in srgb,var(--label) 2%,transparent)}
-.lp-stin{display:grid;gap:12px;padding-block:20px}
-.lp-sc{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--label2)}
-.lp-sc svg{width:20px;height:20px;color:var(--tint);flex:none}.lp-sc b{color:var(--label);font-weight:600}
-@media(min-width:720px){.lp-stin{grid-template-columns:repeat(3,1fr);gap:28px}}
 /* גלילה קולנועית (3 שלבים, sticky). תנועה רק transform ו-opacity */
 .lp-cine{position:relative}
 .lp-track{height:300vh}
@@ -2682,20 +2670,6 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .lp-scr{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#0B0D10;border:1px solid rgba(255,255,255,.05)}
 .lp-sv{position:absolute;inset:0;padding:20px 16px;opacity:0;transform:translateY(12px) scale(.98);transition-property:opacity,transform;transition-duration:500ms;transition-timing-function:var(--ease)}
 .lp-sv.on{opacity:1;transform:none}
-.lp-sv .lpx-sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.lp-sv .lpx-sh b{font-size:16px;font-weight:700}.lp-sv .lpx-sh span{font-size:12px;color:rgba(216,221,218,.7)}
-.lp-sv .lpx-li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-top:1px solid rgba(255,255,255,.06);font-size:13px}
-.lp-sv .lpx-li:first-of-type{border-top:0}
-.lp-sv .lpx-ico{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:#38E0A0;flex:none}
-.lp-sv .lpx-ico svg{width:16px;height:16px}
-.lp-sv .lpx-gr{flex:1;min-width:0}
-.lp-sv .lpx-q{font-variant-numeric:tabular-nums;color:#38E0A0;font-weight:700}
-.lp-sv .lpx-warn{color:#F0B65E}
-.lp-sv .lpx-big2{font-size:46px;font-weight:800;letter-spacing:-.045em;line-height:1;margin:8px 0 4px;font-variant-numeric:tabular-nums}
-.lp-sv .lpx-big2 small{font-size:13px;color:rgba(216,221,218,.7);font-weight:700}
-.lp-sv .lpx-mini{font-size:12px;color:rgba(216,221,218,.7);margin-top:4px}
-.lp-sv .lpx-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.08);margin:16px 0 8px;overflow:hidden}
-.lp-sv .lpx-bar i{display:block;height:100%;background:#38E0A0;border-radius:999px}
 @media(min-width:900px){
   .lp-stage{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;justify-items:start}
   .lp-ctext{align-items:flex-start}.lp-caps{text-align:start}.lp-rail{justify-content:flex-start}
@@ -2705,15 +2679,6 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .lp-sec{padding-block:60px}
 .lp-stop{max-width:40ch}
 .lp-sec h2{font-size:32px;margin-top:12px}
-.lp-grid{display:grid;gap:12px;margin-top:32px}
-.lp-feat{padding:20px;border-radius:16px;background:color-mix(in srgb,var(--label) 2%,transparent);border:1px solid var(--separator)}
-.lp-ic{width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--tint) 10%,transparent);border:1px solid color-mix(in srgb,var(--tint) 24%,transparent);display:grid;place-items:center;color:var(--tint);flex:none}
-.lp-ic svg{width:20px;height:20px}
-.lp-feat .lp-ic{margin-bottom:16px}
-.lp-feat h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
-.lp-feat p{color:var(--label2);font-size:15px;margin-top:8px}
-@media(min-width:620px){.lp-grid.two{grid-template-columns:1fr 1fr}}
-@media(min-width:820px){.lp-grid.three{grid-template-columns:repeat(3,1fr)}}
 /* המספר הגדול */
 .lp-figure{display:grid;gap:28px}
 .lp-huge{font:900 clamp(92px,25vw,200px)/.82 var(--ui);letter-spacing:-.055em;margin-top:12px;font-variant-numeric:tabular-nums}
@@ -2727,42 +2692,13 @@ body:has(#app > .sheet) .toast.show,body.has-bar:has(#app > .sheet) .toast.show{
 .lp-urow span{color:var(--label2);font-size:15px}.lp-urow .ok{color:var(--tint)}
 @media(min-width:900px){.lp-figure{grid-template-columns:1.05fr .95fr;align-items:center;gap:56px}}
 /* למי */
-.lp-role{padding:24px 20px;display:flex;flex-direction:column;gap:8px}
-.lp-role h3{font-size:22px}.lp-role p{color:var(--label2);font-size:15px}
 /* התאמה + אמון */
-.lp-band{display:grid;gap:28px;align-items:center}
-.lp-setup h2{margin-top:12px}
-.lp-setup p{color:var(--label2);margin-top:16px;max-width:42ch}
-.lp-setup .lp-btns{margin-top:20px}
-.lp-tlist{display:grid;gap:8px}
-.lp-tr{display:flex;gap:12px;padding:16px;border-radius:14px;background:color-mix(in srgb,var(--label) 2%,transparent);border:1px solid var(--separator)}
-.lp-tr .lp-ic{width:36px;height:36px;border-radius:8px}
-.lp-tr .lp-ic svg{width:18px;height:18px}
-.lp-tr.warm .lp-ic{background:color-mix(in srgb,var(--orange) 10%,transparent);border-color:color-mix(in srgb,var(--orange) 26%,transparent);color:var(--orange)}
-.lp-tr b{display:block;font-weight:600;font-size:15px}.lp-tr span{color:var(--label2);font-size:13px}
-@media(min-width:900px){.lp-band{grid-template-columns:1fr 1fr;gap:48px}}
 /* שאלות */
-.lp-acc{margin-top:28px;border-top:1px solid var(--separator)}
-.lp-it{border-bottom:1px solid var(--separator)}
-.lp-it summary{display:flex;align-items:center;gap:16px;min-height:44px;padding-block:16px;cursor:pointer;list-style:none}
-.lp-it summary::-webkit-details-marker{display:none}
-.lp-it summary b{flex:1;font-size:17px;font-weight:600}
-.lp-cx{color:var(--label2);flex:none;display:grid;transition:transform .3s var(--ease)}
-.lp-cx svg{width:16px;height:16px}
-.lp-it[open] .lp-cx{transform:rotate(180deg);color:var(--tint)}
-.lp-it p{color:var(--label2);font-size:15px;padding-bottom:20px;max-width:64ch}
 /* סגירה + פוטר */
-.lp-close{text-align:center;padding-block:44px}
-.lp-close h2{font-size:clamp(34px,5.6vw,48px);max-width:17ch;margin-inline:auto}
-.lp-close p{color:var(--label2);margin:16px auto 0;max-width:42ch}
-.lp-close .lp-btns{justify-content:center;margin-top:24px}
-.lp-foot{border-top:1px solid var(--separator);padding-top:32px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
-.lp-ftop{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
-.lp-lk{display:flex;flex-wrap:wrap;column-gap:20px;font-size:15px;color:var(--label2)}
-.lp-lk a,.lp-legal a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}.lp-lk a:hover{color:var(--label)}
+.lp-legal a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
 .lp-legal{margin-top:16px;padding-top:4px;border-top:1px solid var(--separator);display:flex;flex-wrap:wrap;align-items:center;column-gap:20px;font-size:13px;color:var(--label2)}
-@media(min-width:900px){.lp-sec{padding-block:104px}.lp-sec h2,.lp-figure h2{font-size:46px}.lp-close{padding-block:88px}}
-@media (prefers-reduced-motion:reduce){.lp-cap,.lp-sv{transform:none!important;transition-property:opacity}.lp-rail i b,.lp-cx,.lp-btn{transition:none}.lp-au{display:none}}
+@media(min-width:900px){.lp-sec{padding-block:104px}.lp-sec h2,.lp-figure h2{font-size:46px}}
+@media (prefers-reduced-motion:reduce){.lp-cap,.lp-sv{transform:none!important;transition-property:opacity}.lp-rail i b,.lp-btn{transition:none}.lp-au{display:none}}
 /* כפתור השליחה אחרי שליחה: סטטוס שקט (לא כפתור מושבת). אושרה = צ'ק מצויר פעם אחת, ממתינה = נקודה */
 .barin #send.sstat,.barin #send.sstat:disabled{background:transparent;box-shadow:none;opacity:1;color:var(--label2);font:var(--f-head);padding-inline:12px;cursor:default}
 .barin #send.sstat > span{display:inline-flex;align-items:center;gap:8px}
@@ -2798,6 +2734,298 @@ main > :is(.gh,.seg):first-child{margin-top:4px}
 .approve .arow .step{margin-top:0}
 /* כותרת קבוצה ומיד אחריה בחירה מקטעית: 8 כמו מעל כל קבוצה */
 .gh + .tools > .seg{margin-top:0}
+
+/* ---------- גרפים בעברית (Taster · BarChart, ברישיון). קידומת hc-, טוקנים של design2, כהה ובהיר ----------
+   מהמקור: 26/15/13/12/11.5 → 22/15/13/12/12 (סולם סגור, אותה היררכיה). רדיוס 22 → 16. ריווח בכפולות 4 */
+.hc-chart{
+  --_surface:var(--hc-surface,var(--surface));
+  --_ink:var(--hc-ink,var(--label));
+  --_muted:var(--hc-muted,var(--label2));
+  --_line:var(--hc-line,var(--separator));
+  --_accent:var(--hc-accent,var(--tint));
+  --_soft:var(--hc-soft,color-mix(in srgb,var(--tint) 30%,var(--surface)));
+  position:relative;display:grid;gap:16px;min-width:0;margin:0;padding:20px 20px 16px;border-radius:16px;
+  background:var(--_surface);box-shadow:0 0 0 1px var(--_line);color:var(--_ink);font-family:var(--ui);text-align:start
+}
+.hc-cap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 8px}
+.hc-title{font-size:15px;font-weight:600;line-height:1.3;color:var(--_muted)}
+.hc-tag{display:inline-flex;align-items:center;height:24px;padding-inline:8px;border-radius:999px;font-size:12px;font-weight:600;color:var(--_ink);background:color-mix(in srgb,var(--_accent) 12%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--_accent) 32%,transparent)}
+.hc-sum{grid-column:1/-1;font-size:22px;font-weight:700;line-height:1.25;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.hc-plot{position:relative;width:100%;min-width:0;touch-action:pan-y}
+/* LTR בתוך ה-SVG כדי ש-text-anchor יעשה מה שכתוב. התוויות בעברית עדיין נקראות מימין לשמאל (hcRtl) */
+.hc-plot svg{display:block;overflow:visible;direction:ltr}
+.hc-grid{stroke:var(--_line);stroke-width:1}
+.hc-tick{font-size:12px;fill:var(--_muted);font-variant-numeric:tabular-nums}
+.hc-label{font-size:12px;fill:var(--_muted)}
+.hc-value{font-size:13px;font-weight:700;fill:var(--_ink);font-variant-numeric:tabular-nums}
+.hc-hit{fill:transparent}
+.hc-bar{fill:var(--_soft);transform-box:fill-box;transform-origin:bottom;animation:hc-grow .7s cubic-bezier(.2,.9,.3,1) both;transition:fill .2s}
+.hc-bar[data-on]{fill:var(--_accent)}
+/* החלק שנקטע במקור, לפי ההתנהגות בקוד: עמודה גדלה מהבסיס, קו שמצויר, מילוי שמופיע */
+@keyframes hc-grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes hc-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes hc-fade{from{opacity:0}to{opacity:1}}
+/* טבלת הנתונים: לקוראי מסך ולהעתקה, לא נראית */
+.hc-sr{position:absolute;width:1px;height:1px;margin:0;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.hc-sr *{margin:0;padding:0}
+@media (prefers-reduced-motion:reduce){.hc-bar{animation:none;transition:none;transform:none}}
+/* במקום: מתחת לכרטיס Food cost במסך הנתונים, ובדף הבית ב"למה זה שונה" */
+.hc-app{margin-top:12px;padding:16px 16px 12px;box-shadow:none} /* כמו שאר הכרטיסים במסך: בלי מסגרת */
+.hc-lp{--hc-surface:color-mix(in srgb,var(--label) 3%,var(--bg));margin-top:28px;max-width:560px}
+
+/* ---------- ליקוי (Taster backdrop, סגנון halo) מאחורי כותרת ה-hero ----------
+   עיגול שחור, הילה בהירה צמודה לשפה, קרניים דקות, דעיכה לירוק עמוק וגרעין. CSS בלבד (גרעין = feTurbulence ב-data URI).
+   תנועה: ההילה נושמת והקרניים מסתובבות לאט מאוד. רק transform ו-opacity. פחות תנועה: סטטי.
+   ניגודיות: הכותרת יושבת בתוך העיגול השחור, והחצי התחתון נעלם (mask) לפני הפסקה והכפתורים. בהיר: אותו ליקוי בפאנל כהה */
+.lp-hero{--ec-0:#0f2a25;--ec-1:#2e7a5b;--ec-2:#9fd48b;--ec-3:#f2ffd9;--ec-bg:#04070a;--ec-d:clamp(240px,66vw,300px);--ec-y:.6}
+/* ה-hero הוא <header>: מבטלים את ה-::before של כותרת האפליקציה (display:none, טשטוש, קו תחתון) */
+.lp-hero::before{content:"";display:block;opacity:1;transition:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;position:absolute;z-index:-1;pointer-events:none;inset:-112px calc(50% - 50vw) 0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.69'/%3E%3C/svg%3E"),var(--ec-bg);
+  background-blend-mode:soft-light,normal;
+  -webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+/* הליקוי בראש עמודת הטקסט: מרכז העיגול בקו העליון של הטקסט. החצי העליון (הילה וקרניים) מעל הכותרת, והעיגול השחור עצמו מאחורי הכותרת */
+.lp-htx{position:relative;padding-top:calc(var(--ec-d) * var(--ec-y))}
+.lp-ecl{position:absolute;z-index:-1;left:50%;top:calc(var(--ec-d) * var(--ec-y) - 8px);width:calc(var(--ec-d) * 2.2);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none}
+.lp-ecl i,.lp-ec-up{position:absolute;inset:0;border-radius:50%}
+/* רק החצי העליון של ההילה והקרניים (עוטף שלא זז, כדי שהמסכה לא תסתובב עם הקרניים) */
+.lp-ec-up{-webkit-mask-image:linear-gradient(#000 43%,transparent 50.5%);mask-image:linear-gradient(#000 43%,transparent 50.5%)}
+/* הילה: בהירה ממש בשפה (מתחת לעיגול), ואז ירוק-קרם, ירוק ודעיכה לירוק עמוק */
+.lp-ec-h{background:radial-gradient(circle closest-side,var(--ec-3) 0 45.6%,color-mix(in srgb,var(--ec-2) 85%,var(--ec-3)) 46.4%,color-mix(in srgb,var(--ec-1) 80%,transparent) 50%,color-mix(in srgb,var(--ec-0) 75%,transparent) 60%,color-mix(in srgb,var(--ec-0) 30%,transparent) 76%,transparent 96%);
+  animation:lp-ec-breathe 9s ease-in-out infinite alternate}
+/* קרניים: שני מחזורים בזווית (ארוכות וקצרות), רק מחוץ לעיגול */
+.lp-ec-r{background:repeating-conic-gradient(from 0deg,transparent 0deg,color-mix(in srgb,var(--ec-3) 26%,transparent) .4deg,transparent 1.1deg,transparent 5deg),repeating-conic-gradient(from 2.3deg,transparent 0deg,color-mix(in srgb,var(--ec-2) 18%,transparent) .3deg,transparent .8deg,transparent 3.1deg);
+  -webkit-mask-image:radial-gradient(circle closest-side,transparent 45%,#000 47%,rgba(0,0,0,.4) 64%,transparent 88%);mask-image:radial-gradient(circle closest-side,transparent 45%,#000 47%,rgba(0,0,0,.4) 64%,transparent 88%);
+  animation:lp-ec-spin 240s linear infinite}
+.lp-ec-d{background:radial-gradient(circle closest-side,#000 0 45.2%,transparent 45.7%);-webkit-mask-image:linear-gradient(#000 56%,transparent 71%);mask-image:linear-gradient(#000 56%,transparent 71%)} /* החצי התחתון של העיגול נבלע ברקע, בלי קו שפה */
+@keyframes lp-ec-breathe{from{transform:scale(1);opacity:.86}to{transform:scale(1.035);opacity:1}}
+@keyframes lp-ec-spin{to{transform:rotate(1turn)}}
+@media(min-width:920px){.lp-hero{--ec-d:500px;--ec-y:.42}}
+@media (prefers-reduced-motion:reduce){.lp-ec-h,.lp-ec-r{animation:none}}
+/* בהיר: הליקוי בתוך פאנל כהה, והטקסט של ה-hero בטוקנים של המצב הכהה (AA על הפאנל) */
+:root[data-theme="light"] .lp-hero{color-scheme:dark;color:var(--label);width:calc(100% - 16px);margin-block:8px;border-radius:32px;overflow:hidden;
+  --label:#F2F2F7;--label2:rgba(235,235,245,.6);--separator:rgba(84,84,88,.6);--tint:#38E0A0;--on-tint:#04170E;--fill:color-mix(in srgb,rgba(235,235,245,.6) 45%,transparent);
+  --glass-bg:rgba(28,28,30,.80);--glass-edge:rgba(255,255,255,.10);--surface:#1C1C1E}
+:root[data-theme="light"] .lp-hero::before{inset:0;-webkit-mask-image:none;mask-image:none}
+@media(min-width:1136px){:root[data-theme="light"] .lp-hero{width:auto}}
+
+
+/* ======================================================================
+   design-next (מוקאפים receipt / overview / tags / tour / landing, 28.11)
+   תנועה: רק transform ו-opacity. ניצנוץ הקריאה (עבודה שנמשכת) והווי המצויר הם החריגים היחידים שלא בתגובה למשתמש
+   ====================================================================== */
+/* 1. קריאת קבלה: אייקון 16 + "Claude" + מילת שלב שמנצנצת. חלון רך עובר על המילה (transform בלבד), הטקסט שבתוכו זז הפוך ונשאר במקום */
+.ai{display:flex;align-items:center;gap:4px;font:var(--f-foot);color:var(--label2);min-height:16px;min-width:0}
+.ai svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ai .warnw{color:var(--orange);font-weight:600;white-space:nowrap}
+.aipulse{white-space:nowrap;animation:mzPulse 1.4s ease-in-out 2}
+@keyframes mzPulse{50%{opacity:.45}}
+.ai.done{color:var(--label)}
+.ai.done .ring{stroke-dasharray:57;stroke-dashoffset:0}
+.ai.done .tick{stroke-dasharray:14;stroke-dashoffset:0}
+.ai.draw .ring{stroke-dashoffset:57;animation:mzDraw 420ms var(--ease) forwards}
+.ai.draw .tick{stroke-dashoffset:14;animation:mzDraw 260ms var(--ease) 300ms forwards}
+@keyframes mzDraw{to{stroke-dashoffset:0}}
+.pthumb .ai{margin-top:4px;color:rgba(255,255,255,.8);font-size:12px;flex-wrap:wrap}
+.pthumb .ai.done{color:#fff}
+.pthumb .ai .warnw{color:#FF9F0A}
+.aistate .ai{font:var(--f-sub)}
+@media (prefers-reduced-motion:reduce){.aipulse{animation:none}.ai.draw .ring,.ai.draw .tick{animation:none;stroke-dashoffset:0}}
+/* "זה מה שקראתי" */
+.rfld .sv{color:var(--label)}
+.rsumh{display:flex;align-items:center;gap:8px;margin:8px 16px 0;font:var(--f-foot);color:var(--label2)}
+.rsumh svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--label2);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.rsumh.bad span{color:var(--orange)}
+.rgh{display:flex;justify-content:space-between}
+.srow.rline{display:flex;align-items:flex-start}
+.rline .st{display:grid;gap:4px;flex:1;min-width:0}
+.rline .sv{padding-top:2px}
+.rline .sv{color:var(--label);font-variant-numeric:tabular-nums}
+.flag{display:flex;align-items:center;gap:4px;font:var(--f-foot);color:var(--orange)}
+.flag svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sheet:has(.rvacts){padding-bottom:0}
+.rvacts{position:sticky;bottom:0;z-index:2;display:flex;gap:8px;margin:16px -16px 0;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--glass-thick);box-shadow:0 -.5px 0 var(--separator)}
+.rvacts .btn{flex:1;min-height:50px;border-radius:var(--r-pill);margin:0}
+.rvacts .btn:first-child{flex:2}
+
+/* 2. סקירה: מספר גדול + קו 8 שבועות באותה שורה, משפט שבוע מול שבוע, ו-Prime cost / קניות כשורות */
+.spark{display:block;flex:none;overflow:visible}
+.spark polyline{fill:none;stroke:var(--label2);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.spark .tgt{stroke:var(--label3,var(--fill));stroke-width:1;stroke-dasharray:3 4}
+.spark circle{fill:var(--label)}
+.kup{color:var(--orange);font-weight:600}.kdn{color:var(--green);font-weight:600}
+.kpr .st small b{display:inline;font:inherit;font-weight:600}
+.kpr .kv{display:flex;align-items:center;gap:12px;flex:none}
+.kpr .kv .v{font:var(--f-head);min-width:72px;text-align:left;font-variant-numeric:tabular-nums;color:var(--label)}
+
+/* 3. תגית מצב: אייקון 16 אפור + מילה 13/600. בלי קפסולה (קפסולה אפורה נקראת ככפתור כבוי), בלי רקע, בלי תנועה */
+.otag{display:inline-flex;align-items:center;gap:4px;font:600 13px/18px var(--ui);white-space:nowrap;color:var(--label)}
+.otag svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--label2);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.otag.sent,.otag.draft{color:var(--label2)}
+.otag.wait{color:var(--orange)}
+.otag.ok{color:var(--green)}
+.otag.got{color:var(--label)}
+.otag.bad{color:var(--red)}
+.hp .otag{margin-inline-end:8px}
+
+/* 4. סיור בדמו: לוח שקט מעל הסרגל (ומעל סרגל השליחה), כמוסת זכוכית כשהוא מכווץ. נכנס פעם אחת (opacity+transform) */
+.coach{position:fixed;z-index:8;inset-inline:max(16px,env(safe-area-inset-left,0px));bottom:calc(var(--tab-h) + max(8px,env(safe-area-inset-bottom,0px)) + 12px);
+  max-width:528px;margin-inline:auto;padding:4px 0 8px;border-radius:var(--r-sheet);background:var(--surface2);box-shadow:var(--lift);animation:mzCoachIn var(--t-ui) var(--ease) both}
+:root[data-theme="light"] .coach{background:var(--surface)}
+body.has-bar .coach{bottom:calc(var(--tab-h) + max(8px,env(safe-area-inset-bottom,0px)) + 84px)}
+body.has-coach main{padding-bottom:calc(var(--tab-h) + 260px + env(safe-area-inset-bottom,0px))}
+body.has-coach.has-bar main{padding-bottom:calc(var(--tab-h) + 340px + env(safe-area-inset-bottom,0px))}
+@keyframes mzCoachIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.chd{display:flex;align-items:center;gap:4px;min-height:44px;padding-inline:16px 4px}
+.chd b{flex:1;font:var(--f-head)}
+.chd>span{font:var(--f-foot);color:var(--label2)}
+.coach .tx{width:44px;height:44px;padding:0;display:grid;place-items:center;border:0;background:none;color:var(--label2);border-radius:var(--r-pill)}
+.coach .tx svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.tstep{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:4px 16px;border:0;background:none;color:var(--label);text-align:start;font:var(--f-body)}
+.tstep+.tstep::before{content:"";position:absolute;top:0;inset-inline:52px 0;height:.5px;background:var(--separator)}
+.tdot{width:24px;height:24px;flex:none;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--label3);display:grid;place-items:center}
+.tstep.now .tdot{box-shadow:inset 0 0 0 1.5px var(--label2)}
+.tstep.done .tdot{background:var(--tint);box-shadow:none;color:var(--on-tint)}
+.tdot svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.tdot .tick{stroke-dasharray:22;stroke-dashoffset:0}
+.tstep.draw .tdot .tick{stroke-dashoffset:22;animation:mzDraw 300ms var(--ease) 80ms forwards}
+.tstep .st{display:grid;gap:0}
+.tstep .st b{font:var(--f-body)}
+.tstep.done .st b{color:var(--label2)}
+.tstep.now .st b{font-weight:600}
+.tstep .st small{font:var(--f-foot);color:var(--label2)}
+.cfoot{margin:4px 16px 0;font:var(--f-sub);color:var(--label2)}
+.cfoot .tlink{min-height:44px;padding:0 4px;border:0;background:none;color:var(--tint);font:600 15px/1.35 var(--ui)}
+.tmini{position:fixed;z-index:8;inset-inline-start:max(16px,env(safe-area-inset-left,0px));bottom:calc(var(--tab-h) + max(8px,env(safe-area-inset-bottom,0px)) + 12px);
+  height:44px;display:inline-flex;align-items:center;gap:8px;padding-block:0;padding-inline:8px 16px;border:0;border-radius:var(--r-pill);color:var(--label);font:var(--f-sub);
+  background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);box-shadow:inset 0 0 0 .5px var(--glass-edge),inset 0 1px 0 var(--glass-hi),var(--glass-depth)}
+body.has-bar .tmini{bottom:calc(var(--tab-h) + max(8px,env(safe-area-inset-bottom,0px)) + 84px)}
+.tring{width:28px;height:28px;transform:rotate(-90deg)}
+.tring circle{fill:none;stroke-width:3}
+.tring .tr{stroke:var(--fill)}
+.tring .pr{stroke:var(--tint);stroke-linecap:round}
+.tstep,.tmini,.coach .tx{transition-property:transform,opacity;transition-duration:var(--t-press);transition-timing-function:var(--ease)}
+.tstep:active,.tmini:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.coach{animation:none}.tstep.draw .tdot .tick{animation:none;stroke-dashoffset:0}.tstep:active,.tmini:active{transform:none}}
+
+/* 5. דף הבית (design-next). קידומת lpn-. סולם גופנים סגור, חוץ מהמילה "מטבח" והסימן בתחתית (חריגים מתועדים בראש הקובץ) */
+.lpn{padding-top:calc(76px + env(safe-area-inset-top,0px))}
+/* (a) כמוסת ניווט צפה, תמיד זכוכית כהה */
+.lpn-nav{position:fixed;z-index:40;top:max(12px,env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);width:min(calc(100% - 32px),720px);height:56px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;padding-inline:20px 6px;border-radius:var(--r-pill);color:#F2F2F7;
+  background:rgba(22,22,24,.72);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  box-shadow:inset 0 0 0 .5px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.35)}
+.lpn-nav .lp-logo,.lpn-nav .lp-logo .mzw{color:#F2F2F7}.lpn-nav .lp-logo .mzw{font-size:30px}.lpn-nav .mzi::after{background:#7FCBA8}
+.lpn-navr{display:flex;align-items:center;gap:4px}
+.lp .lpn-nav .lp-enter{height:44px;padding-inline:16px;border:0;border-radius:var(--r-pill);color:#F2F2F7;font:var(--f-sub)}
+.lp .lpn-go{display:inline-flex;align-items:center;height:44px;padding-inline:20px;border-radius:var(--r-pill);background:#38E0A0;color:#04170E;font:600 15px/20px var(--ui);white-space:nowrap}
+/* (c) מניפסט: אפקט הגלילה היחיד בטקסט. מילים מ-20% ל-100% */
+.lpn-mani{padding-block:96px 0}
+.lpn-mani p{font:700 34px/1.25 var(--ui);letter-spacing:-.4px;max-width:880px;text-wrap:pretty;color:var(--label)}
+.lpn-mani .wd{opacity:.2}
+.lpn-mani .wd.nw{white-space:nowrap}
+@media(min-width:920px){.lpn-mani p{font-size:48px;line-height:1.18}}
+@media (prefers-reduced-motion:reduce){.lpn-mani .wd{opacity:1}}
+/* (b+f) הגלילה הקולנועית (lp-cine) מציגה מסכים אמיתיים מהדמו במקום המסכים המצוירים */
+.lp-sv.lp-img{padding:0}
+.lp-sv.lp-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.lp-sv.lp-img .lpn-l,:root[data-theme="light"] .lp-sv.lp-img .lpn-d{display:none}
+:root[data-theme="light"] .lp-sv.lp-img .lpn-l{display:block}
+/* השוואה: מתג שהמשתמש לוחץ, בתוך שורה */
+.lpn-cmp{display:grid;gap:24px;padding-block:96px 0}
+.lpn-cmp h2{font:var(--f-large);letter-spacing:-.4px}
+.lpn-cmp .lp-lead{margin-top:8px}
+.lpn-cmp .grp{margin:0 0 16px}
+.lpn-cmp .srow{min-height:60px}
+.lpn-cmp .srow .st b{font:var(--f-head)}
+.lpn-sw{position:relative;width:51px;height:31px;flex:none;border-radius:999px;background:var(--fill);transition-property:background-color;transition-duration:var(--t-ui)}
+.lpn-sw::before{content:"";position:absolute;inset:-7px -4px}
+.lpn-sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:27px;height:27px;border-radius:999px;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15),0 1px 1px rgba(0,0,0,.16);
+  transition-property:transform;transition-duration:var(--t-ui);transition-timing-function:var(--ease)}
+.lpn-sw[aria-checked="true"]{background:var(--tint)}
+.lpn-sw[aria-checked="true"]::after{transform:translateX(-20px)}
+[dir="ltr"] .lpn-sw[aria-checked="true"]::after{transform:translateX(20px)}
+.lpn-vals{display:grid}
+.lpn-vals>*{grid-area:1/1;font:var(--f-sub);transition-property:opacity;transition-duration:var(--t-ui)}
+.lpn-vals .on{color:var(--label);opacity:0}
+.lpn-vals .off{color:var(--label2)}
+.lpn-cmp.is-on .lpn-vals .on{opacity:1}.lpn-cmp.is-on .lpn-vals .off{opacity:0}
+.lpn-cmpl .ib{background:var(--fill);color:var(--label2);transition-property:color;transition-duration:var(--t-ui)}
+.lpn-cmp.is-on .lpn-cmpl .ib{color:var(--label)}
+@media(min-width:920px){.lpn-cmp{grid-template-columns:1fr 1fr;gap:64px;align-items:center}}
+/* (e) יום במטבח: פאנל כהה שעולה פעם אחת, כרטיסים בגלילה אופקית עם עצירה */
+.lpn-day{margin:96px 8px 0;border-radius:32px;background:#0B0B0C;color:#F2F2F7;padding:48px 0 40px;color-scheme:dark;
+  --label:#F2F2F7;--label2:rgba(235,235,245,.64);--label3:rgba(235,235,245,.28);--separator:rgba(84,84,88,.6);--fill:rgba(118,118,128,.24);--tint:#38E0A0;--orange:#FF9F0A;--green:#30D158;
+  transform:translateY(48px) rotate(-1.5deg);opacity:0;transition-property:transform,opacity;transition-duration:700ms;transition-timing-function:var(--ease)}
+.lpn-day.in{transform:none;opacity:1}
+.lpn-day h2{padding-inline:24px;font:var(--f-large);letter-spacing:-.4px}
+.lpn-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:24px 24px 8px;scrollbar-width:none;overscroll-behavior-x:contain}
+.lpn-track::-webkit-scrollbar{display:none}
+.lpn-slot{flex:0 0 272px;scroll-snap-align:start;display:grid;gap:12px;align-content:start}
+.lpn-hr{display:flex;align-items:center;gap:8px;font:600 13px/18px var(--ui);color:var(--label)}
+.lpn-hr i{width:8px;height:8px;border-radius:999px;background:var(--label);flex:none}
+.lpn-hr::after{content:"";flex:1;height:1px;background:var(--separator);margin-inline-end:-12px}
+.lpn-mini{background:#000;border-radius:16px;padding:16px;min-height:168px;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1)}
+.lpn-mini .cap{font:var(--f-foot);color:var(--label2)}
+.lpn-mini .t{font:var(--f-head);margin-top:4px}
+.lpn-mini .r{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px;padding-top:12px;border-top:.5px solid var(--separator);font:var(--f-sub)}
+.lpn-mini .r.nb{border:0;margin-top:0;padding-top:4px}
+.lpn-mini .big2{font:700 34px/1.2 var(--ui);margin-top:8px;font-variant-numeric:tabular-nums;text-align:start}
+.lpn-bar{height:8px;border-radius:999px;background:var(--fill);margin-top:16px;overflow:hidden}
+.lpn-bar i{display:block;height:100%;width:26%;background:var(--tint);border-radius:999px}
+.lpn-slot>p{font:var(--f-sub);color:var(--label2)}
+@media(min-width:920px){.lpn-day{max-width:1264px;margin-inline:auto}.lpn-track{overflow:visible}.lpn-slot{flex:1}}
+@media (prefers-reduced-motion:reduce){.lpn-day{transform:none;opacity:1;transition:none}}
+/* שאלות: אקורדיון, אחת פתוחה */
+.lpn-faq .grp{margin-top:24px}
+.lpn-qi{position:relative}
+.lpn-qi+.lpn-qi::before{content:"";position:absolute;top:0;inset-inline:16px 0;height:.5px;background:var(--separator)}
+.lp .lpn-q{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:12px 16px;text-align:start;font:var(--f-head);color:var(--label)}
+.lpn-q span{flex:1}
+.lpn-q svg{width:20px;height:20px;flex:none;color:var(--label3);transition-property:transform;transition-duration:var(--t-ui);transition-timing-function:var(--ease)}
+.lpn-q[aria-expanded="true"] svg{transform:rotate(180deg)}
+.lpn-a{padding:0 16px 16px;font:var(--f-sub);color:var(--label2);text-wrap:pretty}
+@media(min-width:920px){.lpn-faq .grp{max-width:760px}}
+/* (d) טופס: ממשק בלבד, בלי שליחה לשרת */
+.lpn-form h2{font:var(--f-large);letter-spacing:-.4px}
+.lpn-form .lp-lead{margin-top:8px}
+.lpn-form form{margin-top:24px;max-width:560px}
+.lpn-fr{position:relative;display:flex;align-items:center;gap:12px;min-height:52px;padding:4px 16px}
+.lpn-fr+.lpn-fr::before{content:"";position:absolute;top:0;inset-inline:16px 0;height:.5px;background:var(--separator)}
+.lpn-fr>span{font:var(--f-body);width:88px;flex:none}
+.lpn-frh{min-height:44px;padding-top:12px}
+.lpn-fr input{flex:1;min-width:0;height:44px;border:0;background:none;font:var(--f-callout);color:var(--label);outline:none;text-align:start}
+.lpn-fr input::placeholder{color:var(--label2)}
+.lpn-chips{display:flex;gap:8px;flex-wrap:wrap;padding:8px 16px 16px}
+.lp .lpn-chip{position:relative;height:36px;padding-inline:16px;border-radius:999px;background:var(--fill);font:var(--f-sub);color:var(--label)}
+.lpn-chip::after{content:"";position:absolute;inset:-4px 0}
+.lp .lpn-chip[aria-pressed="true"]{background:var(--tint-soft);color:var(--tint);font-weight:600}
+.lpn-send{width:100%;margin-top:24px}
+.lpn-fine{margin-top:12px;font:var(--f-foot);color:var(--label2);text-align:center}
+/* (g) תחתית: אריחי ניווט וסימן גדול */
+.lpn-foot{padding-top:96px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));overflow:hidden}
+.lpn-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lp .lpn-tiles>*{display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:16px;border-radius:16px;background:var(--surface);color:var(--label);font:var(--f-head);text-align:start;width:100%}
+.lpn-tiles .schev{margin:0}
+.lpn-foot .lp-legal{margin-top:24px;border:0;padding:0;column-gap:16px}
+.lpn-mark{display:block;margin-block:48px 0;text-align:center;color:var(--label);line-height:1}
+.lpn-mark .mzw{font-size:52px}
+@media(min-width:920px){.lpn-tiles{grid-template-columns:repeat(3,1fr)}}
+
+/* 6. התראת מחיר: שורה ב"שווה לדעת" וגיליון עם 4 המחירים האחרונים. אייקון אפור, רק האחוז בכתום */
+.prise .ib svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.prise .st b{font:var(--f-body)}
+.prise .st small{font:var(--f-foot);color:var(--label2)}
+.sheet .pbig{padding:8px 16px 0;text-align:center}
+.sheet .pbig .big{display:block;font:700 48px/1.1 var(--ui);letter-spacing:-.5px;font-variant-numeric:tabular-nums;color:var(--label)}
+.sheet .pbig .big small{font:var(--f-title);color:var(--label2);margin-inline-end:4px}
+.sheet .pbig p{font:var(--f-sub);color:var(--label2);margin-top:4px}
+.sheet .grp.hist .sv{color:var(--label);font-variant-numeric:tabular-nums}
+.sheet .grp.hist .now .st b{font-weight:600}
+#riseMute .tlink{color:var(--tint);font:var(--f-body)}
+
+body.has-tmini main{padding-bottom:calc(var(--tab-h) + 80px + env(safe-area-inset-bottom,0px))}
+body.has-tmini.has-bar main{padding-bottom:calc(var(--tab-h) + 160px + env(safe-area-inset-bottom,0px))}
 
 </style>
 </head>
@@ -4195,6 +4423,21 @@ Object.assign(I18N.en, {"נקרא ע״י Claude": "Read by Claude", "לאשר ה
 /* דף הבית מההגדרות */
 Object.assign(I18N.ar, {"על מיזו": "عن ميزو", "מה מיזו עושה ולמי": "ماذا يفعل ميزو ولمن", "חזרה לאפליקציה": "العودة إلى التطبيق"});
 Object.assign(I18N.en, {"על מיזו": "About mizo", "מה מיזו עושה ולמי": "What mizo does and for whom", "חזרה לאפליקציה": "Back to the app"});
+/* גרפים בעברית: Food cost לפי שבוע (נתונים + דף הבית) */
+Object.assign(I18N.ar, {"Food cost לפי שבוע": "Food cost حسب الأسبوع", "{n}% ב־{n} שבועות": "{n}% خلال {n} أسابيع", "אין נתונים": "لا توجد بيانات", "נתוני דמו": "بيانات تجريبية"});
+Object.assign(I18N.en, {"Food cost לפי שבוע": "Food cost by week", "{n}% ב־{n} שבועות": "{n}% over {n} weeks", "אין נתונים": "No data", "נתוני דמו": "Demo data"});
+/* design-next: קריאת קבלה, סקירה שבועית, תגיות מצב, סיור בדמו */
+Object.assign(I18N.ar, {"קורא": "يقرأ", "סיים.": "انتهى.", "שורה אחת לבדיקה": "سطر واحد للمراجعة", "{n} שורות לבדיקה": "{n} أسطر للمراجعة", "קבלה חדשה": "إيصال جديد", "זה מה שקראתי": "هذا ما قرأته", "סוג": "النوع", "לא נקרא": "لم يُقرأ", "סכום השורות שווה לסכום בקבלה": "مجموع الأسطر يساوي مبلغ الإيصال", "שורות": "الأسطر", "לבדיקה:": "للمراجعة:", "מהקבלה הקודמת": "عن الإيصال السابق", "לבדיקה: הכמות לא ברורה בצילום": "للمراجعة: الكمية غير واضحة في الصورة", "לק״ג": "للكغ", "קניות השבוע": "مشتريات الأسبوع", "עלה": "ارتفع", "ירד": "انخفض", "נק׳ מהשבוע שעבר": "نقطة عن الأسبوع الماضي", "השבוע עלה": "هذا الأسبوع ارتفع", "השבוע ירד": "هذا الأسبوع انخفض", "כמו השבוע שעבר": "مثل الأسبوع الماضي", "השבוע כמו השבוע שעבר": "هذا الأسبوع مثل الأسبوع الماضي", "עלו": "ارتفعت", "ירדו": "انخفضت", "מהשבוע שעבר": "عن الأسبوع الماضي", "מחכה": "بانتظار", "סיור קצר": "جولة قصيرة", "סיימתם את הסיור": "أنهيتم الجولة", "רואים בייצור": "شاهدوا في الإنتاج", "מצלמים קבלה": "صوّروا إيصالاً", "בלשונית הזמנה": "في تبويب الطلب", "בלשונית ייצור": "في تبويب الإنتاج", "בתפריט עוד, בלשונית הזמנה": "في قائمة المزيد، في تبويب الطلب", "רוצים את זה במסעדה שלכם?": "تريدون هذا في مطعمكم؟", "דברו איתנו": "تحدثوا معنا", "סיור,": "جولة،", "כיווץ הסיור": "تصغير الجولة", "סגירת הסיור": "إغلاق الجولة", "פתיחת הסיור": "فتح الجولة"});
+Object.assign(I18N.en, {"קורא": "reading", "סיים.": "Done.", "שורה אחת לבדיקה": "1 line to check", "{n} שורות לבדיקה": "{n} lines to check", "קבלה חדשה": "New receipt", "זה מה שקראתי": "Here's what I read", "סוג": "Type", "לא נקרא": "Not read", "סכום השורות שווה לסכום בקבלה": "Lines add up to the receipt total", "שורות": "Lines", "לבדיקה:": "Check:", "מהקבלה הקודמת": "vs. previous receipt", "לבדיקה: הכמות לא ברורה בצילום": "Check: quantity unclear in photo", "לק״ג": "per kg", "קניות השבוע": "Purchases this week", "עלה": "up", "ירד": "down", "נק׳ מהשבוע שעבר": "pts vs. last week", "השבוע עלה": "This week up", "השבוע ירד": "This week down", "כמו השבוע שעבר": "Same as last week", "השבוע כמו השבוע שעבר": "This week same as last week", "עלו": "up", "ירדו": "down", "מהשבוע שעבר": "vs. last week", "מחכה": "Waiting", "סיור קצר": "Quick tour", "סיימתם את הסיור": "Tour complete", "רואים בייצור": "See it in production", "מצלמים קבלה": "Snap a receipt", "בלשונית הזמנה": "In the Order tab", "בלשונית ייצור": "In the Production tab", "בתפריט עוד, בלשונית הזמנה": "In the More menu, Order tab", "רוצים את זה במסעדה שלכם?": "Want this in your restaurant?", "דברו איתנו": "Talk to us", "סיור,": "Tour,", "כיווץ הסיור": "Collapse tour", "סגירת הסיור": "Close tour", "פתיחת הסיור": "Open tour"});
+/* design-next 6 + שמות כפתורים באישור גדי */
+Object.assign(I18N.ar, {"תיקון": "تصحيح", "במקום": "بدلاً من", "{n} קבלות אחרונות": "آخر {n} إيصالات", "קבלה אחרונה": "آخر إيصال", "התראת מחיר": "تنبيه سعر"});
+Object.assign(I18N.en, {"תיקון": "Fix", "במקום": "instead of", "{n} קבלות אחרונות": "Last {n} receipts", "קבלה אחרונה": "Last receipt", "התראת מחיר": "Price alert"});
+/* בלי קו מפריד ארוך בטקסט שמוצג (28.11): אותם תרגומים לנוסח עם פסיק */
+Object.assign(I18N.ar, {"אחרי {n}, עדיין אפשר לשלוח": "بعد {n} — لا يزال ممكنًا الإرسال", "אחרי {n}, עדיין אפשר לשלוח, המטבח יאשר": "بعد {n} — لا يزال ممكنًا الإرسال، والمطبخ سيوافق", "ההזמנה השתנתה או אושרה בדיוק עכשיו, בדוק שוב לפני אישור": "الطلبية تغيّرت أو تمت الموافقة عليها الآن — افحص مرة أخرى قبل الموافقة", "המחיקה נכשלה, נסה שוב": "فشل الحذف — حاول مرة أخرى", "השליחה נכשלה, בדוק חיבור ונסה שוב": "فشل الإرسال — افحص الاتصال وحاول مرة أخرى", "לא נשמר, בדוק חיבור": "لم يُحفظ — افحص الاتصال", "לא נשמר, בדוק חיבור ונסה שוב": "لم يُحفظ — افحص الاتصال وحاول مرة أخرى", "מולא לפי ממוצע, אפשר לתקן": "تمت التعبئة حسب المعدل — يمكن التصحيح", "מכפיל = מחיר בתפריט בלי מע״מ, חלקי עלות חומרי הגלם בלי מע״מ. יעד: 3 ומעלה. העלות לפי כרטיס ההכנה, ואם אין בו מחיר, מהקבלות.": "المضاعِف = سعر القائمة دون ضريبة ÷ تكلفة المواد الخام دون ضريبة. الهدف: 3 فأكثر. التكلفة من بطاقة التحضير، وإن لم يكن فيها سعر — من الفواتير.", "הייצוא נכשל, בדוק חיבור": "فشل التصدير — افحص الاتصال", "לא 6 ספרות, בחר סיסמה אחרת": "ليس 6 أرقام — اختر كلمة مرور أخرى", "ההזמנה לא נשלחה, פתחו אותה ונסו שוב": "لم تُرسل الطلبية — افتحوها وحاولوا مجددًا", "ממתין, תקרת Claude": "بانتظار — حد Claude", "אין הרשאה, החוקים לא עודכנו": "لا يوجد إذن — القواعد لم تُحدَّث", "בלי, אפשר להזמין עד המשלוח": "بدون — يمكن الطلب حتى التوصيل", "עוד לא אמין, פחות מ-{n} שבועות נתונים": "غير موثوق بعد — أقل من {n} أسابيع من البيانات", "יום אחד בלי מכירות, הוערך לפי ימים דומים": "يوم واحد بلا مبيعات — قُدّر حسب أيام مشابهة", "ימים בלי מכירות, הוערכו לפי ימים דומים": "أيام بلا مبيعات — قُدّرت حسب أيام مشابهة", "נמוך מהסביר למסעדה, כנראה חסרות קבלות": "أقل من المعقول لمطعم — على الأرجح تنقص إيصالات", "גבוה מהסביר, כנראה חסרות מכירות או שנכנס רכש שאינו מזון": "أعلى من المعقول — على الأرجح تنقص مبيعات أو دخلت مشتريات ليست طعامًا", "מתחת ליעד, כדאי לוודא שלא חסרות קבלות": "تحت الهدف — يُستحسن التأكد من أنه لا تنقص إيصالات", "בסוף הערב מצלמים את דוח הקופה, ככה נכנסות המכירות": "في نهاية المساء نصوّر تقرير الصندوق — هكذا تدخل المبيعات", "הקריאה מתעכבת, אפשר להדביק את הרשימה כטקסט": "القراءة تتأخر — يمكن لصق القائمة كنص", "קבלה אחת לא נקראה, צריך לצלם שוב": "إيصال واحد لم يُقرأ — يجب تصويره من جديد", "קבלות לא נקראו, צריך לצלם שוב": "إيصالات لم تُقرأ — يجب تصويرها من جديد", "לא נקראה, צריך לצלם שוב": "لم يُقرأ — يجب تصويره من جديد", "יום חג אחד בלי מכירות, נחשב סגור": "يوم عيد واحد بلا مبيعات — اعتُبر مغلقًا", "ימי חג בלי מכירות, נחשבו סגורים": "أيام عيد بلا مبيعات — اعتُبرت مغلقة", "רכש בלי הנהלת חשבונות, הוערך לפי": "مشتريات بلا محاسبة — قُدّرت حسب", "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו": "لم تُقارن بالمحاسبة — قد توجد إيصالات لم تُصوَّر", "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו · מקלידים פעם בחודש את הרכש מהנהלת החשבונות (הגדרות ← יעדי עלות)": "لم تُقارن بالمحاسبة — قد توجد إيصالات لم تُصوَّر · أدخلوا مرة في الشهر مشتريات المحاسبة (الإعدادات ← أهداف التكلفة)", "הנהלת החשבונות נמוכה מהקבלות, כדאי לבדוק": "المحاسبة أقل من الإيصالات — يُستحسن التحقق", "פער גדול מהנהלת החשבונות, לוודא שהוקלד בלי מע״מ ורק מזון": "فرق كبير عن المحاسبة — تأكدوا أنه أُدخل دون ضريبة وللطعام فقط", "אין עדיין מספיק נתונים, הטווח רחב מדי": "لا توجد بيانات كافية بعد — النطاق واسع جدًا", "צולמו רק {n}% מהרכש. אם זה לא הגיוני, לוודא שהמספר בלי מע״מ ורק מזון": "صُوِّر فقط {n}% من المشتريات. إن لم يكن ذلك منطقيًا — تأكد أن الرقم بدون ضريبة ومن الطعام فقط"});
+Object.assign(I18N.en, {"אחרי {n}, עדיין אפשר לשלוח": "After {n} — you can still send", "אחרי {n}, עדיין אפשר לשלוח, המטבח יאשר": "After {n} — you can still send, the kitchen will approve", "ההזמנה השתנתה או אושרה בדיוק עכשיו, בדוק שוב לפני אישור": "The order just changed or was approved — check again before approving", "המחיקה נכשלה, נסה שוב": "Delete failed — try again", "השליחה נכשלה, בדוק חיבור ונסה שוב": "Send failed — check the connection and try again", "לא נשמר, בדוק חיבור": "Not saved — check the connection", "לא נשמר, בדוק חיבור ונסה שוב": "Not saved — check the connection and try again", "מולא לפי ממוצע, אפשר לתקן": "Filled from the average — you can fix it", "מכפיל = מחיר בתפריט בלי מע״מ, חלקי עלות חומרי הגלם בלי מע״מ. יעד: 3 ומעלה. העלות לפי כרטיס ההכנה, ואם אין בו מחיר, מהקבלות.": "Multiplier = menu price excl. VAT ÷ raw-material cost excl. VAT. Target: 3+. Cost from the prep card, or from receipts if empty.", "הייצוא נכשל, בדוק חיבור": "Export failed — check connection", "לא 6 ספרות, בחר סיסמה אחרת": "Not 6 digits — choose another password", "ההזמנה לא נשלחה, פתחו אותה ונסו שוב": "Order not sent — open it and try again", "ממתין, תקרת Claude": "Waiting — Claude cap", "אין הרשאה, החוקים לא עודכנו": "No permission — rules not updated", "בלי, אפשר להזמין עד המשלוח": "None — orders allowed until delivery", "עוד לא אמין, פחות מ-{n} שבועות נתונים": "Not reliable yet — less than {n} weeks of data", "יום אחד בלי מכירות, הוערך לפי ימים דומים": "One day with no sales — estimated from similar days", "ימים בלי מכירות, הוערכו לפי ימים דומים": "days with no sales — estimated from similar days", "נמוך מהסביר למסעדה, כנראה חסרות קבלות": "Lower than plausible for a restaurant — receipts are probably missing", "גבוה מהסביר, כנראה חסרות מכירות או שנכנס רכש שאינו מזון": "Higher than plausible — sales are probably missing, or non-food purchases got in", "מתחת ליעד, כדאי לוודא שלא חסרות קבלות": "Below target — check that no receipts are missing", "בסוף הערב מצלמים את דוח הקופה, ככה נכנסות המכירות": "At the end of the evening we photograph the register report — that is how sales come in", "הקריאה מתעכבת, אפשר להדביק את הרשימה כטקסט": "Reading is delayed — you can paste the list as text", "קבלה אחת לא נקראה, צריך לצלם שוב": "One receipt wasn't read — photograph it again", "קבלות לא נקראו, צריך לצלם שוב": "receipts weren't read — photograph them again", "לא נקראה, צריך לצלם שוב": "Not read — photograph it again", "יום חג אחד בלי מכירות, נחשב סגור": "One holiday with no sales — counted as closed", "ימי חג בלי מכירות, נחשבו סגורים": "holidays with no sales — counted as closed", "רכש בלי הנהלת חשבונות, הוערך לפי": "Purchases without bookkeeping — estimated from", "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו": "Not checked against the books — some receipts may not have been photographed", "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו · מקלידים פעם בחודש את הרכש מהנהלת החשבונות (הגדרות ← יעדי עלות)": "Not checked against the books — some receipts may not have been photographed · once a month, enter purchases from the books (Settings → Cost targets)", "הנהלת החשבונות נמוכה מהקבלות, כדאי לבדוק": "The books are lower than the receipts — worth checking", "פער גדול מהנהלת החשבונות, לוודא שהוקלד בלי מע״מ ורק מזון": "Big gap from the books — check it was entered excl. VAT and food only", "אין עדיין מספיק נתונים, הטווח רחב מדי": "Not enough data yet — the range is too wide", "צולמו רק {n}% מהרכש. אם זה לא הגיוני, לוודא שהמספר בלי מע״מ ורק מזון": "Only {n}% of purchases were photographed. If that doesn't sound right, check the number is excl. VAT and food only"});
+/* design-next סבב 2 */
+Object.assign(I18N.ar, {"קניות מאושרות": "مشتريات معتمدة", "התראות מחיר מושתקות": "تنبيهات أسعار مكتومة", "להתריע שוב": "نبّه مجدداً", "אין התראות מושתקות": "لا توجد تنبيهات مكتومة", "מושתק מתריע שוב לבד אם המחיר עולה עוד": "المكتوم ينبّه مجدداً إذا ارتفع السعر بنسبة", "נתריע שוב": "سننبّه مجدداً", "קורא…": "يقرأ…"});
+Object.assign(I18N.en, {"קניות מאושרות": "Approved purchases", "התראות מחיר מושתקות": "Muted price alerts", "להתריע שוב": "Alert again", "אין התראות מושתקות": "No muted alerts", "מושתק מתריע שוב לבד אם המחיר עולה עוד": "A muted item alerts again if the price rises another", "נתריע שוב": "We'll alert again", "קורא…": "reading…"});
 
 
 startI18n();
@@ -4771,7 +5014,7 @@ async function flush() {
     } catch (e) {
       /* החוק דחה (ההזמנה התקבלה בינתיים): לא מנסים שוב בלולאה */
       if (e && e.code === "permission-denied") { if (S.day === day) pending = {}; toast("ההזמנה כבר התקבלה. השינוי לא נשמר"); }
-      else toast("לא נשמר — בדוק חיבור");
+      else toast("לא נשמר, בדוק חיבור");
     }
   })();
   try { await flushing; } finally { flushing = null; writing = false; }
@@ -4852,7 +5095,7 @@ async function sendOrderOnce(auto, dayArg) {
     if (auto) toast(queued ? "נשמר בטלפון · יישלח כשיחזור חיבור" : isChange ? "השינוי נשלח למטבח לאישור" : "ההזמנה עודכנה אצל המטבח");
     else {
       /* תנועה 3: השרת אישר → הכפתור עובר בהצלבה ל"נשלחה" עם ✓ מצויר, רטט אחד (10). בלי קליטה: רק הרטט */
-      buzz(10); if (!queued) { S.sentFx = { day, at: Date.now() }; setTimeout(() => { if (S.sentFx && Date.now() - S.sentFx.at >= 2400) { S.sentFx = null; renderSoon(); } }, 2500); }
+      tourTick(0); /* דמו: צעד ראשון בסיור, רק כשהמבקר לחץ "שלח" */ buzz(10); if (!queued) { S.sentFx = { day, at: Date.now() }; setTimeout(() => { if (S.sentFx && Date.now() - S.sentFx.at >= 2400) { S.sentFx = null; renderSoon(); } }, 2500); }
       S.sheet = { type: "sent", change: isChange, n: sum(sentMap || {}), c: count(sentMap || {}), day, queued: !!queued, rev }; render();
     }
   };
@@ -4860,7 +5103,7 @@ async function sendOrderOnce(auto, dayArg) {
   const queue = () => {
     if (day !== S.day || !S.order) return false;
     const r = build(S.order); if (!r) { done(null); return true; }
-    setDoc(doc(db, CP("orders"), day), r.body, { merge: true }).catch(() => toast("ההזמנה לא נשלחה — פתחו אותה ונסו שוב"));
+    setDoc(doc(db, CP("orders"), day), r.body, { merge: true }).catch(() => toast("ההזמנה לא נשלחה, פתחו אותה ונסו שוב"));
     done(r.change, true); return true;
   };
   if (navigator.onLine === false && queue()) return;
@@ -4874,7 +5117,7 @@ async function sendOrderOnce(auto, dayArg) {
     done(isChange, false);
   } catch (e) {
     if ((navigator.onLine === false || /unavailable|offline/i.test(String(e && (e.code || e.message)))) && queue()) return;
-    reportErr("write", "sendOrder · " + ((e && (e.code || e.message)) || e)); toast("השליחה נכשלה — בדוק חיבור ונסה שוב");
+    reportErr("write", "sendOrder · " + ((e && (e.code || e.message)) || e)); toast("השליחה נכשלה, בדוק חיבור ונסה שוב");
   }
 }
 function saveNote(v) {
@@ -4919,7 +5162,7 @@ function applySuggestion(src) {
   const s = S.sugg[S.day]; if (!s) return;
   const m = src === "last" && s.last ? s.last : s.items, act = new Set(items().map((i) => i.k));
   Object.keys(m).forEach((k) => { if (act.has(k) && +m[k] > 0) pending[k] = +m[k]; });
-  render(); flush(); toast(src === "last" ? `מולא כמו ${DN[parse(S.day).getDay()]} שעבר — אפשר לתקן` : "מולא לפי ממוצע — אפשר לתקן");
+  render(); flush(); toast(src === "last" ? `מולא כמו ${DN[parse(S.day).getDay()]} שעבר, אפשר לתקן` : "מולא לפי ממוצע, אפשר לתקן");
 }
 
 /* ---------- approval ---------- */
@@ -4938,8 +5181,8 @@ async function decide(build) {
     });
     approveDraft = {}; S.sheet = null; render(); toast(msg);
   } catch (e) {
-    if (e instanceof Changed) { approveDraft = {}; S.sheet = null; render(); toast("ההזמנה השתנתה או אושרה בדיוק עכשיו — בדוק שוב לפני אישור"); }
-    else toast("לא נשמר — בדוק חיבור ונסה שוב");
+    if (e instanceof Changed) { approveDraft = {}; S.sheet = null; render(); toast("ההזמנה השתנתה או אושרה בדיוק עכשיו, בדוק שוב לפני אישור"); }
+    else toast("לא נשמר, בדוק חיבור ונסה שוב");
   }
 }
 /* טיוטה של המסעדה שעוד לא נשלחה (items שונה מ-sent) נשארת כמו שהיא */
@@ -5032,7 +5275,7 @@ function confirmDone() {
     if (shortEv) setDoc(doc(db, CP("orders"), day0), { log: ev("short", shortEv) }, { merge: true }).catch(() => {});
     act("prod", total >= v ? `הוכן: ${it.n} · ${total} קופסאות` : later ? `הוכן חלקית: ${it.n} · ${total} מתוך ${v}` : `חוסר: ${it.n} · ${v - total} קופסאות`);
     if (total >= v) toast(`${it.n}, תוקף עד ${ddmm(addDays(parse(today), it.d - 1))}`);
-    else if (later) toast(`${it.n}: הוכנו ${total}, נשארו ${v - total} — נשאר ברשימה`);
+    else if (later) toast(`${it.n}: הוכנו ${total}, נשארו ${v - total}, נשאר ברשימה`);
     else toast(`${it.n}: נרשם חוסר של ${v - total}. ${SN()} יקבלו עדכון`);
   });
 }
@@ -5348,7 +5591,7 @@ function exportFiles(site, out, skipped, at) {
   const rc = [["תאריך", "סוג", "ספק", "סכום", "קטגוריה", "הערה", "נבדק"]];
   Object.values(out.photos || {}).filter((x) => x.kind === "r" || x.kind === "z").sort((a, b) => String(a.day).localeCompare(String(b.day))).forEach((x) => rc.push([x.day || "", x.kind === "z" ? "דו״ח קופה" : "קבלה", supN(x.sup || ""), x.amt ?? "", x.cat || "", x.note || "", Array.isArray(x.review) && x.review.length && !x.reviewOk ? "לבדיקה" : ""]));
   const f = siteOf(site).f, te = new TextEncoder();
-  const readme = `ייצוא מלא — ${f}\r\nנוצר: ${at}\r\n\r\ndata.json — כל הנתונים של המסעדה (הזמנות, ייצור, פחת, הכנות, מנות, מתכונים, קבלות, עלויות, ימים, הגדרות)\r\norders.csv — הזמנות, שורה לכל הכנה\r\nproduction.csv — ייצור\r\nreceipts.csv — קבלות ודוחות קופה\r\n\r\nהקבצים נפתחים באקסל או בכל עורך טקסט, בלי האפליקציה.\r\nתמונות מלאות של קבלות לא כלולות (רק תמונה מוקטנת בתוך data.json).${skipped.length ? "\r\nלא נכללו (אין הרשאה): " + skipped.join(", ") : ""}\r\n`;
+  const readme = `ייצוא מלא, ${f}\r\nנוצר: ${at}\r\n\r\ndata.json, כל הנתונים של המסעדה (הזמנות, ייצור, פחת, הכנות, מנות, מתכונים, קבלות, עלויות, ימים, הגדרות)\r\norders.csv, הזמנות, שורה לכל הכנה\r\nproduction.csv, ייצור\r\nreceipts.csv, קבלות ודוחות קופה\r\n\r\nהקבצים נפתחים באקסל או בכל עורך טקסט, בלי האפליקציה.\r\nתמונות מלאות של קבלות לא כלולות (רק תמונה מוקטנת בתוך data.json).${skipped.length ? "\r\nלא נכללו (אין הרשאה): " + skipped.join(", ") : ""}\r\n`;
   return [["README.txt", readme], ["data.json", JSON.stringify({ site, name: f, at, appVer: APP_VER, ...out }, null, 1)], ["orders.csv", csvOf(o)], ["production.csv", csvOf(pr)], ["receipts.csv", csvOf(rc)]].map(([name, t]) => ({ name, data: te.encode(t) }));
 }
 async function backupAll() {
@@ -5359,7 +5602,7 @@ async function backupAll() {
   if (site !== (S.site || "rosie")) return; /* הוחלפה מסעדה באמצע — לא מערבבים */
   res.forEach((r, i) => { if (r.status === "fulfilled") out[EXP_COLS[i]] = Object.fromEntries(r.value.docs.map((d) => [d.id, d.data()])); else skipped.push(EXP_COLS[i]); });
   if (out.settings && out.settings.app) delete out.settings.app.vapid;
-  if (!out.orders) { toast("הייצוא נכשל — בדוק חיבור"); return; }
+  if (!out.orders) { toast("הייצוא נכשל, בדוק חיבור"); return; }
   try {
     const a = document.createElement("a"); a.href = URL.createObjectURL(makeZip(exportFiles(site, out, skipped, new Date().toISOString())));
     a.download = `mizo-export-${site}-${dkey(new Date())}.zip`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
@@ -5381,7 +5624,7 @@ async function doReset(pw) {
       await b.commit();
     }
     S.sheet = null; S.data = null; S.sugg = {}; render(); loadData(); toast(`נמחקו ${names.length} רשומות. מתחילים נקי`);
-  } catch (e) { sh.busy = false; sh.err = "המחיקה נכשלה — נסה שוב"; render(); }
+  } catch (e) { sh.busy = false; sh.err = "המחיקה נכשלה, נסה שוב"; render(); }
 }
 function weekStats(from, to) {
   const D = S.data; let boxes = 0, days = 0, late = 0, short = 0, waste = 0;
@@ -5539,34 +5782,40 @@ const LPIC = {
   up: LPI('<path d="M12 3v18M5 10l7-7 7 7"/>'),
   chev: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
 };
+/* design-next 5c: המניפסט. כל מילה בתוך span, השקיפות שלה עוקבת אחרי הגלילה (lpMani) */
+const LP_MANI = "מיזו בנוי לקצב של מטבח. הטבח מזמין בנגיעה, הייצור יודע מה להכין, והבעלים רואה Food cost בלי לרדוף אחרי קבלות.".replace("Food cost", "Food\u00a0cost").split(" ").map((w) => w.replace("\u00a0", " "));
 const LP_FAQ = [
   ["מה מיזו עושה בעצם?", "האפליקציה של המטבח. הטבחים מקבלים בה מתכונים הכנות והזמנות. קבלות ו-Z נקראים מצילום. ומכל זה נולד מספר מדויק של Food cost ועלות למנה לבעלים."],
   ["מה הטבח מרוויח מזה?", "זמן ושקט. מתכון בלחיצה בכמות שצריך. הכנות והזמנות בכמה נגיעות. פחות שאלות לשף ופחות בלגן."],
   ["כמה זמן לוקח להקים מטבח?", "מהר. מצלמים את ספר המתכונים והמטבח נכנס למערכת. משם אפשר להתחיל כמעט מיד."],
-  ["איך נקראות קבלות ו-Z?", "מצלמים את המסמך. ה-AI מזהה שורות כמויות וסכומים ומסדר לבד. אתה עובר ומאשר. שום נתון לא משתנה בלי אישור שלך."],
+  ["איך נקראות קבלות ו-Z?", "מצלמים את המסמך. ה-AI מזהה שורות, כמויות וסכומים ומסדר לבד. סכום ש-Claude קרא נכנס לחישובים מסומן \"לבדיקה\", עד שמנהל מאשר או מתקן."],
   ["למה מוצג טווח ולא מספר אחד?", "כנות עדיפה על דיוק מדומה. הטווח ורמת הוודאות אומרים כמה הנתון מבוסס. ככל שהזנת יותר נתונים הטווח מצטמצם."],
   ["זה עובד לבעלים של כמה מסעדות?", "כן. מסעדה אחת וגם כמה מסעדות. כל אחת נפרדת לגמרי בנתונים ויש מבט אחד שמרכז את כולן."],
+  ["ומה אם אין קליטה במטבח?", "ממשיכים לעבוד. מה שנשמר נשאר בטלפון ונשלח לבד כשהקליטה חוזרת, ועל המסך רואים מה עוד לא נשלח."],
   ["צריך חומרה מיוחדת?", "לא. מיזו עובדת מהטלפון. אין צורך בחומרה ייעודית כדי להתחיל."],
   ["איך מתחילים?", "כותבים לנו בוואטסאפ. מראים לך איך מיזו עובדת על מטבח אמיתי ומקימים אותה איתך לפי דרך העבודה שלך."],
 ];
+/* גרף "Food cost לפי שבוע" בדף הבית: 8 השבועות של כרטיס הדמו (4.9 עד 29.10), נתוני דמו בלבד.
+   חושב ב-28.11.2026 מ-app/demo/demo-data.js עם moneyRange של האפליקציה, שבוע אחרי שבוע, אותם ימים כמו rangeOf("8w") (55- עד היום, כמו demo/probe.mjs).
+   ממוצע 8 העמודות 29.9. ה-30.2 בדף הוא Food cost של 8 השבועות יחד (כולל תיקון מלאי, שקיים רק לתקופה כולה), ולכן הוא ה-summary */
+const LP_FCW = [["4.9", 31.6], ["11.9", 29.8], ["18.9", 31.8], ["25.9", 31.1], ["2.10", 30.6], ["9.10", 26.7], ["16.10", 31.5], ["23.10", 26.1]];
 function viewLanding() {
   const me = !!S.user, wa = LP_WA ? esc(LP_WA) : "", demo = esc(demoUrl()), I = LPIC;
   const waA = (cls, t, arr) => wa ? `<a class="${cls}" href="${wa}" target="_blank" rel="noopener">${esc(t)}${arr ? LP_ARR : ""}</a>` : "";
   const enter = me ? `<button class="lp-enter" type="button" id="lpBack">חזרה לאפליקציה</button>` : `<button class="lp-enter" type="button" id="lpEnter">כניסה</button>`;
-  const li = (ic, t, q, cls) => `<div class="lpx-li">${ic ? `<span class="lpx-ico">${ic}</span>` : ""}<span class="lpx-gr">${t}</span><span class="lpx-q${cls ? " " + cls : ""}">${q}</span></div>`;
-  const feat = (ic, h, p) => `<div class="lp-feat"><div class="lp-ic">${ic}</div><h3>${h}</h3><p>${p}</p></div>`;
-  const tr = (ic, b, s, warm) => `<div class="lp-tr${warm ? " warm" : ""}"><span class="lp-ic">${ic}</span><div><b>${esc(b)}</b><span>${esc(s)}</span></div></div>`;
-  return `<div class="auth grp"><div class="lp${me ? " lp-me" : ""}">
+  /* מסך אמיתי מהדמו בתוך הטלפון של הגלילה הקולנועית: כהה ובהיר לפי המראה, נטען רק כשמגיעים */
+  const shot = (k) => `<img class="lpn-d" src="site/lp-${esc(k)}.webp" alt="" loading="lazy" decoding="async" width="520" height="1040"><img class="lpn-l" src="site/lp-${esc(k)}-light.webp" alt="" loading="lazy" decoding="async" width="520" height="1040">`;
+  const cmp = (ic, b, off, on) => `<div class="srow ic"><span class="ib">${SVG(ic)}</span><span class="st"><b>${b}</b><span class="lpn-vals"><span class="off">${off}</span><span class="on">${on}</span></span></span></div>`;
+  const daySl = (hr, inner, p) => `<div class="lpn-slot"><span class="lpn-hr"><i></i><bdi dir="ltr">${hr}</bdi></span><div class="lpn-mini">${inner}</div><p>${p}</p></div>`;
+  const sw = !!S.lpSw, fq = S.lpFaq == null ? 0 : S.lpFaq, kind = S.lpKind || "מסעדה";
+  return `<div class="auth grp"><div class="lp lpn${me ? " lp-me" : ""}">
   <div class="lp-fx" aria-hidden="true"><i class="lp-au a1"></i><i class="lp-au a2"></i><i class="lp-au a3"></i><i class="lp-au a4"></i><i class="lp-au a5"></i><i class="lp-grain"></i></div>
   <div class="lp-prog" aria-hidden="true"></div>
-  <nav class="lp-nav" aria-label="מיזו"><div class="lp-wrap"><div class="lp-navin">
-    <span class="lp-logo">${MIZO}</span>
-    <div class="lp-links"><a href="#lp-does">מה זה עושה</a><a href="#lp-who">למי זה</a><a href="#lp-faq">שאלות</a></div>
-    <div class="lp-navr">${enter}${waA("lp-cta", "וואטסאפ")}</div>
-  </div></div></nav>
+  <nav class="lpn-nav" aria-label="מיזו"><span class="lp-logo">${MIZO}</span><span class="lpn-navr">${enter}<a class="lpn-go" href="${demo}">לראות דמו</a></span></nav>
 
   <header class="lp-hero lp-wrap"><div class="lp-hin">
-    <div>
+    <div class="lp-htx">
+      <span class="lp-ecl" aria-hidden="true"><b class="lp-ec-up"><i class="lp-ec-r"></i><i class="lp-ec-h"></i></b><i class="lp-ec-d"></i></span>
       <span class="lp-eyebrow">ניהול המטבח מהטלפון. בלי אקסל.</span>
       <h1>הטבחים עובדים פשוט. המספרים מסתדרים לבד.</h1>
       <p class="lp-lead">מתכונים. הזמנות. קבלות שנקראות לבד. ועלות מדויקת לכל מנה. הכול בעברית ומהטלפון.</p>
@@ -5585,52 +5834,26 @@ function viewLanding() {
     </div>
   </div></header>
 
-  <section class="lp-strip" aria-label="בקצרה"><div class="lp-wrap lp-stin">
-    <div class="lp-sc">${I.check}<span><b>פעיל</b> במטבחי מסעדות בישראל</span></div>
-    <div class="lp-sc">${I.phone}<span>עובד מהטלפון <b>בעברית מלאה</b></span></div>
-    <div class="lp-sc">${I.home}<span>למטבח ייצור או מטבח הכנות</span></div>
-  </div></section>
+  <section class="lpn-mani lp-wrap" aria-label="מיזו בקצרה"><p id="lpMani">${LP_MANI.map((w) => `<span class="wd${w === "Food cost" ? " nw" : ""}">${w === "Food cost" ? "<bdi>Food cost</bdi>" : esc(w)}</span>`).join(" ")}</p></section>
 
-  <section class="lp-cine" aria-label="איך נראה יום עבודה במיזו"><div class="lp-track"><div class="lp-stage lp-wrap">
+  <section class="lp-cine" id="lp-does" aria-label="איך נראה יום עבודה במיזו"><div class="lp-track"><div class="lp-stage lp-wrap">
     <div class="lp-ctext">
       <div class="lp-caps">
         <div class="lp-cap on"><span class="lp-r">הטבח</span><h3>הכול ביד.</h3><p>מתכונים. הכנות למחר. הזמנה לייצור. הכול בכמה נגיעות.</p></div>
-        <div class="lp-cap"><span class="lp-r">קבלות</span><h3>נקראות לבד.</h3><p>מצלמים חשבונית או דוח Z. מיזו קוראת ומסדרת.</p></div>
-        <div class="lp-cap"><span class="lp-r">הבעלים</span><h3>מספר מדויק לכל מסעדה.</h3><p>Food cost ועלות למנה. עם טווח ודאות על כל מספר.</p></div>
+        <div class="lp-cap"><span class="lp-r">קבלות</span><h3>נקראות לבד.</h3><p>מצלמים. Claude קורא, ומה שלא ברור מסומן לבדיקה שלכם.</p></div>
+        <div class="lp-cap"><span class="lp-r">הבעלים</span><h3>מספר מדויק לכל מסעדה.</h3><p><bdi>Food cost</bdi> ועלות למנה. עם טווח ודאות על כל מספר.</p></div>
       </div>
       <div class="lp-rail" aria-hidden="true"><i class="on"><b></b></i><i><b></b></i><i><b></b></i></div>
     </div>
-    <div class="lp-phone" aria-hidden="true"><div class="lp-scr">
-      <div class="lp-sv on"><div class="lpx-sh"><b>המטבח שלי</b><span>היום</span></div>
-        ${li(I.book, "מתכונים", "48")}${li(I.check, "הכנות למחר", "12")}${li(I.arrow, "הזמנה לייצור", "6")}
-        <div class="lpx-bar"><i style="width:100%"></i></div><div class="lpx-mini">הכול במסך אחד</div></div>
-      <div class="lp-sv"><div class="lpx-sh"><b>חשבונית ספק</b><span>נקראה עכשיו</span></div>
-        ${li("", "עגבניות שרי", "29&#8362;")}${li("", "מלפפון", "7.3&#8362;", "lpx-warn")}${li("", "פטריות", "18&#8362;")}
-        <div class="lpx-mini lpx-warn">מלפפון עלה 12% מהממוצע</div>
-        <div class="lpx-bar"><i style="width:84%"></i></div><div class="lpx-mini">12 שורות סודרו לבד</div></div>
-      <div class="lp-sv"><div class="lpx-sh"><b>נתונים</b><span>8 שבועות</span></div>
-        <div class="lpx-big2"><span dir="ltr">30.2</span><small>%</small></div>
-        <div class="lpx-mini">Food cost · טווח 30 עד 34.9</div>
-        <div class="lpx-bar"><i style="width:60%"></i></div>
-        ${li("", "רמת ודאות", "בינונית")}${li("", "עלות למנה", "×3.4")}</div>
-    </div></div>
+    <div class="lp-phone" aria-hidden="true"><div class="lp-scr">${["order", "receipt", "data"].map((k, i) => `<div class="lp-sv lp-img${i ? "" : " on"}">${shot(k)}</div>`).join("")}</div></div>
   </div></div></section>
-
-  <section class="lp-sec lp-wrap" id="lp-does">
-    <div class="lp-stop"><span class="lp-eyebrow">מה מיזו עושה</span><h2>המטבח כולו. במקום אחד.</h2></div>
-    <div class="lp-grid two">
-      ${feat(I.book, "מתכון שמכפיל את עצמו", "בוחרים כמות והרכיבים זזים לבד. בלי מחשבון ובלי לשאול.")}
-      ${feat(I.receipt, "קבלות ו-Z שנקראות לבד", "מצלמים והמערכת מסדרת. כמעט בלי עבודה ידנית.")}
-      ${feat(I.scale, "עלות מדויקת לכל מנה", "כל מנה נשקלת. מספר אמיתי ולא הערכה מהבטן.")}
-      ${feat(I.arrow, "הזמנות בין שירות לייצור", "השירות מזמין והייצור מקבל. הכול מתועד במקום אחד.")}
-    </div>
-  </section>
 
   <section class="lp-sec lp-wrap" aria-label="למה זה שונה"><div class="lp-figure">
     <div>
       <span class="lp-eyebrow">למה זה שונה</span>
       <div class="lp-huge"><span dir="ltr">30.2</span><small>%</small></div>
       <p class="lp-fine">Food cost של מסעדת הדמו. מתעדכן לבד מכל קבלה שמצלמים.</p>
+      ${hcBar("lpfc", { title: "Food cost לפי שבוע", tag: "נתוני דמו", summary: "30.2% ב־8 שבועות", data: LP_FCW.map(([label, value]) => ({ label, value })), format: "percent", cls: "hc-lp" })}
     </div>
     <div>
       <h2>לא רק מספר. גם כמה אפשר לסמוך עליו.</h2>
@@ -5643,47 +5866,56 @@ function viewLanding() {
     </div>
   </div></section>
 
-  <section class="lp-sec lp-wrap" id="lp-who">
-    <div class="lp-stop"><span class="lp-eyebrow">למי זה מיועד</span><h2>מתחיל בטבח. מגיע עד הבעלים.</h2></div>
-    <div class="lp-grid three">
-      <div class="lp-role lp-glass"><span class="lp-r">הטבח</span><h3>פשוט ונוח.</h3><p>כל מה שהוא צריך בכמה נגיעות. מהטלפון.</p></div>
-      <div class="lp-role lp-glass"><span class="lp-r">השף התפעולי</span><h3>סדר ושליטה.</h3><p>רשימות מסודרות ועלות שקופה לכל מנה.</p></div>
-      <div class="lp-role lp-glass"><span class="lp-r">הבעלים</span><h3>המספרים שלו.</h3><p>Food cost מעודכן לכל מסעדה בנפרד בכל רגע.</p></div>
+  <section class="lpn-cmp lp-wrap${sw ? " is-on" : ""}" aria-label="עם מיזו ובלי">
+    <div><h2>אותו מטבח. ערב אחר.</h2></div>
+    <div>
+      <div class="grp"><div class="srow"><span class="st"><b>עם מיזו</b></span><button class="lpn-sw" id="lpSw" role="switch" aria-checked="${sw}" aria-label="עם מיזו"></button></div></div>
+      <div class="grp lpn-cmpl" aria-live="polite">
+        ${cmp('<rect x="5" y="4" width="14" height="17" rx="3"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/>', "הזמנות", "בוואטסאפ ובפתקים", "רשימה אחת, כולם רואים")}
+        ${cmp(IC.doc, "קבלות", "בקופסה עד סוף החודש", "מצולמות ונקראות באותו יום")}
+        ${cmp('<path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"/>', "<bdi>Food cost</bdi>", "אחרי שהחודש נגמר", "כל שבוע, עם טווח")}
+        ${cmp('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', "מי עשה מה", "לא ברור", "שם ושעה על כל שינוי")}
+      </div>
     </div>
   </section>
 
-  <section class="lp-sec lp-wrap" aria-label="ההתאמה"><div class="lp-band">
-    <div class="lp-setup">
-      <span class="lp-eyebrow warm">ההתאמה</span>
-      <h2>לא תבנית. מותאם למטבח שלך.</h2>
-      <p>מיזו לא קופסה סגורה. מקימים אותה איתך ומכוונים לדרך העבודה של המטבח. מתחילים ממה שהכי חשוב לך היום.</p>
-      ${wa ? `<div class="lp-btns">${waA("lp-btn pri", "נבנה את זה יחד", true)}</div>` : ""}
+  <section class="lpn-day${S.lpDayIn ? " in" : ""}" id="lpDay" aria-label="יום במטבח">
+    <h2>יום במטבח</h2>
+    <div class="lpn-track" tabindex="0" aria-label="יום במטבח, החליקו לצד">
+      ${daySl("08:00", `<p class="cap">הזמנה למחר</p><p class="t">19 קופסאות</p><div class="r"><span>מהליין</span>${otag("sent")}</div>`, "הזמנה יוצאת מהליין.")}
+      ${daySl("11:00", `<p class="cap">ייצור</p><p class="t">6 מתוך 23 הכנות</p><div class="lpn-bar"><i></i></div><div class="r"><span>איולי שום</span>${otag("ok", "מוכן")}</div>`, "הייצור מסמן מה מוכן.")}
+      ${daySl("16:00", `<p class="cap">קבלות</p><p class="t">ירקות לדוגמה</p><div class="r"><span class="ai">Claude ${aiShim("קורא")}</span><span>12 שורות</span></div><div class="r nb"><span class="flag">עגבניות <bdi dir="ltr">+18%</bdi></span></div>`, "קבלה מצולמת ונקראת.")}
+      ${daySl("23:00", `<p class="cap"><bdi>Food cost</bdi>, 8 שבועות</p><p class="big2" dir="ltr">30.2%</p><div class="r"><span>יעד <bdi dir="ltr">30%</bdi></span><span>נתוני דמו</span></div>`, "סגירת ערב. המספר כבר מעודכן.")}
     </div>
-    <div class="lp-tlist">
-      ${tr(I.lock, "נתונים מופרדים לכל מסעדה", "מי שמשויך למסעדה רואה רק אותה")}
-      ${tr(I.check, "אישור לפני כל שינוי", "ה-AI מציע ואתה מאשר")}
-      ${tr(I.up, "גדל עם המטבח", "מתחברים לחיישנים מנבאים ומזמינים לבד בהמשך", true)}
-    </div>
-  </div></section>
+  </section>
 
-  <section class="lp-sec lp-wrap" id="lp-faq">
+  <section class="lp-sec lp-wrap lpn-faq" id="lp-faq">
     <div class="lp-stop"><span class="lp-eyebrow">שאלות ותשובות</span><h2>קצר וברור.</h2></div>
-    <div class="lp-acc">${LP_FAQ.map(([q, a]) => `<details class="lp-it"><summary><b>${q}</b><span class="lp-cx">${I.chev}</span></summary><p>${a}</p></details>`).join("")}</div>
+    <div class="grp">${LP_FAQ.map(([q, a], i) => `<div class="lpn-qi"><button class="lpn-q" data-lpq="${i}" aria-expanded="${fq === i}" aria-controls="lpa${i}"><span>${q}</span>${I.chev}</button><p class="lpn-a" id="lpa${i}"${fq === i ? "" : " hidden"}>${a}</p></div>`).join("")}</div>
   </section>
 
-  <section class="lp-close lp-wrap" aria-label="מתחילים">
-    <h2>רוצה לראות את המספרים של המטבח שלך?</h2>
-    <p>כתוב לנו בוואטסאפ ונראה לך איך מיזו עובדת על מטבח אמיתי. בלי התחייבות. בעברית.</p>
-    <div class="lp-btns">${waA("lp-btn pri", "סיור 2 דקות בוואטסאפ", true)}<a class="lp-btn ${wa ? "ghost" : "pri"}" href="${demo}">לראות דמו חי</a></div>
-  </section>
+  ${wa ? `<section class="lp-sec lp-wrap lpn-form" id="lp-form" aria-label="השאירו פרטים">
+    <h2>השאירו פרטים לדמו</h2><p class="lp-lead">שולחים לנו הודעה ונקבע שיחה קצרה.</p>
+    <form id="lpForm" novalidate>
+      <div class="grp">
+        <label class="lpn-fr"><span>שם</span><input id="lpN" autocomplete="name" placeholder="שם מלא" maxlength="60"></label>
+        <label class="lpn-fr"><span>טלפון</span><input id="lpP" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="050-000-0000" maxlength="20"></label>
+        <div class="lpn-fr lpn-frh"><span>סוג המטבח</span></div>
+        <div class="lpn-chips" role="group" aria-label="סוג המטבח">${["מסעדה", "כמה מסעדות", "מטבח ייצור"].map((k) => `<button type="button" class="lpn-chip" data-lpk="${k}" aria-pressed="${kind === k}">${k}</button>`).join("")}</div>
+      </div>
+      <button class="lp-btn pri lpn-send" type="submit">שליחה בוואטסאפ</button>
+      <p class="lpn-fine" id="lpFormSt" role="status">${S.lpSent ? "ההודעה נפתחה בוואטסאפ. שולחים משם." : "הפרטים לא נשמרים אצלנו. הם נכנסים להודעה שאתם שולחים."}</p>
+    </form>
+  </section>` : ""}
 
-  <footer class="lp-foot lp-wrap">
-    <div class="lp-ftop">
-      <span class="lp-logo">${MIZO}</span>
-      <div class="lp-lk"><a href="#lp-does">מה זה עושה</a><a href="#lp-faq">שאלות</a>${waA("", "וואטסאפ")}<a href="https://instagram.com/mizo.il" target="_blank" rel="noopener">אינסטגרם</a><a href="guides/">מדריכים</a></div>
-      ${me ? `<button class="lp-link" type="button" id="lpBack2">חזרה לאפליקציה</button>` : `<span class="lp-have">כבר רשומים? <button class="lp-link" type="button" id="lpEnter3">כניסה</button></span>`}
-    </div>
-    <div class="lp-legal"><a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a><a href="legal/accessibility.html" target="_blank" rel="noopener">נגישות</a><span>מיזו · האפליקציה של המטבח</span></div>
+  <footer class="lpn-foot lp-wrap">
+    <nav class="lpn-tiles" aria-label="ניווט באתר">
+      <a href="${demo}">דמו חי<span class="schev" aria-hidden="true"></span></a><a href="#lp-faq">שאלות<span class="schev" aria-hidden="true"></span></a>
+      <a href="guides/">מדריכים<span class="schev" aria-hidden="true"></span></a>${wa ? `<a href="${wa}" target="_blank" rel="noopener">וואטסאפ<span class="schev" aria-hidden="true"></span></a>` : ""}
+      <a href="https://instagram.com/mizo.il" target="_blank" rel="noopener">אינסטגרם<span class="schev" aria-hidden="true"></span></a>${me ? `<button type="button" id="lpBack2">חזרה לאפליקציה<span class="schev" aria-hidden="true"></span></button>` : `<button type="button" id="lpEnter3">כניסה<span class="schev" aria-hidden="true"></span></button>`}
+    </nav>
+    <div class="lp-legal"><a href="legal/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><a href="legal/terms.html" target="_blank" rel="noopener">תנאי שימוש</a><a href="legal/accessibility.html" target="_blank" rel="noopener">נגישות</a></div>
+    <span class="lpn-mark">${MIZO}</span>
   </footer>
   </div></div>`;
 }
@@ -5760,8 +5992,8 @@ function orderPill(o, forProd) {
   const draft = !forProd && sum(curItems()) > 0 ? `<span class="pill draft">טיוטה</span>` : "";
   if (!hasCut()) return draft;
   if (left > 0) { const h = Math.floor(left / 3600000), m = Math.floor((left % 3600000) / 60000); return `${draft}<span class="pill ${left <= 3600000 ? "warn" : "open"}">${left <= 3600000 ? I.clock : ""}נסגרת בעוד ${h ? h + " ש׳ " : ""}${m} ד׳</span>`; }
-  if (draft) return draft + `<span class="pill late">${c16("אחרי 16:00 — עדיין אפשר לשלוח")}</span>`;
-  return `<span class="pill late">${c16("אחרי 16:00 — עדיין אפשר לשלוח, המטבח יאשר")}</span>`;
+  if (draft) return draft + `<span class="pill late">${c16("אחרי 16:00, עדיין אפשר לשלוח")}</span>`;
+  return `<span class="pill late">${c16("אחרי 16:00, עדיין אפשר לשלוח, המטבח יאשר")}</span>`;
 }
 function statusLine(forProd, slim) {
   const d = parse(S.day), o = O();
@@ -5845,7 +6077,7 @@ async function shareReg() {
   if (!can.admin() || IS_DEMO || S.joinBusy) return;
   const k = S.site || "rosie"; let url = "";
   S.joinBusy = true;
-  try { url = await newJoin(k); } catch (e) { S.joinBusy = false; toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נוצר. בדוק חיבור"); return; }
+  try { url = await newJoin(k); } catch (e) { S.joinBusy = false; toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא נוצר. בדוק חיבור"); return; }
   S.joinBusy = false; act("settings", "קישור הצטרפות חדש · " + siteOf(k).f);
   const text = "ההרשמה ל" + SN() + " במיזו. נכנסים בקישור ומחכים לאישור";
   const mark = () => { store("mz-reg-" + k, "1"); renderSoon(); };
@@ -5997,6 +6229,58 @@ function barChart(vals, labels, opts) {
   s += `<span>${esc(labels[0] || "")}</span><span>${n > 1 ? esc(labels[n - 1] || "") : ""}</span>`;
   return s + `</div></div>`;
 }
+/* ---------- גרפים בעברית (Taster · BarChart, ברישיון): עמודות שגדלות מהבסיס, הערך מעל העמודה המסומנת ----------
+   ה-SVG נבנה ברוחב האמיתי של התיבה (ResizeObserver), כדי שהטקסט יישאר בגודלו בטלפון. כיוון rtl: הפריט הראשון מימין.
+   ה-HTML נבנה במחרוזת כמו כל המסך, ו-morph שומר את האלמנטים: הגדילה רצה פעם אחת בכניסה למסך ולא בכל רינדור */
+const HC = new Map(), HCW = new Map(), HCH = new Map(); /* מפרט לכל גרף, הרוחב האחרון שנמדד, העמודה שתחת המצביע */
+const hcFmt = (n, format, compact) => {
+  if (format === "percent") return `${n.toLocaleString("he-IL", { maximumFractionDigits: 1 })}%`;
+  const big = compact && Math.abs(n) >= 10000;
+  const s = big ? (Math.abs(n) >= 1e6 ? `${(n / 1e6).toLocaleString("he-IL", { maximumFractionDigits: 1 })} מיליון` : `${(n / 1000).toLocaleString("he-IL", { maximumFractionDigits: 1 })} אלף`) : n.toLocaleString("he-IL", { maximumFractionDigits: 1 });
+  return format === "shekel" ? `₪${s}` : s;
+};
+/* טקסט עברי בתוך SVG שהוא LTR: רצף מבודד מימין לשמאל, כדי ש"₪50 אלף" ישמור על הסדר */
+const hcRtl = (t) => `⁧${t}⁩`;
+/* ראש הסולם במספר שקל לקרוא: 40,000 ולא 37,412 */
+const hcNice = (max) => { if (max <= 0) return 1; const p = 10 ** Math.floor(Math.log10(max)), n = max / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; };
+const hcR = (v) => Math.round(v * 100) / 100;
+function hcSvg(id, width) {
+  const C = HC.get(id); if (!C || !(width > 0)) return "";
+  const { data, format, height } = C, rtl = C.direction !== "ltr", vals = data.filter((d) => d.value != null).map((d) => d.value);
+  const top = hcNice(Math.max(0, ...vals)), pad = { top: 26, bottom: 30, side: 64 }, plotW = Math.max(0, width - pad.side), plotH = height - pad.top - pad.bottom;
+  const slot = plotW / data.length, barW = Math.min(46, slot * 0.62);
+  const x = (i) => (rtl ? plotW - (i + 0.5) * slot : (i + 0.5) * slot + pad.side), y = (v) => pad.top + plotH - (v / top) * plotH, axisX = rtl ? width - 4 : 4;
+  const hv = HCH.get(id), shown = hv != null && data[hv] && data[hv].value != null ? hv : C.highlight;
+  let s = `<svg width="${Math.round(width)}" height="${Math.round(height)}">`;
+  [0, 0.5, 1].forEach((t) => { const v = t * top;
+    s += `<g><line class="hc-grid" x1="${hcR(rtl ? 0 : pad.side)}" x2="${hcR(rtl ? plotW : width)}" y1="${hcR(y(v))}" y2="${hcR(y(v))}"/><text class="hc-tick" x="${hcR(axisX)}" y="${hcR(y(v) + 4)}" text-anchor="${rtl ? "end" : "start"}">${esc(hcRtl(hcFmt(v, format, true)))}</text></g>`; });
+  data.forEach((d, i) => {
+    const has = d.value != null, h = has ? (d.value / top) * plotH : 0;
+    s += `<g data-hci="${i}"><rect class="hc-hit" x="${hcR(x(i) - slot / 2)}" y="${hcR(pad.top)}" width="${hcR(slot)}" height="${hcR(plotH)}"/>`;
+    if (has) s += `<rect class="hc-bar"${i === shown ? " data-on" : ""} x="${hcR(x(i) - barW / 2)}" y="${hcR(pad.top + plotH - h)}" width="${hcR(barW)}" height="${hcR(h)}" rx="${hcR(Math.min(8, barW / 3))}" style="animation-delay:${i * 45}ms"/>`;
+    s += `<text class="hc-label${has ? "" : " hc-none"}" x="${hcR(x(i))}" y="${hcR(height - 8)}" text-anchor="middle">${esc(hcRtl(d.label))}</text>`;
+    if (has && i === shown) s += `<text class="hc-value" x="${hcR(x(i))}" y="${hcR(y(d.value) - 8)}" text-anchor="middle">${esc(hcRtl(hcFmt(d.value, format)))}</text>`;
+    s += `</g>`;
+  });
+  return s + `</svg>`;
+}
+/* o: { title, summary, tag, data: [{ label, value | null }], format, height, cls }. ערך null = "אין נתונים": בלי עמודה, ולא אפס */
+function hcBar(id, o) {
+  const data = o.data || [], last = data.map((d) => d.value != null).lastIndexOf(true), format = o.format || "number", height = o.height || 240;
+  HC.set(id, { data, format, height, highlight: o.highlight != null ? o.highlight : last, direction: document.documentElement.dir === "ltr" ? "ltr" : "rtl" });
+  return `<figure class="hc-chart${o.cls ? " " + esc(o.cls) : ""}" aria-labelledby="hc-${esc(id)}-t"><figcaption class="hc-cap"><span id="hc-${esc(id)}-t" class="hc-title">${esc(o.title)}</span>${o.tag ? `<span class="hc-tag">${esc(o.tag)}</span>` : ""}${o.summary ? `<span class="hc-sum">${esc(o.summary)}</span>` : ""}</figcaption>`
+    + `<div class="hc-plot" data-hc="${esc(id)}" style="height:${Math.round(height)}px" aria-hidden="true">${hcSvg(id, HCW.get(id) || 0)}</div>`
+    + `<table class="hc-sr"><caption>${esc(o.title)}</caption><tbody>${data.map((d) => `<tr><th scope="row">${esc(d.label)}</th><td>${d.value == null ? "אין נתונים" : esc(hcFmt(d.value, format))}</td></tr>`).join("")}</tbody></table></figure>`;
+}
+/* אחרי כל רינדור: מודדים כל גרף חדש. רוחב שהשתנה = ציור מחדש (morph, בלי להתחיל את הגדילה שוב) */
+let hcRO = null; const hcObs = new Set();
+function hcMount() {
+  if (typeof ResizeObserver === "undefined") return;
+  hcRO = hcRO || new ResizeObserver((es) => es.forEach((e) => { const el = e.target, id = el.dataset.hc, w = Math.round(e.contentRect.width); if (!el.isConnected || !w || (HCW.get(id) === w && el.firstElementChild)) return; HCW.set(id, w); morph(el, hcSvg(id, w)); }));
+  hcObs.forEach((el) => { if (!el.isConnected) { hcRO.unobserve(el); hcObs.delete(el); } });
+  document.querySelectorAll(".hc-plot[data-hc]").forEach((el) => { if (!hcObs.has(el)) { hcObs.add(el); hcRO.observe(el); } });
+}
+function hcHover(el, i) { const id = el.dataset.hc; if ((HCH.get(id) ?? null) === i) return; if (i == null) HCH.delete(id); else HCH.set(id, i); morph(el, hcSvg(id, HCW.get(id) || 0)); }
 /* ---------- עלויות: food cost ו-prime cost (מנהל) ---------- */
 const ymOf = (d) => d.getFullYear() + "-" + pad(d.getMonth() + 1);
 const FOODCATS = ["ירקות", "בשר ודגים", "חלבי", "יבש"];
@@ -6027,7 +6311,7 @@ async function fetchMoney(k) {
   qd.docs.forEach((d) => (days[d.id] = d.data()));
   const revs = []; qp.docs.forEach((d) => { const p = Object.assign({ id: d.id }, d.data()); if (p.kind === "r") rec.push(p); if (p.review && p.review.length && !p.reviewOk) revs.push(p); });
   qm.docs.forEach((d) => (months[d.id] = d.data()));
-  const set = await getDoc(doc(db, SCP(k, "settings"), "app")).then((d) => (d.exists() ? (({ foodTarget, primeTarget, offDays }) => ({ foodTarget, primeTarget, offDays }))(d.data()) : null)).catch(() => null);
+  const set = await getDoc(doc(db, SCP(k, "settings"), "app")).then((d) => (d.exists() ? (({ foodTarget, primeTarget, offDays, priceMute }) => ({ foodTarget, primeTarget, offDays, priceMute }))(d.data()) : null)).catch(() => null);
   const bal = await getDoc(doc(db, SCP(k, "insights"), "balance")).then((d) => (d.exists() ? d.data() : null)).catch(() => null);
   /* מאזן חומרי גלם: תמיד 30 יום, בלי קשר לבחירת 14/30/90 בעמוד */
   const bo = {}; if (bal) { const f30 = dkey(addDays(new Date(), -29)); try { (await getDocs(query(collection(db, SCP(k, "orders")), where(documentId(), ">=", f30), where(documentId(), "<=", dkey(addDays(new Date(), 4)))))).docs.forEach((d) => (bo[d.id] = d.data())); } catch (e) {} }
@@ -6158,12 +6442,12 @@ function setClosedDay(k, on) {
     .then(() => act("settings", `${on ? "יום סגור" : "ביטול יום סגור"} · ${ddmm(parse(k))}`))
     .catch(() => { if (old === undefined) delete D[k]; else D[k] = old; delete MCACHE[S.site]; render(); toast("לא נשמר"); });
 }
-function rangeOf(per, M = S.money) {
+function rangeOf(per, M = S.money, win) { /* win = [מ, עד]: חלון בתוך 8 השבועות (גרף Food cost לפי שבוע). בלי win = הכרטיס כמו תמיד */
   const now = new Date(), today = dkey(now), od = M.set && Array.isArray(M.set.offDays) && M.set.offDays.length < 7 ? M.set.offDays : [5, 6];
   const labM = (ym) => { const X = (M.months || {})[ym] || {}; return +X.labor || +((X.laborTabit || {}).cost) || +((X.tabit || {}).labor) || 0; };
   /* עובדים: עלות החודש מחולקת לימים מיום הפתיחה עד סוף החודש (בתוך moneyRange). קובץ שעות מטאביט / טאביט חודשי = עלות ידועה לתקופה */
   let from, to = today, labor = 0, laborM = {}, fixed = null;
-  if (per === "8w") { from = dkey(addDays(now, -55)); for (let d = parse(from); dkey(d) <= to; d = addDays(d, 1)) laborM[ymOf(d)] = labM(ymOf(d)); }
+  if (per === "8w") { from = win ? win[0] : dkey(addDays(now, -55)); if (win) to = win[1]; for (let d = parse(from); dkey(d) <= to; d = addDays(d, 1)) laborM[ymOf(d)] = labM(ymOf(d)); }
   else { const x = moneyStats(per, M); from = per + "-01"; if (!x.cur) to = per + "-" + pad(x.dim); if (x.lsrc === "tabitL" || x.src === "tabit") labor = x.laborM ? x.labor : 0; else laborM[per] = x.laborM; if (x.src === "tabit") fixed = { gross: x.sales, net: x.T.salesNet }; }
   const stock = Object.values(M.months || {}).map((m) => m && m.stock).filter((v) => v && v.day);
   const books = {}; Object.entries(M.months || {}).forEach(([ym, m]) => { if (m && m.books && +m.books.v > 0) books[ym] = +m.books.v; });
@@ -6177,7 +6461,7 @@ const withCap = (x, R) => (x.k === "bookhi" && R && R.capture ? Object.assign({}
 const sureOf = (r) => !!r && (r.exact || r.conf === "high") && !r.implausible;
 const whyTxt = (x) => whyLine(x, true).replace(/<[^>]+>/g, "").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
 /* טווח רחב מדי כדי להיות מידע: מעל 20 נקודות ל-Food cost, מעל 30 ל-Prime. אז לא מדפיסים טווח אלא הערכה וההסבר. סף אחד לכל המסכים והטקסט ל-Claude (rangeOf מסמן wide) */
-const MR_WIDE = { food: 20, prime: 30 }, WIDE_TXT = "אין עדיין מספיק נתונים — הטווח רחב מדי";
+const MR_WIDE = { food: 20, prime: 30 }, WIDE_TXT = "אין עדיין מספיק נתונים, הטווח רחב מדי";
 const rngLine = (r) => (!r ? "—" : r.exact ? r.best.toFixed(1) + "%" : r.wide ? `${r.best.toFixed(1)}% (${WIDE_TXT}, הערכה בלבד)` : `${r.best.toFixed(1)}% (טווח ${r.low}–${r.high}, ${CONFW[r.conf]})`);
 const CONFW = { high: "ביטחון גבוה", mid: "ביטחון בינוני", low: "ביטחון נמוך" }, CONFC = { high: "c-high", mid: "c-mid", low: "c-low" };
 const rngTxt = (r) => (r && !r.exact && !r.wide && !r.implausible && r.low < r.high ? `${fmt(r.low)}–${fmt(r.high)}` : "");
@@ -6188,20 +6472,20 @@ function whyLine(x, full) {
   if (x.k === "wait") return x.n === 1 ? "קבלה אחת ממתינה לקריאה" : `<span dir="ltr">${num(x.n)}</span> קבלות ממתינות לקריאה`;
   if (x.k === "noamt") return x.n === 1 ? "קבלה אחת בלי סכום" : `<span dir="ltr">${num(x.n)}</span> קבלות בלי סכום`;
   if (x.k === "sup") return `<b>${esc(x.sup)}</b>: ${x.got === 1 ? "קבלה אחת" : `<span dir="ltr">${num(x.got)}</span> קבלות`}, בדרך כלל <span dir="ltr">${num(x.usual)}</span>${full ? ` · חסר בערך <span dir="ltr">${ils(x.est)}</span>` : ""}`;
-  if (x.k === "days") return x.n === 1 ? "יום אחד בלי מכירות — הוערך לפי ימים דומים" : `<span dir="ltr">${num(x.n)}</span> ימים בלי מכירות — הוערכו לפי ימים דומים`;
+  if (x.k === "days") return x.n === 1 ? "יום אחד בלי מכירות, הוערך לפי ימים דומים" : `<span dir="ltr">${num(x.n)}</span> ימים בלי מכירות, הוערכו לפי ימים דומים`;
   if (x.k === "unk") return x.n === 1 ? "יום אחד בלי מכירות" : `<span dir="ltr">${num(x.n)}</span> ימים בלי מכירות`;
   if (x.k === "stock") return full ? "שווי מלאי לא ידוע · מקלידים פעם בחודש ביעדי עלות" : "שווי מלאי לא ידוע";
-  if (x.k === "young") return "עוד לא אמין — פחות מ-4 שבועות נתונים";
+  if (x.k === "young") return "עוד לא אמין, פחות מ-4 שבועות נתונים";
   if (x.k === "supw") return `<b>${esc(x.sup)}</b>: ${x.weeks === 1 ? "חסרות קבלות בשבוע אחד" : x.weeks === 2 ? "חסרות קבלות בשבועיים" : `חסרות קבלות ב-<span dir="ltr">${num(x.weeks)}</span> שבועות`}${full ? ` · חסר בערך <span dir="ltr">${ils(x.est)}</span>` : ""}`;
-  if (x.k === "failed") return x.n === 1 ? "קבלה אחת לא נקראה — צריך לצלם שוב" : `<span dir="ltr">${num(x.n)}</span> קבלות לא נקראו — צריך לצלם שוב`;
+  if (x.k === "failed") return x.n === 1 ? "קבלה אחת לא נקראה, צריך לצלם שוב" : `<span dir="ltr">${num(x.n)}</span> קבלות לא נקראו, צריך לצלם שוב`;
   if (x.k === "clo") return x.n === 1 ? "יום אחד סומן סגור" : `<span dir="ltr">${num(x.n)}</span> ימים סומנו סגורים`;
-  if (x.k === "hol") return x.n === 1 ? "יום חג אחד בלי מכירות — נחשב סגור" : `<span dir="ltr">${num(x.n)}</span> ימי חג בלי מכירות — נחשבו סגורים`;
-  if (x.k === "capx") return `רכש בלי הנהלת חשבונות — הוערך לפי <span dir="ltr">${num(x.pct)}%</span> שצולמו`;
-  if (x.k === "noanchor") return full ? "לא הושווה להנהלת חשבונות — ייתכנו קבלות שלא צולמו · מקלידים פעם בחודש את הרכש מהנהלת החשבונות (הגדרות ← יעדי עלות)" : "לא הושווה להנהלת חשבונות — ייתכנו קבלות שלא צולמו";
-  if (x.k === "booklo") return "הנהלת החשבונות נמוכה מהקבלות — כדאי לבדוק";
-  if (x.k === "bookhi") return x.pct != null && x.pct < 60 ? `צולמו רק ${num(x.pct)}% מהרכש. אם זה לא הגיוני — לוודא שהמספר בלי מע״מ ורק מזון` : "פער גדול מהנהלת החשבונות — לוודא שהוקלד בלי מע״מ ורק מזון";
+  if (x.k === "hol") return x.n === 1 ? "יום חג אחד בלי מכירות, נחשב סגור" : `<span dir="ltr">${num(x.n)}</span> ימי חג בלי מכירות, נחשבו סגורים`;
+  if (x.k === "capx") return `רכש בלי הנהלת חשבונות, הוערך לפי <span dir="ltr">${num(x.pct)}%</span> שצולמו`;
+  if (x.k === "noanchor") return full ? "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו · מקלידים פעם בחודש את הרכש מהנהלת החשבונות (הגדרות ← יעדי עלות)" : "לא הושווה להנהלת חשבונות, ייתכנו קבלות שלא צולמו";
+  if (x.k === "booklo") return "הנהלת החשבונות נמוכה מהקבלות, כדאי לבדוק";
+  if (x.k === "bookhi") return x.pct != null && x.pct < 60 ? `צולמו רק ${num(x.pct)}% מהרכש. אם זה לא הגיוני, לוודא שהמספר בלי מע״מ ורק מזון` : "פער גדול מהנהלת החשבונות, לוודא שהוקלד בלי מע״מ ורק מזון";
   if (x.k === "credit") return `<span>זיכוי חריג מ־</span><b>${esc(x.sup)}</b><span> לא נספר עד שיאושר</span>`;
-  if (x.k === "implausible") return `${x.m === "prime" ? "Prime cost: " : ""}<span>${x.dir === "low" ? "נמוך מהסביר למסעדה — כנראה חסרות קבלות" : "גבוה מהסביר — כנראה חסרות מכירות או שנכנס רכש שאינו מזון"}</span>`;
+  if (x.k === "implausible") return `${x.m === "prime" ? "Prime cost: " : ""}<span>${x.dir === "low" ? "נמוך מהסביר למסעדה, כנראה חסרות קבלות" : "גבוה מהסביר, כנראה חסרות מכירות או שנכנס רכש שאינו מזון"}</span>`;
   return "";
 }
 /* בגיליון "למה הטווח הזה": השורה + כמה נקודות היא מוסיפה לטווח */
@@ -6564,10 +6848,26 @@ function dishCostView(L) {
 function tgtSay(F, tg) {
   const d = Math.round((F.best - tg) * 10) / 10;
   if (praiseOf(F, tg)) return `<span class="say"><span dir="ltr">${fmt(Math.abs(d))}</span> ${d <= 0 ? "נקודות מתחת ליעד של" : "נקודות מעל היעד של"} <span dir="ltr">${fmt(tg)}%</span></span>`;
-  return `<span class="say mneu">יעד <span dir="ltr">${fmt(tg)}%</span> · הפרש <span dir="ltr">${fmt(Math.abs(d))}</span> נקודות</span>${d < 0 && !F.wide && !F.implausible ? `<span class="say warnt mchk">מתחת ליעד — כדאי לוודא שלא חסרות קבלות</span>` : ""}`;
+  return `<span class="say mneu">יעד <span dir="ltr">${fmt(tg)}%</span> · הפרש <span dir="ltr">${fmt(Math.abs(d))}</span> נקודות</span>${d < 0 && !F.wide && !F.implausible ? `<span class="say warnt mchk">מתחת ליעד, כדאי לוודא שלא חסרות קבלות</span>` : ""}`;
 }
 function fcGauge(v, tg, unc) { const mx = Math.max(tg / 0.75, v * 1.05), w = (Math.min(v, tg) / mx) * 100, o = v > tg ? ((v - tg) / mx) * 100 : 0, t = (tg / mx) * 100;
   return `<div class="gauge${unc ? " unc" : ""}" role="img" aria-label="${fmt(Math.round(v * 10) / 10)}% מתוך יעד ${fmt(tg)}%"><i class="ok" style="width:${w.toFixed(2)}%"></i>${o ? `<i class="over" style="inset-inline-start:calc(${t.toFixed(2)}% + 2px);width:calc(${o.toFixed(2)}% - 2px)"></i>` : ""}</div><div class="gauge-k"><span style="inset-inline-start:${t.toFixed(2)}%">יעד <bdi dir="ltr">${fmt(tg)}%</bdi></span></div>`; }
+/* Food cost לפי שבוע: אותו rangeOf של הכרטיס, לכל אחד מ-8 השבועות שלו (ימים 55- עד היום, 7 ימים כל שבוע).
+   שבוע בלי מכירות = null ("אין נתונים", לא אפס). זיכרון עד שהכסף נטען מחדש או שהזיכרון של המסעדה נמחק (כתיבה מקומית) */
+let FCW = null;
+function fcWeeks() {
+  const k = [S.money, MCACHE[S.site], S.site, todayKey()];
+  if (FCW && FCW.k.every((v, i) => v === k[i])) return FCW.v;
+  const now = new Date(), v = [];
+  for (let i = 0; i < 8; i++) { const a = addDays(now, -55 + 7 * i), R = rangeOf("8w", S.money, [dkey(a), dkey(addDays(a, 6))]);
+    v.push({ label: `${a.getDate()}.${a.getMonth() + 1}`, value: R.sales > 0 && R.food ? R.food.best : null }); }
+  FCW = { k, v }; return v;
+}
+function fcWeekChart(R8) {
+  const W = fcWeeks(); if (W.filter((d) => d.value != null).length < 2) return ""; /* פחות משבועיים עם נתונים: בלי גרף */
+  const F = R8 && R8.food;
+  return hcBar("fcw", { title: "Food cost לפי שבוע", summary: F ? `${fmt(Math.round(F.best * 10) / 10)}% ב־8 שבועות` : "", data: W, format: "percent", cls: "hc-app" });
+}
 function moneyCard(inSec) {
   if (!perm("money")) return "";
   if (!S.money) { loadMoney(); return ""; }
@@ -6584,7 +6884,8 @@ function moneyCard(inSec) {
   const unZ = (S.money.revs || []).filter((p) => p.kind === "z" && inPer(p.day) && unOk(p) && p.aiData && +p.aiData.total > 0).reduce((a, p) => a + netSales(p.aiData.total), 0);
   const unL = Math.round(unR) > 0 ? `<span class="say warnt munok">כולל ${ils(unR)} שלא אושרו</span>` : "", unS = Math.round(unZ) > 0 ? `<span class="say warnt munok">מכירות ${ils(unZ)} שלא אושרו</span>` : "";
   const gaps = (bh ? `<li>${whyLine(withCap({ k: "bookhi" }, R))}</li>` : R.capture ? `<li class="mcap">צולמו <span dir="ltr">${num(R.capture.pct)}%</span> מהרכש</li>` : "") + R.reasons.filter((r) => ["wait", "noamt", "failed", "sup", "supw", "capx", "days", "unk", "hol", "clo", "noanchor", "booklo", "bookhi", "credit"].includes(r.k) && !(bh && r.k === "bookhi")).map((r) => `<li>${whyLine(r)}</li>`).join(""), imp = R.reasons.find((r) => r.k === "implausible");
-  h += `<div class="card metric mhero"><span class="lbl"><span>Food cost</span>${!w8 && x.covers ? `<span><span dir="ltr">${num(x.covers)}</span> סועדים</span>` : ""}</span>${F == null || !(R.buy > 0 || R.est > 0) ? `<b class="big">—</b><span class="say">${F == null ? "חסרות מכירות לחישוב" : w8 ? "אין קבלות ב-8 השבועות" : "אין קבלות בחודש הזה"}</span>` : `${imp ? `<span class="say badt mimp">${whyLine(imp)}</span>` : ""}<button class="mfig" id="fcWhy" aria-label="למה הטווח הזה"><b class="big${imp || wd ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(F.best)}" data-dec="1">${fmt(r1(F.best))}</span><small>%</small></b>${!imp && rngTxt(F) ? `<span class="mrng" dir="ltr">(${rngTxt(F)})</span>` : ""}${F.exact ? "" : wd ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[F.conf]}">${CONFW[F.conf]}</span>`}</button>${R.young ? `<span class="say warnt myoung">עוד לא אמין — פחות מ-4 שבועות נתונים</span>` : ""}${imp ? "" : tgtSay(F, TG.f)}${imp ? "" : fcGauge(F.best, TG.f, !praiseOf(F, TG.f))}`}${unL}${unS}${gaps ? `<ul class="mgap">${gaps}</ul>` : ""}</div>`;
+  h += `<div class="card metric mhero"><span class="lbl"><span>Food cost</span>${!w8 && x.covers ? `<span><span dir="ltr">${num(x.covers)}</span> סועדים</span>` : ""}</span>${F == null || !(R.buy > 0 || R.est > 0) ? `<b class="big">—</b><span class="say">${F == null ? "חסרות מכירות לחישוב" : w8 ? "אין קבלות ב-8 השבועות" : "אין קבלות בחודש הזה"}</span>` : `${imp ? `<span class="say badt mimp">${whyLine(imp)}</span>` : ""}<button class="mfig" id="fcWhy" aria-label="למה הטווח הזה"><b class="big${imp || wd ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(F.best)}" data-dec="1">${fmt(r1(F.best))}</span><small>%</small></b>${!imp && rngTxt(F) ? `<span class="mrng" dir="ltr">(${rngTxt(F)})</span>` : ""}${F.exact ? "" : wd ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[F.conf]}">${CONFW[F.conf]}</span>`}</button>${R.young ? `<span class="say warnt myoung">עוד לא אמין, פחות מ-4 שבועות נתונים</span>` : ""}${imp ? "" : tgtSay(F, TG.f)}${imp ? "" : fcGauge(F.best, TG.f, !praiseOf(F, TG.f))}`}${unL}${unS}${gaps ? `<ul class="mgap">${gaps}</ul>` : ""}</div>`;
+  h += fcWeekChart(w8 ? R : rangeOf("8w"));
   const U = (S.money.up || {})[ym], tb = U && U.ai === "pending" ? `<span class="spin"></span>${aiWait()}` : U && U.ai === "error" ? `<span class="badt">לא נקרא · שוב</span>` : "";
   /* מכירות = הקובץ מטאביט (העלאה בלחיצה על השורה). המקור כתוב בשורה השנייה */
   h += `<h4 class="gh"><span>${mL}</span><span>בלי מע״מ</span></h4><div class="grp mgrp">
@@ -6666,9 +6967,9 @@ function viewData() {
   if (!hist.length) h += `<p class="hint pad-x">אין הזמנות בתקופה.</p>`;
   hist.slice(0, S.histAll ? 999 : 10).forEach((k) => {
     const o = S.data.orders[k], q = qtySource(o), open = S.openDay === k;
-    const st2 = o.status === "cancelled" ? `<span class="pill bad">בוטלה</span>` : o.status === "approved" ? `<span class="pill ok">אושרה</span>` : o.status === "pending" ? `<span class="pill warn">ממתינה</span>` : `<span class="pill">טיוטה</span>`;
+    /* design-next 3: תגית מצב סטטית (צורה + מילה, הצבע רק מחזק, בלי רקע ובלי תנועה). אחת לכל הזמנה: קבלה גוברת על אישור */
     const xm = o.received ? extraMiss(o, (S.data.prod || {})[k]) : {}, shK = shortsOf((S.data.prod || {})[k]);
-    const rc = o.received ? (count(xm) ? `<span class="pill bad">חסר</span>` : Object.keys(shK).length ? `<span class="pill warn">חוסר מראש</span>` : `<span class="pill ok">התקבל</span>`) : "";
+    const st2 = o.received ? (count(xm) ? otag("bad", "חסר") : Object.keys(shK).length ? otag("wait", "חוסר מראש", "box") : otag("got")) : o.status === "cancelled" ? otag("bad", "בוטלה") : o.status === "approved" ? otag("ok") : o.status === "pending" ? otag("wait") : o.sentAt ? otag("sent") : otag("draft"), rc = "";
     h += `<button class="hrow" data-oday="${esc(k)}" aria-expanded="${!!open}"><span class="hd"><b>${DN[parse(k).getDay()]} ${ddmm(parse(k))}</b><small>${o.sentBy ? esc(whoN(o.sentBy)) + " · " + hm(o.sentAt) : "לא נשלחה"}</small></span><span class="hq">${sum(q) || sum(o.items)}<small>קופסאות</small></span><span class="hp">${st2}${o.late ? `<span class="pill late">אחרי הסגירה</span>` : ""}${o.changeCount ? `<span class="pill">${o.changeCount === 1 ? "שינוי אחד" : `${num(o.changeCount)} שינויים`}</span>` : ""}${rc}</span></button>`;
     if (open) {
       const m = sum(q) ? q : o.items || {};
@@ -6837,7 +7138,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.9.2";
+const APP_VER = "2.10.0";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -6863,7 +7164,37 @@ const row = (o) => `<${o.id || o.data ? "button" : "div"} class="srow" ${o.id ? 
 const grp = (rows, head, foot) => `${head ? `<h4 class="gh">${head}</h4>` : ""}<div class="grp">${rows.join("")}</div>${foot ? `<p class="gfoot">${foot}</p>` : ""}`;
 /* תקרת Claude למסעדה: כמה קריאות החודש מתוך התקרה (השרת סופר, הבעלים קובע) */
 function aiCap() { const st = S.settings || {}, u = st.aiUse, ym = todayKey().slice(0, 7), cap = +st.aiCap >= 1 ? Math.round(+st.aiCap) : 400, calls = u && u.ym === ym ? +u.calls || 0 : 0; return { calls, cap, capped: calls >= cap }; }
-const aiWait = () => (aiCap().capped ? "ממתין — מכסת Claude החודשית" : "Claude קורא");
+const aiWait = () => (aiCap().capped ? "ממתין, מכסת Claude החודשית" : "Claude קורא");
+/* design-next 1: קריאת קבלה. "Claude קורא…" עם דופק שקיפות עדין שנעצר אחרי שני מחזורים. בסוף: וי שמצויר פעם אחת, ו"N שורות לבדיקה" בכתום.
+   אין שלב "מחשב" בשרת, אז אין מילה כזו. פחות תנועה: סטטי ובלי ציור */
+const aiShim = (w) => `<span class="aipulse">${esc(w)}…</span>`; /* "קורא…" סטטי, דופק שקיפות עדין פעמיים ונעצר */
+const AI_CK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle class="ring" cx="12" cy="12" r="9"/><path class="tick" d="M8 12.5l3 3 5-6"/></svg>';
+const aiRead = () => (aiCap().capped ? `<span class="ai">${esc(aiWait())}</span>` : `<span class="ai">${SVG(IC.doc)}<span>Claude ${aiShim("קורא")}</span></span>`);
+const AI_SEEN = {}; /* מזהה → 0 (נראתה בקריאה) או מתי נראתה בסיום. הווי מצויר רק לקבלה שנקראה מול העיניים */
+/* שורה בקבלה מול אותה שורה בקבלה הקודמת מאותו ספק (רק בטלפון, לא נשמר כלום): מחיר ליחידה. ומה שהשרת לא קרא: כמות */
+const nmK = (x) => String(x || "").replace(/["'׳״.\s]/g, "").toLowerCase();
+let LF = null;
+function lineFlags(id, p) {
+  if (!LF || LF.ph !== S.photos) LF = { ph: S.photos, m: {} };
+  if (LF.m[id] && LF.m[id].p === p) return LF.m[id].v;
+  const A = p.aiData || {}, s = supN(p.sup || A.supplier), L = (A.items || []).slice(0, 60), prev = {};
+  if (s && perm("money")) Object.entries(S.photos || {}).forEach(([i, q]) => {
+    if (i === id || q.kind !== "r" || supN(q.sup || (q.aiData || {}).supplier) !== s) return;
+    const qd = q.day || "", pd = p.day || ""; if (!(qd < pd || (qd === pd && (+q.at || 0) < (+p.at || 0)))) return;
+    ((q.aiData || {}).items || []).forEach((x) => { const k = nmK(x.name) && nmK(x.name) + "|" + nmK(x.unit); if (!k || !(+x.unitPrice > 0)) return; const o = prev[k]; if (!o || qd > o.d || (qd === o.d && (+q.at || 0) > o.at)) prev[k] = { d: qd, at: +q.at || 0, v: +x.unitPrice }; });
+  });
+  const v = L.map((x) => { const o = prev[nmK(x.name) + "|" + nmK(x.unit)]; /* אותה יחידה בלבד: ק״ג מול ארגז זה לא עלייה */ if (o && +x.unitPrice > 0) { const d = Math.round((x.unitPrice / o.v - 1) * 100); if (Math.abs(d) >= 15) return { k: "price", d }; } return x.qty == null && x.total != null ? { k: "qty" } : null; });
+  LF.m[id] = { p, v }; return v;
+}
+function aiDoneLine(id, p) {
+  if (p.ai === "pending") { AI_SEEN[id] = 0; return aiRead(); }
+  if (AI_SEEN[id] === 0 && p.ai === "done") AI_SEEN[id] = Date.now();
+  const t = AI_SEEN[id] > 0 ? Date.now() - AI_SEEN[id] : 1e9, open = !!(p.review && p.review.length && !p.reviewOk);
+  if (p.ai !== "done") return open ? `<span class="ai"><span class="warnw">לבדיקה</span></span>` : "";
+  if (t > 60000 && !open) return "";
+  const n = open ? lineFlags(id, p).filter(Boolean).length : 0, w = !open ? "" : n === 1 ? "שורה אחת לבדיקה" : n ? `${num(n)} שורות לבדיקה` : "לבדיקה";
+  return `<span class="ai done${t < 1500 ? " draw" : ""}">${AI_CK}<span>סיים.</span>${w ? `<span class="warnw">${w}</span>` : ""}</span>`;
+}
 async function editAiCap() {
   if (!can.owner()) return;
   const okN = (v) => { const n = Math.round(+String(v).replace(/[^0-9.]/g, "")); return String(v).trim() !== "" && n >= 1 && n <= 100000 ? n : null; };
@@ -6907,7 +7238,7 @@ function viewSettings() {
     if (can.admin()) v.push(row({ id: "pmBtn", icon: ICB("", IC.screen), t: "מסך ייצור", chev: true }));
     if (permMgr()) v.push(row({ data: 'data-setp="perm"', icon: ICB("#30D158", IC.lock), t: "אפשרויות לעובדים", chev: true }));
     /* סגירת ערב: המתג הנפרד הזה רק לבעלים הראשי. מנהל המסעדה מגיע לאותו perm.close דרך "אפשרויות לעובדים" (החוק permOnly, רק למסעדה שלו) */
-    if (can.owner() && !IS_DEMO) v.push(row({ id: "closeSw", icon: ICB("#FF9F0A", IC.camera), t: "סגירת ערב", s: "בסוף הערב מצלמים את דוח הקופה — ככה נכנסות המכירות", right: `<span class="sw ${permRoles("close").includes("rosie") ? "on" : ""}" aria-hidden="true"></span>` }));
+    if (can.owner() && !IS_DEMO) v.push(row({ id: "closeSw", icon: ICB("#FF9F0A", IC.camera), t: "סגירת ערב", s: "בסוף הערב מצלמים את דוח הקופה, ככה נכנסות המכירות", right: `<span class="sw ${permRoles("close").includes("rosie") ? "on" : ""}" aria-hidden="true"></span>` }));
     if (v.length) h += grp(v, "ניהול"); }
   if (canExport()) h += grp([row({ id: "expAll", icon: ICB("#8E8E93", IC.doc), t: "ייצוא מלא", chev: true }),
     row({ id: "pwrBtn", icon: ICB("#0A84FF", IC.key), t: "איפוס סיסמה לעובד", chev: true }),
@@ -7003,7 +7334,7 @@ async function saveNewPw() {
   if (S.busy) return;
   if (a.length < 6) { S.npErr = "לפחות 6 תווים"; return render(); }
   if (a !== b) { S.npErr = "הסיסמאות לא זהות"; return render(); }
-  if (/^\d{6}$/.test(a)) { S.npErr = "לא 6 ספרות — בחר סיסמה אחרת"; return render(); }
+  if (/^\d{6}$/.test(a)) { S.npErr = "לא 6 ספרות, בחר סיסמה אחרת"; return render(); }
   S.busy = true; S.npErr = ""; render();
   try { await updatePassword(auth.currentUser || S.user, a); try { localStorage.setItem(pwDoneKey(), String(Date.now())); } catch (e) {} S.profile = Object.assign({}, S.profile, { mustChangePw: false }); toast("הסיסמה עודכנה"); act("account", "סיסמה חדשה אחרי איפוס"); }
   catch (e) { S.npErr = "לא הצלחתי לעדכן. צא והיכנס שוב עם הקוד"; }
@@ -7142,7 +7473,7 @@ function revRow() { const L = revList(); return L.length && canReview() ? grp([r
 function revSheet() {
   const L = revList();
   return `<h3>אישורים נדרשים</h3><p class="hint">נכנס כבר לחישובים, מסומן "לבדיקה" עד שמאשרים.</p>
-    ${L.length ? revAllBtn() : ""}${L.length ? `<div class="crlist">${L.map((p) => `<div class="cr"><div><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}${p.kind === "z" ? (p.aiData && p.aiData.total > 0 ? ` · ${ils(p.aiData.total)}` : "") : p.amt != null && perm("money") ? ` · ${ils(p.amt)}` : ""}</b><small><span>${p.day ? ddmm(parse(p.day)) : ""}</span>${(p.review || []).map((x) => `<span class="rvr">${esc(x)}</span>`).join("")}</small></div><div class="crb"><button class="tlink" data-revfix="${esc(p.id)}">לתקן</button><button class="btn small" data-revok="${esc(p.id)}">מאשר</button></div></div>`).join("")}</div>` : `<p class="hint">אין מה לאשר ✓</p>`}
+    ${L.length ? revAllBtn() : ""}${L.length ? `<div class="crlist">${L.map((p) => `<div class="cr"><div><b>${p.kind === "z" ? "דו״ח קופה" : esc(supN(p.sup) || "קבלה")}${p.kind === "z" ? (p.aiData && p.aiData.total > 0 ? ` · ${ils(p.aiData.total)}` : "") : p.amt != null && perm("money") ? ` · ${ils(p.amt)}` : ""}</b><small><span>${p.day ? ddmm(parse(p.day)) : ""}</span>${(p.review || []).map((x) => `<span class="rvr">${esc(x)}</span>`).join("")}</small></div><div class="crb"><button class="tlink" data-revfix="${esc(p.id)}">תיקון</button><button class="btn small" data-revok="${esc(p.id)}">אישור</button></div></div>`).join("")}</div>` : `<p class="hint">אין מה לאשר ✓</p>`}
     <div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
 }
 async function revOk(id) {
@@ -7177,11 +7508,22 @@ async function saveCredit() {
   try { await setDoc(doc(db, CP("credits"), id), c); S.credits[id] = c; S.sheet = { type: "credits" }; render(); toast("הזיכוי נרשם. תקבל תזכורת עד שיתקבל"); } catch (e) { toast("לא נשמר"); }
 }
 /* ---------- קבלות ספקים ותמונות (מנהל בלבד) ---------- */
+/* design-next 1: קבלה שעוד נקראת: מאזינים למסמך שלה עד שהקריאה נגמרת (קריאה בלבד, בלי כתיבה), כדי שהשורה תעבור ל"סיים" עם וי שמצויר פעם אחת. עד 10 דקות */
+/* המאזינים נרשמים ב-unsub (ai_<מזהה>), אז יציאה ו-stopAll סוגרים אותם. מעל 12 קבלות בקריאה: במקום מאזין, טעינה אחת של התמונות אחרי 30 שניות */
+let aiPoll = 0;
+function watchAi(id) {
+  const key = "ai_" + id; if (unsub[key]) return;
+  if (Object.keys(unsub).filter((k) => k.startsWith("ai_") && unsub[k]).length >= 12) { if (!aiPoll) aiPoll = setTimeout(() => { aiPoll = 0; if (S.user) loadPhotos(); }, 30000); return; }
+  let done = false; const off = () => { done = true; clearTimeout(t); stop(key); }, t = setTimeout(off, 600000);
+  try { const u = onSnapshot(doc(db, CP("photos"), id), (d) => { const v = d.exists() ? d.data() : null; if (!v) return off(); if (v.ai === "pending") return; off(); if (S.photos && S.photos[id]) { S.photos[id] = Object.assign({}, S.photos[id], v); moneyDirty(); renderSoon(); } }, off);
+    unsub[key] = () => { clearTimeout(t); u(); }; if (done) stop(key); } catch (e) { clearTimeout(t); }
+}
 async function loadPhotos() {
   if (!perm("photos")) return;
   try {
     const none = { docs: [] }, [qs, qc] = await Promise.all([getDocs(collection(db, CP("photos"))), perm("credits") ? getDocs(collection(db, CP("credits"))) : none]);
     S.photos = {}; qs.docs.forEach((d) => (S.photos[d.id] = d.data()));
+    Object.entries(S.photos).forEach(([id, p]) => { if (p.kind === "r" && p.ai === "pending" && Date.now() - (+p.at || 0) < 864e5) watchAi(id); });
     S.credits = {}; qc.docs.forEach((d) => (S.credits[d.id] = d.data()));
   }
   catch (e) { S.photos = S.photos || {}; S.credits = S.credits || {}; toast("טעינת התמונות נכשלה"); }
@@ -7220,14 +7562,44 @@ function photoFields(f, kind) {
     <datalist id="supList">${supNames().map((n) => `<option value="${esc(n)}">`).join("")}</datalist>` : "") +
     `<div class="pgrid"><input class="ta" type="date" data-pf="day" value="${esc(f.day || "")}" aria-label="תאריך"></div>`;
 }
+/* design-next 1: "זה מה שקראתי". ספק/תאריך/סכום, האם השורות מסתכמות, השורות עם מילת בדיקה, ופעולות דביקות למטה.
+   אותה סמנטיקה בדיוק: "אישור" (data-revok) ו"תיקון" (#pEdit), אותם מזהים ומאזינים (השמות שונו באישור גדי 28.11), רק למי שמאשר. Claude לא משנה כלום בלי אישור */
+/* תגיות מצב הזמנה (design-next 3): נשלחה / מחכה / אושרה / התקבל, ובוטלה/חסר/טיוטה. אייקון תמיד אפור, רק המילה בצבע */
+const OTI = { sent: '<path d="M20 4L9.5 14.5M20 4l-6.5 16-4-5.5L4 10.5z"/>', wait: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', ok: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  got: '<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>', box: '<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>', bad: '<path d="M6 6l12 12M18 6L6 18"/>', draft: '<path d="M4 20h4L19 9l-4-4L4 16z"/>' };
+const OTW = { sent: "נשלחה", wait: "מחכה", ok: "אושרה", got: "התקבל", bad: "בוטלה", draft: "טיוטה" };
+const otag = (k, w, ic) => `<span class="otag ${k}">${SVG(OTI[ic || k])}<span>${esc(w || OTW[k])}</span></span>`;
+const TRD = '<path d="M4 16l5-5 4 3 7-7M15 7h5v5"/>';
+function rcptSheet(sh, p, A, L) {
+  const id = sh.id, money = perm("money"), open = !!(p.review && p.review.length && !p.reviewOk), rvAct = open && canReview(), F = lineFlags(id, p);
+  const tot = +A.total > 0 ? +A.total : +p.amt > 0 ? +p.amt : 0, sm = L.reduce((t, x) => t + (+x.total || 0), 0);
+  const match = money && tot > 0 && sm > 0 ? tot >= sm * 0.95 && tot <= sm * 1.18 * 1.05 : null; /* אותו טווח כמו בשרת: בין בלי מע״מ לעם מע״מ */
+  const sup = supN(p.sup || A.supplier), f = [row({ t: "ספק", v: sup ? esc(sup) : "לא נקרא" }), row({ t: "תאריך", v: p.day ? `<span dir="ltr">${ddmm(parse(p.day))}</span>` : "לא נקרא" })];
+  if (money) f.push(row({ t: "סכום", v: p.amt != null ? `<span dir="ltr">${ils(p.amt)}</span>` : "לא נקרא" }));
+  if (p.cat) f.push(row({ t: "סוג", v: esc(p.cat) }));
+  const hint = match == null ? "" : `<p class="rsumh${match ? "" : " bad"}">${SVG(match ? IC.check : IC.info)}<span>${match ? "סכום השורות שווה לסכום בקבלה" : "סכום השורות לא תואם לסה״כ"}</span></p>`;
+  const flag = (g) => (!g ? "" : g.k === "price" ? `<span class="flag">${SVG(TRD)}<span>לבדיקה: <bdi dir="ltr">${g.d > 0 ? "+" : ""}${num(g.d)}%</bdi> מהקבלה הקודמת</span></span>` : `<span class="flag">${SVG(IC.doc)}<span>לבדיקה: הכמות לא ברורה בצילום</span></span>`);
+  const sub = (x) => { const q = x.qty != null ? `<bdi dir="ltr">${num(x.qty)}</bdi> ${esc(x.unit || "")}` : "", u = x.unitPrice != null && money ? `<bdi dir="ltr">₪${num(x.unitPrice)}</bdi>${x.unit ? ` ל${esc(x.unit)}` : ""}` : ""; return q || u ? `<small>${q}${q && u ? ", " : ""}${u}</small>` : ""; };
+  const show = L.map((x, i) => sh.allL || L.length <= 6 || i < 5 || !!F[i]), hid = show.filter((v) => !v).length;
+  const lines = L.length ? `<h4 class="gh rgh"><span>שורות</span><span dir="ltr">${num(L.length)}</span></h4><div class="grp aitems">${L.map((x, i) => (show[i] ? `<div class="srow rline"><span class="st"><b>${esc(x.name || "")}</b>${sub(x)}${flag(F[i])}</span>${x.total != null && money ? `<span class="sv" dir="ltr">${ils(x.total)}</span>` : ""}</div>` : "")).join("")}${hid ? `<button class="srow" id="rvMore"><span class="st"><b class="tlink">עוד ${num(hid)} שורות</b></span></button>` : ""}</div>` : "";
+  const rv = open ? `<div class="rev"><b class="warnt">לבדיקה</b><p>${p.review.map((x) => esc(x)).join(". ")}</p></div>` : "";
+  const acts = [feat("credits") ? row({ id: "crFrom", t: "חסר או פגום בקבלה הזו?", v: "זיכוי", chev: true }) : "", canReview() && !rvAct ? row({ id: "pEdit", t: "תיקון ידני", chev: true }) : ""].filter(Boolean);
+  return `<h3 class="ph">זה מה שקראתי</h3>${rv}<div class="grp rfld">${f.join("")}</div>${hint}${lines}
+    <div class="pview">${sh.full ? `<img src="${imgSrc(sh.full)}" alt="">` : `<img src="${imgSrc(p.thumb)}" alt="" class="blur">`}</div>
+    <div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>
+    ${acts.length ? `<div class="grp">${acts.join("")}</div>` : ""}${can.admin() ? `<div class="grp"><button class="srow center" id="pDel"><b class="danger">מחיקה</b></button></div>` : ""}
+    <p class="hint">${esc(whoN(p.by))}, ${ddmm(new Date(p.at))}</p>
+    ${rvAct ? `<div class="rvacts"><button class="btn" data-revok="${esc(id)}">אישור</button><button class="btn ghost" id="pEdit">תיקון</button></div>` : ""}`;
+}
 function photoSheet(sh) {
   const p = S.photos[sh.id] || {}, A = p.aiData || {}, L = (A.items || []).slice(0, 60);
+  if (p.kind === "r" && !sh.edit && p.ai === "done") return rcptSheet(sh, p, A, L);
   const head = p.kind === "r" ? `<h3 class="ph">${esc(supN(p.sup || A.supplier) || "קבלה")}</h3><p class="cmeta">${[p.amt != null && perm("money") ? ils(p.amt) : "", esc(p.cat || ""), p.day ? ddmm(parse(p.day)) : ""].filter(Boolean).join(", ")}</p>`
     : p.kind === "z" ? `<h3 class="ph">דו״ח קופה</h3><p class="cmeta">${[p.day ? ddmm(parse(p.day)) : "", A.covers ? `${num(A.covers)} סועדים` : "", A.total ? ils(A.total) : ""].filter(Boolean).join(", ")}</p>`
     : `<h3 class="ph">תמונה מהתהליך</h3><p class="cmeta">${p.day ? ddmm(parse(p.day)) : ""}</p>`;
   const rvAct = p.review && p.review.length && !p.reviewOk && canReview() && !sh.edit; /* אישור או תיקון מתוך הגיליון */
-  const rv = p.review && p.review.length && !p.reviewOk ? `<div class="rev"><b class="warnt">לבדיקה</b><p>${p.review.map((x) => esc(x)).join(". ")}</p>${rvAct ? `<div class="revb"><button class="btn small" data-revok="${esc(sh.id)}">מאשר</button><button class="linkbtn" id="pEdit">לתקן</button></div>` : ""}</div>` : "";
-  const st = rv + (p.kind === "p" ? "" : p.ai === "pending" ? `<div class="aistate"><span class="spin"></span>${aiWait()}${S.settings && S.settings.ai || aiCap().capped ? "" : " ברגע שיחובר"}</div>` : p.ai === "error" ? `<div class="aistate bad">Claude לא הצליח לקרוא את התמונה</div>` : p.ai === "failed" ? `<div class="aistate bad">לא נקראה — צריך לצלם שוב</div>` : "");
+  const rv = p.review && p.review.length && !p.reviewOk ? `<div class="rev"><b class="warnt">לבדיקה</b><p>${p.review.map((x) => esc(x)).join(". ")}</p>${rvAct ? `<div class="revb"><button class="btn small" data-revok="${esc(sh.id)}">אישור</button><button class="linkbtn" id="pEdit">תיקון</button></div>` : ""}</div>` : "";
+  const st = rv + (p.kind === "p" ? "" : p.ai === "pending" ? `<div class="aistate">${p.kind === "r" ? aiRead() : `<span class="spin"></span>${aiWait()}`}${S.settings && S.settings.ai || aiCap().capped ? "" : " ברגע שיחובר"}</div>` : p.ai === "error" ? `<div class="aistate bad">Claude לא הצליח לקרוא את התמונה</div>` : p.ai === "failed" ? `<div class="aistate bad">לא נקראה, צריך לצלם שוב</div>` : "");
   const items = L.length ? `<div class="grp aitems">${L.map((x) => `<div class="srow"><span class="st"><b>${esc(x.name || "")}</b>${x.qty != null || (x.unitPrice != null && perm("money")) ? `<small>${x.qty != null ? `${num(x.qty)} ${esc(x.unit || "")}` : ""}${x.unitPrice != null && perm("money") ? `${x.qty != null ? ", " : ""}₪${num(x.unitPrice)}` : ""}</small>` : ""}</span>${x.total != null && perm("money") ? `<span class="sv">${ils(x.total)}</span>` : ""}</div>`).join("")}</div>` : "";
   const edit = sh.edit ? `${photoFields(sh.f, p.kind)}<div class="sbtns"><button class="btn" id="pSave">שמור תיקון</button><button class="btn ghost" id="pEditX">ביטול</button></div>` : "";
   /* מבנה הגיליון: כותרת בשורת ה-X (h3 ראשון), תמונה, פריטים, ואז פעולות כשורות. מחיקה בקבוצה נפרדת, אדום במרכז */
@@ -7251,11 +7623,12 @@ async function addPhotos(list, kind) {
   let ok = 0;
   for (const x of list) {
     const id = "ph" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), meta = Object.assign({ kind, thumb: x.thumb, at: Date.now(), by: myName(), day: todayKey(), note: "" }, kind === "r" ? { ai: "pending" } : {}), sn = isSnap();
-    try { const pw = putPhoto(id, x.img, meta, sn), r = await settle(pw); if (r === "queued") S.upQueued = true; if (S.photos) S.photos[id] = meta; if (sn) { S.snapList = (S.snapList || []).concat([{ id, kind, at: meta.at, q: r === "queued" }]); if (r === "queued") pw.then(() => snapSent(id), () => snapBad(id)); } else if (r === "queued") phLate(id, pw); ok++; moneyDirty(); } catch (e) {}
+    try { const pw = putPhoto(id, x.img, meta, sn), r = await settle(pw); if (r === "queued") S.upQueued = true; if (S.photos) S.photos[id] = meta; if (sn) { S.snapList = (S.snapList || []).concat([{ id, kind, at: meta.at, q: r === "queued" }]); if (r === "queued") pw.then(() => snapSent(id), () => snapBad(id)); } else if (r === "queued") phLate(id, pw); ok++; if (kind === "r" && !sn) watchAi(id); moneyDirty(); } catch (e) {}
   }
   S.upBusy = 0; const q = S.upQueued; S.upQueued = false;
   if (q) { render(); toast("אין קליטה טובה. נשמר בטלפון ויישלח לבד"); if (ok) act("photo", kind === "r" ? "קבלה" : "תמונות מהתהליך"); return; }
   if (ok) act("photo", kind === "r" ? (ok > 1 ? `${ok} קבלות` : "קבלה") : `${ok} תמונות מהתהליך`);
+  if (ok && kind === "r") tourTick(2);
   render(); toast(!ok ? "לא נשמר, נסו שוב" : ok < list.length ? `נשמרו ${ok} מתוך ${list.length}` : kind === "r" ? "נשמר ✓ Claude קורא את הקבלה" : "נשמר ✓");
 }
 async function savePhotos() {
@@ -7313,7 +7686,7 @@ function viewPhotos() {
   if (!shown.length) return h;
   h += `<div class="pgal">`;
   shown.slice(0, S.pMore ? 999 : 60).forEach(([id, p]) => {
-    h += `<button class="pthumb" data-photo="${esc(id)}"><img src="${imgSrc(p.thumb)}" alt="" loading="lazy">${S.phQ && S.phQ[id] ? `<i class="pill ${S.phQ[id] === "bad" ? "bad" : "warn"} prev">${S.phQ[id] === "bad" ? "לא נשמר · לצלם שוב" : "בטלפון · יישלח"}</i>` : p.review && p.review.length && !p.reviewOk ? `<i class="pill warn prev">לבדיקה</i>` : ""}<span><b class="pt">${p.ai === "pending" ? `<i class="spin"></i>` : ""}${p.kind === "r" ? esc(supN(p.sup) || (p.ai === "pending" ? "Claude קורא…" : "קבלה")) : p.kind === "z" ? "דו״ח קופה" : esc(p.note || "")}</b><small>${p.kind === "r" && p.amt && perm("money") ? `<bdi dir="ltr">${ils(p.amt)}</bdi> · ` : p.kind === "z" && p.aiData && p.aiData.covers ? `${num(p.aiData.covers)} סועדים · ` : ""}${p.day ? `<bdi dir="ltr">${ddmm(parse(p.day))}</bdi>` : ""}</small></span></button>`;
+    h += `<button class="pthumb" data-photo="${esc(id)}"><img src="${imgSrc(p.thumb)}" alt="" loading="lazy">${S.phQ && S.phQ[id] ? `<i class="pill ${S.phQ[id] === "bad" ? "bad" : "warn"} prev">${S.phQ[id] === "bad" ? "לא נשמר · לצלם שוב" : "בטלפון · יישלח"}</i>` : p.review && p.review.length && !p.reviewOk && p.kind !== "r" ? `<i class="pill warn prev">לבדיקה</i>` : ""}<span><b class="pt">${p.ai === "pending" && p.kind !== "r" ? `<i class="spin"></i>` : ""}${p.kind === "r" ? esc(supN(p.sup) || (p.ai === "pending" ? "קבלה חדשה" : "קבלה")) : p.kind === "z" ? "דו״ח קופה" : esc(p.note || "")}</b>${p.kind === "r" ? aiDoneLine(id, p) : ""}<small>${p.kind === "r" && p.amt && perm("money") ? `<bdi dir="ltr">${ils(p.amt)}</bdi> · ` : p.kind === "z" && p.aiData && p.aiData.covers ? `${num(p.aiData.covers)} סועדים · ` : ""}${p.day ? `<bdi dir="ltr">${ddmm(parse(p.day))}</bdi>` : ""}</small></span></button>`;
   });
   h += `</div>`;
   if (shown.length > 60 && !S.pMore) h += `<button class="addmore ghosty" id="pMore">עוד ${shown.length - 60}</button>`;
@@ -7547,7 +7920,7 @@ async function setBaseName(k) {
   if (!r) return false;
   const name = String(r[0]).trim().replace(/\s+/g, " ").slice(0, 40), short = (String(r[1] || "").trim().replace(/\s+/g, " ") || name).slice(0, 20);
   const reg = { name, short, color: BASE_COLOR[k], noCut: !!x.noCut, cats: x.cats.slice(0, 30), seq: x.seq.slice(0, 30), at: Date.now() };
-  try { await setDoc(doc(db, "siteRegistry", k), reg); } catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נשמר"); return false; }
+  try { await setDoc(doc(db, "siteRegistry", k), reg); } catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא נשמר"); return false; }
   addSite(k, reg); if (k === S.site) ROLE_SHORT.rosie = x.n; act("settings", "שם מסעדה · " + name); toast("נשמר ✓"); render(); return true;
 }
 /* ---------- מצב השרת לכל מסעדה (רק הבעלים): meta/runs שהשרת כותב בסוף כל ריצה. נטען מחדש אחרי דקה ---------- */
@@ -7612,7 +7985,7 @@ async function archiveSite(k) {
   if (!ok) return;
   const at = Date.now();
   try { await setDoc(doc(db, "siteRegistry", k), { archived: true, archivedAt: serverTimestamp() }, { merge: true }); } /* החוקים: archivedAt = request.time */
-  catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נמחקה. נסו שוב"); return; }
+  catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא נמחקה. נסו שוב"); return; }
   SITES.splice(SITES.indexOf(x), 1);
   ARCH.push({ k, at, d: { name: x.f, short: x.n, color: x.color || "#3E7CB1", noCut: !!x.noCut, cats: x.cats.slice(), at: x.added || at, archived: true, archivedAt: at } });
   S.sheet = null; render(); act("settings", "מחיקת מסעדה · " + x.f); toast(`${x.f} נמחקה. אפשר לשחזר עד ${ddmm(new Date(at + ARCH_DAYS * 86400000))}`);
@@ -7621,7 +7994,7 @@ async function restoreSite(k) {
   const sh = S.sheet, a = ARCH.find((x) => x.k === k); if (!a || !can.owner() || !sh) return;
   sh.go = true; sh.err = ""; render();
   try { await setDoc(doc(db, "siteRegistry", k), { archived: false, archivedAt: deleteField() }, { merge: true }); }
-  catch (e) { sh.go = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא שוחזרה. נסו שוב"; return render(); }
+  catch (e) { sh.go = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא שוחזרה. נסו שוב"; return render(); }
   ARCH.splice(ARCH.indexOf(a), 1); addSite(k, Object.assign({}, a.d, { archived: false, archivedAt: null }));
   S.sheet = null; render(); act("settings", "שחזור מסעדה · " + (a.d.name || k)); toast(`${a.d.name || k} שוחזרה`);
 }
@@ -7638,7 +8011,7 @@ function newSiteSheet(sh) {
   return `<h3 class="sht">מסעדה חדשה</h3>
     <div class="fgrp"><input class="fin" id="nsName" maxlength="40" placeholder="שם המסעדה" aria-label="שם המסעדה" value="${esc(sh.name || "")}"></div>
     <h4 class="gh">צבע</h4><div class="grp nscols" role="radiogroup" aria-label="צבע">${NS_COLORS.map((c) => `<button type="button" class="nsc" data-nsc="${c}" role="radio" aria-checked="${c === sh.color}" aria-label="${c}" style="--c:${c}"><i></i></button>`).join("")}</div>
-    <div class="grp"><button type="button" class="srow" id="nsCut" role="switch" aria-checked="${!!sh.cut}"><span class="st"><b>שעת סגירה להזמנה</b><small>בלי — אפשר להזמין עד המשלוח</small></span><span class="sw ${sh.cut ? "on" : ""}" aria-hidden="true"></span></button>
+    <div class="grp"><button type="button" class="srow" id="nsCut" role="switch" aria-checked="${!!sh.cut}"><span class="st"><b>שעת סגירה להזמנה</b><small>בלי, אפשר להזמין עד המשלוח</small></span><span class="sw ${sh.cut ? "on" : ""}" aria-hidden="true"></span></button>
     <label class="srow" id="nsHRow" ${sh.cut ? "" : "hidden"}><span class="st"><b>שעה</b></span><span class="selw"><select id="nsH" class="nssel" dir="ltr" aria-label="שעה">${NS_HOURS.map((h) => `<option value="${h}" ${h === (sh.cutH || 16) ? "selected" : ""}>${String(h).padStart(2, "0")}:00</option>`).join("")}</select><span class="schev" aria-hidden="true"></span></span></label></div>
     <p class="err">${esc(sh.err || "")}</p>
     <div class="sbtns"><button class="btn" id="nsGo" ${sh.busy ? "disabled" : ""}>${sh.busy ? `<span class="spin"></span>` : "הוספה"}</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
@@ -7660,7 +8033,7 @@ async function createSite() {
     await setDoc(doc(db, "siteRegistry", k), reg);
     await setDoc(doc(db, "sites", k, "settings", "app"), Object.assign({ offDays: [5, 6], aiCap: 400 }, cut && NS_HOURS.includes(cutH) ? { cutH } : {})); /* ברירות מחדל: שישי-שבת סגור, 400 קריאות Claude בחודש */
     await setDoc(doc(db, "sites", k, "catalog", "items"), { items: {} });
-  } catch (e) { sh.busy = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נשמר. בדוק חיבור ונסה שוב"; return render(); }
+  } catch (e) { sh.busy = false; sh.err = String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא נשמר. בדוק חיבור ונסה שוב"; return render(); }
   addSite(k, reg); act("settings", "מסעדה חדשה · " + name);
   let link = ""; try { link = await newJoin(k); } catch (e) { link = "לא נוצר. אפשר ליצור מהצוות של המסעדה"; } /* קישור הצטרפות (?j=), לא ?site= */
   try { if (link.includes("?j=")) await navigator.clipboard.writeText(link); } catch (e) {}
@@ -7710,7 +8083,7 @@ function impSheet(sh) {
   if (sh.wait) {
     const el = Date.now() - (sh.t0 || Date.now()), late = el > IMP_LATE;
     if (!late && !sh.tm) sh.tm = setTimeout(() => { sh.tm = 0; if (S.sheet === sh) render(); }, IMP_LATE - el + 300);
-    return `<h3 class="sht">ייבוא הכנות</h3><p class="bwait"><span class="spin"></span>${aiCap().capped ? aiWait() : late ? "הקריאה מתעכבת — אפשר להדביק את הרשימה כטקסט" : "ממתין לקריאה…"}</p>
+    return `<h3 class="sht">ייבוא הכנות</h3><p class="bwait"><span class="spin"></span>${aiCap().capped ? aiWait() : late ? "הקריאה מתעכבת, אפשר להדביק את הרשימה כטקסט" : "ממתין לקריאה…"}</p>
       ${late ? `<div class="sbtns"><button class="btn" id="impPaste">הדבקת רשימה</button><button class="btn ghost" id="sClose">סגירה</button></div>` : `<p class="gfoot">אפשר לסגור. התוצאה תחכה כאן לאישור שלך.</p><div class="sbtns one"><button class="btn ghost" id="sClose">סגירה</button></div>`}`;
   }
   return `<h3 class="sht">ייבוא הכנות</h3>
@@ -7855,7 +8228,7 @@ async function clearBcast() {
     await Promise.all(del.map((d) => deleteDoc(doc(db, "broadcasts", d.id))));
     const gone = new Set(del.map((d) => d.id)); S.bcList = (S.bcList || []).filter((b) => !gone.has(b.id) && b.status === "pending");
     render(); toast("ההיסטוריה נמחקה"); act("settings", "מחיקת היסטוריית הודעות");
-  } catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה — החוקים לא עודכנו" : "לא נמחק"); }
+  } catch (e) { toast(String((e && e.code) || "").includes("permission-denied") ? "אין הרשאה, החוקים לא עודכנו" : "לא נמחק"); }
 }
 async function sendBcast() {
   const B = S.bc, i = $("bcIn"), t = ((i && i.value) || "").trim();
@@ -7959,6 +8332,59 @@ function noNames(t, staff = S.staff) {
   return o;
 }
 if (typeof window !== "undefined") window.__noNames = noNames; /* לבדיקות */
+/* design-next 6: התראת מחיר. אותה השוואה כמו מילת הבדיקה בקבלה (אותו ספק + אותו שם שורה + אותה יחידה, מחיר ליחידה, 15% ומעלה),
+   רק בין קבלות שנספרות כמאושרות: לא ממתינות לקריאה, ובלי "לבדיקה" פתוח (קבלה שלא סומנה לבדיקה בכלל נחשבת מאושרת). רק כשהקבלה החדשה מ-7 הימים האחרונים. עד 3, הגבוהה ראשונה.
+   "לא להתריע": settings/app.priceMute.<מפתח> = { v: המחיר בזמן ההשתקה, n, sup, u, at }. מתריעים שוב אם המחיר עלה עוד 15% מעליו.
+   כותבים שם הבעלים ומנהל המסעדה (החוקים הקיימים, בלי שינוי) */
+const canMute = (k) => can.owner() || rawRole(S.profile, k) === "admin";
+const recOk = (r) => !!r && r.kind === "r" && r.ai !== "pending" && !(Array.isArray(r.review) && r.review.length && !r.reviewOk);
+const muteK = (s, n, u) => (nmK(s) + "|" + nmK(n) + "|" + nmK(u)).replace(/[.\/~*[\]`$#]/g, " ").slice(0, 100);
+function priceRises(rec, mute) {
+  const from = dkey(addDays(new Date(), -6)), H = {}, out = [];
+  (rec || []).filter(recOk).forEach((r) => { const s = supN(r.sup || (r.aiData || {}).supplier); if (!s) return;
+    ((r.aiData || {}).items || []).forEach((x) => { const k = nmK(x.name) && nmK(x.name) + "|" + nmK(x.unit); if (!k || !(+x.unitPrice > 0)) return; (H[s + "|" + k] = H[s + "|" + k] || []).push({ day: r.day || "", at: +r.at || 0, v: +x.unitPrice, n: String(x.name || "").slice(0, 60), u: String(x.unit || "").slice(0, 12), sup: s }); }); });
+  Object.values(H).forEach((L) => { L.sort((a, b) => a.day.localeCompare(b.day) || a.at - b.at); const c = L[L.length - 1], p = L[L.length - 2], k = muteK(c.sup, c.n, c.u);
+    const mu = mute && mute[k]; if (!p || c.day < from || (mu && !(+mu.v > 0 && c.v >= mu.v * 1.15))) return; const d = Math.round((c.v / p.v - 1) * 100);
+    if (d >= 15) out.push({ k, n: c.n, sup: c.sup, u: c.u, d, now: c.v, prev: p.v, hist: L.slice(-4).reverse().map((x) => ({ day: x.day, v: x.v })) }); });
+  return out.sort((a, b) => b.d - a.d).slice(0, 3);
+}
+const riseOf = (sh) => { const s = S.room && S.room.sites[sh.site]; return s && s.money && (s.money.rise || []).find((y) => y.k === sh.k); };
+function mutedSheet(sh) {
+  const s = S.room && S.room.sites[sh.site], m = (s && s.money && s.money.mute) || {}, L = Object.entries(m).filter(([, v]) => v && v.n);
+  return `<h3>התראות מחיר מושתקות</h3>${L.length ? grp(L.map(([k, v]) => row({ t: esc(v.n), s: `${esc(v.sup || "")}${+v.v > 0 ? `, <bdi dir="ltr">₪${num(v.v)}</bdi>${v.u ? ` ל${esc(v.u)}` : ""}` : ""}`, right: `<button class="tlink" data-unmute="${esc(k)}">להתריע שוב</button>` }))) : `<p class="hint">אין התראות מושתקות</p>`}
+    <p class="gfoot">מושתק מתריע שוב לבד אם המחיר עולה עוד <bdi dir="ltr">15%</bdi>.</p><div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
+}
+async function priceMuteSet(site, k, val) {
+  try { await setDoc(doc(db, SCP(site, "settings"), "app"), { priceMute: { [k]: val } }, { merge: true }); }
+  catch (e) { toast("לא נשמר"); return false; }
+  delete MCACHE[site]; if (S.room) S.room.at = 0; loadRoom(); return true;
+}
+function riseSheet(sh) {
+  const x = riseOf(sh); if (!x) return `<h3>התראת מחיר</h3><div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
+  const u = x.u ? `ל${esc(x.u)}. ` : "";
+  return `<h3>${esc(x.n)}</h3><div class="pbig"><b class="big" dir="ltr"><small>₪</small>${num(x.now)}</b><p>${u}<b class="kup" dir="ltr">+${num(x.d)}%</b> מהקבלה הקודמת</p></div>
+    <h4 class="gh rgh"><span>${x.hist.length === 1 ? "קבלה אחרונה" : `${num(x.hist.length)} קבלות אחרונות`}</span><span>${esc(x.sup)}</span></h4>
+    <div class="grp hist">${x.hist.map((h, i) => `<div class="srow${i ? "" : " now"}"><span class="st"><b>${h.day ? `${DN[parse(h.day).getDay()]}, <bdi dir="ltr">${ddmm(parse(h.day))}</bdi>` : ""}</b></span><span class="sv" dir="ltr">₪${num(h.v)}</span></div>`).join("")}</div>
+    ${canMute(sh.site) ? `<div class="grp"><button class="srow center" id="riseMute"><b class="tlink">לא להתריע על ${esc(x.n)}</b></button></div>` : ""}
+    <div class="sbtns"><button class="btn ghost" id="sClose">סגירה</button></div>`;
+}
+async function riseMute() {
+  const sh = S.sheet, s = sh && S.room && S.room.sites[sh.site], x = riseOf(sh || {}); if (!x || !canMute(sh.site)) return;
+  if (!(await priceMuteSet(sh.site, x.k, { v: x.now, n: x.n, sup: x.sup, u: x.u, at: Date.now() }))) return;
+  s.money.rise = s.money.rise.filter((y) => y !== x); s.money.mute = Object.assign({}, s.money.mute, { [x.k]: { v: x.now, n: x.n, sup: x.sup, u: x.u } }); S.sheet = null; render(); toast(`לא נתריע על ${x.n}`);
+}
+async function riseUnmute(k) {
+  const sh = S.sheet, s = sh && S.room && S.room.sites[sh.site]; if (!s || !canMute(sh.site)) return;
+  if (!(await priceMuteSet(sh.site, k, deleteField()))) return;
+  if (s.money && s.money.mute) { s.money.mute = Object.assign({}, s.money.mute); delete s.money.mute[k]; } render(); toast("נתריע שוב");
+}
+/* קו קטן של 8 שבועות: הזמן מימין לשמאל (השבוע הכי חדש בשמאל, עם נקודה), יעד מקווקו. null = שבוע בלי נתונים (מדלגים) */
+function spark(v, w, h, tg) {
+  const P = (v || []).map((y, i) => [i, y]).filter((p) => p[1] != null && isFinite(p[1])); if (P.length < 2) return "";
+  const ys = P.map((p) => p[1]).concat(tg != null ? [tg] : []), lo = Math.min(...ys), sp = Math.max(...ys) - lo || 1, n = v.length - 1;
+  const X = (i) => (w - (i / n) * w).toFixed(1), Y = (y) => (3 + (1 - (y - lo) / sp) * (h - 6)).toFixed(1), L = P[P.length - 1];
+  return `<svg class="spark" width="${num(w)}" height="${num(h)}" viewBox="0 0 ${num(w)} ${num(h)}" aria-hidden="true">${tg != null ? `<line class="tgt" x1="0" x2="${num(w)}" y1="${Y(tg)}" y2="${Y(tg)}"/>` : ""}<polyline points="${P.map(([i, y]) => X(i) + "," + Y(y)).join(" ")}"/><circle cx="${X(L[0])}" cy="${Y(L[1])}" r="${h > 30 ? 3 : 2.5}"/></svg>`;
+}
 /* סקירה: טאב ראשון לבעלים עם יותר ממסעדה אחת. מסעדה אחת בכל פעם, מעבר בלי טעינה ובלי קריאה חדשה */
 function viewOverview() {
   if (!S.room || Date.now() - S.room.at > 90000) loadRoom();
@@ -7967,15 +8393,24 @@ function viewOverview() {
   const k = L.some((x) => x.k === S.rk) ? S.rk : (L[0] || {}).k, s = S.room.sites[k], here = k === S.site;
   let h = `<div data-room class="ov">`;
   if (!s || s.err) return h + `<div class="card ovhero"><p class="cap">${s ? "לא נטען" : "טוען…"}</p></div></div>`;
-  const M = s.money, TG = tgtOf(M && M.set), r1 = (v) => Math.round(v * 10) / 10;
+  const M = s.money, TG = tgtOf(M && M.set), r1 = (v) => Math.round(v * 10) / 10, W8 = M && M.w8;
   const CH = `<span class="schev" aria-hidden="true"></span>`;
+  /* משפט שבוע מול שבוע במילה ("עלה"/"ירד"). עלייה בעלות = כתום, ירידה = ירוק: רק על המספר, עם המילה */
+  const wkSay = (v) => { if (!v || v[7] == null || v[6] == null) return ""; const d = r1(v[7] - v[6]), t = !d ? "כמו השבוע שעבר" : `${d > 0 ? "עלה" : "ירד"} <b class="${d > 0 ? "kup" : "kdn"}" dir="ltr">${d > 0 ? "+" + fmt(d) : fmt(-d)}</b> נק׳ מהשבוע שעבר`; return t; };
   /* מספר אחד גדול: Food cost, משפט אחד ומד יעד (עד היעד אפור, מעבר ליעד כתום) */
   const gauge = (v, tg, unc) => { const mx = Math.max(tg / 0.75, v * 1.05), a = (Math.min(v, tg) / mx) * 100, o = v > tg ? ((v - tg) / mx) * 100 : 0, t = (tg / mx) * 100;
     return `<div class="gauge${unc ? " unc" : ""}" role="img" aria-label="${fmt(r1(v))}% מתוך יעד ${fmt(tg)}%"><i class="ok" style="width:${a.toFixed(2)}%"></i>${o ? `<i class="over" style="inset-inline-start:calc(${t.toFixed(2)}% + 2px);width:calc(${o.toFixed(2)}% - 2px)"></i>` : ""}</div><div class="gauge-k"><span style="inset-inline-start:${t.toFixed(2)}%">יעד <bdi dir="ltr">${fmt(tg)}%</bdi></span></div>`; };
   if (M && M.fc != null) {
     const d = r1(M.fc - TG.f), pt = M.sales > 0 ? ils(Math.round((M.salesN || M.sales) / 100)) : ""; /* נקודת Food cost = 1% מהמכירות נטו */
     const say = !d ? "בדיוק ביעד." : `<span dir="ltr">${fmt(Math.abs(d))}</span> נקודות ${d > 0 ? "מעל היעד" : "מתחת ליעד"}.${pt ? ` כל נקודה היא בערך <span dir="ltr">${pt}</span> בחודש.` : ""}`;
-    h += `<${here && can.admin() ? 'button class="card ovhero metric" data-go="data"' : 'div class="card ovhero metric"'}><span class="lbl"><span>Food cost · 8 שבועות</span>${here && can.admin() ? CH : ""}</span><b class="big${M.fr && (M.fr.implausible || M.fr.wide) ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(M.fc)}" data-dec="1">${fmt(r1(M.fc))}</span><small>%</small></b>${M.fr && !M.fr.implausible && rngTxt(M.fr) ? `<span class="mrng" dir="ltr">(${rngTxt(M.fr)})</span>` : ""}${M.fr && !M.fr.exact ? (M.fr.wide ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[M.fr.conf]}">${CONFW[M.fr.conf]}</span>`) : ""}${M.young ? `<span class="say warnt myoung">עוד לא אמין — פחות מ-4 שבועות נתונים</span>` : ""}${M.fr && M.fr.implausible ? `<span class="say badt mimp">${whyLine({ k: "implausible", dir: M.fr.implausible, m: "food" })}</span>` : `${praiseOf(M.fr, TG.f) ? `<span class="say">${say}</span>` : tgtSay(M.fr, TG.f)}${gauge(M.fc, TG.f, !praiseOf(M.fr, TG.f))}`}</${here && can.admin() ? "button" : "div"}>`;
+    h += `<${here && can.admin() ? 'button class="card ovhero metric" data-go="data"' : 'div class="card ovhero metric"'}><span class="lbl"><span>Food cost · 8 שבועות</span>${here && can.admin() ? CH : ""}</span><b class="big${M.fr && (M.fr.implausible || M.fr.wide) ? " dim" : ""}" dir="ltr"><span data-cnt="${r1(M.fc)}" data-dec="1">${fmt(r1(M.fc))}</span><small>%</small></b>${M.fr && !M.fr.implausible && rngTxt(M.fr) ? `<span class="mrng" dir="ltr">(${rngTxt(M.fr)})</span>` : ""}${M.fr && !M.fr.exact ? (M.fr.wide ? `<span class="mconf mwide">${WIDE_TXT}</span>` : `<span class="mconf ${CONFC[M.fr.conf]}">${CONFW[M.fr.conf]}</span>`) : ""}${M.young ? `<span class="say warnt myoung">עוד לא אמין, פחות מ-4 שבועות נתונים</span>` : ""}${M.fr && M.fr.implausible ? `<span class="say badt mimp">${whyLine({ k: "implausible", dir: M.fr.implausible, m: "food" })}</span>` : `${praiseOf(M.fr, TG.f) ? `<span class="say">${say}</span>` : tgtSay(M.fr, TG.f)}${gauge(M.fc, TG.f, !praiseOf(M.fr, TG.f))}`}</${here && can.admin() ? "button" : "div"}>`;
+    /* השבוע: Food cost, Prime cost וקניות כשורות ברשימה, עם קו קטן של 8 שבועות. ערך 7 הימים האחרונים (עד אתמול) ומשפט מול השבוע שעבר. הכרטיס נשאר: מספר, יעד ומד */
+    const kr = [], go = here && can.admin(), FC = W8 && W8.fc, PC = W8 && W8.pc, BY = W8 && W8.buy;
+    const kv = (t, s, sp, v) => `<${go ? 'button data-go="data"' : "div"} class="srow tall kpr"><span class="st"><b>${t}</b>${s ? `<small>${s}</small>` : ""}</span><span class="kv">${sp}<span class="v" dir="ltr">${v}</span></span>${go ? CH : ""}</${go ? "button" : "div"}>`;
+    if (FC && FC[7] != null) kr.push(kv("Food cost", wkSay(FC), spark(FC, 48, 24, TG.f), `${fmt(r1(FC[7]))}%`));
+    if (PC && PC[7] != null) kr.push(kv("Prime cost", wkSay(PC), spark(PC, 48, 24), `${fmt(r1(PC[7]))}%`));
+    if (BY && BY.some((x) => x > 0)) { const d = Math.round(BY[7] - BY[6]); kr.push(kv("קניות מאושרות", BY[6] > 0 || BY[7] > 0 ? (d ? `${d > 0 ? "עלו" : "ירדו"} <b dir="ltr">${ils(Math.abs(d))}</b> מהשבוע שעבר` : "כמו השבוע שעבר") : "", spark(BY, 48, 24), ils(BY[7]))); }
+    if (kr.length) h += `<div class="shrow"><h2 class="sh">השבוע</h2>${go ? `<button class="tlink" data-go="data">נתונים</button>` : ""}</div><div class="grp">${kr.join("")}</div>`;
   } else h += `<div class="card ovhero metric"><span class="lbl"><span>פחת, 7 ימים</span></span>${s.wBoxes ? `<b class="big" dir="ltr"><span data-cnt="${+s.wPct || 0}" data-dec="1">${fmt(s.wPct)}</span><small>%</small></b>` : `<b class="big nrec">לא נרשם</b>`}<span class="say">${s.wBoxes ? `נזרקו ${fmt(s.wBoxes)} קופסאות.` : "לא נרשם פחת."}</span></div>`;
   /* היום: הזמנה הבאה (tomSt), ייצור וקבלות, כל אחת עם שברון אל הלשונית שלה */
   const ln = (go, ic, t, v, cls) => { const b = here && go; return `<${b ? `button data-go="${go}"` : "div"} class="srow ic"><span class="ib">${ic}</span><span class="st"><b>${t}</b></span><span class="sv ${cls || ""}">${v}</span>${b ? CH : ""}</${b ? "button" : "div"}>`; };
@@ -7997,6 +8432,8 @@ function viewOverview() {
   const rows = grpAlerts(s).map(([c, t]) => { const [a, ...b] = String(t).split(" · "); return `<div class="srow ic tall"><span class="ib">${SVG(AI[c] || AI.warn)}</span><span class="st"><b class="${c === "bad" ? "badt" : ""}">${esc(a)}</b>${b.length ? `<small>${esc(b.join(" · "))}</small>` : ""}</span></div>`; });
   if (can.owner()) { const r = (s.reps || [])[0];
     rows.unshift(r ? `<div class="srow ic tall ovai"><span class="ib">${SVG(IC.doc)}</span><span class="st"><b>${S.staffOk ? esc(noNames((r.ai && r.ai.headline) || r.headline || r.title || "דוח")) : "טוען…"}</b><small>${S.staffOk ? esc(noNames(r.title || "דוח")) : "דוח"}, <span dir="ltr">${ddmm(new Date(r.at))}</span></small></span><span class="acts"><button class="tlink" id="repRef">רענן</button><button class="tlink del" data-repdel="${esc(k + "|" + r.id)}">מחק</button></span></div>` : `<div class="srow ic ovai"><span class="ib">${SVG(IC.doc)}</span><span class="st"><b>עוד אין דוחות</b></span><span class="acts"><button class="tlink" id="repRef">רענן</button></span></div>`); }
+  { const nm = Object.values((M && M.mute) || {}).filter((v) => v && v.n).length; if (nm && canMute(k)) rows.push(`<button class="srow ic" data-muted="1"><span class="ib">${SVG(TRD)}</span><span class="st"><b>התראות מחיר מושתקות</b></span><span class="sv" dir="ltr">${num(nm)}</span>${CH}</button>`); }
+  ((M && M.rise) || []).slice().reverse().forEach((x) => { rows.unshift(`<button class="srow ic tall prise" data-rise="${esc(x.k)}"><span class="ib">${SVG(TRD)}</span><span class="st"><b>${esc(x.n)} <bdi dir="ltr" class="kup">+${num(x.d)}%</bdi> מהקבלה הקודמת</b><small>${esc(x.sup)}, <bdi dir="ltr">₪${num(x.now)}</bdi>${x.u ? ` ל${esc(x.u)}` : ""} במקום <bdi dir="ltr">₪${num(x.prev)}</bdi></small></span>${CH}</button>`); });
   if (rows.length) h += `<h2 class="sh">שווה לדעת</h2><div class="grp">${rows.join("")}</div>${can.owner() ? `<p class="gfoot ovfoot">דוחות נמחקים אוטומטית אחרי <span dir="ltr">30</span> יום</p>` : ""}`;
   return h + `</div>`;
 }
@@ -8029,8 +8466,13 @@ function grpSum(x, qo, qp, qw, cat, rep, money, from, today) {
   const msP = money ? moneyStats(pmy, { days: cut(money.days), rec: (money.rec || []).filter((r) => !(r.day || "").startsWith(pmy) || r.day.slice(8, 10) <= dom), months: {}, up: {} }) : null, wk = [];
   if (money) { const w0 = pm.getTime(), nW = Math.floor((now.getTime() - w0) / 6048e5) + 1; for (let i = 0; i < nW; i++) wk.push(0);
     (money.rec || []).forEach((r) => { if (!(+r.amt > 0) || !r.day) return; const i = Math.floor((parse(r.day).getTime() - w0) / 6048e5); if (i >= 0 && i < nW) wk[i] += +r.amt; }); }
+  /* design-next 2: 8 שבועות של 7 ימים שלמים עד אתמול (היום עוד בלי דוח קופה ומנפח את האחוז). rangeOf עם win כמו fcWeeks ל-Food cost, Prime cost וקניות. קניות = רק קבלות שאושרו (לא ממתינות לקריאה ולא "לבדיקה") */
+  const w8 = money ? { fc: [], pc: [], buy: [] } : null;
+  if (w8) for (let i = 0; i < 8; i++) { const a = addDays(now, -56 + 7 * i), f = dkey(a), t = dkey(addDays(a, 6)), R = rangeOf("8w", money, [f, t]);
+    w8.fc.push(R.sales > 0 && R.food ? R.food.best : null); w8.pc.push(R.sales > 0 && R.prime ? R.prime.best : null);
+    w8.buy.push((money.rec || []).filter((r) => r.day >= f && r.day <= t && +r.amt > 0 && r.ai !== "pending" && !(Array.isArray(r.review) && r.review.length && !r.reviewOk)).reduce((s, r) => s + +r.amt, 0)); }
   return { k: x.k, n: x.f, noCut: !!x.noCut, tk, orders: n, boxes, late, shortN, shortDays, wBoxes, wPct: boxes ? Math.round((wBoxes / boxes) * 1000) / 10 : 0, topW, tomSt, tomBoxes: sum(qtySource(t)) || sum(t.items || {}), todBoxes: sum(qtySource(orders[today])),
-    money: (ms && ms.sales > 0) || (mr && mr.sales > 0) ? { recN: (money.rec || []).filter((r) => (r.day || "").startsWith(ymOf(now)) && +r.amt > 0).length, sales: ms.sales, salesN: ms.salesN, food: ms.food, fc: mr.food ? mr.food.best : null, fr: mr.food, pc: mr.prime ? mr.prime.best : null, pr: mr.prime, young: mr.young, set: money.set || null, fcPrev: msP && msP.sales > 0 && ms.src === "z" && msP.src === "z" ? msP.fc : null, /* רק דוחות קופה מול דוחות קופה, אותם ימים */ wk } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter(repLive) };
+    money: (ms && ms.sales > 0) || (mr && mr.sales > 0) ? { recN: (money.rec || []).filter((r) => (r.day || "").startsWith(ymOf(now)) && +r.amt > 0).length, sales: ms.sales, salesN: ms.salesN, food: ms.food, fc: mr.food ? mr.food.best : null, fr: mr.food, pc: mr.prime ? mr.prime.best : null, pr: mr.prime, young: mr.young, set: money.set || null, fcPrev: msP && msP.sales > 0 && ms.src === "z" && msP.src === "z" ? msP.fc : null, /* רק דוחות קופה מול דוחות קופה, אותם ימים */ wk, w8, rise: perm("money") ? priceRises(money.rec, (money.set && money.set.priceMute) || null) : [], mute: (money.set && money.set.priceMute) || null } : null, reps: rep.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter(repLive) };
 }
 /* מספר כסף רחב מדי, לא סביר או בביטחון נמוך — לא "הכול תקין" */
 const moneyUnsure = (M) => !!M && [M.fr, M.pr].some((r) => r && (r.wide || r.implausible || r.conf === "low"));
@@ -8309,6 +8751,10 @@ function viewSheet() {
     b = icardSheet(sh);
   } else if (sh.type === "photo") {
     b = photoSheet(sh);
+  } else if (sh.type === "rise") {
+    b = riseSheet(sh);
+  } else if (sh.type === "muted") {
+    b = mutedSheet(sh);
   } else if (sh.type === "export") {
     const X = [["dishes", "שקילות"], ["book", "מתכונים"], ["receipts", "קבלות ספקים (סכומים)"], ["photos", "תמונות (קובץ להורדה)"]];
     b = `<h3>מה לכלול בייצוא?</h3><div class="xlist">${X.map(([k, l]) => `<button class="xrow" data-xinc="${k}" aria-pressed="${!!sh.inc[k]}"><span class="xbox">${sh.inc[k] ? "✓" : ""}</span>${l}</button>`).join("")}</div>
@@ -8365,6 +8811,27 @@ function viewSheet() {
 }
 /* סקירה: לבעלים ולמנהל ראשי שרואים יותר ממסעדה אחת */
 const ovOn = () => can.group() && grpSites().filter((x) => mySites().some((y) => y.k === x.k)).length > 1;
+/* min: null = עוד לא נבחר. אז בהזמנה ובייצור הסיור מתחיל ככמוסה (לא מכסה שורות, סטפרים או את סרגל השליחה), ובסקירה ובנתונים פתוח */
+const tourMin = () => { const T = tourSt(); return T.min === null ? ["order", "prod"].includes(S.tab) : T.min; };
+/* design-next 4: סיור קצר, בדמו בלבד. שלושה צעדים שמסומנים מעצמם כשהמבקר עושה אותם: שליחת הזמנה, פתיחת ייצור אחרי השליחה, צילום קבלה.
+   לוח שקט מעל הסרגל, X מכווץ לכמוסה. נשמר רק בטלפון (localStorage בתוך try/catch), בלי שום כתיבה לשרת */
+const TOUR_K = "mizo-demo-tour";
+function tourSt() {
+  if (!S.tour) { let v = null; try { v = JSON.parse(localStorage.getItem(TOUR_K) || "null"); } catch (e) { v = null; }
+    S.tour = v && Array.isArray(v.s) ? { s: [0, 1, 2].map((i) => (v.s[i] ? 1 : 0)), min: typeof v.min === "boolean" ? v.min : null, off: !!v.off } : { s: [0, 0, 0], min: null, off: false }; }
+  return S.tour;
+}
+const tourSave = () => { const T = S.tour; try { localStorage.setItem(TOUR_K, JSON.stringify({ s: T.s, min: T.min, off: T.off })); } catch (e) {} };
+const tourSteps = () => [["שולחים הזמנה", "בלשונית הזמנה", "order"], ["רואים בייצור", "בלשונית ייצור", "prod"]].concat(perm("photos") ? [["מצלמים קבלה", "בתפריט עוד, בלשונית הזמנה", "photos"]] : []);
+const tourOn = () => IS_DEMO && can.order() && !tourSt().off;
+function tourTick(i) { if (!tourOn()) return; const T = tourSt(); if (T.s[i] || (i === 1 && !T.s[0]) || i >= tourSteps().length) return; T.s[i] = 1; T.fresh = { i, at: Date.now() }; if (tourSteps().every((_, j) => T.s[j])) T.min = false; /* הצעד האחרון: פותחים את "סיימתם", תגובה לפעולה של המבקר */ tourSave(); renderSoon(); }
+function tourHtml() {
+  const T = tourSt(), L = tourSteps(), n = L.length, d = L.filter((_, i) => T.s[i]).length, all = d === n, cur = all ? -1 : L.findIndex((_, i) => !T.s[i]);
+  if (tourMin()) return all ? "" : `<button class="tmini" id="tourOpen" aria-label="פתיחת הסיור"><svg class="tring" viewBox="0 0 28 28" aria-hidden="true"><circle class="tr" cx="14" cy="14" r="11"/><circle class="pr" cx="14" cy="14" r="11" stroke-dasharray="69.1" stroke-dashoffset="${(69.1 * (1 - d / n)).toFixed(1)}"/></svg><span>סיור, <bdi dir="ltr">${num(d)}</bdi> מתוך ${num(n)}</span></button>`;
+  const fr = T.fresh && Date.now() - T.fresh.at < 1500 ? T.fresh.i : -1;
+  const st = L.map(([t, s, go], i) => `<button class="tstep${T.s[i] ? " done" : ""}${i === fr ? " draw" : ""}${i === cur ? " now" : ""}" data-tourgo="${esc(go)}"><span class="tdot">${T.s[i] ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="tick" d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</span><span class="st"><b>${esc(t)}</b>${i === cur ? `<small>${esc(s)}</small>` : ""}</span>${i === cur ? '<span class="schev" aria-hidden="true"></span>' : ""}</button>`).join("");
+  return `<section class="coach" aria-label="סיור קצר"><div class="chd"><b>${all ? "סיימתם את הסיור" : "סיור קצר"}</b><span><bdi dir="ltr">${num(d)}</bdi> מתוך ${num(n)}</span><button class="tx" id="tourX" aria-label="${all ? "סגירת הסיור" : "כיווץ הסיור"}">${SVG('<path d="M6 6l12 12M18 6L6 18"/>')}</button></div>${st}${all ? `<p class="cfoot">רוצים את זה במסעדה שלכם? <button class="tlink" id="tourWa">דברו איתנו</button></p>` : ""}</section>`;
+}
 function tabsFor() {
   const t = [];
   if (ovOn()) t.push(["room", "סקירה"]);
@@ -8454,6 +8921,9 @@ function viewApp() {
   const navOn = !!nav && !["settings", "control", "dishes"].includes(S.tab), barH = S.tab === "order" ? barHtml() : S.tab === "prod" ? prodBar() : S.tab === "dishes" && S.lab === "book" && S.re ? `<div class="bar sbar"><button class="btn big full" id="reSave">שמור</button></div>` : "";
   document.body.classList.toggle("has-tabbar", navOn);
   document.body.classList.toggle("has-bar", !!barH);
+  const coach = navOn && !S.sheet && tourOn() ? tourHtml() : ""; /* דמו בלבד */
+  document.body.classList.toggle("has-coach", coach.startsWith("<section"));
+  document.body.classList.toggle("has-tmini", coach.startsWith("<button"));
   const glow = S.tab === "prod" && S.allDone ? "g" : S.tab === "control" || S.tab === "settings" ? "n" : "";
   const bk = S.tab === "dishes" && S.lab === "book" && perm("book") && !S.re;
   const RS = S.tab === "room" ? roomSites() : [], rk = RS.some((x) => x.k === S.rk) ? S.rk : (RS[0] || {}).k;
@@ -8462,7 +8932,7 @@ function viewApp() {
   return `<div class="glow ${glow}" aria-hidden="true"></div><header><div class="wrap"><div class="navbar">${back || rkSw || (mySites().length > 1 ? `<button class="glassbtn cap sitesw" id="siteSw" aria-label="החלפת מסעדה">${esc(siteOf(S.site).f)} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>` : "<span></span>")}<b class="navtitle">${esc(title)}</b>${sub2 || "<span></span>"}</div>
       ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : IS_DEMO && !rkSw && mySites().length <= 1 && !back ? `<p class="eyebrow dsite">${esc(siteOf(S.site).f)}</p>` /* דמו: שם המסעדה שהמבקר בחר, מעל הכותרת */ : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
       ${showDays ? `<div class="days" role="group" aria-label="יום משלוח"><i class="dpill" aria-hidden="true"></i>${days}</div>` : ""}</div></header>
-    <main class="wrap ${S.enter ? "enter" : ""}">${pendBan()}${body}</main>${barH}${navOn ? nav : ""}${viewSheet()}`;
+    <main class="wrap ${S.enter ? "enter" : ""}">${pendBan()}${body}</main>${barH}${navOn ? nav : ""}${coach}${viewSheet()}`;
 }
 let rq = 0;
 try { console.log("%cmizo", "font:700 13px system-ui;color:#888"); } catch (e) {}
@@ -8475,7 +8945,8 @@ function render() {
   if (askQ && S.sheet !== askQ.sh) { const q = askQ; askQ = null; setTimeout(() => q.res(null)); }
   prodDayInit();
   renderInner();
-  if (!S.user || S.landing) lpCine();
+  if (!S.user || S.landing) { lpCine(); lpMani(); }
+  hcMount();
   sheetTM();
   navWatch();
   ovWatch();
@@ -8536,7 +9007,7 @@ function renderInner() {
   else if (!S.site || !ACCESS.includes(role())) html = viewWaiting();
   else if (isSnap()) html = viewSnap();
   else html = viewApp();
-  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "askQ", "gAskQ", "wG", "ideaIn", "bcIn", "pwrU", "npA", "npB", "nsName", "nsKey", "impTxt"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
+  const keep = {}; ["n", "u", "p", "note", "vapid", "nN", "lpN", "lpP", "askQ", "gAskQ", "wG", "ideaIn", "bcIn", "pwrU", "npA", "npB", "nsName", "nsKey", "impTxt"].forEach((id) => { const el = $(id); if (el) keep[id] = el.value; });
   const oSh = S.sheet ? null : document.querySelector("#app > .sheet"), oSc = oSh && $("scrim");
   const oPop = S.pop ? null : document.querySelector("#app .pop"), oPopP = oPop && oPop.parentNode;
   /* תנועה 4 (עדכון חי) ו-3 (שורת הסטטוס): לפני ה-morph זוכרים ערכים, אחריו מדגישים מה שהשתנה אצל מישהו אחר */
@@ -8578,6 +9049,10 @@ const app = $("app");
 app.addEventListener("submit", (e) => {
   if (e.target.id === "authF") return S.authMode === "signup" ? doSignup(e) : doLogin(e);
   e.preventDefault();
+  /* design-next 5d: טופס הפרטים בדף הבית לא נשלח לשום שרת. עם וואטסאפ: נפתחת הודעה עם הפרטים, והמבקר שולח בעצמו */
+  if (e.target.id === "lpForm") { const n = ($("lpN").value || "").trim().slice(0, 60), ph = ($("lpP").value || "").trim().slice(0, 20); S.lpSent = true;
+    if (LP_WA) { const m = `שלום, אשמח לדמו של מיזו.${n ? " שם: " + n + "." : ""}${ph ? " טלפון: " + ph + "." : ""} סוג המטבח: ${S.lpKind || "מסעדה"}.`; window.open(LP_WA.split("?")[0] + "?text=" + encodeURIComponent(m), "_blank", "noopener"); }
+    render(); return; }
   if (e.target.id === "addF") { const n = $("nN").value.trim(), c = $("nC").value, d = parseInt($("nD").value, 10) || 4; const dup = n && items(true).find((x) => String(x.n).trim() === n); if (dup) { toast(dup.active === false ? "כבר יש הכנה בשם הזה (מוסתרת)" : "כבר יש הכנה בשם הזה"); $("nN").focus(); } else if (n) { S.lastCat = c; addItem(n, c, d); $("nN").value = ""; } else { toast("כתבו שם להכנה"); $("nN").focus(); } }
   if (e.target.id === "dAddF") addDish($("dN").value);
   if (e.target.id === "askF") askClaude();
@@ -8944,7 +9419,16 @@ app.addEventListener("click", (e) => {
   if (d.site && !S.site || (d.site && t.classList.contains("sitec"))) { chooseSite(d.site); return; }
   if (d.askdel) { S.asks = (S.asks || []).filter((a) => a.id !== d.askdel); render(); deleteDoc(doc(db, CP("asks"), d.askdel)).catch(() => toast("לא נמחק")); return; }
   if (t.id === "consentOk") { saveConsent(); return; }
-  if (t.id === "demoWa") { if (window.__DEMO_WA) window.open(window.__DEMO_WA, "_blank", "noopener"); return; }
+  if (d.rise != null || d.muted) { const L = roomSites(), k = L.some((x) => x.k === S.rk) ? S.rk : (L[0] || {}).k; S.sheet = d.muted ? { type: "muted", site: k } : { type: "rise", site: k, k: d.rise }; render(); return; }
+  if (d.unmute) { riseUnmute(d.unmute); return; }
+  if (t.id === "riseMute") { riseMute(); return; }
+  if (t.id === "lpSw") { S.lpSw = !S.lpSw; render(); return; }
+  if (d.lpq != null) { const i = +d.lpq; S.lpFaq = (S.lpFaq == null ? 0 : S.lpFaq) === i ? -1 : i; render(); return; }
+  if (d.lpk) { S.lpKind = d.lpk; render(); return; }
+  if (t.id === "tourX") { const T = tourSt(), L = tourSteps(); if (L.every((_, i) => T.s[i])) T.off = true; else T.min = true; tourSave(); render(); return; }
+  if (t.id === "tourOpen") { tourSt().min = false; tourSave(); render(); return; }
+  if (d.tourgo) { if (d.tourgo === "photos") { S.prevTab = S.tab; S.tab = "dishes"; S.lab = "photos"; S.rv = null; S.re = null; S.enter = true; render(); jumpTo(0); return; } const tb = document.querySelector(`.tab[data-tab="${CSS.escape(d.tourgo)}"]`); if (tb && d.tourgo !== S.tab) tb.click(); return; }
+  if (t.id === "tourWa" || t.id === "demoWa") { if (window.__DEMO_WA) window.open(window.__DEMO_WA, "_blank", "noopener"); return; }
   if (t.id === "legalGo") { window.open((IS_DEMO ? "../" : "") + "legal/privacy.html", "_blank", "noopener"); return; }
   if (t.id === "siteSw") { sessionSafe("rosie-site", ""); location.reload(); return; }
   if (t.id === "lpBack" || t.id === "lpBack2") { if (history.state && history.state.mzLp) { history.back(); return; } S.landing = false; render(); jumpTo(0); return; }
@@ -8975,7 +9459,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "themeBtn") { const th = document.documentElement.dataset.theme === "light" ? "dark" : "light"; document.documentElement.dataset.theme = th; store("rosie-theme", th); render(); }
   else if (d.jump) { const el = $(d.jump); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
   else if (d.day) { flush(); runAutoNow(); S.day = d.day; S.dayMan = S.tab === "prod"; S.pAuto = false; watchDay(); render(); }
-  else if (d.tab) { if (Date.now() - lensSup < 450 && !t.__lens) return; if (tabLP.fired && d.tab === "items" && Date.now() - tabLP.fired < 1500) { tabLP.fired = 0; return; } tabLP.fired = 0; if (d.tab === S.tab) { window.scrollTo({ top: 0, behavior: "smooth" }); return; } S.scrollMem = S.scrollMem || {}; S.scrollMem[S.tab] = window.scrollY; S.tab = d.tab; S.enter = true; S.bounce = d.tab; if (d.tab === "data" && !S.data) loadData(); render(); jumpTo(S.scrollMem[d.tab] || 0); onScroll(); }
+  else if (d.tab) { if (Date.now() - lensSup < 450 && !t.__lens) return; if (tabLP.fired && d.tab === "items" && Date.now() - tabLP.fired < 1500) { tabLP.fired = 0; return; } tabLP.fired = 0; if (d.tab === S.tab) { window.scrollTo({ top: 0, behavior: "smooth" }); return; } S.scrollMem = S.scrollMem || {}; S.scrollMem[S.tab] = window.scrollY; S.tab = d.tab; if (d.tab === "prod") tourTick(1); S.enter = true; S.bounce = d.tab; if (d.tab === "data" && !S.data) loadData(); render(); jumpTo(S.scrollMem[d.tab] || 0); onScroll(); }
   else if (d.goapprove) { flush(); runAutoNow(); S.tab = "prod"; S.dayMan = true; S.pAuto = false; if (S.day !== d.goapprove) { S.day = d.goapprove; watchDay(); } render(); jumpTo(0); }
   else if (d.inc) bump(d.inc, 1);
   else if (d.dec) bump(d.dec, -1);
@@ -9171,6 +9655,7 @@ app.addEventListener("click", (e) => {
   else if (t.id === "udOk" && sh && sh.type === "udel" && uiOk(t, "udel", can.owner())) deleteUser(sh.uid);
   else if (t.id === "pEdit" && canReview()) { sh.edit = true; render(); }
   else if (t.id === "pEditX") { sh.edit = false; render(); }
+  else if (t.id === "rvMore") { sh.allL = true; render(); }
   else if (t.id === "pDel") { const id = sh.id, p0 = S.photos[id] || {}; ask({ t: "למחוק את התמונה?", ok: "מחיקה", danger: true }).then((ok) => { if (ok) Promise.all([deleteDoc(doc(db, CP("photos"), id)), deleteDoc(doc(db, CP("photoData"), id))]).then(() => (p0.kind === "z" && p0.day ? zClear(p0.day, id, p0.aiData) : null)).then(() => { moneyDirty(); delete S.photos[id]; S.sheet = null; render(); toast("נמחק"); }).catch(() => toast("לא נמחק")); }); }
   else if (t.id === "expOrders") exportCSV("orders");
   else if (t.id === "expWaste") exportCSV("waste");
@@ -9240,6 +9725,9 @@ window.addEventListener("scroll", () => { if (lp) { clearTimeout(lp.t); lp = nul
 app.addEventListener("contextmenu", (e) => { if (e.target.closest(".row[data-k]") && S.tab === "order") e.preventDefault(); });
 function chartTip(e) { const g = e.target.closest && e.target.closest(".b"); if (!g) return; const box = g.closest(".chartbox"); box.querySelector(".ctip").textContent = g.dataset.tip; box.querySelectorAll(".b.on").forEach((x) => x.classList.remove("on")); g.classList.add("on"); }
 app.addEventListener("pointerover", chartTip);
+/* גרפים בעברית: המצביע על עמודה מחליף את העמודה המוצגת. יציאה מהגרף מחזירה למסומנת */
+app.addEventListener("pointerover", (e) => { const g = e.target.closest && e.target.closest(".hc-plot [data-hci]"); if (g) hcHover(g.closest(".hc-plot"), +g.dataset.hci); });
+app.addEventListener("pointerout", (e) => { const el = e.target.closest && e.target.closest(".hc-plot"); if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) hcHover(el, null); });
 app.addEventListener("pointerdown", chartTip);
 /* כותרת גדולה שמתכווצת בגלילה, כמו באייפון */
 /* גלילה: כותרת גדולה שמתכווצת לסרגל העליון (רק opacity/transform, פעם בפריים) */
@@ -9253,6 +9741,18 @@ function jumpSpy() {
 }
 /* נחיתה: גלילה קולנועית. שלושה שלבים, רטט קצר במעבר שלב, הטלפון נוטה קלות */
 let lpStep = -1;
+/* design-next 5c/e: המניפסט נצבע מילה אחרי מילה לפי הגלילה (רק opacity, מאזין passive). פחות תנועה: הכול מלא מיד.
+   "יום במטבח" עולה פעם אחת כשהוא נכנס למסך (IntersectionObserver), והמצב נשמר כדי שרינדור לא יחזיר אותו למטה */
+function lpMani() {
+  const P = document.getElementById("lpMani"); if (!P) return;
+  const W = P.querySelectorAll(".wd"), r = P.getBoundingClientRect(), vh = innerHeight || 1, pr = RM() ? 1 : Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height + vh * 0.35)));
+  W.forEach((w, i) => { const a = Math.min(1, Math.max(0, pr * W.length - i)), v = (0.2 + 0.8 * a).toFixed(3); if (w.style.opacity !== v) w.style.opacity = v; });
+  const D = document.getElementById("lpDay");
+  if (LPIO && LPIO.el !== D) { LPIO.io.disconnect(); LPIO = null; } /* הפאנל הוחלף או ירד מהמסך (כניסה לאפליקציה) */
+  if (D && !S.lpDayIn && !LPIO) { if (!("IntersectionObserver" in window) || RM()) { S.lpDayIn = true; D.classList.add("in"); return; }
+    const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { S.lpDayIn = true; D.classList.add("in"); io.disconnect(); LPIO = null; } }, { threshold: 0.15 }); io.observe(D); LPIO = { el: D, io }; }
+}
+let LPIO = null;
 function lpCine() {
   const c = document.querySelector(".lp-cine"); if (!c) { lpStep = -1; return; }
   const pr = document.querySelector(".lp-prog"), mx = document.documentElement.scrollHeight - innerHeight; if (pr) pr.style.transform = `scaleX(${mx > 0 ? Math.min(1, Math.max(0, scrollY / mx)).toFixed(4) : 0})`;
@@ -9268,7 +9768,7 @@ addEventListener("popstate", () => {
   else if (S.user && S.landing) { S.landing = false; render(); jumpTo(0); }
   else if (!S.user && S.landing && history.state && history.state.mzIn) { S.landing = false; render(); jumpTo(0); }
 });
-function onScroll() { scrT = 0; jumpSpy(); lpCine(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.documentElement.style.setProperty("--ov", RM() ? "0" : Math.min(1, Math.max(0, -window.scrollY) / 80).toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
+function onScroll() { scrT = 0; jumpSpy(); lpCine(); lpMani(); const y = Math.max(0, window.scrollY), p = Math.min(1, y / 56); document.documentElement.style.setProperty("--sp", p.toFixed(3)); document.documentElement.style.setProperty("--ov", RM() ? "0" : Math.min(1, Math.max(0, -window.scrollY) / 80).toFixed(3)); document.body.classList.toggle("scrolled", y > 40); }
 window.addEventListener("scroll", () => { if (!scrT) scrT = requestAnimationFrame(onScroll); }, { passive: true });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.sheet) closeSheet(); else if (e.key === "Enter" && e.target.id === "wG") { e.preventDefault(); addWeighing(); } });
 setInterval(() => { remindTick(); dayRoll();
