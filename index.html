@@ -3,7 +3,7 @@
 <!-- mizo -->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-87C15ai+Ga4DjUt/rHifJjE7MmZ3Wj7rvJFb2zrN7us=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5g6k8jt0wwKV4kWXoRYAh/53h0KpTLUznvq+dF7YqDo=' 'sha256-GE0moYGOnCdcrOjN7H1Bf5lONCj4S7fbR1DgIcn393E=' 'sha256-TZOyoPpkqeS/A2ukvxD1ugtXOCO4lKWpPcmyNdDh+Zw=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://*.firebaseapp.com https://www.gstatic.com; worker-src 'self'; frame-src https://*.firebaseapp.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="google" content="notranslate">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -507,11 +507,9 @@ body{background:var(--bg)}  /* רקע שטוח */
 .card,.list{border-color:var(--line)}
 .row{border-top-color:var(--line)}
 .cat h2{margin-bottom:12px}
-.btn{border-radius:var(--r-tile);background:linear-gradient(180deg,#F7AEC2,var(--acc));box-shadow:0 8px 20px -8px rgba(244,154,178,.55),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .12s,box-shadow .12s}
-:root[data-theme="light"] .btn{background:linear-gradient(180deg,#D94A70,var(--acc));box-shadow:0 8px 18px -8px rgba(200,50,90,.5),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn{border-radius:var(--r-tile);background:var(--acc);box-shadow:none;transition:transform .12s,box-shadow .12s} /* 2.11: בלי גרדיאנט ורוד ישן */
 .step button{transition:transform .1s;box-shadow:var(--edge)}
-.step button:last-child{background:linear-gradient(180deg,#F7AEC2,var(--acc));box-shadow:0 6px 14px -6px rgba(244,154,178,.6),inset 0 1px 0 rgba(255,255,255,.35)}
-:root[data-theme="light"] .step button:last-child{background:linear-gradient(180deg,#D94A70,var(--acc))}
+.step button:last-child{background:var(--acc);box-shadow:none}
 .chip{border-color:var(--line)}
 :root[data-theme="light"] .seg{box-shadow:inset 0 1px 2px rgba(36,25,43,.06)}
 .tabbar{border-top-color:var(--line)}
@@ -3027,6 +3025,57 @@ body.has-bar .tmini{bottom:calc(var(--tab-h) + max(8px,env(safe-area-inset-botto
 body.has-tmini main{padding-bottom:calc(var(--tab-h) + 80px + env(safe-area-inset-bottom,0px))}
 body.has-tmini.has-bar main{padding-bottom:calc(var(--tab-h) + 160px + env(safe-area-inset-bottom,0px))}
 
+/* ======================================================================
+   2.11 מראה דף הבית באפליקציה ובדמו (אושר ע"י גדי). שכבת סגנון בלבד, בלי להזיז כפתורים
+   ====================================================================== */
+/* 1. כותרת גדולה: הטיפול של כותרת ה-hero (800, ריווח צפוף) בסולם 34 של האפליקציה */
+.lt,h1.lt{font:800 34px/40px var(--ui);letter-spacing:-.032em}
+.auth.grp .gt,.auth.grp h1{font:800 34px/40px var(--ui);letter-spacing:-.032em;color:var(--label)}
+/* 2. ליקוי סטטי: אותו ליקוי של דף הבית, בלי נשימה ובלי סיבוב. העיגול בצבע הרקע, כך שבבהיר הוא "שמש בהירה" עם טבעת ירוקה */
+.mz-ecl{--ec-0:#0f2a25;--ec-1:#2e7a5b;--ec-2:#9fd48b;--ec-3:#f2ffd9;--ec-d:136px;position:absolute;z-index:-1;left:50%;top:100%;width:calc(var(--ec-d) * 2.2);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none}
+.mz-ecl .lp-ec-h,.mz-ecl .lp-ec-r{animation:none}
+.mz-ecl .lp-ec-d{background:radial-gradient(circle closest-side,var(--bg) 0 45.2%,transparent 45.7%);-webkit-mask-image:none;mask-image:none}
+:root[data-theme="light"] .mz-ecl{--ec-0:rgba(12,122,82,.10);--ec-1:rgba(12,122,82,.45);--ec-2:#3FBF8A;--ec-3:#0C7A52}
+:root[data-theme="light"] .mz-ecl .lp-ec-r{opacity:.5}
+/* סקירה: סימן מיזו בלבד מעל התאריך (הליקוי רק בכניסה, החלטת גדי 28.11) */
+.ovtop{display:flex;justify-content:flex-start;margin-top:8px}
+.ovtop .mzw{font-size:22px;color:var(--label)}
+/* כניסה: הליקוי מאחורי הסימן */
+.auth.grp .mz-esign{position:relative;isolation:isolate;justify-content:flex-end;min-height:128px;padding-bottom:12px;margin-bottom:32px;clip-path:inset(-400px -100vw 0 -100vw)}
+.auth.grp .mz-esign .mz-ecl{--ec-d:240px}
+.auth.grp .mz-esign .mzw{color:var(--label)}
+/* 3. כפתור ראשי: הגלולה הירוקה של דף הבית (כהה #38E0A0 על #04170E, בהיר #0C7A52 על לבן), רדיוס 999 */
+.btn:not(.small){border-radius:999px}
+.auth.grp .btn.full:not(.ghost):not(.okb):not(.badb){height:50px;border-radius:999px;background:var(--tint);color:var(--on-tint);font:var(--f-head)}
+/* 4. קבוצות וכרטיסים: אותו משטח של אריחי דף הבית וקו דק של 0.5 */
+:root{--edge-c:rgba(255,255,255,.08)}
+:root[data-theme="light"]{--edge-c:rgba(0,0,0,.06)}
+:root[data-theme] main :is(.grp,.card,.kpi4,.approve),:root[data-theme] .sheet .grp,:root[data-theme] .lp .grp,.lp .lpn-tiles>*{box-shadow:inset 0 0 0 .5px var(--edge-c)}
+:root[data-theme] main .dsb .card{box-shadow:none} /* כרטיס בתוך גוף סעיף: בלי קו (סוקר 2.11) */
+/* 8. דף הבית: ליטוש */
+/* כפתורים: גלולה כמו בניווט ובאפליקציה, בלי צל צבעוני */
+.lp-btn{min-height:50px;border-radius:999px}
+.lp .lp-btn.pri{box-shadow:none}
+/* בלי זוהר סביב נקודות */
+.lp-eyebrow::before,.lp-dot i{box-shadow:none}
+/* רקע: רק הילה ירוקה אחת עדינה. בלי כתמים כחולים וכתומים */
+.lp-au.a2,.lp-au.a4,.lp-au.a5{display:none}
+/* כותרות סעיפים: אותו טיפול כמו ה-hero, 34 בטלפון ו-48 במחשב */
+.lp .lp-sec h2,.lp .lp-figure h2,.lp .lpn-cmp h2,.lp .lpn-day h2,.lp .lpn-form h2{font:800 34px/1.12 var(--ui);letter-spacing:-.032em}
+@media(min-width:900px){.lp .lp-sec h2,.lp .lp-figure h2,.lp .lpn-cmp h2,.lp .lpn-day h2,.lp .lpn-form h2{font-size:48px;line-height:1.08}}
+/* שבירת שורות: בלי מילה יתומה */
+.lp-fine,.lp-lead,.lp-cap p,.lpn-slot>p{text-wrap:pretty}
+/* ניווט בבהיר: זכוכית כהה כמעט אטומה, לא אפור עכור מעל רקע בהיר */
+:root[data-theme="light"] .lpn-nav{background:rgba(28,28,30,.9)}
+/* מחשב: שאלות וטופס בשתי עמודות (כותרת מימין, תוכן משמאל), כמו "למה זה שונה", במקום עמודה צרה וחצי מסך ריק */
+@media(min-width:920px){
+  .lpn-faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .lpn-faq .grp{margin-top:0;max-width:none}
+  .lpn-form{display:grid;grid-template-columns:.8fr 1.2fr;column-gap:56px;align-items:start}
+  .lpn-form>h2,.lpn-form>.lp-lead{grid-column:1}
+  .lpn-form>form{grid-column:2;grid-row:1 / span 3;margin-top:0;max-width:none}
+}
+
 </style>
 </head>
 <body>
@@ -4545,7 +4594,7 @@ const S = {
   catalog: null, order: null, prod: null, staff: [], settings: {}, today: null, pendingList: [], upcoming: {},
   authMode: "login", authErr: "", busy: false, sheet: null, sugg: {}, suggOff: {}, noteOpen: false,
   range: 30, histAll: false, data: null, dataBusy: false, openRow: null, openDay: null, showDone: false, pushOn: false,
-  authReady: false, landing: !IS_DEMO && !store("mizo-entered") /* מבקר שלא מחובר: קודם נחיתה, ואז מסך הכניסה הקיים. מי שכבר נכנס פעם — ישר לכניסה */
+  authReady: false, landing: !IS_DEMO && !store("mizo-entered") && location.hash !== "#in" /* מבקר שלא מחובר: קודם נחיתה, ואז מסך הכניסה הקיים. מי שכבר נכנס פעם — ישר לכניסה */
 };
 let autoTimer = null, autoDay = null;
 let pending = {}, flushTimer = null, writing = false, noteTimer = null, approveDraft = {};
@@ -5714,6 +5763,8 @@ const MIZO = `<span class="mzw" dir="ltr" role="img" aria-label="mizo">m<span cl
 const BYMIZO = `<p class="bymz">מופעל ע״י ${MIZO}</p>`;
 const MIZO_MAG = `<span class="mzw" dir="ltr" role="img" aria-label="mizo"><span class="mzl">m</span><span class="mzl mzi">ı</span><span class="mzl">z</span><span class="mzl">o</span></span>`;
 const SIGN = `<div class="mzsign">${MIZO}</div>`; /* מסך הכניסה: מיזו. שם המסעדה מופיע אחרי הכניסה */
+/* 2.11: הליקוי של דף הבית, סטטי (בלי תנועה). רק במסך הכניסה */
+const ECL = `<span class="lp-ecl mz-ecl" aria-hidden="true"><b class="lp-ec-up"><i class="lp-ec-r"></i><i class="lp-ec-h"></i></b><i class="lp-ec-d"></i></span>`;
 const ROSE = `<svg class="rose" viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(24 24)">${[0, 72, 144, 216, 288].map((r) => `<g transform="rotate(${r})"><ellipse class="p1" rx="8.5" ry="13" cy="-9"/></g>`).join("")}${[36, 108, 180, 252, 324].map((r) => `<g transform="rotate(${r})"><ellipse class="p2" rx="6" ry="9" cy="-6"/></g>`).join("")}<circle class="c" r="6.2"/><path class="s" d="M-2.6 0.8a2.8 2.8 0 1 1 3.6 2.4"/></g></svg>`;
 const CAT_ICONS = {
   "ירקות וחיתוכים": '<path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14Z"/><path d="M5 19 13 11"/>',
@@ -5738,7 +5789,7 @@ function viewAuth() {
   const intro = !!document.getElementById("intro"), signup = S.authMode === "signup", enter = !intro && (!S.authIn || Date.now() - S.authIn < 1000);
   if (intro && !S.authWait) { S.authWait = true; const w = () => { if (document.getElementById("intro")) return setTimeout(w, 120); if ($("authF")) render(); }; setTimeout(w, 120); }
   if (enter) { if (!S.authIn) S.authIn = Date.now(); setTimeout(() => { if ($("authF")) window.scrollTo(0, 0); }, 0); }
-  const sign = enter ? `<div class="mzsign">${MIZO_MAG}</div>` : SIGN;
+  const sign = (enter ? `<div class="mzsign">${MIZO_MAG}</div>` : SIGN).replace('<div class="mzsign">', `<div class="mzsign mz-esign">${ECL}`);
   /* הרשמה רק דרך קישור הצטרפות (?j=) או קישור מנהל (inv). בלי קישור תקין — אין טופס ואין שום שם מסעדה למבקר */
   const to = signTo(), viaInv = !!to && !!INV_Q && INV_Q.site === to;
   if (signup && !to) { const wait = !!JOIN && JOIN.st === "load", bad = !!SIGN_Q || (!!JOIN && JOIN.st === "bad");
@@ -7138,7 +7189,7 @@ function icardSheet(sh) {
     <div class="sbtns"><button class="btn" id="icSave">שמור</button><button class="btn ghost" id="sClose">ביטול</button></div>`;
 }
 /* ---------- הגדרות (☰) ---------- */
-const APP_VER = "2.10.0";
+const APP_VER = "2.11.0";
 const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
 const ICB = (c, p) => `<span class="ib" style="background:${c}">${SVG(p)}</span>`;
 /* מהירות: זמן טעינה עד המסך הראשון, וזמן בניית מסך (ממוצע ומקסימום) */
@@ -8930,7 +8981,7 @@ function viewApp() {
   const rkSw = RS.length > 1 ? `<span class="popwrap"><button class="glassbtn cap" id="rkBtn" data-pop="rk" aria-haspopup="menu" aria-expanded="${S.pop === "rk"}">${esc((RS.find((x) => x.k === rk) || {}).f || "")} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>${S.pop === "rk" ? `<div class="pop" role="menu" aria-label="מסעדה">${RS.map((x) => `<button role="menuitemradio" data-rk="${esc(x.k)}" aria-pressed="${x.k === rk}">${esc(x.f)}</button>`).join("")}</div>` : ""}</span>` : "";
   const sub2 = bk && S.rv ? `<button class="navedit" id="rvEdit">עריכה</button>` : bk && S.book && Object.keys(S.book).length ? `<button class="navedit" id="bNew">＋ חדש</button>` : S.tab === "settings" || S.tab === "control" || S.tab === "dishes" ? "" : `<span class="navend">${S.tab === "order" && S.order !== null ? `<button class="glassbtn dots" id="moreBtn" aria-label="עוד אפשרויות" aria-pressed="${!!S.onlyOrdered}">${DOTS}</button>` : S.tab === "prod" && labSegs().length ? `<button class="glassbtn dots" id="moreProd" aria-label="עוד">${DOTS}</button>` : ""}<button class="avatar" id="menu" aria-label="הגדרות">${esc(initials(myName()))}</button></span>`;
   return `<div class="glow ${glow}" aria-hidden="true"></div><header><div class="wrap"><div class="navbar">${back || rkSw || (mySites().length > 1 ? `<button class="glassbtn cap sitesw" id="siteSw" aria-label="החלפת מסעדה">${esc(siteOf(S.site).f)} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>` : "<span></span>")}<b class="navtitle">${esc(title)}</b>${sub2 || "<span></span>"}</div>
-      ${S.tab === "room" ? `<p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : IS_DEMO && !rkSw && mySites().length <= 1 && !back ? `<p class="eyebrow dsite">${esc(siteOf(S.site).f)}</p>` /* דמו: שם המסעדה שהמבקר בחר, מעל הכותרת */ : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
+      ${S.tab === "room" ? `<div class="ovtop">${MIZO}</div><p class="eyebrow">${esc(new Date().toLocaleDateString("he-IL", { weekday: "long", day: "numeric", month: "long" }))}</p>` : IS_DEMO && !rkSw && mySites().length <= 1 && !back ? `<p class="eyebrow dsite">${esc(siteOf(S.site).f)}</p>` /* דמו: שם המסעדה שהמבקר בחר, מעל הכותרת */ : ""}<h1 class="lt">${esc(title)}</h1>${sub ? `<p class="lsub">${esc(sub)}</p>` : S.tab === "control" && !S.ctl ? `<p class="lsub">${MIZO}</p>` : ""}
       ${showDays ? `<div class="days" role="group" aria-label="יום משלוח"><i class="dpill" aria-hidden="true"></i>${days}</div>` : ""}</div></header>
     <main class="wrap ${S.enter ? "enter" : ""}">${pendBan()}${body}</main>${barH}${navOn ? nav : ""}${coach}${viewSheet()}`;
 }
